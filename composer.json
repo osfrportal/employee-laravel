@@ -1,0 +1,25 @@
+{
+    "name": "osfrportal/osfrportal-laravel",
+    "description": "OSFR Local Portal package for Laravel",
+    "type": "project",
+    "require": {
+	"php": "^8.1",
+	"ext-soap": "*",
+        "artisaninweb/laravel-soap": "0.3.0.10",
+        "spatie/laravel-data": "^3.4",
+        "spatie/laravel-enum": "^3.0",
+        "spatie/laravel-activitylog": "^4.7"
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Osfrportal\\OsfrportalLaravel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paul Pleshkov"
+        }
+    ]
+}
