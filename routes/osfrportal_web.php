@@ -18,10 +18,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth.osfrportal')->group(fun
         Route::post('/role/add', 'AddRole')->name('permissions.addrole');
         Route::get('/role/edit/{roleid}', 'EditRole')->name('permissions.editrole');
         Route::get('/role/delete/{roleid}', 'DeleteRole')->name('permissions.deleterole');
-        Route::get('/role/showusers/{roleid}', 'ShowRoleUsers')->name('permissions.showroleusers');
+        Route::get('/role/showusers/{roleid}', 'ShowRoleUsersList')->name('permissions.showroleusers');
         Route::get('/role', 'ShowRolesList')->name('roles');
 
         Route::get('/permission/showusers/{permissionid}', 'ShowPermissionUsers')->name('permissions.showpermissionusers');
+        Route::post('/permission/add', 'AddPermission')->name('permissions.addpermission');
         Route::get('/permission', 'ShowPermissionsList')->name('permissions');
     });
 });

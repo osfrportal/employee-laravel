@@ -31,3 +31,14 @@ php artisan vendor:publish --provider="Osfrportal\OsfrportalLaravel\Providers\Os
 значение 'provider' установить на 'sfrusers'
 
 composer require yajra/laravel-datatables-oracle:"^10.0"
+
+Полномочия и роли:
+permissions-manage
+users-manage
+users-view
+links-manage
+personmovements-view
+person-view
+person-manage
+infosystem-view
+infosystem-manage

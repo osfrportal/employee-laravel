@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 use Illuminate\Support\Collection;
-
+use \Illuminate\Support\Facades\Validator;
 class PermissionsController extends Controller
 {
     private $sfr_roles_select2_collection;
@@ -60,6 +60,12 @@ class PermissionsController extends Controller
 
         return DataTables::of($all_roles_in_database)->toJson();
     }
+    public function APIShowRoleUsersList(int $roleid)
+    {
+        $all_roles_in_database = Role::with('permissions')->get();
+
+        return DataTables::of($all_roles_in_database)->toJson();
+    }
     public function APIShowPermissionsList()
     {
         $all_permissions_in_database = Permission::with('roles')->get();
@@ -78,7 +84,7 @@ class PermissionsController extends Controller
             'rolename' => 'required|max:50|unique:roles,name',
             'permissions' => 'filled',
         ];
-        $validator = \Illuminate\Support\Facades\Validator::make($request->only('rolename', 'permissions'), $rules);
+        $validator = Validator::make($request->only('rolename', 'permissions'), $rules);
         if ($validator->fails()) {
             $error = [
                 'success' => false,
@@ -99,6 +105,33 @@ class PermissionsController extends Controller
         return response()->json(data: $message, status: 200, options: JSON_UNESCAPED_UNICODE);
 
     }
+    public function AddPermission(Request $request)
+    {
+        $rules = [
+            'permissionname' => 'required|max:50|unique:roles,name',
+            'roles' => 'filled',
+        ];
+        $validator = Validator::make($request->only('permissionname', 'roles'), $rules);
+        if ($validator->fails()) {
+            $error = [
+                'success' => false,
+                'message' => json_decode($validator->errors())
+            ];
+            return response()->json(data: $error, status: 422, options: JSON_UNESCAPED_UNICODE);
+        }
+        // Retrieve the validated input...
+        $validated = $validator->validated();
+        $created_permission = Permission::findOrCreate($validated['permissionname']);
+        if (isset($validated['roles'])) {
+            $created_permission->syncRoles($validated['roles']);
+        }
+        $message = [
+            'success' => true,
+            'message' => 'Добавлено успешно'
+        ];
+        return response()->json(data: $message, status: 200, options: JSON_UNESCAPED_UNICODE);
+
+    }
     /**
      * Summary of ShowPermissionsList
      * @return mixed
@@ -111,5 +144,10 @@ class PermissionsController extends Controller
     public function ShowPermissionsList()
     {
         return view('osfrportal::admin.permissions.permission_showlist');
+    }
+    public function ShowRoleUsersList(int $roleid)
+    {
+        $rolename = Role::find($roleid);
+        return view('osfrportal::admin.permissions.role_showusers', ['roleid' => $roleid, 'rolename' => $rolename->name]);
     }
 }

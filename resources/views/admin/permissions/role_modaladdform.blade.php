@@ -54,6 +54,7 @@
                     },
                 }
             });
+            //@todo: Переписать на sweetalert
             $('#form-role-add').submit(function(e) {
                 e.preventDefault();
                 var form = $(this);

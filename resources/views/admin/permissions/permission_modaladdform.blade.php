@@ -8,7 +8,7 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="form-permission-add" action="/submit.action" method="POST">
+            <form id="form-role-add" action="{{ route('osfrportal.admin.permissions.addpermission') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Добавление полномочия</h5>
@@ -17,15 +17,19 @@
                 <div class="modal-body">
 
                     <div class="mb-3">
-                        <label for="rolename" class="form-label">Наименование полномочия</label>
-                        <input type="text" class="form-control" id="rolename">
+                        <label for="permissionname" class="form-label">Наименование полномочия</label>
+                        <input type="text" class="form-control" id="permissionname" name="permissionname">
                     </div>
                     <div class="mb-3">
                         <select class="form-select form-select-sm mb-3" id="select2-roles" name="roles[]"
                             multiple="multiple" data-ajax--delay="500"
-                            data-placeholder="Выберите роли, в которые будет входить указанное полномочие"
+                            data-placeholder="Выберите роли, в которые будут входить создаваемые полномочия"
                             data-allow-clear="true" data-language="ru" data-selection-css-class="select2--small"
                             data-dropdown-css-class="select2--small"></select>
+                    </div>
+                    <div class="mb-3" id="editalertcontainer">
+                        <ul>
+                        </ul>
                     </div>
 
                 </div>
@@ -50,7 +54,8 @@
                     },
                 }
             });
-            $('#form-permission-add').submit(function(e) {
+            //@todo: Переписать на sweetalert
+            $('#form-role-add').submit(function(e) {
                 e.preventDefault();
                 var form = $(this);
                 var actionUrl = form.attr('action');
@@ -59,11 +64,20 @@
                     url: actionUrl,
                     type: method,
                     data: form.serialize(),
-                    success: function(data) {
-                        alert("Successfully submitted.")
+                    success: function(response) {
+                        var link = "{{ route('osfrportal.admin.permissions') }}";
+                        alert("Добавлено успешно");
+                        $(location).attr('href', link);
                     },
                     error: function(jqXHR, exception) {
-                        alert('Error. ' + jqXHR.responseText);
+                        var error_place = $('#editalertcontainer');
+
+                        var errors = jqXHR.responseJSON;
+                        var errorsHtml = '';
+                        $.each(errors['message'], function(key, value) {
+                            errorsHtml += '<li>' + value + '</li>';
+                        });
+                        error_place.html(errorsHtml);
                     }
                 });
             });

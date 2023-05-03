@@ -18,6 +18,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
     });
     Route::controller(PermissionsController::class)->group(function () {
+        Route::get('/roles/users/{roleid}', 'APIShowRoleUsersList')->name('role_users_all');
         Route::get('/roles', 'APIShowRolesList')->name('roles_all');
         Route::get('/permissions', 'APIShowPermissionsList')->name('permissions_all');
     });
