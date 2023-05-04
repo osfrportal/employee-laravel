@@ -8,20 +8,76 @@
                 </a>
             </li>
         </ul>
-        @can('permissions-manage')
-            <hr />
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('osfrportal.admin.roles') }}">
-                        <span> Управление ролями портала</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('osfrportal.admin.permissions') }}">
-                        <span> Управление полномочиями портала</span>
-                    </a>
-                </li>
-            </ul>
-        @endcan
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
+                    <span class="bi bi-table"> RS:Управление доступом</span>
+                </a>
+            </li>
+        </ul>
+        @include('osfrportal::admin.layout.leftmenu')
     </div>
 </nav>

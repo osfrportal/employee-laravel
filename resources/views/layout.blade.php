@@ -39,14 +39,16 @@
                 </ul>
             </div>
             <div class="dropdown px-3">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-person-circle iconsMenu"></i>
+                <a href="#" class="d-block text-white text-decoration-none dropdown-toggle text-nowrap"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle iconsMenu"></i> <span
+                        class="fs-6">&nbsp;{{ auth()->user()->SfrPerson->psurname }}
+                        {{ auth()->user()->SfrPerson->pname }}
+                        {{ auth()->user()->SfrPerson->pmiddlename }}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownUser1" style="">
+                <ul class="dropdown-menu dropdown-menu-lg-start" aria-labelledby="dropdownUser1" style="">
                     <li><a class="dropdown-item" href="{{ route('osfrportal.dashboard') }}">Личный кабинет</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Профиль</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

@@ -9,6 +9,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Административные маршруты
@@ -40,14 +41,28 @@ Route::get('/dashboard', function () {
     return view('osfrportal::sections.dashboard.dashboard');
 })->name('dashboard')->middleware('auth.osfrportal');
 
-Route::get('/createuser', function () {
-    $pperson = SfrPerson::where('psnils', '12413082809')->first();
+Route::get('/parsexml', function () {
+    $string = Storage::disk('local')->get('000_20230504employee.xml');
+    $xml = @simplexml_load_string(data: $string, options: LIBXML_NOCDATA);
+    $out = json_decode(json: json_encode((array) $xml, flags: JSON_UNESCAPED_UNICODE), flags: JSON_UNESCAPED_UNICODE);
+    $out1 = collect($out->Person);
 
+    /*
+    foreach ($out->Person as $person) {
+    }
+    */
+    $out1->each(function ($person) {
+        $fio = sprintf('%s %s %s <br>', $person->lastname, $person->firstname, $person->middlename);
+        print($fio);
+    });
+    /*
+    $pperson = SfrPerson::where('psnils', '12413082809')->first();
     $sfruser = new SfrUser;
     $sfruser->username = 'PleshkovPA';
     $sfruser->password = bcrypt('12345');
     $sfruser->pid = $pperson->pid;
     $sfruser->save();
+    */
 });
 Route::get('/', function () {
     /*
