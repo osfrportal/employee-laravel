@@ -4,8 +4,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Администрирование</a></li>
-                <li class="breadcrumb-item"><a href="#">Управление ролями портала</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Пользователи с ролью <b>{{ $rolename }}</b></li>
+                <li class="breadcrumb-item"><a href="#">Управление полномочиями портала</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Пользователи с полномочием <b>{{ $permissionname }}</b>
+                </li>
             </ol>
         </nav>
     </div>
@@ -13,7 +14,7 @@
 @endsection
 @section('content')
     <div class="pt-0">
-        <table class="table table-striped table-bordered table-sm table-responsive" id="table-role-users">
+        <table class="table table-striped table-bordered table-sm table-responsive" id="table-permissions-users">
             <thead>
                 <tr>
                     <th class="align-middle text-center">Логин</th>
@@ -27,15 +28,15 @@
 @endsection
 @push('footer-scripts')
     <?php
-    $route_api_role_users = route('osfrapi.osfrportal.admin.role_users_all', $roleid);
+    $route_api_permission_users = route('osfrapi.osfrportal.admin.permission_users_all', $permissionid);
     $route_user_delete = '';
     ?>
     <script type="text/javascript">
-        $('#table-role-users').DataTable({
+        $('#table-permissions-users').DataTable({
             pagingType: 'numbers',
             ordering: false,
             serverSide: false,
-            ajax: '{{ $route_api_role_users }}',
+            ajax: '{{ $route_api_permission_users }}',
             dataSrc: 'data',
 
             columns: [{

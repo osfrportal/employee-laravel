@@ -2,6 +2,7 @@
 
 namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -13,11 +14,14 @@ use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 use Illuminate\Support\Collection;
-use \Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
+use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+
 class PermissionsController extends Controller
 {
     private $sfr_roles_select2_collection;
     private $sfr_permissions_select2_collection;
+    private $sfr_users_out_collection;
     /**
      * --------------------------------
      * API functions
@@ -62,9 +66,22 @@ class PermissionsController extends Controller
     }
     public function APIShowRoleUsersList(int $roleid)
     {
-        $all_roles_in_database = Role::with('permissions')->get();
+        $this->sfr_users_out_collection = collect();
+        $sfrusers_with_role = SfrUser::role($roleid)->get();
+        $sfrusers_with_role->each(function ($sfruser) {
+            $full_fio = sprintf('%s %s %s', $sfruser->SfrPerson->psurname, $sfruser->SfrPerson->pname, $sfruser->SfrPerson->pmiddlename);
+            $last_activity = $sfruser->SfrUserSessions->last_activity;
 
-        return DataTables::of($all_roles_in_database)->toJson();
+            $tmp_arr = [
+                'pid' => $sfruser->SfrPerson->pid,
+                'fio' => $full_fio,
+                'username' => $sfruser->username,
+                'last_activity' => $last_activity,
+            ];
+            $this->sfr_users_out_collection->push($tmp_arr);
+        });
+
+        return DataTables::of($this->sfr_users_out_collection)->toJson();
     }
     public function APIShowPermissionsList()
     {
@@ -72,6 +89,25 @@ class PermissionsController extends Controller
 
         return DataTables::of($all_permissions_in_database)->toJson();
     }
+    public function APIShowPermissionUsersList(int $permissionid)
+    {
+        $this->sfr_users_out_collection = collect();
+        $sfrusers_with_permission = SfrUser::permission($permissionid)->get();
+        $sfrusers_with_permission->each(function ($sfruser) {
+            $full_fio = sprintf('%s %s %s', $sfruser->SfrPerson->psurname, $sfruser->SfrPerson->pname, $sfruser->SfrPerson->pmiddlename);
+            $last_activity = $sfruser->SfrUserSessions->last_activity;
+            $tmp_arr = [
+                'pid' => $sfruser->SfrPerson->pid,
+                'fio' => $full_fio,
+                'username' => $sfruser->username,
+                'last_activity' => $last_activity,
+            ];
+            $this->sfr_users_out_collection->push($tmp_arr);
+        });
+
+        return DataTables::of($this->sfr_users_out_collection)->toJson();
+    }
+
 
     /**
      * --------------------------------
@@ -149,5 +185,10 @@ class PermissionsController extends Controller
     {
         $rolename = Role::find($roleid);
         return view('osfrportal::admin.permissions.role_showusers', ['roleid' => $roleid, 'rolename' => $rolename->name]);
+    }
+    public function ShowPermissionUsersList(int $permissionid)
+    {
+        $permission = Permission::find($permissionid);
+        return view('osfrportal::admin.permissions.permission_showusers', ['permissionid' => $permissionid, 'permissionname' => $permission->name]);
     }
 }

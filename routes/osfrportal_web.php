@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 //use Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
@@ -22,7 +23,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.osfrportal')->group(fun
         Route::get('/role/showusers/{roleid}', 'ShowRoleUsersList')->name('permissions.showroleusers');
         Route::get('/role', 'ShowRolesList')->name('roles');
 
-        Route::get('/permission/showusers/{permissionid}', 'ShowPermissionUsers')->name('permissions.showpermissionusers');
+        Route::get('/permission/showusers/{permissionid}', 'ShowPermissionUsersList')->name('permissions.showpermissionusers');
         Route::post('/permission/add', 'AddPermission')->name('permissions.addpermission');
         Route::get('/permission', 'ShowPermissionsList')->name('permissions');
     });
@@ -42,19 +43,18 @@ Route::get('/dashboard', function () {
 })->name('dashboard')->middleware('auth.osfrportal');
 
 Route::get('/parsexml', function () {
+
     $string = Storage::disk('local')->get('000_20230504employee.xml');
     $xml = @simplexml_load_string(data: $string, options: LIBXML_NOCDATA);
     $out = json_decode(json: json_encode((array) $xml, flags: JSON_UNESCAPED_UNICODE), flags: JSON_UNESCAPED_UNICODE);
     $out1 = collect($out->Person);
-
-    /*
-    foreach ($out->Person as $person) {
-    }
-    */
     $out1->each(function ($person) {
         $fio = sprintf('%s %s %s <br>', $person->lastname, $person->firstname, $person->middlename);
         print($fio);
     });
+});
+Route::get('/test', function () {
+    dump(Auth::user());
     /*
     $pperson = SfrPerson::where('psnils', '12413082809')->first();
     $sfruser = new SfrUser;

@@ -6,7 +6,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                     aria-expanded="false">Работники</a>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="#">Управление</a></li>
+                    <li><a class="dropdown-item" href="#">Просмотр/Управление</a></li>
                     <li><a class="dropdown-item" href="#">Кадровые перемещения</a></li>
                 </ul>
             </div>

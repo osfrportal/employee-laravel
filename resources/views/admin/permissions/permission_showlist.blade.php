@@ -25,7 +25,7 @@
     $route_role_delete = route('osfrportal.admin.permissions.deleterole', '');
     $route_role_showusers = route('osfrportal.admin.permissions.showroleusers', '');
     $route_permission_showusers = route('osfrportal.admin.permissions.showpermissionusers', '');
-    
+
     $route_api_all_permissions = route('osfrapi.osfrportal.admin.permissions_all');
     ?>
     <script type="text/javascript">
@@ -85,7 +85,7 @@
 
                         var link_edit = '{{ $route_role_edit }}' + '/' + data;
                         var link_delete = '{{ $route_role_delete }}' + '/' + data;
-                        var link_users = '{{ $route_role_showusers }}' + '/' + data;
+                        var link_users = '{{ $route_permission_showusers }}' + '/' + data;
                         return (
                             '<div class="d-inline-block">' +
                             '<a href="#" class="btn btn-sm text-primary btn-icon hide-arrow" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>' +
