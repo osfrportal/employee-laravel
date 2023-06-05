@@ -33,12 +33,7 @@
     ?>
     <script type="text/javascript">
         $('#table-permissions-users').DataTable({
-            pagingType: 'numbers',
-            ordering: false,
-            serverSide: false,
             ajax: '{{ $route_api_permission_users }}',
-            dataSrc: 'data',
-
             columns: [{
                     data: 'username'
                 },

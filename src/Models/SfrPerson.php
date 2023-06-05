@@ -24,11 +24,36 @@ class SfrPerson extends Model
      * @var array
      */
     //protected $with = ['SfrUser'];
+
     /**
      * Данные пользователя для входа на портал
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function SfrUser() {
         return $this->hasOne(SfrUser::class, 'pid');
+    }
+
+    /**
+     * Контактная информация работника
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function SfrPersonContacts() {
+        return $this->hasOne(SfrPersonContacts::class, 'pid', 'pid');
+    }
+
+    /**
+     * Отпуска работника
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function SfrPersonVacation() {
+        return $this->hasMany(SfrPersonVacation::class, 'pid')->orderByDesc('vacationend');
+    }
+
+    /**
+     * Декретные отпуска работника
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function SfrPersonDekret() {
+        return $this->hasMany(SfrPersonDekret::class, 'pid')->orderByDesc('updated_at');
     }
 }

@@ -9,13 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRImapReaderController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Illuminate\Support\Facades\Storage;
 
 /**
  * Административные маршруты
  */
 Route::prefix('admin')->name('admin.')->middleware('auth.osfrportal')->group(function () {
+    Route::controller(SFRPersonController::class)->name('persons.')->prefix('persons')->group(function () {
+        Route::get('/', 'ShowPersonsList')->name('all');
+    });
     Route::controller(PermissionsController::class)->prefix('permissions')->group(function () {
         Route::post('/role/add', 'AddRole')->name('permissions.addrole');
         Route::get('/role/edit/{roleid}', 'EditRole')->name('permissions.editrole');
@@ -64,6 +69,8 @@ Route::get('/test', function () {
     $sfruser->save();
     */
 });
+Route::get('/imaptest', [SFRImapReaderController::class, 'getAllMessages']);
+
 Route::get('/', function () {
     /*
     $to_name = 'Paul';

@@ -25,12 +25,11 @@
     $route_role_delete = route('osfrportal.admin.permissions.deleterole', '');
     $route_role_showusers = route('osfrportal.admin.permissions.showroleusers', '');
     $route_permission_showusers = route('osfrportal.admin.permissions.showpermissionusers', '');
-
+    
     $route_api_all_permissions = route('osfrapi.osfrportal.admin.permissions_all');
     ?>
     <script type="text/javascript">
         $('#table-roles').DataTable({
-
             ajax: '{{ $route_api_all_permissions }}',
             dataSrc: 'data',
             columns: [{

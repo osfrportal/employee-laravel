@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 
 //'prefix' => 'api/osfr/v1/osfrportal/admin',
 //'name' => 'osfrapi.osfrportal.admin.'
@@ -22,6 +23,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/roles', 'APIShowRolesList')->name('roles_all');
         Route::get('/permissions/users/{permissionid}', 'APIShowPermissionUsersList')->name('permission_users_all');
         Route::get('/permissions', 'APIShowPermissionsList')->name('permissions_all');
+    });
+    Route::prefix('persons')->name('persons.')->group(function () {
+        Route::controller(SFRPersonController::class)->group(function () {
+            Route::get('/all', 'APIPersonsList')->name('all');
+        });
     });
 });
 

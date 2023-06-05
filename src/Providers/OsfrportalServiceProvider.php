@@ -10,6 +10,8 @@ use Illuminate\Support\ServiceProvider;
 
 
 //console commands
+//use Osfrportal\OsfrportalLaravel\Console\Commands\SFRImapIdleCommand;
+
 //use Courier\Console\Commands\InstallCommand;
 //use Courier\Console\Commands\NetworkCommand;
 
@@ -30,12 +32,12 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../../public' => public_path('osfrportal'),
             ], 'osfrportal-public');
-            /*
-            $this->commands([
-            InstallCommand::class,
-            NetworkCommand::class,
-            ]);
-            */
+            
+            //$this->commands([
+                //SFRImapIdleCommand::class,
+            //NetworkCommand::class,
+            //]);
+            
         }
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'osfrportal');
 

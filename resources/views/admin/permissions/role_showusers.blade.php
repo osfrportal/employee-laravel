@@ -32,12 +32,7 @@
     ?>
     <script type="text/javascript">
         $('#table-role-users').DataTable({
-            pagingType: 'numbers',
-            ordering: false,
-            serverSide: false,
             ajax: '{{ $route_api_role_users }}',
-            dataSrc: 'data',
-
             columns: [{
                     data: 'username'
                 },
