@@ -59,8 +59,8 @@ Route::get('/parsexml', function () {
     });
 });
 Route::get('/test', function () {
-    $size = Storage::disk('ftp1c')->size('vacation_058 (TXT) 2023-05-26.txt');
-    dump($size);
+    //$size = Storage::disk('ftp1c')->size('vacation_058 (TXT) 2023-05-26.txt');
+    //dump($size);
     dump(Auth::user());
     /*
     $pperson = SfrPerson::where('psnils', '12413082809')->first();
@@ -74,6 +74,7 @@ Route::get('/test', function () {
 Route::get('/imaptest', [SFRImapReaderController::class, 'put1CFilesToFTP']);
 
 Route::get('/', function () {
+    //dd(config('auth'));
     /*
     $to_name = 'Paul';
     $to_email = 'pleshkovpa@48.sfr.gov.ru';

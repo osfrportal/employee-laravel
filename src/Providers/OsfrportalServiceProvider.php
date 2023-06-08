@@ -11,6 +11,7 @@ use Illuminate\Console\Scheduling\Schedule;
 
 //console commands
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRImapGetCommand;
+
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
@@ -29,6 +30,9 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../../config/osfrportal.php' => config_path('osfrportal.php'),
                 __DIR__ . '/../../config/osfrportal_filesystems.php' => config_path('osfrportal_filesystems.php'),
+                __DIR__ . '/../../config/osfrportal_auth_defaults.php' => config_path('osfrportal_auth_defaults.php'),
+                __DIR__ . '/../../config/osfrportal_auth_guards.php' => config_path('osfrportal_auth_guards.php'),
+                __DIR__ . '/../../config/osfrportal_auth_providers.php' => config_path('osfrportal_auth_providers.php'),
             ], 'osfrportal-config');
             $this->publishes([
                 __DIR__ . '/../../resources/views' => resource_path('views/vendor/osfrportal'),
@@ -70,6 +74,27 @@ class OsfrportalServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        config([
+            'auth.guards.web' => [
+                'driver' => 'session',
+                'provider' => 'sfrusers',
+            ]
+        ]);
+        config([
+            'auth.defaults' => [
+                'guard' => 'web',
+                'passwords' => 'sfrusers',
+            ]
+        ]);
+        config([
+            'auth.providers' => array_merge([
+                'sfrusers' => [
+                    'driver' => 'eloquent',
+                    'model' => \Osfrportal\OsfrportalLaravel\Models\SfrUser::class,
+                ],
+            ], config('auth.providers', [])),
+        ]);
+
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/osfrportal.php',
             'osfrportal'
@@ -97,7 +122,7 @@ class OsfrportalServiceProvider extends ServiceProvider
 
         Route::group([
             'namespace' => 'Osfrportal\OsfrportalLaravel\Http\Controllers',
-	        'middleware' => 'web',
+            'middleware' => 'web',
             'as' => 'osfrportal.',
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/../../routes/osfrportal_web.php');
