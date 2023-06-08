@@ -20,36 +20,39 @@ class SFRImapReaderController extends Controller
             dd($exception->getMessage());
         }
     }
-    public function getAllMessages() {
+    public function put1CFilesToFTP() {
         try {
             $oFolder = $this->oClient->getFolder('INBOX');
         } catch (ConnectionFailedException $exception) {
             dd($exception->getMessage());
         }
         try {
-            $aMessage = $oFolder->query()->since(now()->subDays(5))->get();
+            $aMessage = $oFolder->query()->since(now()->subDays(10))->unseen()->get();
 
             foreach ($aMessage as $oMessage) {
-                echo $oMessage->getFrom()[0]->mail . '<br />';
+                //echo $oMessage->getFrom()[0]->mail . '<br />';
                 $att_date = CarbonImmutable::parse($oMessage->getDate())->format('Y-m-d');
-                echo $att_date . '<br />';
+                //echo $att_date . '<br />';
+                $flags = $oMessage->getFlags();
+                //dump($flags);
                 if ($oMessage->hasAttachments()) {
-                    Storage::disk('local')->makeDirectory('files1c');
-                    $save_path = storage_path('app/files1c');
                     foreach ($oMessage->getAttachments() as $oAttachment) {
                         $oAttachmentName = $oAttachment->getName();
                         $filename_out = Str::replaceLast('.txt', ' ' . $att_date . '.txt', $oAttachmentName);
-                        echo $filename_out . '<br />';
-                        echo $oAttachment->get("size") . '<br />';
-                        $oAttachment->save($save_path, $filename_out);
-                        echo '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<br>';
+                        $file_content = $oAttachment->getAttributes()['content'];
+                        //echo $filename_out . '  (' . $oAttachment->get("size") . ')<br />';
+                        if (Storage::disk('ftp1c')->missing($filename_out)) {
+                            Storage::disk('ftp1c')->put($filename_out, $file_content);
+                        }
+                        //echo '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<br>';
                     }
                 }
-                echo '-----------------------<br>';
+                $oMessage->setFlag('Seen');
+                //echo '-----------------------<br>';
             }
-            
-           
-            echo '<hr>';
+
+
+            //echo '<hr>';
         } catch (GetMessagesFailedException $exception) {
             dd($exception->getMessage());
         }

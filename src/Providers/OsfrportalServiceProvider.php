@@ -7,13 +7,16 @@ use Illuminate\Support\Facades\Route;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Console\Scheduling\Schedule;
 
 //console commands
-//use Osfrportal\OsfrportalLaravel\Console\Commands\SFRImapIdleCommand;
+use Osfrportal\OsfrportalLaravel\Console\Commands\SFRImapGetCommand;
+//use Osfrportal\OsfrportalLaravel\Console\Commands\;
+//use Osfrportal\OsfrportalLaravel\Console\Commands\;
+//use Osfrportal\OsfrportalLaravel\Console\Commands\;
+//use Osfrportal\OsfrportalLaravel\Console\Commands\;
+//use Osfrportal\OsfrportalLaravel\Console\Commands\;
 
-//use Courier\Console\Commands\InstallCommand;
-//use Courier\Console\Commands\NetworkCommand;
 
 class OsfrportalServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,7 @@ class OsfrportalServiceProvider extends ServiceProvider
 
             $this->publishes([
                 __DIR__ . '/../../config/osfrportal.php' => config_path('osfrportal.php'),
+                __DIR__ . '/../../config/osfrportal_filesystems.php' => config_path('osfrportal_filesystems.php'),
             ], 'osfrportal-config');
             $this->publishes([
                 __DIR__ . '/../../resources/views' => resource_path('views/vendor/osfrportal'),
@@ -32,12 +36,23 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../../public' => public_path('osfrportal'),
             ], 'osfrportal-public');
-            
-            //$this->commands([
-                //SFRImapIdleCommand::class,
-            //NetworkCommand::class,
-            //]);
-            
+
+            $this->commands([
+                SFRImapGetCommand::class,
+                //::class,
+                //::class,
+                //::class,
+                //::class,
+                //::class,
+            ]);
+            $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
+                $schedule->command('sfr:imapget')->dailyAt(config('osfrportal.shedule.ImapDailyTime', '00:01'));
+                //$schedule->command('sfr:importpersons')->dailyAt(config('osfrportal.shedule.PersonsDailyTime', '00:03'));
+                //$schedule->command('sfr:importmovements')->dailyAt(config('osfrportal.shedule.MovementsDailyTime', '00:04'));
+                //$schedule->command('sfr:importdepartments)->dailyAt(config('osfrportal.shedule.DepatrmentsDailyTime', '00:05'));
+                //$schedule->command('sfr:importvacation')->dailyAt(config('osfrportal.shedule.VacationDailyTime', '00:06'));
+                //$schedule->command('sfr:importdekret')->dailyAt(config('osfrportal.shedule.DekretDailyTime', '00:07'));
+            });
         }
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'osfrportal');
 
@@ -58,6 +73,10 @@ class OsfrportalServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/osfrportal.php',
             'osfrportal'
+        );
+        $this->mergeConfigFrom(
+            __DIR__ . '/../../config/osfrportal_filesystems.php',
+            'filesystems.disks'
         );
     }
 
