@@ -46,8 +46,9 @@ Route::middleware('auth.osfrportal')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
     });
-    Route::controller(ProfileController::class)->group(function () {
-        Route::get('/profile', 'profileIndex')->name('profile');
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
+        Route::get('/usbskdcers', 'profileUsbSkdCerts')->name('usbskdcerts');
+        Route::get('/', 'profileIndex')->name('index');
     });
 });
 

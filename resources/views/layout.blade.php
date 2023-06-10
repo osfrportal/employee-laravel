@@ -48,7 +48,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-start" aria-labelledby="dropdownUser1" style="">
                     <li><a class="dropdown-item" href="{{ route('osfrportal.dashboard') }}">Личный кабинет</a></li>
-                    <li><a class="dropdown-item" href="{{ route('osfrportal.profile') }}">Профиль</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.profile.index') }}">Профиль</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

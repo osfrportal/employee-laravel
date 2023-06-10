@@ -34,4 +34,8 @@ class ProfileController extends Controller
     {
         return view('osfrportal::sections.profile.index');
     }
+    public function profileUsbSkdCerts()
+    {
+        return view('osfrportal::sections.profile.usbskdcerts');
+    }
 }
