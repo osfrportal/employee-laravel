@@ -42,10 +42,18 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/login', 'authenticate')->name('authenticate');
     Route::get('/logout', 'logout')->name('logout');
 });
+Route::middleware('auth.osfrportal')->group(function () {
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
+    });
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile', 'profileIndex')->name('profile');
+    });
+});
+
+
 //Route::name('osfrportal.')->group(function () {
-Route::get('/dashboard', function () {
-    return view('osfrportal::sections.dashboard.dashboard');
-})->name('dashboard')->middleware('auth.osfrportal');
+
 
 Route::get('/parsexml', function () {
 

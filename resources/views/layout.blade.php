@@ -13,7 +13,7 @@
             {{ Config::get('osfrportal.name') }}
         </a>
 
-        <div class="form-control form-control-dark bg-primary rounded-0 border-0">@yield('dashboardTitle', '')</div>
+        <div class="px-3 text-white text-decoration-none text-nowrap bg-primary rounded-0 border-0">@yield('dashboardTitle', '')</div>
         <div class="form-control form-control-dark bg-primary rounded-0 border-0">
             <a role="button" class="btn btn-primary" id="btn-back-to-top">
                 <h3 class="bi bi-arrow-up-circle"></h3>
@@ -48,7 +48,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-start" aria-labelledby="dropdownUser1" style="">
                     <li><a class="dropdown-item" href="{{ route('osfrportal.dashboard') }}">Личный кабинет</a></li>
-                    <li><a class="dropdown-item" href="#">Профиль</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.profile') }}">Профиль</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

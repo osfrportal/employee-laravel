@@ -17,15 +17,21 @@ class ProfileController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function passwordChange(Request $request) {
+    public function passwordChange(Request $request)
+    {
         $input = $request->all();
         $user = SfrUser::find(auth()->user()->id);
 
 
-        if(!Hash::check($input['current_password'], $user->password)){
+        if (!Hash::check($input['current_password'], $user->password)) {
             dd('Passowrd is not match.');
-        }else{
+        } else {
             dd('Update you password code');
         }
+    }
+
+    public function profileIndex()
+    {
+        return view('osfrportal::sections.profile.index');
     }
 }

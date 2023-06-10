@@ -1,4 +1,5 @@
 <?php
+
 namespace Osfrportal\OsfrportalLaravel\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,9 +41,7 @@ class SfrUser extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-
-    ];
+    protected $casts = [];
     protected $with = ['SfrPerson', 'SfrUserSessions'];
     /**
      * Данные пользователя для входа на портал
@@ -50,7 +49,15 @@ class SfrUser extends Authenticatable
      */
     public function SfrPerson()
     {
-        return $this->belongsTo(SfrPerson::class, 'pid', 'pid');
+        $with_relations = [
+            'SfrPersonAppointment',
+            'SfrPersonVacation',
+            'SfrPersonContacts',
+            'SfrPersonDekret',
+            'SfrPersonTabNum',
+            'SfrPersonUnit',
+        ];
+        return $this->belongsTo(SfrPerson::class, 'pid', 'pid')->with($with_relations);
     }
     public function SfrUserSessions()
     {

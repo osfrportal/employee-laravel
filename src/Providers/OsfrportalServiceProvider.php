@@ -23,16 +23,13 @@ class OsfrportalServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Date::use (CarbonImmutable::class);
+        Date::use(CarbonImmutable::class);
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
             $this->publishes([
                 __DIR__ . '/../../config/osfrportal.php' => config_path('osfrportal.php'),
                 __DIR__ . '/../../config/osfrportal_filesystems.php' => config_path('osfrportal_filesystems.php'),
-                __DIR__ . '/../../config/osfrportal_auth_defaults.php' => config_path('osfrportal_auth_defaults.php'),
-                __DIR__ . '/../../config/osfrportal_auth_guards.php' => config_path('osfrportal_auth_guards.php'),
-                __DIR__ . '/../../config/osfrportal_auth_providers.php' => config_path('osfrportal_auth_providers.php'),
             ], 'osfrportal-config');
             $this->publishes([
                 __DIR__ . '/../../resources/views' => resource_path('views/vendor/osfrportal'),
@@ -64,8 +61,6 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->registerRoutes();
             Route::aliasMiddleware('auth.osfrportal', '\Osfrportal\OsfrportalLaravel\Http\Middleware\Authenticate');
         }
-
-
     }
     /**
      * Register any application services.

@@ -1,4 +1,5 @@
 <?php
+
 namespace Osfrportal\OsfrportalLaravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,10 +15,10 @@ class SfrPerson extends Model
     public $timestamps = false;
 
     /**
-    * Атрибуты, для которых НЕ разрешено массовое присвоение значений.
-    *
-    * @var array
-    */
+     * Атрибуты, для которых НЕ разрешено массовое присвоение значений.
+     *
+     * @var array
+     */
     protected $guarded = [];
     /**
      * Eager Loading By Default
@@ -29,7 +30,8 @@ class SfrPerson extends Model
      * Данные пользователя для входа на портал
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function SfrUser() {
+    public function SfrUser()
+    {
         return $this->hasOne(SfrUser::class, 'pid');
     }
 
@@ -37,7 +39,8 @@ class SfrPerson extends Model
      * Контактная информация работника
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function SfrPersonContacts() {
+    public function SfrPersonContacts()
+    {
         return $this->hasOne(SfrPersonContacts::class, 'pid', 'pid');
     }
 
@@ -45,7 +48,8 @@ class SfrPerson extends Model
      * Отпуска работника
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function SfrPersonVacation() {
+    public function SfrPersonVacation()
+    {
         return $this->hasMany(SfrPersonVacation::class, 'pid')->orderByDesc('vacationend');
     }
 
@@ -53,7 +57,35 @@ class SfrPerson extends Model
      * Декретные отпуска работника
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function SfrPersonDekret() {
+    public function SfrPersonDekret()
+    {
         return $this->hasMany(SfrPersonDekret::class, 'pid')->orderByDesc('updated_at');
+    }
+
+    /**
+     * Табельный номер работника
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function SfrPersonTabNum()
+    {
+        return $this->hasMany(SfrEmployeeTabNum::class, 'pid')->latest('updated_at');
+    }
+
+    /**
+     * Должность работника
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function SfrPersonAppointment()
+    {
+        return $this->belongsToMany(SfrAppointment::class, 'pempapp', 'pid', 'aid')->withTimestamps();
+    }
+
+    /**
+     * Подразделение работника
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function SfrPersonUnit()
+    {
+        return $this->belongsToMany(SfrUnits::class, 'pempunit', 'pid', 'unitid')->withTimestamps();
     }
 }
