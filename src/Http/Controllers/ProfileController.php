@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
+use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 
 class ProfileController extends Controller
 {
@@ -32,7 +34,19 @@ class ProfileController extends Controller
 
     public function profileIndex()
     {
-        return view('osfrportal::sections.profile.index');
+        $person_data = new SFRPersonData(
+            persondata_pid: Auth::user()->SfrPerson->getPid(),
+            persondata_fullname: Auth::user()->SfrPerson->getFullName(),
+            persondata_birthday: Auth::user()->SfrPerson->getBirthDate(),
+            persondata_inn: Auth::user()->SfrPerson->getINN(),
+            persondata_snils: Auth::user()->SfrPerson->getSNILS(),
+            persondata_appointment: Auth::user()->SfrPerson->getAppointment(),
+            persondata_tabnum: Auth::user()->SfrPerson->getTabNum(),
+            persondata_unit_name: Auth::user()->SfrPerson->getUnit(),
+        );
+        $contact_data = SFRPhoneContactData::from(Auth::user()->SfrPerson->SfrPersonContacts->contactdata);
+        //dd($contact_data);
+        return view('osfrportal::sections.profile.index', ['SFRPersonData' => $person_data, 'SFRPhoneContactData' => $contact_data]);
     }
     public function profileUsbSkdCerts()
     {

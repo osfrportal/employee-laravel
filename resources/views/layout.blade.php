@@ -13,7 +13,8 @@
             {{ Config::get('osfrportal.name') }}
         </a>
 
-        <div class="px-3 text-white text-decoration-none text-nowrap bg-primary rounded-0 border-0">@yield('dashboardTitle', '')</div>
+        <div class="px-3 text-white text-decoration-none text-nowrap bg-primary rounded-0 border-0">@yield('dashboardTitle', '')
+        </div>
         <div class="form-control form-control-dark bg-primary rounded-0 border-0">
             <a role="button" class="btn btn-primary" id="btn-back-to-top">
                 <h3 class="bi bi-arrow-up-circle"></h3>
@@ -42,9 +43,7 @@
                 <a href="#" class="d-block text-white text-decoration-none dropdown-toggle text-nowrap"
                     id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-circle iconsMenu"></i> <span
-                        class="fs-6">&nbsp;{{ auth()->user()->SfrPerson->psurname }}
-                        {{ auth()->user()->SfrPerson->pname }}
-                        {{ auth()->user()->SfrPerson->pmiddlename }}</span>
+                        class="fs-6">&nbsp;{{ auth()->user()->SfrPerson->getFullName() }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-start" aria-labelledby="dropdownUser1" style="">
                     <li><a class="dropdown-item" href="{{ route('osfrportal.dashboard') }}">Личный кабинет</a></li>

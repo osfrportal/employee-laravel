@@ -3,8 +3,9 @@
     <div class="position-sticky pt-4">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">
-                    <span class="bi bi-table"> RS:Управление доступом</span>
+                <a class="nav-link {{ active_link('osfrportal.phone.index') }}"
+                    href="{{ route('osfrportal.phone.index') }}">
+                    <span class="bi bi-telephone"> Телефонный справочник</span>
                 </a>
             </li>
         </ul>

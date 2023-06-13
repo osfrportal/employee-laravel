@@ -4,22 +4,10 @@
     <link href="{{ asset('osfrportal/css/profile.css') }}" rel="stylesheet">
 @endpush
 @section('title2')
-    <!-- Account page navigation-->
-    <nav class="nav nav-borders">
-        <a class="nav-link" href="{{ route('osfrportal.profile.index') }}">Профиль</a>
-
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page"
-            target="__blank">Безопасность</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"
-            target="__blank">Уведомления</a>
-        <a class="nav-link  active ms-0" href="{{ route('osfrportal.profile.usbskdcerts') }}">Носители, СКУД,
-            сертификаты</a>
-        <!-- a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page">Носители, СКУД, сертификаты</a -->
-    </nav>
-
+    @include('osfrportal::sections.profile.profilemenu')
 @endsection
 @section('content')
-    <div class="container-xl px-4 mt-4">
+    <div class="container-fluid px-4 mt-4">
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -36,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="ms-4 small">
-                                <a href="#!">Edit</a>
+                                <a href="#!">Подробнее</a>
                             </div>
                         </div>
 
@@ -51,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="ms-4 small">
-                                <a href="#!">Edit</a>
+                                <a href="#!">Подробнее</a>
                             </div>
                         </div>
                     </div>
@@ -72,14 +60,12 @@
                                     <div class="text-xs text-muted">USB Flash</div>
                                 </div>
                             </div>
-                            <div class="ms-4 small">
-                                <a href="#!">Edit</a>
-                            </div>
                         </div>
                         <hr />
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_token.svg') }}" alt="" class="icon-small" />
+                                <img src="{{ asset('osfrportal/images/logo_token.svg') }}" alt=""
+                                    class="icon-small" />
                                 <div class="ms-4">
                                     <div class="text-xs text-muted">JaCarta</div>
                                     <div class="small">Серийный номер: А5588669</div>
@@ -105,9 +91,6 @@
                                     <div class="small">Номер печати: 123</div>
                                 </div>
                             </div>
-                            <div class="ms-4 small">
-                                <a href="#!">Edit</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -123,11 +106,13 @@
 
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt="" class="icon-small" />
+                                <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt=""
+                                    class="icon-small" />
                                 <div class="ms-4">
                                     <div class="text-xs text-muted">УКЭП</div>
                                     <div class="small">Срок действия: по 00.00.00</div>
-                                    <div class="small">Серийный номер: ------------------------------------------------</div>
+                                    <div class="small">Серийный номер: ------------------------------------------------
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -135,11 +120,13 @@
 
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt="" class="icon-small" />
+                                <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt=""
+                                    class="icon-small" />
                                 <div class="ms-4">
                                     <div class="text-xs text-muted">УКЭП2</div>
                                     <div class="small">Срок действия: по 00.00.00</div>
-                                    <div class="small">Серийный номер: ------------------------------------------------</div>
+                                    <div class="small">Серийный номер: ------------------------------------------------
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,10 +142,10 @@
 
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}" alt="" class="icon-small" />
+                                <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}" alt=""
+                                    class="icon-small" />
                                 <div class="ms-4">
                                     <div class="text-xs text-muted">Криптопро 4</div>
-                                    <div class="small">Срок действия: по 00.00.00</div>
                                 </div>
                             </div>
                         </div>
@@ -166,10 +153,10 @@
 
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt="" class="icon-small" />
+                                <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
+                                    class="icon-small" />
                                 <div class="ms-4">
                                     <div class="text-xs text-muted">VipNet Деловая Почта</div>
-                                    <div class="small">Срок действия: по 00.00.00</div>
                                 </div>
                             </div>
                         </div>

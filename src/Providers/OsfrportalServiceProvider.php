@@ -61,6 +61,10 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->registerRoutes();
             Route::aliasMiddleware('auth.osfrportal', '\Osfrportal\OsfrportalLaravel\Http\Middleware\Authenticate');
         }
+
+        foreach (glob(__DIR__ . '/../Support/Helpers/*.php') as $file) {
+            require_once($file);
+        }
     }
     /**
      * Register any application services.

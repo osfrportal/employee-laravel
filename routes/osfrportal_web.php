@@ -42,7 +42,12 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/login', 'authenticate')->name('authenticate');
     Route::get('/logout', 'logout')->name('logout');
 });
-Route::middleware('auth.osfrportal')->group(function () {
+
+Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->group(function () {
+    Route::get('/', 'phoneIndex')->name('index');
+})->middleware('cacheResponse:30000');
+
+Route::middleware(['auth.osfrportal', 'cacheResponse:30000'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
     });

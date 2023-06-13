@@ -26,6 +26,7 @@
         "php-flasher/flasher-noty-laravel": "^1.13",
         "webklex/laravel-imap": "^5.2",
         "league/flysystem-ftp": "^3.15",
+        "spatie/laravel-responsecache": "^7.4",
         "directorytree/ldaprecord-laravel": "^2.7"
     },
     "license": "MIT",

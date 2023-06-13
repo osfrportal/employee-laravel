@@ -4,6 +4,7 @@ namespace Osfrportal\OsfrportalLaravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Osfrportal\OsfrportalLaravel\Traits\Uuid;
+use Carbon\Carbon;
 
 class SfrPerson extends Model
 {
@@ -87,5 +88,83 @@ class SfrPerson extends Model
     public function SfrPersonUnit()
     {
         return $this->belongsToMany(SfrUnits::class, 'pempunit', 'pid', 'unitid')->withTimestamps();
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getPid()
+    {
+        return $this->pid;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return "{$this->psurname} {$this->pname} {$this->pmiddlename}";
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getBirthDate()
+    {
+        $birthdate = Carbon::parse($this->pbirthdate)->format('d.m.Y');
+        return $birthdate;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getINN()
+    {
+        return $this->pinn;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getAppointment()
+    {
+        return $this->SfrPersonAppointment->first()->aname;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getUnit()
+    {
+        return $this->SfrPersonUnit->first()->unitname;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getTabNum()
+    {
+        return $this->SfrPersonTabNum->first()->etabnumber;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getSNILS()
+    {
+        if (preg_match('/^(\d{3})(\d{3})(\d{3})(\d{2})$/', $this->psnils,  $matches)) {
+            $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3] . ' ' . $matches[4];
+        } else {
+            $result = $this->psnils;
+        }
+        return $result;
     }
 }
