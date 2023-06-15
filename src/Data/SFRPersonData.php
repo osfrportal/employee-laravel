@@ -15,6 +15,8 @@ class SFRPersonData extends Data
         public ?string $persondata_appointment= null,
         public ?string $persondata_unit_name= null,
         public ?string $persondata_vacation= null,
+        public ?string $persondata_vacation_end= null,
+        public ?string $persondata_dekret_end= null,
         public ?string $persondata_fullname= null,
         public ?string $persondata_birthday= null,
         public ?string $persondata_inn= null,
@@ -24,6 +26,8 @@ class SFRPersonData extends Data
 
     public static function defValues(): SFRPersonData {
         return new self(
+            null,
+            null,
             null,
             null,
             null,

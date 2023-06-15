@@ -29,7 +29,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             //return redirect()->intended('osfrportal.dashboard');
-            return Redirect::route('osfrportal.dashboard');
+            return Redirect::intended(route('osfrportal.dashboard'));
         }
 
         return back()->withErrors([
@@ -45,6 +45,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect(route('osfrportal.mainpage'));
     }
 }

@@ -70,7 +70,7 @@
                     data: 'contactdata_person.persondata_fullname',
                     render: function (data, type, row) {
                         if (!!row.contactdata_person.persondata_vacation) {
-                            return '<strong>' + data + '</strong>' + '<br>' + row.contactdata_person.persondata_appointment + '<br>' + '<em>' + 'Отпуск по ' + row.contactdata_vacation_end + '</em>';
+                            return '<strong>' + data + '</strong>' + '<br>' + row.contactdata_person.persondata_appointment + '<br>' + '<strong><em>' + 'Отпуск по ' + row.contactdata_person.persondata_vacation_end + '</em></strong>';
                         } else {
                             return '<strong>' + data + '</strong>' + '<br>' + row.contactdata_person.persondata_appointment;
                         }
@@ -111,8 +111,8 @@
                 {
                     data: 'contactdata_phone_data.address',
                     render: function (data, type, row) {
-                        if (!!row.contactdata_dekret) {
-                            return '<strong><em>' + 'Отпуск по уходу за ребенком<br>(по ' + row.contactdata_dekret_end + ')</em></strong>';
+                        if (!!row.contactdata_person.persondata_dekret_end) {
+                            return '<strong><em>' + 'Отпуск по уходу за ребенком<br>(по ' + row.contactdata_person.persondata_dekret_end + ')</em></strong>';
                         } else {
                             return checkEmptyOrNull(data) + '<br>' + returnEmailLink(row.contactdata_phone_data.email_ext);
                         }

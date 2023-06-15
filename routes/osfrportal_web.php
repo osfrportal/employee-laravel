@@ -14,6 +14,8 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Illuminate\Support\Facades\Storage;
 
+use Spatie\ResponseCache\Facades\ResponseCache;
+
 /**
  * Административные маршруты
  */
@@ -44,10 +46,12 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->group(function () {
-    Route::get('/', 'phoneIndex')->name('index');
-})->middleware('cacheResponse:30000');
+    Route::get('/edit/{personid}', 'phoneShowEditForm')->name('editform')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    Route::post('/save', 'doUpdateContacts')->name('save')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    Route::get('/', 'phoneIndex')->name('index')->middleware('cacheResponse:30000');
+});
 
-Route::middleware(['auth.osfrportal', 'cacheResponse:30000'])->group(function () {
+Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
     });
@@ -72,10 +76,11 @@ Route::get('/parsexml', function () {
         print($fio);
     });
 });
-Route::get('/test', function () {
+Route::middleware('doNotCacheResponse')->get('/test', function () {
+    ResponseCache::clear();
     //$size = Storage::disk('ftp1c')->size('vacation_058 (TXT) 2023-05-26.txt');
     //dump($size);
-    dump(Auth::user());
+    dump(Auth::user()->SfrPerson->getPersonVacationNow());
     /*
     $pperson = SfrPerson::where('psnils', '12413082809')->first();
     $sfruser = new SfrUser;

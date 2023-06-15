@@ -7,10 +7,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables as Datatables;
+use Carbon\Carbon;
 
-use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
@@ -19,10 +21,62 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPhoneData;
 class PhoneController extends Controller
 {
     private $result_collection;
+    private $flasher_interface;
+
+    public function __construct() {
+        $this->flasher_interface = flash()->options(['timeout' => '2000', 'layout' => 'topCenter', 'modal' => true, 'closeWith' => ['click', 'button'], 'theme' => 'bootstrap-v4']);
+    }
 
     public function phoneIndex()
     {
         return view('osfrportal::sections.phone.index');
+    }
+    public function doUpdateContacts(Request $request)
+    {
+
+        $validation_rules = [
+            'inputEmailAddress' => 'email:rfc,strict|ends_with:@058.pfr.gov.ru,@48.sfr.gov.ru,@ro48.fss.ru',
+            'inputPhoneInt' => 'required|digits:4',
+            'inputPhoneExt' => 'required|digits_between:5,6',
+            'inputRoom' => 'required|alpha_dash|max:30',
+            'inputPhoneMobile' => 'nullable|numeric|digits:10',
+            'personid' => 'required|uuid',
+        ];
+        $validation_messages = [
+            'inputRoom.required' => 'Не указано помещение',
+            'inputEmailAddress' => 'Не указан корректный адрес электронной почты. Адрес электронной почты должен заканчиваться на следующие значения: @48.sfr.gov.ru, @058.pfr.gov.ru, @ro48.fss.ru',
+        ];
+
+
+        $validator = Validator::make($request->all(), $validation_rules, $validation_messages);
+        if ($validator->fails()) {
+            $this->flasher_interface->addError('Проверьте заполненные данные и повторите сохранение.');
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $current_user = Auth::user();
+
+        $validatedData = $validator->validated();;
+        //flash()->addFlash(type: 'success', message: 'Данные успешно обновлены', options: ['timeout' => false, 'layout' => 'topCenter']);
+        $this->flasher_interface->addSuccess('Данные успешно обновлены');
+        return back();
+    }
+    public function phoneShowEditForm(Request $request)
+    {
+        $validatedData = Validator::make($request->route()->parameters(), [
+            'personid' => 'required|uuid',
+        ])->validated();
+        $person = SfrPerson::where('pid', $validatedData['personid'])->first();
+
+        $person_data = new SFRPersonData(
+            persondata_pid: $person->getPid(),
+            persondata_fullname: $person->getFullName(),
+        );
+        $contact_data = SFRPhoneContactData::from($person->SfrPersonContacts->contactdata);
+
+        return view('osfrportal::sections.phone.editform', ['SFRPersonData' => $person_data, 'SFRPhoneContactData' => $contact_data]);
     }
 
     public function convertPersonContactData($person_data_collection, $unit_collection = null)
@@ -44,17 +98,34 @@ class PhoneController extends Controller
                 }
             }
             if (!is_null($contactdata_unit_parentid)) {
-                $contactdata_unit_parent_name =  SfrUnits::find($contactdata_unit_parentid)->only(['unitname'])['unitname'];
+                $contactdata_unit_parent_name = SfrUnits::find($contactdata_unit_parentid)->only(['unitname'])['unitname'];
             } else {
                 $contactdata_unit_parent_name = $contactdata_unit_name;
                 $contactdata_unit_name = null;
             }
+            $person_vacation = $person->getPersonVacationNow();
+            if (!is_null($person_vacation)) {
+                $contactdata_vacation = sprintf("%s - %s", Carbon::parse($person_vacation->vacationstart)->format('d.m.Y'), Carbon::parse($person_vacation->vacationend)->format('d.m.Y'));
+                $contactdata_vacation_end = Carbon::parse($person_vacation->vacationend)->format('d.m.Y');
+            } else {
+                $contactdata_vacation = null;
+                $contactdata_vacation_end = null;
+            }
 
+            $person_dekret = $person->getPersonDekretNow();
+            if (!is_null($person_dekret)) {
+                $contactdata_dekret_end = Carbon::parse($person_dekret->dekretend)->format('d.m.Y');
+            } else {
+                $contactdata_dekret_end = null;
+            }
 
             $person_data = new SFRPersonData(
                 persondata_pid: $person->getPid(),
                 persondata_fullname: $person->getFullName(),
                 persondata_appointment: $person->getAppointment(),
+                persondata_vacation: $contactdata_vacation,
+                persondata_vacation_end: $contactdata_vacation_end,
+                persondata_dekret_end: $contactdata_dekret_end,
             );
             if (isset($person->SfrPersonContacts->contactdata)) {
                 $contact_data = SFRPhoneContactData::from($person->SfrPersonContacts->contactdata);
@@ -119,11 +190,23 @@ class PhoneController extends Controller
 
         return Datatables::of($this->convertPersonsFromUnit($units_all))
             ->addColumn('action', function ($user) {
-                //$url = route('phone.edit', ['personid' => $user->persondata_pid]);
-                $html_url = $user->contactdata_person->persondata_pid;
-                //$html_url = "&nbsp";
-
+                $url = route('osfrportal.phone.editform', ['personid' => $user->contactdata_person->persondata_pid]);
+                //$url = $user->contactdata_person->persondata_pid;
+                $html_url = "&nbsp";
+                if (is_null($user->contactdata_person->persondata_dekret_end)) {
+                    $html_url = sprintf('<a href="%s"><span class="bi bi-pencil-square"></span></a>', $url);
+                }
                 return $html_url;
+            })
+            ->setRowClass(function ($user) {
+                if ($user->contactdata_person->persondata_vacation_end != '') {
+                    //return 'bg-warning opacity-75';
+                    //return 'table-warning p-2 text-dark bg-opacity-75 opacity-75';
+                    return 'table-warning p-2 opacity-75';
+                }
+                if ($user->contactdata_person->persondata_dekret_end != '') {
+                    return 'opacity-75';
+                }
             })
             ->make(true);
     }

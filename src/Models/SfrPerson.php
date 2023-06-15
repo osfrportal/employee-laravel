@@ -60,7 +60,7 @@ class SfrPerson extends Model
      */
     public function SfrPersonDekret()
     {
-        return $this->hasMany(SfrPersonDekret::class, 'pid')->orderByDesc('updated_at');
+        return $this->hasMany(SfrPersonDekret::class, 'pid')->orderByDesc('dekretend');
     }
 
     /**
@@ -151,7 +151,7 @@ class SfrPerson extends Model
      */
     public function getTabNum()
     {
-        return $this->SfrPersonTabNum->first()->etabnumber;
+        return $this->SfrPersonTabNum->sortByDesc('etcreatedon', SORT_NATURAL)->first()->etabnumber;
     }
 
     /**
@@ -166,5 +166,25 @@ class SfrPerson extends Model
             $result = $this->psnils;
         }
         return $result;
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection|null
+     */
+    public function getPersonVacationNow()
+    {
+        $filtered = $this->SfrPersonVacation()->get(['vacationstart','vacationend'])->where('vacationstart', '<=', Carbon::now())->where('vacationend', '>=', Carbon::now())->sortByDesc('vacationend')->first();
+
+        return $filtered;
+    }
+
+     /**
+     * @return \Illuminate\Support\Collection|null
+     */
+    public function getPersonDekretNow()
+    {
+        $filtered = $this->SfrPersonDekret()->get(['dekretstart','dekretend'])->where('dekretstart', '<=', Carbon::now())->where('dekretend', '>=', Carbon::now())->sortByDesc('dekretend')->first();
+
+        return $filtered;
     }
 }
