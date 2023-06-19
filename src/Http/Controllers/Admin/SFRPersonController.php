@@ -20,7 +20,8 @@ class SFRPersonController extends Controller
      * API функции
      * ----------------------------
      */
-    public function APIPersonsList() {
+    public function APIPersonsList()
+    {
         //$sfrpersons = SfrPerson::with('PersonDekret','PersonVacation', 'PersonTabNum', 'PersonAppointment', 'PersonUnit')->orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->get();
         $with_relations = [
             'SfrPersonContacts',
@@ -38,11 +39,8 @@ class SFRPersonController extends Controller
      * ----------------------------
      */
 
-    public function ShowPersonsList() {
-        flash()->layout('topCenter')->options([
-            'timeout' => 3000, // 3 seconds
-            'position' => 'top-center',
-        ])->addSuccess('Your account has been restored.');
+    public function ShowPersonsList()
+    {
         return view('osfrportal::admin.persons.list_all');
     }
 }

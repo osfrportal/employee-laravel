@@ -9,6 +9,11 @@
                 </a>
             </li>
         </ul>
+        @auth
+            <hr />
+            @include('osfrportal::layout.leftmenu_auth')
+            <hr />
+        @endauth
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" href="https://sl05800008095.0058.pfr.ru:8445/rsiam/" target="_blank">

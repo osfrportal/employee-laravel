@@ -40,8 +40,9 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                     aria-expanded="false">Телефонный справочник</a>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="#">Подразделения</a></li>
-                    <li><a class="dropdown-item" href="#">Адреса</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.admin.phone.units') }}">Подразделения</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.admin.phone.addresses') }}">Адреса</a></li>
                     <li><a class="dropdown-item" href="#">DialPlan</a></li>
                 </ul>
             </div>

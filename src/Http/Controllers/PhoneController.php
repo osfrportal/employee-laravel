@@ -21,11 +21,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPhoneData;
 class PhoneController extends Controller
 {
     private $result_collection;
-    private $flasher_interface;
 
-    public function __construct() {
-        $this->flasher_interface = flash()->options(['timeout' => '2000', 'layout' => 'topCenter', 'modal' => true, 'closeWith' => ['click', 'button'], 'theme' => 'bootstrap-v4']);
-    }
 
     public function phoneIndex()
     {
@@ -52,14 +48,14 @@ class PhoneController extends Controller
         if ($validator->fails()) {
             $this->flasher_interface->addError('Проверьте заполненные данные и повторите сохранение.');
             return back()
-                        ->withErrors($validator)
-                        ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $current_user = Auth::user();
 
         $validatedData = $validator->validated();;
-        //flash()->addFlash(type: 'success', message: 'Данные успешно обновлены', options: ['timeout' => false, 'layout' => 'topCenter']);
+
         $this->flasher_interface->addSuccess('Данные успешно обновлены');
         return back();
     }

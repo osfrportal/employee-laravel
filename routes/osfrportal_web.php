@@ -12,6 +12,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRImapReaderController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
 use Illuminate\Support\Facades\Storage;
 
 use Spatie\ResponseCache\Facades\ResponseCache;
@@ -19,7 +20,11 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 /**
  * Административные маршруты
  */
-Route::prefix('admin')->name('admin.')->middleware('auth.osfrportal')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
+    Route::controller(SFRPhoneAdminController::class)->name('phone.')->prefix('phone')->group(function () {
+        Route::get('/addr', 'ShowAddrList')->name('addresses');
+        Route::get('/units', 'ShowUnitsList')->name('units');
+    });
     Route::controller(SFRPersonController::class)->name('persons.')->prefix('persons')->group(function () {
         Route::get('/', 'ShowPersonsList')->name('all');
     });
@@ -80,15 +85,15 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
     ResponseCache::clear();
     //$size = Storage::disk('ftp1c')->size('vacation_058 (TXT) 2023-05-26.txt');
     //dump($size);
-    dump(Auth::user()->SfrPerson->getPersonVacationNow());
-    /*
+    //dump(Auth::user()->SfrPerson->getPersonVacationNow());
+
     $pperson = SfrPerson::where('psnils', '12413082809')->first();
     $sfruser = new SfrUser;
     $sfruser->username = 'PleshkovPA';
     $sfruser->password = bcrypt('12345');
     $sfruser->pid = $pperson->pid;
     $sfruser->save();
-    */
+
 });
 Route::get('/imaptest', [SFRImapReaderController::class, 'put1CFilesToFTP']);
 
