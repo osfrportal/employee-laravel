@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrAddresses;
+use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 
 class SFRPhoneAdminController extends Controller
 {
@@ -21,6 +22,13 @@ class SFRPhoneAdminController extends Controller
      * ----------------------------
      */
     public function APIAddrList()
+    {
+        $sfraddr = SfrAddresses::orderBy('paddress', 'ASC')->get();
+
+        return DataTables::of($sfraddr)->toJson();
+    }
+
+    public function APIUnitsList()
     {
         $sfraddr = SfrAddresses::orderBy('paddress', 'ASC')->get();
 
@@ -38,6 +46,6 @@ class SFRPhoneAdminController extends Controller
     }
     public function ShowUnitsList()
     {
-        return view('osfrportal::admin.phone.addr_list');
+        return view('osfrportal::admin.phone.units_list');
     }
 }

@@ -34,6 +34,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('phone')->name('phone.')->group(function () {
         Route::controller(SFRPhoneAdminController::class)->group(function () {
             Route::get('/addr', 'APIAddrList')->name('addresses');
+            Route::get('/units', 'APIUnitsList')->name('units');
         });
     });
 });
