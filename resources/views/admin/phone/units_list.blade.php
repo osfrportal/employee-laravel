@@ -11,65 +11,69 @@
     </div>
 @endsection
 @section('content')
-    <div class="pt-0">
-        <table class="table border-top table-responsive" id="table-persons">
+    @if ($roots_units->count())
+        <table id="unitstable_config" class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
+                    <th>Подразделение</th>
+                    <th>Родительское подразделение</th>
+                    <th>Сортировка</th>
                     <th>&nbsp;</th>
-                    <th>Код города</th>
-                    <th>Адрес</th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach ($roots_units as $root)
+                    <tr>
+
+                        <form method="POST" action="{{ route('osfrportal.admin.phone.units.save') }}"
+                            id="upd{{ $root->unitid ?? '' }}">
+                            <input type="hidden" id="unitid" name="unitid" value="{{ $root->unitid ?? '' }}">
+                            <td>
+                                <b>{{ $root->unitname }}</b>
+                            </td>
+                            <td>
+                                @include('osfrportal::admin.phone.units_formselect')
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" id="unitsortorder"
+                                    name="unitsortorder" value="{{ $root->unitsortorder ?? '' }}" size="4">
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-outline-primary btn-sm">Сохранить</button>
+                            </td>
+                        </form>
+
+                    </tr>
+                    @foreach ($root->children as $child)
+                        <tr>
+                            <form method="POST" action="{{ route('osfrportal.admin.phone.units.save') }}" id="upd{{ $child->unitid ?? '' }}">
+                                <input type="hidden" id="unitid" name="unitid" value="{{ $child->unitid ?? '' }}">
+                                <td class="px-4">
+                                    {{ $child->unitname }}
+                                </td>
+                                <td>
+                                    @include('osfrportal::admin.phone.units_formselect')
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" id="unitsortorder"
+                                        name="unitsortorder" value="{{ $child->unitsortorder ?? '' }}" size="4">
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">Сохранить</button>
+                                </td>
+                            </form>
+                        </tr>
+                        @php
+                            unset($child);
+                        @endphp
+                    @endforeach
+                    <tr>
+                        <td colspan="4">
+                            <hr>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
-    </div>
+    @endif
 @endsection
-@push('footer-scripts')
-    <?php
-    $route_api_addr_all = route('osfrapi.osfrportal.admin.phone.addresses');
-    ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#table-persons').DataTable({
-                ajax: '{{ $route_api_addr_all }}',
-
-                columns: [{
-                        data: 'addrid'
-                    },
-                    {
-                        data: 'areacode'
-                    },
-                    {
-                        data: 'paddress'
-                    },
-                ],
-                columnDefs: [{
-                    // Actions
-                    targets: 0,
-                    title: 'Действия',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data, type, full, meta) {
-
-                        var link_edit = '{{ $route_api_addr_all }}' + '/' + data;
-                        var link_delete = '{{ $route_api_addr_all }}' + '/' + data;
-                        var link_users = '{{ $route_api_addr_all }}' + '/' + data;
-                        return (
-                            '<div class="d-inline-block">' +
-                            '<a href="#" class="btn btn-sm text-primary btn-icon hide-arrow" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>' +
-                            '<ul class="dropdown-menu dropdown-menu-lg-end">' +
-                            '<li><a href="' + link_users +
-                            '" class="dropdown-item">Пользователи</a></li>' +
-                            '<div class="dropdown-divider"></div>' +
-                            '<li><a href="' + link_delete +
-                            '" class="dropdown-item text-danger delete-record">Удалить</a></li>' +
-                            '</ul>' +
-                            '</div>' +
-                            '<a href="' + link_edit +
-                            '" class="btn btn-sm text-primary btn-icon item-edit"><i class="bi bi-pencil-square"></i></a>'
-                        );
-                    }
-                }],
-            });
-        });
-    </script>
-@endpush

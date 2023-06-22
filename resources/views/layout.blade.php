@@ -7,7 +7,7 @@
 
 <body>
     <header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="{{ route('osfrportal.mainpage') }}">
+        <a class="navbar-brand col-md-auto col-lg-auto me-0 px-3 fs-6" href="{{ route('osfrportal.mainpage') }}">
             {{--  <a class="navbar-brand col-md-3 col-lg-3 me-0 px-3 fs-6" href="{{ route('mainpage') }}"> --}}
             <img src="{{ asset('osfrportal/images/logo.svg') }}" alt="" class="d-inline-block align-text-middle">
             {{ Config::get('osfrportal.name') }}

@@ -43,7 +43,7 @@
                     <li><a class="dropdown-item" href="{{ route('osfrportal.admin.phone.units') }}">Подразделения</a>
                     </li>
                     <li><a class="dropdown-item" href="{{ route('osfrportal.admin.phone.addresses') }}">Адреса</a></li>
-                    <li><a class="dropdown-item" href="#">DialPlan</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.admin.phone.dialplan') }}">DialPlan</a></li>
                 </ul>
             </div>
         </ul>

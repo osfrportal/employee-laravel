@@ -23,6 +23,12 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 Route::prefix('admin')->name('admin.')->middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
     Route::controller(SFRPhoneAdminController::class)->name('phone.')->prefix('phone')->group(function () {
         Route::get('/addr', 'ShowAddrList')->name('addresses');
+        Route::get('/dialplan/edit/{dpid}', 'EditDialPlan')->name('dialplan.edit');
+        Route::get('/dialplan/delete/{dpid}', 'DeleteDialPlan')->name('dialplan.delete');
+        Route::get('/dialplan/add', 'AddDialPlan')->name('dialplan.add');
+        Route::post('/dialplan/save', 'SaveDialPlan')->name('dialplan.save');
+        Route::get('/dialplan', 'ShowDialPlanList')->name('dialplan');
+        Route::post('/units/save', 'updateUnit')->name('units.save');
         Route::get('/units', 'ShowUnitsList')->name('units');
     });
     Route::controller(SFRPersonController::class)->name('persons.')->prefix('persons')->group(function () {
@@ -93,7 +99,6 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
     $sfruser->password = bcrypt('12345');
     $sfruser->pid = $pperson->pid;
     $sfruser->save();
-
 });
 Route::get('/imaptest', [SFRImapReaderController::class, 'put1CFilesToFTP']);
 

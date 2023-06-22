@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Yajra\Datatables\Datatables as Datatables;
 use Carbon\Carbon;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
+use Osfrportal\OsfrportalLaravel\Models\SfrDialplan;
+use Osfrportal\OsfrportalLaravel\Models\SfrPersonContacts;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneData;
@@ -21,11 +24,64 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPhoneData;
 class PhoneController extends Controller
 {
     private $result_collection;
+    private function sortArrayByField($arr_to_sort)
+    {
+        $array_name = [];
 
+        foreach ($arr_to_sort as $key => $row) {
+            $array_name[$key] = $row['dialplan_len'];
+        }
+
+        array_multisort($array_name, SORT_ASC, $arr_to_sort);
+        return $arr_to_sort;
+    }
 
     public function phoneIndex()
     {
         return view('osfrportal::sections.phone.index');
+    }
+     /**
+     * Ищем адрес по внутреннему номеру.
+     * возвращаем строку или null
+     *
+     * @param integer $phone_internal
+     * @return string
+     */
+    private function addressByInternalNumber($phone_internal)
+    {
+        $dialplan_collection = SfrDialplan::with('addressFull')->where('dpnumstart', '<=', $phone_internal)->where('dpnumend', '>=', $phone_internal)->get();
+
+
+        $numplan_array = array();
+        foreach ($dialplan_collection->all() as $dialplan) {
+            $dialplan_len = $dialplan->dpnumend - $dialplan->dpnumstart;
+            $tmp_arr = ['dpid' => $dialplan->dpid, 'dpnumstart' => $dialplan->dpnumstart, 'dpnumend' => $dialplan->dpnumend, 'dialplan_len' => $dialplan_len, 'paddress' => $dialplan->addressFull->paddress];
+            array_push($numplan_array, $tmp_arr);
+        }
+        $numplan_array_sorted = $this->sortArrayByField($numplan_array);
+
+        return Arr::get($numplan_array_sorted, '0.paddress', null);
+    }
+    /**
+     * Ищем код города внутреннему номеру.
+     * возвращаем строку или null
+     *
+     * @param integer $phone_internal
+     * @return string
+     */
+    private function areacodeByInternalNumber($phone_internal)
+    {
+        $dialplan_collection = SfrDialplan::with('addressFull')->where('dpnumstart', '<=', $phone_internal)->where('dpnumend', '>=', $phone_internal)->get();
+
+
+        $numplan_array = array();
+        foreach ($dialplan_collection->all() as $dialplan) {
+            $dialplan_len = $dialplan->dpnumend - $dialplan->dpnumstart;
+            $tmp_arr = ['dpid' => $dialplan->dpid, 'dpnumstart' => $dialplan->dpnumstart, 'dpnumend' => $dialplan->dpnumend, 'dialplan_len' => $dialplan_len, 'paddress' => $dialplan->addressFull->paddress, 'areacode' => $dialplan->addressFull->areacode];
+            array_push($numplan_array, $tmp_arr);
+        }
+        $numplan_array_sorted = $this->sortArrayByField($numplan_array);
+        return Arr::get($numplan_array_sorted, '0.areacode', null);
     }
     public function doUpdateContacts(Request $request)
     {
@@ -40,12 +96,14 @@ class PhoneController extends Controller
         ];
         $validation_messages = [
             'inputRoom.required' => 'Не указано помещение',
+            'inputPhoneMobile.digits' => 'Номер мобильного телефона должен содержать 10 цифр',
             'inputEmailAddress' => 'Не указан корректный адрес электронной почты. Адрес электронной почты должен заканчиваться на следующие значения: @48.sfr.gov.ru, @058.pfr.gov.ru, @ro48.fss.ru',
         ];
 
 
         $validator = Validator::make($request->all(), $validation_rules, $validation_messages);
         if ($validator->fails()) {
+            //dd($validator->errors());
             $this->flasher_interface->addError('Проверьте заполненные данные и повторите сохранение.');
             return back()
                 ->withErrors($validator)
@@ -54,7 +112,33 @@ class PhoneController extends Controller
 
         $current_user = Auth::user();
 
-        $validatedData = $validator->validated();;
+
+        $validatedData = $validator->validated();
+        $person_data = SfrPerson::with('SfrPersonContacts')->where('pid', $validatedData['personid'])->first();
+
+
+        $person_contactdata_DTO = new SfrPhoneContactData();
+        $person_contactdata_DTO->room = $validatedData['inputRoom'];
+        $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);;
+        $person_contactdata_DTO->email_ext = Str::lower($validatedData['inputEmailAddress']);
+        $person_contactdata_DTO->phone_external = $validatedData['inputPhoneExt'];
+        $person_contactdata_DTO->phone_internal = $validatedData['inputPhoneInt'];
+        $person_contactdata_DTO->phone_mobile = $validatedData['inputPhoneMobile'];
+        $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);;
+        $contactdata_collection_json = $person_contactdata_DTO->toJson(JSON_UNESCAPED_UNICODE);
+
+
+        if (!is_null($person_data->SfrPersonContacts)) {
+            $person_data->SfrPersonContacts->contactdata = $contactdata_collection_json;
+            $person_data->SfrPersonContacts->save();
+        } else {
+            $contactdata = new SfrPersonContacts(['contactdata' => $contactdata_collection_json]);
+
+            $person_data->SfrPersonContacts()->save($contactdata);
+        }
+        /**
+         * TODO: Добавить лог
+         */
 
         $this->flasher_interface->addSuccess('Данные успешно обновлены');
         return back();
