@@ -40,7 +40,7 @@ class PhoneController extends Controller
     {
         return view('osfrportal::sections.phone.index');
     }
-     /**
+    /**
      * Ищем адрес по внутреннему номеру.
      * возвращаем строку или null
      *
@@ -119,12 +119,14 @@ class PhoneController extends Controller
 
         $person_contactdata_DTO = new SfrPhoneContactData();
         $person_contactdata_DTO->room = $validatedData['inputRoom'];
-        $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);;
+        $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);
+        ;
         $person_contactdata_DTO->email_ext = Str::lower($validatedData['inputEmailAddress']);
         $person_contactdata_DTO->phone_external = $validatedData['inputPhoneExt'];
         $person_contactdata_DTO->phone_internal = $validatedData['inputPhoneInt'];
         $person_contactdata_DTO->phone_mobile = $validatedData['inputPhoneMobile'];
-        $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);;
+        $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);
+        ;
         $contactdata_collection_json = $person_contactdata_DTO->toJson(JSON_UNESCAPED_UNICODE);
 
 
@@ -154,7 +156,11 @@ class PhoneController extends Controller
             persondata_pid: $person->getPid(),
             persondata_fullname: $person->getFullName(),
         );
-        $contact_data = SFRPhoneContactData::from($person->SfrPersonContacts->contactdata);
+        if (!is_null($person->getPersonContactData())) {
+            $contact_data = SFRPhoneContactData::from($person->getPersonContactData());
+        } else {
+            $contact_data = new SFRPhoneContactData;
+        }
 
         return view('osfrportal::sections.phone.editform', ['SFRPersonData' => $person_data, 'SFRPhoneContactData' => $contact_data]);
     }

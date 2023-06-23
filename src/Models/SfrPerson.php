@@ -160,7 +160,7 @@ class SfrPerson extends Model
      */
     public function getSNILS()
     {
-        if (preg_match('/^(\d{3})(\d{3})(\d{3})(\d{2})$/', $this->psnils,  $matches)) {
+        if (preg_match('/^(\d{3})(\d{3})(\d{3})(\d{2})$/', $this->psnils, $matches)) {
             $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3] . ' ' . $matches[4];
         } else {
             $result = $this->psnils;
@@ -173,18 +173,28 @@ class SfrPerson extends Model
      */
     public function getPersonVacationNow()
     {
-        $filtered = $this->SfrPersonVacation()->get(['vacationstart','vacationend'])->where('vacationstart', '<=', Carbon::now())->where('vacationend', '>=', Carbon::now())->sortByDesc('vacationend')->first();
+        $filtered = $this->SfrPersonVacation()->get(['vacationstart', 'vacationend'])->where('vacationstart', '<=', Carbon::now())->where('vacationend', '>=', Carbon::now())->sortByDesc('vacationend')->first();
 
         return $filtered;
     }
 
-     /**
+    /**
      * @return \Illuminate\Support\Collection|null
      */
     public function getPersonDekretNow()
     {
-        $filtered = $this->SfrPersonDekret()->get(['dekretstart','dekretend'])->where('dekretstart', '<=', Carbon::now())->where('dekretend', '>=', Carbon::now())->sortByDesc('dekretend')->first();
+        $filtered = $this->SfrPersonDekret()->get(['dekretstart', 'dekretend'])->where('dekretstart', '<=', Carbon::now())->where('dekretend', '>=', Carbon::now())->sortByDesc('dekretend')->first();
 
         return $filtered;
+    }
+
+    public function getPersonContactData()
+    {
+        $contactdata = $this->SfrPersonContacts()->get()->first();
+        if (!is_null($contactdata)) {
+            return $contactdata['contactdata'];
+        } else {
+            return $contactdata;
+        }
     }
 }
