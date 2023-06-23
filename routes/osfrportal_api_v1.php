@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\PhoneController;
 
 //'prefix' => 'api/osfr/v1/osfrportal/admin',
@@ -34,6 +35,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('phone')->name('phone.')->group(function () {
         Route::controller(SFRPhoneAdminController::class)->group(function () {
             Route::get('/addr', 'APIAddrList')->name('addresses');
+        });
+    });
+    Route::controller(SFRDocsAdminController::class)->name('docs.')->prefix('docs')->group(function () {
+        Route::name('groups.')->prefix('groups')->group(function () {
+            Route::get('/', 'apiGroupsShow')->name('all');
         });
     });
 });

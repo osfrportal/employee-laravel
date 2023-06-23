@@ -11,5 +11,11 @@
                 <span class="bi bi-person-gear"> Профиль</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link"
+                href="#">
+                <span class="bi bi-archive"> Документы для ознакомления</span>
+            </a>
+        </li>
     </ul>
 </ul>

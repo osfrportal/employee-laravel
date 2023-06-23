@@ -73,8 +73,10 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                     aria-expanded="false">Документы</a>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="#">Управление</a></li>
-                    <li><a class="dropdown-item" href="#">Разделы</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.admin.docs.all') }}">Управление</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.admin.docs.groups.all') }}">Разделы</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.admin.docs.types.all') }}">Типы
+                            документов</a></li>
                     <li><a class="dropdown-item" href="#">Отчеты</a></li>
                 </ul>
             </div>

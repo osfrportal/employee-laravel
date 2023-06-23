@@ -13,6 +13,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRImapReaderController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
 use Illuminate\Support\Facades\Storage;
 
 use Spatie\ResponseCache\Facades\ResponseCache;
@@ -33,6 +34,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth.osfrportal', 'doNotCac
     });
     Route::controller(SFRPersonController::class)->name('persons.')->prefix('persons')->group(function () {
         Route::get('/', 'ShowPersonsList')->name('all');
+    });
+    Route::controller(SFRDocsAdminController::class)->name('docs.')->prefix('docs')->group(function () {
+        Route::get('/', 'docsShowList')->name('all');
+        Route::name('types.')->prefix('types')->group(function () {
+            Route::get('/', 'typesShowList')->name('all');
+        });
+        Route::name('groups.')->prefix('groups')->group(function () {
+            Route::get('/detail/{groupid}', 'groupsShowDetail')->name('detail');
+            Route::get('/add', 'groupsAddForm')->name('add');
+            Route::post('/save', 'groupsSave')->name('save');
+            Route::get('/', 'groupsShowList')->name('all');
+        });
     });
     Route::controller(PermissionsController::class)->prefix('permissions')->group(function () {
         Route::post('/role/add', 'AddRole')->name('permissions.addrole');

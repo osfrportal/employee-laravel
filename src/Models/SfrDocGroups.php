@@ -13,4 +13,9 @@ class SfrDocGroups extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = true;
+
+    protected $fillable = [
+        'group_name',
+        'group_data',
+    ];
 }
