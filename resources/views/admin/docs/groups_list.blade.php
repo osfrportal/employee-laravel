@@ -48,20 +48,8 @@
                         var url = '{{ route('osfrportal.admin.docs.groups.detail', ':slug') }}';
                         url = url.replace(':slug', data);
 
-                        var link_edit = url;
-                        var link_delete = url;
-                        var link_users = url;
+                        var link_edit = "#";
                         return (
-                            '<div class="d-inline-block">' +
-                            '<a href="#" class="btn btn-sm text-primary btn-icon hide-arrow" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>' +
-                            '<ul class="dropdown-menu dropdown-menu-lg-end">' +
-                            '<li><a href="' + link_users +
-                            '" class="dropdown-item">Пользователи</a></li>' +
-                            '<div class="dropdown-divider"></div>' +
-                            '<li><a href="' + link_delete +
-                            '" class="dropdown-item text-danger delete-record">Удалить</a></li>' +
-                            '</ul>' +
-                            '</div>' +
                             '<a href="' + link_edit +
                             '" class="btn btn-sm text-primary btn-icon item-edit"><i class="bi bi-pencil-square"></i></a>'
                         );

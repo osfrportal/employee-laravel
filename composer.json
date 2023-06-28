@@ -27,7 +27,8 @@
         "webklex/laravel-imap": "^5.2",
         "league/flysystem-ftp": "^3.15",
         "spatie/laravel-responsecache": "^7.4",
-        "directorytree/ldaprecord-laravel": "^2.7"
+        "directorytree/ldaprecord-laravel": "^2.7",
+        "barryvdh/laravel-ide-helper": "^2.13"
     },
     "license": "MIT",
     "minimum-stability": "dev",
