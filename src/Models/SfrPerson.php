@@ -91,6 +91,15 @@ class SfrPerson extends Model
     }
 
     /**
+     * Сертификаты работника
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function SfrPersonCerts()
+    {
+        return $this->hasMany(SfrCerts::class, 'pid')->orderByDesc('certvalidto');
+    }
+
+    /**
      *
      * @return string
      */

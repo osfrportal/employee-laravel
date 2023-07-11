@@ -10,12 +10,14 @@ use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRImapReaderController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRx509Controller;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
 use Illuminate\Support\Facades\Storage;
-
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRUkepController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRUnepController;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
 /**
@@ -100,6 +102,27 @@ Route::get('/parsexml', function () {
         print($fio);
     });
 });
+
+Route::middleware('doNotCacheResponse')->get('/xmlpki', function () {
+    $sxe = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8" standalone="no" ?><Envelope xmlns="urn:envelope"></Envelope>');
+    $xml_body = $sxe->addChild('Body');
+    $xml_data = $xml_body->addChild('Data');
+    $xml_data->addAttribute('xml:id', 'dataToSign');
+    $xml_data->addChild('portalUser', Auth::user()->username);
+    $xml_data->addChild('portalPersonUUID', Auth::user()->pid);
+    $xml_data->addChild('docSignName', 'Mr. Parser');
+    $xml_data->addChild('docSignFileUUID', 'Mr. Parser');
+    $xml_data->addChild('docSignHashGOST', 'Mr. Parser');
+    $xml_data->addChild('docSignTimestamp', 'Mr. Parser');
+    $current = $sxe->asXML();
+    $current = strtr($current, array("\n" => ''));
+    echo $current;
+});
+Route::middleware('doNotCacheResponse')->get('/ddconfig', function () {
+    dump(Auth::user()->SfrPerson);
+    dd(config());
+});
+
 Route::middleware('doNotCacheResponse')->get('/test', function () {
     ResponseCache::clear();
     //$size = Storage::disk('ftp1c')->size('vacation_058 (TXT) 2023-05-26.txt');
@@ -113,16 +136,20 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
     $sfruser->pid = $pperson->pid;
     $sfruser->save();
 });
+Route::middleware('doNotCacheResponse')->get('/certstest', [SFRUnepController::class, 'test']);
+
 Route::get('/imaptest', [SFRImapReaderController::class, 'put1CFilesToFTP']);
+
+Route::middleware('doNotCacheResponse')->get('/x509test', [SFRx509Controller::class, 'parceX509certs']);
 
 Route::get('/', function () {
     //dd(config('auth'));
     /*
     $to_name = 'Paul';
     $to_email = 'pleshkovpa@48.sfr.gov.ru';
-    $data = array('name'=>"Sam Jose", "body" => "Test mail");
-    Mail::send('osfrportal::emails.emails', $data, function($message) use ($to_name, $to_email) {
-    $message->to($to_email, $to_name)->subject('Artisans Web Testing Mail');
+    $data = array('name' => "Sam Jose", "body" => "Test mail");
+    Mail::send('osfrportal::emails.emails', $data, function ($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)->subject('Artisans Web Testing Mail');
     });
     */
     return view('osfrportal::sections.mainpage.show');

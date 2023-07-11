@@ -119,14 +119,12 @@ class PhoneController extends Controller
 
         $person_contactdata_DTO = new SfrPhoneContactData();
         $person_contactdata_DTO->room = $validatedData['inputRoom'];
-        $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);
-        ;
+        $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);;
         $person_contactdata_DTO->email_ext = Str::lower($validatedData['inputEmailAddress']);
         $person_contactdata_DTO->phone_external = $validatedData['inputPhoneExt'];
         $person_contactdata_DTO->phone_internal = $validatedData['inputPhoneInt'];
         $person_contactdata_DTO->phone_mobile = $validatedData['inputPhoneMobile'];
-        $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);
-        ;
+        $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);;
         $contactdata_collection_json = $person_contactdata_DTO->toJson(JSON_UNESCAPED_UNICODE);
 
 
@@ -288,7 +286,7 @@ class PhoneController extends Controller
                 if ($user->contactdata_person->persondata_vacation_end != '') {
                     //return 'bg-warning opacity-75';
                     //return 'table-warning p-2 text-dark bg-opacity-75 opacity-75';
-                    return 'table-warning p-2 opacity-75';
+                    return 'bg-vacation p-2 opacity-75';
                 }
                 if ($user->contactdata_person->persondata_dekret_end != '') {
                     return 'opacity-75';

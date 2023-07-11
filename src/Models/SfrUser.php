@@ -56,6 +56,7 @@ class SfrUser extends Authenticatable
             'SfrPersonDekret',
             'SfrPersonTabNum',
             'SfrPersonUnit',
+            'SfrPersonCerts',
         ];
         return $this->belongsTo(SfrPerson::class, 'pid', 'pid')->with($with_relations);
     }

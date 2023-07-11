@@ -125,3 +125,12 @@ tr.dtrg-group th {
     font-style: normal !important;
     font-weight: normal !important;
 }
+
+.bg-vacation {
+    --bs-bg-opacity: 1;
+    background-color: var(--bs-warning) !important;
+}
+
+.table {
+    --bs-table-bg: transparent !important;
+}
