@@ -24,6 +24,6 @@ class SFRSysconfigController extends Controller
     public function showConfigList()
     {
         $configList = SfrConfig::all();
-        return view('osfrportal::admin.sysconfig.configlist', ['configlist' => $configList]);
+        return view('osfrportal::admin.sysconfig.configlist', ['configList' => $configList]);
     }
 }
