@@ -11,5 +11,12 @@
     </div>
 @endsection
 @section('content')
+    @foreach ($configList as $item)
+        {{ $item->name }} <br>
+        {{ $item->value }}<br>
+        {{ $item->description }}<br>
+        {{ $item->crypted }}<br>
+        <hr>
+    @endforeach
     список настроек
 @endsection

@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
-use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
+use Osfrportal\OsfrportalLaravel\Models\SfrConfig;
 
 class SFRSysconfigController extends Controller
 {
@@ -23,6 +23,7 @@ class SFRSysconfigController extends Controller
 
     public function showConfigList()
     {
-        return view('osfrportal::admin.sysconfig.configlist');
+        $configList = SfrConfig::all();
+        return view('osfrportal::admin.sysconfig.configlist', ['configlist' => $configList]);
     }
 }
