@@ -12,7 +12,7 @@
 @endsection
 @section('content')
     @foreach ($configList as $item)
-        {{ $item->name }} <br>
+        {{ $item->key }} <br>
         {{ $item->value }}<br>
         {{ $item->description }}<br>
         {{ $item->crypted }}<br>
