@@ -12,6 +12,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRImapReaderController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRx509Controller;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRSysconfigController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
@@ -24,6 +25,9 @@ use Spatie\ResponseCache\Facades\ResponseCache;
  * Административные маршруты
  */
 Route::prefix('admin')->name('admin.')->middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
+    Route::controller(SFRSysconfigController::class)->name('sysconfig.')->prefix('sysconfig')->group(function () {
+        Route::get('/', 'showConfigList')->name('all');
+    });
     Route::controller(SFRPhoneAdminController::class)->name('phone.')->prefix('phone')->group(function () {
         Route::get('/addr', 'ShowAddrList')->name('addresses');
         Route::get('/dialplan/edit/{dpid}', 'EditDialPlan')->name('dialplan.edit');

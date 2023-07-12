@@ -30,7 +30,8 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                     aria-expanded="false">Конфигурация портала</a>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="#">Основные настройки</a></li>
+                    <li><a class="dropdown-item" href="{{ route('osfrportal.admin.sysconfig.all') }}">Основные
+                            настройки</a></li>
                 </ul>
             </div>
         </ul>
