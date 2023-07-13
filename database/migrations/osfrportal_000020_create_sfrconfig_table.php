@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('value')->nullable();
             $table->string('description')->nullable();
             $table->boolean('crypted')->default(false);
-            $table->string('group')->nullable();
+            $table->string('groupname')->nullable();
             $table->timestamps();
         });
     }

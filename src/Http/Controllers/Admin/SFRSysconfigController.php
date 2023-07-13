@@ -23,7 +23,7 @@ class SFRSysconfigController extends Controller
 
     public function showConfigList()
     {
-        $configList = SfrConfig::groupBy('group')->get();
+        $configList = SfrConfig::groupBy('groupname')->get();
         dump($configList);
         return view('osfrportal::admin.sysconfig.configlist', ['configList' => $configList]);
     }
