@@ -26,6 +26,7 @@ use Spatie\ResponseCache\Facades\ResponseCache;
  */
 Route::prefix('admin')->name('admin.')->middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
     Route::controller(SFRSysconfigController::class)->name('sysconfig.')->prefix('sysconfig')->group(function () {
+        Route::post('/save', 'saveConfigList')->name('save');
         Route::get('/', 'showConfigList')->name('all');
     });
     Route::controller(SFRPhoneAdminController::class)->name('phone.')->prefix('phone')->group(function () {

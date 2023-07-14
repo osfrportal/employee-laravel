@@ -21,12 +21,15 @@ class SFRSysconfigController extends Controller
      * ----------------------------
      */
 
+    public function saveConfigList(Request $request)
+    {
+        dump($request->all());
+        dump(config('osfrportal'));
+    }
+
+
     public function showConfigList()
     {
-        $configList = SfrConfig::orderBy('groupname')->get()->groupBy(function ($data) {
-            return $data->groupname;
-        });
-        dump($configList);
-        return view('osfrportal::admin.sysconfig.configlist', ['configList' => $configList]);
+        return view('osfrportal::admin.sysconfig.configlist');
     }
 }

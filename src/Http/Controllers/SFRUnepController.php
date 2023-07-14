@@ -28,8 +28,15 @@ class SFRUnepController extends Controller
 
     public function test()
     {
-        $this->signXMLUnep();
-        /*
+        //$this->signXMLUnep();
+        $this->getAllCertsToDB();
+        dump('done');
+    }
+
+
+    public function getAllCertsToDB()
+    {
+
         $allCertsCollection = $this->interface->getAllCertsFromStorage();
         $allCertsCollection->each(function ($item) {
             $certDTO = $this->interface->parceCertToDTO($item);
@@ -38,8 +45,7 @@ class SFRUnepController extends Controller
             $this->interface->saveCertToDB($certDTO, $pid);
         });
         //TODO: добавить логгирование
-        */
-        dump('done');
+
     }
 
     public function signXMLUnep()

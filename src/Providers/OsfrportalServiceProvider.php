@@ -19,6 +19,7 @@ use Osfrportal\OsfrportalLaravel\Services\SFRx509UnepService;
 //console commands
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRImapGetCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRInstallCommand;
+
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
@@ -62,7 +63,7 @@ class OsfrportalServiceProvider extends ServiceProvider
                 $schedule->command('sfr:imapget')->dailyAt(config('osfrportal.shedule_ImapDailyTime', '00:01'));
                 //$schedule->command('sfr:importpersons')->dailyAt(config('osfrportal.shedule.PersonsDailyTime', '00:03'));
                 //$schedule->command('sfr:importmovements')->dailyAt(config('osfrportal.shedule.MovementsDailyTime', '00:04'));
-                //$schedule->command('sfr:importdepartments)->dailyAt(config('osfrportal.shedule.DepatrmentsDailyTime', '00:05'));
+                //$schedule->command('sfr:importdepartments)->dailyAt(config('osfrportal.shedule.DepartmentsDailyTime', '00:05'));
                 //$schedule->command('sfr:importvacation')->dailyAt(config('osfrportal.shedule.VacationDailyTime', '00:06'));
                 //$schedule->command('sfr:importdekret')->dailyAt(config('osfrportal.shedule.DekretDailyTime', '00:07'));
             });
@@ -176,18 +177,22 @@ class OsfrportalServiceProvider extends ServiceProvider
                 })
                 ->toArray() // make it an array
         ]);
-        config(['mail.mailers.armgs' => [
-            'transport' => 'smtp',
-            'host' => config('osfrportal.smtp_host'),
-            'port' => config('osfrportal.smtp_port'),
-            'encryption' => config('osfrportal.smtp_encryption'),
-            'username' => config('osfrportal.smtp_username'),
-            'password' => config('osfrportal.smtp_password'),
-        ]]);
-        config(['mail.from' => [
-            'address' => config('osfrportal.smtp_from'),
-            'name' => config('osfrportal.portal_name'),
-        ]]);
+        config([
+            'mail.mailers.armgs' => [
+                'transport' => 'smtp',
+                'host' => config('osfrportal.smtp_host'),
+                'port' => config('osfrportal.smtp_port'),
+                'encryption' => config('osfrportal.smtp_encryption'),
+                'username' => config('osfrportal.smtp_username'),
+                'password' => config('osfrportal.smtp_password'),
+            ]
+        ]);
+        config([
+            'mail.from' => [
+                'address' => config('osfrportal.smtp_from'),
+                'name' => config('osfrportal.portal_name'),
+            ]
+        ]);
         config(['mail.default' => 'armgs']);
     }
 }

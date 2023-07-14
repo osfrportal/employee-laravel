@@ -12,7 +12,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRCertData;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrCerts;
 use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
-
+use Illuminate\Support\Facades\Log;
 
 class SFRx509UnepService implements SFRx509Interface
 {
@@ -63,6 +63,9 @@ class SFRx509UnepService implements SFRx509Interface
         ]);
         //TODO: добавить проверку на корректный вход.
         $this->pki_user_data = json_decode($response->getBody(), flags: JSON_OBJECT_AS_ARRAY);
+        Log::info('UNEP: вход пользователя', [
+            'response' => $this->pki_user_data,
+        ]);
         $this->pki_token = $this->unep_cookieJar->getCookieByName('XSRF-TOKEN')->getValue();
     }
 
@@ -75,6 +78,9 @@ class SFRx509UnepService implements SFRx509Interface
             'json' => [
                 'id' => $this->pki_user_data['id'],
             ],
+        ]);
+        Log::info('UNEP: выход пользователя', [
+            'response' => json_decode($response->getBody(), flags: JSON_OBJECT_AS_ARRAY),
         ]);
         //dump(json_decode($response->getBody(), flags: JSON_OBJECT_AS_ARRAY));
     }
@@ -161,6 +167,13 @@ class SFRx509UnepService implements SFRx509Interface
                 'pid' => $pid,
             ]
         );
+        Log::info('UNEP: сертификат сохранен в базе', [
+            'certserial' => $certdata->serialNumber,
+            'certvalidfrom' => $certdata->notBefore,
+            'certvalidto' => $certdata->notAfter,
+            'certtype' => CertsTypesEnum::UNEP(),
+            'pid' => $pid,
+        ]);
         return;
     }
     public function signXML(string $signdata, CertsTypesEnum $certtype, int|null $certid)

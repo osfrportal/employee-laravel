@@ -11,6 +11,7 @@ use Webklex\PHPIMAP\Exceptions\ConnectionFailedException;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 
 class SFRImapReaderController extends Controller
@@ -46,18 +47,24 @@ class SFRImapReaderController extends Controller
     {
         try {
             $oFolder = $this->oClient->getFolder('INBOX');
+            Log::info('Успешно подключились к IMAP');
         } catch (ConnectionFailedException $exception) {
-            dd($exception->getMessage());
+            //dd($exception->getMessage());
+            Log::critical('Ошибка подключения к IMAP: {msg}', [
+                'msg' => $exception->getMessage(),
+            ]);
         }
         try {
-            $aMessage = $oFolder->query()->since(now()->subDays(2))->unseen()->get();
+            $aMessage = $oFolder->query()->since(now()->subDays(10))->unseen()->get();
 
             foreach ($aMessage as $oMessage) {
-                //echo $oMessage->getFrom()[0]->mail . '<br />';
+                $mailFrom = $oMessage->getFrom()[0]->mail;
                 $att_date = CarbonImmutable::parse($oMessage->getDate())->format('Y-m-d');
-                //echo $att_date . '<br />';
+                Log::info('IMAP: обработка письма от {mailfrom} {att_date}', [
+                    'mailfrom' => $mailFrom,
+                    'att_date' => $att_date,
+                ]);
                 $flags = $oMessage->getFlags();
-                //dump($flags);
                 if ($oMessage->hasAttachments()) {
                     foreach ($oMessage->getAttachments() as $oAttachment) {
                         $oAttachmentName = imap_utf8($oAttachment->getName());
@@ -66,9 +73,21 @@ class SFRImapReaderController extends Controller
                         //echo $filename_out . '  (' . $oAttachment->get("size") . ')<br />';
                         if (Storage::disk('ftp1c')->missing($filename_out)) {
                             Storage::disk('ftp1c')->put($filename_out, $file_content);
+                            Log::info('IMAP: файл {filename_out} сохранен на FTP', [
+                                'filename_out' => $filename_out,
+                            ]);
+                        } else {
+                            Log::warning('IMAP: файл {filename_out} уже существует на FTP', [
+                                'filename_out' => $filename_out,
+                            ]);
                         }
                         //echo '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<br>';
                     }
+                } else {
+                    Log::info('IMAP: письмо от {mailfrom} {att_date} не имеет вложений', [
+                        'mailfrom' => $mailFrom,
+                        'att_date' => $att_date,
+                    ]);
                 }
                 $oMessage->setFlag('Seen');
                 //echo '-----------------------<br>';
@@ -77,7 +96,10 @@ class SFRImapReaderController extends Controller
 
             //echo '<hr>';
         } catch (GetMessagesFailedException $exception) {
-            dd($exception->getMessage());
+            //dd($exception->getMessage());
+            Log::critical('Ошибка получения списка писем IMAP: {msg}', [
+                'msg' => $exception->getMessage(),
+            ]);
         }
     }
 }
