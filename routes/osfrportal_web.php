@@ -141,9 +141,7 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
     $sfruser->pid = $pperson->pid;
     $sfruser->save();
 });
-Route::middleware('doNotCacheResponse')->get('/certstest', [SFRUnepController::class, 'test']);
-
-Route::get('/imaptest', [SFRImapReaderController::class, 'put1CFilesToFTP']);
+Route::middleware('doNotCacheResponse')->get('/certstest', [SFRUkepController::class, 'test']);
 
 Route::middleware('doNotCacheResponse')->get('/x509test', [SFRx509Controller::class, 'parceX509certs']);
 

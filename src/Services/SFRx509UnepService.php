@@ -47,7 +47,7 @@ class SFRx509UnepService implements SFRx509Interface
 
     public function __destruct()
     {
-        $this->hsmLogout();
+        //$this->hsmLogout();
     }
 
     private function hsmLogin()
@@ -146,7 +146,7 @@ class SFRx509UnepService implements SFRx509Interface
             $this->collection_certs->push($tmp_arr);
         });
 
-        $this->hsmLogout();
+        //$this->hsmLogout();
         return $this->collection_certs;
     }
     public function parceCertToDTO(array $certdata)
@@ -188,7 +188,7 @@ class SFRx509UnepService implements SFRx509Interface
         dump($signed_xml);
         dump('-------------------------------');
         $this->checkSignXML($signed_xml);
-        $this->hsmLogout();
+        //$this->hsmLogout();
         return;
     }
 

@@ -4,6 +4,8 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -18,9 +20,26 @@ class SFRInstallController extends Controller
     {
         $this->configInsertDefValues();
         $this->rolesInsertDefValues();
+        $this->foldersCreate();
     }
 
+    private function foldersCreate() {
+        $storageDocsConfig = Storage::disk('docsfiles')->getConfig();
+        $pathDocs = Arr::get($storageDocsConfig, 'root');
+        if (!is_null($pathDocs)&&(!file_exists($pathDocs) || !is_dir($pathDocs))) {
+            mkdir(directory: $pathDocs, permissions: 0777, recursive: true);
+        }
 
+        $storageImportsConfig = Storage::disk('imports')->getConfig();
+        $pathImports = Arr::get($storageImportsConfig, 'root');
+        if (!is_null($pathImports)&&(!file_exists($pathImports) || !is_dir($pathImports))) {
+            mkdir(directory: $pathImports, permissions: 0777, recursive: true);
+        }
+
+        Artisan::call("storage:link");
+
+
+    }
     /**
      * Summary of rolesInsertDefValues
      * @return void

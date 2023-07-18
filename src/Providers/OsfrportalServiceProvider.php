@@ -20,7 +20,7 @@ use Osfrportal\OsfrportalLaravel\Services\SFRx509UnepService;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRImapGetCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRInstallCommand;
 
-//use Osfrportal\OsfrportalLaravel\Console\Commands\;
+use Osfrportal\OsfrportalLaravel\Console\Commands\SFRUnepGetAllCommand;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
@@ -36,10 +36,6 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
             $this->publishes([
-                //__DIR__ . '/../../config/osfrportal.php' => config_path('osfrportal.php'),
-                __DIR__ . '/../../config/osfrportal_filesystems.php' => config_path('osfrportal_filesystems.php'),
-            ], 'osfrportal-config');
-            $this->publishes([
                 __DIR__ . '/../../resources/views' => resource_path('views/vendor/osfrportal'),
             ], 'osfrportal-views');
             $this->publishes([
@@ -51,6 +47,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->commands([
                 SFRImapGetCommand::class,
                 SFRInstallCommand::class,
+                SFRUnepGetAllCommand::class,
                 //::class,
                 //::class,
                 //::class,
@@ -66,6 +63,7 @@ class OsfrportalServiceProvider extends ServiceProvider
                 //$schedule->command('sfr:importdepartments)->dailyAt(config('osfrportal.shedule.DepartmentsDailyTime', '00:05'));
                 //$schedule->command('sfr:importvacation')->dailyAt(config('osfrportal.shedule.VacationDailyTime', '00:06'));
                 //$schedule->command('sfr:importdekret')->dailyAt(config('osfrportal.shedule.DekretDailyTime', '00:07'));
+                $schedule->command('sfr:unepget')->dailyAt(config('osfrportal.shedule_HSMDailyTime', '00:10'));
             });
         }
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'osfrportal');
@@ -88,6 +86,8 @@ class OsfrportalServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerInterfaces();
+        $this->registerStorageConfig();
+
         config([
             'auth.guards.web' => [
                 'driver' => 'session',
@@ -108,17 +108,6 @@ class OsfrportalServiceProvider extends ServiceProvider
                 ],
             ], config('auth.providers', [])),
         ]);
-
-        /*
-        $this->mergeConfigFrom(
-            __DIR__ . '/../../config/osfrportal.php',
-            'osfrportal'
-        );
-        */
-        $this->mergeConfigFrom(
-            __DIR__ . '/../../config/osfrportal_filesystems.php',
-            'filesystems.disks'
-        );
     }
 
     protected function registerInterfaces()
@@ -161,6 +150,44 @@ class OsfrportalServiceProvider extends ServiceProvider
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/../../routes/osfrportal_web.php');
         })->middleware('web');
+    }
+
+    protected function registerStorageConfig() {
+        $filesystemsDisksConfig = [
+            'docsfiles' => [
+                'driver' => 'local',
+                'root' => storage_path('app/docsfiles'),
+                //'url' => '/storage/docs',
+                'visibility' => 'public',
+                'throw' => false,
+            ],
+            'imports' => [
+                'driver' => 'local',
+                'root' => storage_path('app/imports'),
+                'visibility' => 'public',
+                'throw' => false,
+            ],
+            'ftp1c' => [
+                'driver' => 'ftp',
+                'host' => config('osfrportal.ftp1c_host'),
+                'username' => config('osfrportal.ftp1c_user'),
+                'password' => config('osfrportal.ftp1c_password'),
+                'passive' => config('osfrportal.ftp1c_passive'),
+                'ssl' => config('osfrportal.ftp1c_ssl'),
+            ],
+        ];
+
+        $filesystemsLinksConfig = [
+            public_path('docsfiles') => storage_path('app/docsfiles'),
+        ];
+        config([
+            'filesystems.disks' => array_merge($filesystemsDisksConfig, config('filesystems.disks', [])),
+        ]);
+
+        config([
+            'filesystems.links' => array_merge($filesystemsLinksConfig, config('filesystems.links', [])),
+        ]);
+
     }
 
     private function registerConfigFromDB()

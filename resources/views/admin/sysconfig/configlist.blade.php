@@ -41,11 +41,11 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="mb-1" for="inputLogin">Login:</label>
-                    <input class="form-control form-control-sm @error('inputLogin') is-invalid @enderror" id="inputLogin"
-                        name="inputLogin" type="text"
-                        value="{{ old('inputLogin') ?? (config('osfrportal.hsm_login') ?? '') }}">
-                    @error('inputLogin')
+                    <label class="mb-1" for="inputHsmLogin">Login:</label>
+                    <input class="form-control form-control-sm @error('inputHsmLogin') is-invalid @enderror" id="inputHsmLogin"
+                        name="inputHsmLogin" type="text"
+                        value="{{ old('inputHsmLogin') ?? (config('osfrportal.hsm_login') ?? '') }}">
+                    @error('inputHsmLogin')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>

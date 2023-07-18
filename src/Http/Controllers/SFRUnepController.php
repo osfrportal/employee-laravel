@@ -12,8 +12,8 @@ use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
 
 class SFRUnepController extends Controller
 {
-    private SFRx509Interface $interface;
-    public function __construct(SFRx509Interface $interface)
+    //private SFRx509Interface $interface;
+    public function __construct(private SFRx509Interface $interface)
     {
         $this->interface = $interface;
     }
