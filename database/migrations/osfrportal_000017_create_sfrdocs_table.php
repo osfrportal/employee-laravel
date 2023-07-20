@@ -12,6 +12,8 @@ return new class extends Migration {
                 $table->comment('Документы');
                 $table->uuid('docid')->unique();
                 $table->string('doc_name');
+                $table->string('doc_number');
+                $table->date('doc_date');
                 $table->uuid('doc_typeid');
                 $table->uuid('doc_groupid');
                 $table->jsonb('doc_data');

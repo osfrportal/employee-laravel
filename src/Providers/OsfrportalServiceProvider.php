@@ -21,6 +21,7 @@ use Osfrportal\OsfrportalLaravel\Console\Commands\SFRImapGetCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRInstallCommand;
 
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRUnepGetAllCommand;
+
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
@@ -32,6 +33,7 @@ class OsfrportalServiceProvider extends ServiceProvider
     {
         Date::use(CarbonImmutable::class);
         $this->registerConfigFromDB();
+        $this->registerStorageConfig();
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
@@ -86,7 +88,7 @@ class OsfrportalServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerInterfaces();
-        $this->registerStorageConfig();
+
 
         config([
             'auth.guards.web' => [
@@ -152,7 +154,8 @@ class OsfrportalServiceProvider extends ServiceProvider
         })->middleware('web');
     }
 
-    protected function registerStorageConfig() {
+    protected function registerStorageConfig()
+    {
         $filesystemsDisksConfig = [
             'docsfiles' => [
                 'driver' => 'local',
@@ -172,8 +175,8 @@ class OsfrportalServiceProvider extends ServiceProvider
                 'host' => config('osfrportal.ftp1c_host'),
                 'username' => config('osfrportal.ftp1c_user'),
                 'password' => config('osfrportal.ftp1c_password'),
-                'passive' => config('osfrportal.ftp1c_passive'),
-                'ssl' => config('osfrportal.ftp1c_ssl'),
+                'passive' => (bool) config('osfrportal.ftp1c_passive'),
+                'ssl' => (bool) config('osfrportal.ftp1c_ssl'),
             ],
         ];
 

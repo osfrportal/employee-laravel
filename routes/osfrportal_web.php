@@ -43,8 +43,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth.osfrportal', 'doNotCac
         Route::get('/', 'ShowPersonsList')->name('all');
     });
     Route::controller(SFRDocsAdminController::class)->name('docs.')->prefix('docs')->group(function () {
+        Route::get('/detail/{docid}', 'docsShowDetail')->name('detail');
+        Route::get('/add', 'docsAddForm')->name('add');
+        Route::post('/add', 'docsAdd')->name('add');
         Route::get('/', 'docsShowList')->name('all');
         Route::name('types.')->prefix('types')->group(function () {
+            Route::get('/detail/{typeid}', 'typesShowDetail')->name('detail');
+            Route::get('/add', 'typesAddForm')->name('add');
+            Route::post('/save', 'typesSave')->name('save');
             Route::get('/', 'typesShowList')->name('all');
         });
         Route::name('groups.')->prefix('groups')->group(function () {

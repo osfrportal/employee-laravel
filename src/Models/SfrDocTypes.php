@@ -13,4 +13,8 @@ class SfrDocTypes extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = true;
+    protected $fillable = [
+        'type_name',
+        'type_data',
+    ];
 }

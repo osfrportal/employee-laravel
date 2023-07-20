@@ -12,7 +12,7 @@ return new class extends Migration {
                 $table->comment('Типы документов');
                 $table->uuid('typeid')->unique();
                 $table->string('type_name');
-                $table->jsonb('type_data');
+                $table->jsonb('type_data')->nullable();
                 $table->timestamps();
             });
         }

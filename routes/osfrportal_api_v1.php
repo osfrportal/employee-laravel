@@ -20,6 +20,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/roles', 'APISelect2ShowRolesList')->name('roles_all');
             Route::get('/permissions', 'APISelect2ShowPermissionsList')->name('permissions_all');
         });
+        Route::prefix('docs')->name('docs.')->controller(SFRDocsAdminController::class)->group(function () {
+            Route::get('/groups', 'apiSelect2ShowDocsGroups')->name('groups_all');
+            Route::get('/types', 'apiSelect2ShowDocsTypes')->name('types_all');
+        });
     });
     Route::controller(PermissionsController::class)->group(function () {
         Route::get('/roles/users/{roleid}', 'APIShowRoleUsersList')->name('role_users_all');
@@ -41,6 +45,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::name('groups.')->prefix('groups')->group(function () {
             Route::get('/', 'apiGroupsShow')->name('all');
         });
+        Route::name('types.')->prefix('types')->group(function () {
+            Route::get('/', 'apiTypesShow')->name('all');
+        });
+        Route::get('/', 'apiDocsShow')->name('all');
     });
 });
 

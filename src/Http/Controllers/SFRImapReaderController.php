@@ -29,13 +29,13 @@ class SFRImapReaderController extends Controller
         $imapPassword = config('osfrportal.imap_password');
 
         $this->oClient = $imapClientManager->make([
-            'host'          => $imapHost,
-            'port'          => $imapPort,
-            'encryption'    => $imapEncryption,
+            'host' => $imapHost,
+            'port' => $imapPort,
+            'encryption' => $imapEncryption,
             'validate_cert' => $imapValidateCert,
-            'username'      => $imapUsername,
-            'password'      => $imapPassword,
-            'protocol'      => $imapProtocol
+            'username' => $imapUsername,
+            'password' => $imapPassword,
+            'protocol' => $imapProtocol
         ]);
         try {
             $this->oClient->connect();

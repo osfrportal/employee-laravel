@@ -24,7 +24,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPhoneData;
 class PhoneController extends Controller
 {
     private $result_collection;
-    private function sortArrayByField($arr_to_sort)
+    private function sortDialPlanArrayByField($arr_to_sort)
     {
         $array_name = [];
 
@@ -58,7 +58,7 @@ class PhoneController extends Controller
             $tmp_arr = ['dpid' => $dialplan->dpid, 'dpnumstart' => $dialplan->dpnumstart, 'dpnumend' => $dialplan->dpnumend, 'dialplan_len' => $dialplan_len, 'paddress' => $dialplan->addressFull->paddress];
             array_push($numplan_array, $tmp_arr);
         }
-        $numplan_array_sorted = $this->sortArrayByField($numplan_array);
+        $numplan_array_sorted = $this->sortDialPlanArrayByField($numplan_array);
 
         return Arr::get($numplan_array_sorted, '0.paddress', null);
     }
@@ -80,14 +80,14 @@ class PhoneController extends Controller
             $tmp_arr = ['dpid' => $dialplan->dpid, 'dpnumstart' => $dialplan->dpnumstart, 'dpnumend' => $dialplan->dpnumend, 'dialplan_len' => $dialplan_len, 'paddress' => $dialplan->addressFull->paddress, 'areacode' => $dialplan->addressFull->areacode];
             array_push($numplan_array, $tmp_arr);
         }
-        $numplan_array_sorted = $this->sortArrayByField($numplan_array);
+        $numplan_array_sorted = $this->sortDialPlanArrayByField($numplan_array);
         return Arr::get($numplan_array_sorted, '0.areacode', null);
     }
     public function doUpdateContacts(Request $request)
     {
 
         $validation_rules = [
-            'inputEmailAddress' => 'email:rfc,strict|ends_with:@058.pfr.gov.ru,@48.sfr.gov.ru,@ro48.fss.ru',
+            'inputEmailAddress' => 'email:rfc,strict|ends_with:@48.sfr.gov.ru',
             'inputPhoneInt' => 'required|digits:4',
             'inputPhoneExt' => 'required|digits_between:5,6',
             'inputRoom' => 'required|alpha_dash|max:30',
@@ -97,7 +97,7 @@ class PhoneController extends Controller
         $validation_messages = [
             'inputRoom.required' => 'Не указано помещение',
             'inputPhoneMobile.digits' => 'Номер мобильного телефона должен содержать 10 цифр',
-            'inputEmailAddress' => 'Не указан корректный адрес электронной почты. Адрес электронной почты должен заканчиваться на следующие значения: @48.sfr.gov.ru, @058.pfr.gov.ru, @ro48.fss.ru',
+            'inputEmailAddress' => 'Не указан корректный адрес электронной почты. Адрес электронной почты должен заканчиваться на следующее значения: @48.sfr.gov.ru',
         ];
 
 
@@ -119,12 +119,14 @@ class PhoneController extends Controller
 
         $person_contactdata_DTO = new SfrPhoneContactData();
         $person_contactdata_DTO->room = $validatedData['inputRoom'];
-        $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);;
+        $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);
+        ;
         $person_contactdata_DTO->email_ext = Str::lower($validatedData['inputEmailAddress']);
         $person_contactdata_DTO->phone_external = $validatedData['inputPhoneExt'];
         $person_contactdata_DTO->phone_internal = $validatedData['inputPhoneInt'];
         $person_contactdata_DTO->phone_mobile = $validatedData['inputPhoneMobile'];
-        $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);;
+        $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);
+        ;
         $contactdata_collection_json = $person_contactdata_DTO->toJson(JSON_UNESCAPED_UNICODE);
 
 
