@@ -3,7 +3,7 @@
 
 * Laravel 10
 * php >= 8.1
-* postgres >= 14
+* postgreSQL >= 15
 
 ## Установка:
 * Создание базы данных для портала в postgresql
