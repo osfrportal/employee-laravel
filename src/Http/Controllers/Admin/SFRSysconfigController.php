@@ -25,6 +25,7 @@ class SFRSysconfigController extends Controller
     {
         $inputToConfig = [
             'inputPortalName' => 'portal_name',
+            'inputUkepFolder' => 'ukep_folder',
             'inputHsmApiUrl' => 'hsm_apiurl',
             'inputHsmLogin' => 'hsm_login',
             'inputHsmPassword' => 'hsm_password',
@@ -70,6 +71,7 @@ class SFRSysconfigController extends Controller
         ];
         $validation_rules = [
             'inputPortalName' => 'required',
+            'inputUkepFolder' => 'required',
             'inputHsmApiUrl' => 'required|url',
             'inputHsmLogin' => 'required',
             'inputHsmPassword' => 'required',
@@ -117,6 +119,7 @@ class SFRSysconfigController extends Controller
             'inputRoom.required' => 'Не указано помещение',
             'inputPhoneMobile.digits' => 'Номер мобильного телефона должен содержать 10 цифр',
             'inputEmailAddress' => 'Не указан корректный адрес электронной почты. Адрес электронной почты должен заканчиваться на следующие значения: @48.sfr.gov.ru, @058.pfr.gov.ru, @ro48.fss.ru',
+            '*.required' => 'Поле обязательно для заполнения',
         ];
         $validator = Validator::make($request->all(), $validation_rules, $validation_messages);
 

@@ -9,6 +9,7 @@
 @section('content')
     <div class="container-fluid px-4 mt-4">
         <div class="row">
+            {{--
             <div class="col">
                 <div class="card">
                     <div class="card-header">
@@ -45,14 +46,15 @@
                     </div>
                 </div>
             </div>
-
+            --}}
+            {{--
             <div class="col">
                 <div class="card">
                     <div class="card-header">
                         Устройства хранения данных, Jacarta/Rutoken
                     </div>
                     <div class="card-body px-0">
-                        <!-- Payment method 2-->
+
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-usb-drive fa-2x"></i>
@@ -75,14 +77,15 @@
                     </div>
                 </div>
             </div>
-
+            --}}
+            {{--
             <div class="col">
                 <div class="card">
                     <div class="card-header">
                         Металлические печати
                     </div>
                     <div class="card-body px-0">
-                        <!-- Payment method 3-->
+
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-disc fa-2x"></i>
@@ -95,44 +98,71 @@
                     </div>
                 </div>
             </div>
+            --}}
         </div>
+
         <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        Электронные подписи
-                    </div>
-                    <div class="card-body px-0">
-
-                        <div class="d-flex align-items-center justify-content-between px-4">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt=""
-                                    class="icon-small" />
-                                <div class="ms-4">
-                                    <div class="text-xs text-muted">УКЭП</div>
-                                    <div class="small">Срок действия: по 00.00.00</div>
-                                    <div class="small">Серийный номер: ------------------------------------------------
-                                    </div>
-                                </div>
-                            </div>
+            @if ($certsUser->count() > 0)
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Электронная подпись
                         </div>
-                        <hr>
+                        <div class="card-body px-0">
+                            @foreach ($certsUser as $cert)
+                                <div class="d-flex align-items-center justify-content-between px-4">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt=""
+                                            class="icon-small" />
+                                        <div class="ms-4">
+                                            <div
+                                                class="text-xs @if ($cert->certvalidto->isPast()) text-decoration-line-through @endif">
+                                                Вид:
+                                                @switch($cert->certtype)
+                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
+                                                        Усиленный квалифицированный (УКЭП)
+                                                    @break
 
-                        <div class="d-flex align-items-center justify-content-between px-4">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt=""
-                                    class="icon-small" />
-                                <div class="ms-4">
-                                    <div class="text-xs text-muted">УКЭП2</div>
-                                    <div class="small">Срок действия: по 00.00.00</div>
-                                    <div class="small">Серийный номер: ------------------------------------------------
+                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
+                                                        Усиленный неквалифицированный (УНЭП)
+                                                    @break
+
+                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::DOMAIN())
+                                                        Вход в операционную систему (ActiveDirectory)
+                                                    @break
+
+                                                    @default
+                                                        Не определен
+                                                @endswitch
+                                            </div>
+                                            <div
+                                                class="text-xs @if ($cert->certvalidto->isPast()) text-decoration-line-through @endif">
+                                                Срок действия: с
+                                                {{ $cert->certvalidfrom->format('d.m.Y') ?? '' }}
+                                                по
+                                                {{ $cert->certvalidto->format('d.m.Y') ?? '' }}</div>
+                                            @if ($cert->certvalidto->isPast())
+                                                <div class="text-xs">Истек: {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
+                                                </div>
+                                            @endif
+                                            <div
+                                                class="small text-muted @if ($cert->certvalidto->isPast()) text-decoration-line-through @endif">
+                                                Номер сертификата: {{ $cert->certserial ?? '' }}
+                                            </div>
+                                            <div
+                                                class="small text-muted @if ($cert->certvalidto->isPast()) text-decoration-line-through @endif">
+                                                Выдан: {{ $cert->certdata->iss_commonName ?? '' }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <hr>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
+            {{--
             <div class="col">
                 <div class="card">
                     <div class="card-header">
@@ -163,6 +193,7 @@
                     </div>
                 </div>
             </div>
+            --}}
         </div>
     </div>
 @endsection

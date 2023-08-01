@@ -39,4 +39,15 @@ interface SFRx509Interface
      * @return void
      */
     public function signXML(string $signdata, CertsTypesEnum $certtype, int|null $certid);
+
+    public function checkSignXML(string $signedData);
+    /**
+     * «Вычисление хэш-суммы по алгоритму ГОСТ 34.11-2012 (512 бит)
+     */
+    public function gostHashFile(string $filename);
+
+    /**
+     * Проверка значения хэш-суммы файла по алгоритму ГОСТ 34.11-2012 (512 бит)
+     */
+    public function gostCheckHashFile(string $filename, string $gostHash);
 }

@@ -24,3 +24,4 @@
 
     @stack('header-css')
     @stack('header-scripts')
+    @livewireStyles

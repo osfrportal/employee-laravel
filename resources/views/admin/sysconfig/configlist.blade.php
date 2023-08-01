@@ -25,6 +25,15 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label class="mb-1" for="inputUkepFolder">Путь к папке с сертификатами УКЭП:</label>
+                        <input class="form-control form-control-sm @error('inputUkepFolder') is-invalid @enderror"
+                            id="inputUkepFolder" name="inputUkepFolder" type="text"
+                            value="{{ old('inputUkepFolder') ?? (config('osfrportal.ukep_folder') ?? '') }}">
+                        @error('inputUkepFolder')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
         </div>

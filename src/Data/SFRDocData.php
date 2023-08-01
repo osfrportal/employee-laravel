@@ -18,8 +18,9 @@ class SFRDocData extends Data
         public string $docGroup,
         public ?string $docDescription = null,
         public bool $docNeedSign = false,
-    )
-    {
+        public ?string $docId = "",
+        public ?int $docFileCount = 0,
+    ) {
     }
     public static function rules(): array
     {
@@ -41,4 +42,20 @@ class SFRDocData extends Data
         ];
     }
 
+    public static function forList($doc): self
+    {
+        //dd($doc);
+        $docData = json_decode(json: $doc->doc_data, flags: JSON_UNESCAPED_UNICODE);
+        return new self(
+            $doc->doc_name,
+            $doc->doc_number,
+            $doc->doc_date,
+            $doc->doc_typeid,
+            $doc->doc_groupid,
+            $docData->docDescription,
+            $docData->docNeedSign,
+            $doc->docid,
+            $doc->SfrDocsFiles()->count(),
+        );
+    }
 }

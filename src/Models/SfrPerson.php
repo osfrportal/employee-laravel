@@ -5,6 +5,7 @@ namespace Osfrportal\OsfrportalLaravel\Models;
 use Illuminate\Database\Eloquent\Model;
 use Osfrportal\OsfrportalLaravel\Traits\Uuid;
 use Carbon\Carbon;
+use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
 
 class SfrPerson extends Model
 {
@@ -97,6 +98,42 @@ class SfrPerson extends Model
     public function SfrPersonCerts()
     {
         return $this->hasMany(SfrCerts::class, 'pid')->orderByDesc('certvalidto');
+    }
+
+    /**
+     * Сертификаты работника действующие на текущий момент времени
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+
+    public function getValidPersonCerts()
+    {
+        return $this->SfrPersonCerts()->where('certvalidto', '>=', Carbon::now());
+    }
+
+    public function getCertIdUNEP()
+    {
+        $unepValidCerts = $this->getValidPersonCerts->filter(function ($value, int $key) {
+            if (!is_null($value->certdata->certId)) {
+                return $value->certdata->certId;
+            }
+        });
+        $unepLastValid = $unepValidCerts->sortByDesc('certvalidto')->first();
+        if (!is_null($unepLastValid)) {
+            $unepCertID = $unepLastValid->certdata->certId;
+        } else {
+            $unepCertID = null;
+        }
+        return $unepCertID;
+    }
+    public function getCertIdUKEP()
+    {
+        $ukepValidCerts = $this->getValidPersonCerts->filter(function ($value, int $key) {
+            if ($value->certtype == CertsTypesEnum::UKEP()) {
+                return $value->certserial;
+            }
+        });
+        $ukepLastValid = $ukepValidCerts->sortByDesc('certvalidto');
+        return $ukepLastValid;
     }
 
     /**

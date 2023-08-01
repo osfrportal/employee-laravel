@@ -16,7 +16,12 @@
         <thead>
             <tr>
                 <th>&nbsp;</th>
+                <th>Ознакомление</th>
+                <th>Номер</th>
+                <th>Дата</th>
                 <th>Наименование</th>
+                <th>Описание</th>
+                <th>Количество файлов</th>
             </tr>
         </thead>
     </table>
@@ -31,30 +36,73 @@
                 ajax: '{{ route('osfrapi.osfrportal.admin.docs.all') }}',
 
                 columns: [{
-                        data: 'docid'
+                        data: 'docId'
                     },
                     {
-                        data: 'doc_name'
+                        data: 'docNeedSign'
+                    },
+                    {
+                        data: 'docNumber'
+                    },
+                    {
+                        data: 'docDate'
+                    },
+                    {
+                        data: 'docName'
+                    },
+                    {
+                        data: 'docDescription'
+                    },
+                    {
+                        data: 'docFileCount'
                     },
                 ],
                 columnDefs: [{
-                    // Actions
-                    targets: 0,
-                    title: 'Действия',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data, type, full, meta) {
+                        className: "dt-center",
+                        targets: [0, 1, 2, 3, 4, 5, 6]
+                    },
+                    {
+                        // Actions
+                        targets: 0,
+                        title: 'Действия',
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, full, meta) {
 
-                        var url = '{{ route('osfrportal.admin.docs.detail', ':slug') }}';
-                        url = url.replace(':slug', data);
+                            var url = '{{ route('osfrportal.admin.docs.detail', ':slug') }}';
+                            url = url.replace(':slug', data);
 
-                        var link_edit = "#";
-                        return (
-                            '<a href="' + link_edit +
-                            '" class="btn btn-sm text-primary btn-icon item-edit"><i class="bi bi-pencil-square"></i></a>'
-                        );
-                    }
-                }],
+                            var linkView = "#";
+                            return (
+                                '<a href="' + url +
+                                '"><i class="bi bi-book"></i></a>'
+                            );
+                        }
+                    },
+                    {
+                        // Actions
+                        targets: 1,
+                        title: 'Ознакомление',
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, full, meta) {
+                            if (data === true) {
+                                return '<h6 class="bi bi-check-lg"></h6>';
+                            } else {
+                                return '<h6 class="bi bi-dash-lg"></h6>';
+                            }
+                        }
+                    },
+                    {
+                        // Actions
+                        targets: 3,
+                        orderable: true,
+                        searchable: true,
+                        render: function(data, type, full, meta) {
+                            return data.slice(0, 10).split('-').reverse().join('.')
+                        }
+                    },
+                ],
             });
         });
     </script>

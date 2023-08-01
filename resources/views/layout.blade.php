@@ -27,12 +27,7 @@
             <div class="dropdown px-3">
                 <a class="nav-link position-relative" href="#" alt="Уведомления" id="dropdownNotifications"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-bell iconsMenu"></i>
-                    @if (auth()->user()->unreadNotifications->count() <= 0)
-                        <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ auth()->user()->unreadNotifications->count() }}
-                        </span>
-                    @endif
+                    @livewire('osfrportal::notifications-count')
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownNotifications" style="">
                     <li><a class="dropdown-item" href="#">Уведомление 1..</a></li>

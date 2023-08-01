@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Http;
 use Osfrportal\OsfrportalLaravel\Interfaces\SFRx509Interface;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client;
-use Ramsey\Uuid\Uuid;
 use Osfrportal\OsfrportalLaravel\Data\SFRCertData;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrCerts;
@@ -30,7 +29,7 @@ class SFRx509UnepService implements SFRx509Interface
         $this->unep_cookieJar = new \GuzzleHttp\Cookie\CookieJar;
         $this->pki_options = [
             'base_uri' => $this->hsmApiUrl,
-            'timeout'  => 0,
+            'timeout' => 0,
             'debug' => false,
             'cookies' => $this->unep_cookieJar,
             'headers' => [
@@ -80,7 +79,10 @@ class SFRx509UnepService implements SFRx509Interface
             ],
         ]);
         Log::info('UNEP: выход пользователя', [
-            'response' => json_decode($response->getBody(), flags: JSON_OBJECT_AS_ARRAY),
+            'response' => json_decode(
+                $response->getBody(),
+                flags: JSON_OBJECT_AS_ARRAY
+            ),
         ]);
         //dump(json_decode($response->getBody(), flags: JSON_OBJECT_AS_ARRAY));
     }
@@ -185,14 +187,16 @@ class SFRx509UnepService implements SFRx509Interface
             ->attach('file', $signdata)
             ->post('xml_sign', ['data' => json_encode($postdata)]);
         $signed_xml = $response2->body();
-        dump($signed_xml);
-        dump('-------------------------------');
-        $this->checkSignXML($signed_xml);
-        //$this->hsmLogout();
-        return;
+        Log::info('UNEP: подись документа', [
+            'response' => $certid,
+        ]);
+        //dump($signed_xml);
+        //dump('-------------------------------');
+        //$this->checkSignXML($signed_xml);
+        return $signed_xml;
     }
 
-    private function checkSignXML(string $signedData)
+    public function checkSignXML(string $signedData)
     {
         $this->hsmLogin();
 
@@ -203,5 +207,32 @@ class SFRx509UnepService implements SFRx509Interface
         $json_resp = $response3->json();
         $cert = Arr::get($json_resp, '0.cert');
         dump($json_resp);
+    }
+
+    public function gostHashFile(string $filename)
+    {
+        $this->hsmLogin();
+        $response = Http::withOptions($this->pki_options)
+            ->withHeaders(['X-XSRF-TOKEN' => $this->pki_token])
+            ->attach('file', $filename)
+            ->post('hash_r34_11_2012_512');
+        $json_resp = $response->json();
+        return $json_resp['hash'];
+    }
+
+    public function gostCheckHashFile(string $filename, string $gostHash)
+    {
+        $this->hsmLogin();
+        $postdata = ['hash' => $gostHash];
+        $response = Http::withOptions($this->pki_options)
+            ->withHeaders(['X-XSRF-TOKEN' => $this->pki_token])
+            ->attach('file', $filename)
+            ->post('check_hash_r34_11_2012_512', ['data' => json_encode($postdata)]);
+        $json_resp = $response->json();
+        $result = Arr::get($json_resp, 'result', 1);
+        if ($result == 0) {
+            return true;
+        }
+        return false;
     }
 }

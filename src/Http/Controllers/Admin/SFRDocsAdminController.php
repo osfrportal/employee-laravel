@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 use Yajra\DataTables\DataTables;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SFRDocsAdminController extends Controller
 {
@@ -38,10 +39,20 @@ class SFRDocsAdminController extends Controller
     }
     public function apiDocsShow()
     {
-        $all = SfrDocs::all();
-        return DataTables::of($all)->toJson();
+        $collectionDocs = collect();
+        $allDocs = SfrDocs::all();
+        foreach ($allDocs as $doc) {
+            //dump($doc->doc_data);
+            $collectionDocs->push(SFRDocData::forList($doc));
+
+        }
+        //dump(DataTables::of($collectionDocs)->toJson());
+        //dd($all->toArray());
+        //return SFRDocData::from($all);
+        return DataTables::of($collectionDocs)->toJson();
     }
-    public function apiSelect2ShowDocsGroups() {
+    public function apiSelect2ShowDocsGroups()
+    {
         $this->apiDocsGroupsSelect2Collection = new Collection();
         SfrDocGroups::all()->each(function ($item, $key) {
             $tmp_arr = [
@@ -53,7 +64,8 @@ class SFRDocsAdminController extends Controller
         $api_data['results'] = $this->apiDocsGroupsSelect2Collection->sortBy(['text'])->values()->all();
         return response()->json(data: $api_data, options: JSON_UNESCAPED_UNICODE);
     }
-    public function apiSelect2ShowDocsTypes() {
+    public function apiSelect2ShowDocsTypes()
+    {
         $this->apiDocsTypesSelect2Collection = new Collection();
         SfrDocTypes::all()->each(function ($item, $key) {
             $tmp_arr = [
@@ -72,6 +84,36 @@ class SFRDocsAdminController extends Controller
      * ----------------------------
      */
     //ДОКУМЕНТЫ
+    public function docsShowDetail(string $docid)
+    {
+        try {
+            $docData = SfrDocs::where('docid', $docid)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Документ не найден!');
+            return back();
+        }
+        $docDataDTO = SFRDocData::forList($docData);
+
+        try {
+            $docType = SfrDocTypes::where('typeid', $docDataDTO->docType)->firstOrFail('type_name');
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Тип документа не найден!');
+            return back();
+        }
+        try {
+            $docGroup = SfrDocGroups::where('groupid', $docDataDTO->docGroup)->firstOrFail('group_name');
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Раздел документа не найден!');
+            return back();
+        }
+        return view('osfrportal::admin.docs.docs_detail', [
+            'docid' => $docid,
+            'docData' => $docDataDTO,
+            'docGroupName' => $docGroup->group_name,
+            'docTypeName' => $docType->type_name,
+            'docFiles' => $docData->SfrDocsFiles,
+        ]);
+    }
     public function docsShowList()
     {
         return view('osfrportal::admin.docs.docs_list');

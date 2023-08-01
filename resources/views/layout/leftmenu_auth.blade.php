@@ -12,8 +12,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link"
-                href="#">
+            <a class="nav-link {{ active_link('osfrportal.docs.index') }}" href="{{ route('osfrportal.docs.index') }}">
                 <span class="bi bi-archive"> Документы для ознакомления</span>
             </a>
         </li>

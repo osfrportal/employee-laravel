@@ -14,6 +14,7 @@ class DashboardController extends Controller
 {
     public function dashboardIndex()
     {
-        return view('osfrportal::sections.dashboard.dashboard');
+        $unreadNotifications = Auth::user()->unreadNotifications()->limit(10)->get()->toArray();
+        return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications]);
     }
 }

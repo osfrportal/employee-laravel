@@ -7,6 +7,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\PhoneController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SfrDocsController;
 
 //'prefix' => 'api/osfr/v1/osfrportal/admin',
 //'name' => 'osfrapi.osfrportal.admin.'

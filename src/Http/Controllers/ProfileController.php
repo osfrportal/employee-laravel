@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+use Osfrportal\OsfrportalLaravel\Models\SfrCerts;
+use Osfrportal\OsfrportalLaravel\Data\SFRCertData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 
@@ -50,6 +52,7 @@ class ProfileController extends Controller
     }
     public function profileUsbSkdCerts()
     {
-        return view('osfrportal::sections.profile.usbskdcerts');
+        $certsUser = Auth::user()->SfrPerson->SfrPersonCerts;
+        return view('osfrportal::sections.profile.usbskdcerts', ['certsUser' => $certsUser]);
     }
 }

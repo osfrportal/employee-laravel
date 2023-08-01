@@ -16,8 +16,15 @@ class SfrFiles extends Model
 
     protected $fillable = [
         'file_name',
-        'file_path',
+        'file_description',
+        'file_gosthash',
         'file_disk',
+        'file_enabled',
         'fileid'
     ];
+    //protected $with = ['SfrFilesSigns'];
+
+    public function SfrFilesSigns() {
+        $this->hasMany(SfrSignatures::class, 'fileid', 'sign_fileid');
+    }
 }

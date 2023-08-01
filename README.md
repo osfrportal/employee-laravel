@@ -1,9 +1,23 @@
-Основной модуль портала ОСФР
-
-Системные требования -
+# Основной модуль портала ОСФР
+## Системные требования -
 
 * Laravel 10
 * php >= 8.1
+* postgres >= 14
+
+## Установка:
+* Создание базы данных для портала в postgresql
+    ```postgresql
+    =# CREATE DATABASE osfrportalprod;
+    =# CREATE USER osfrportaluser WITH PASSWORD 'myPassword';
+    =# GRANT ALL PRIVILEGES ON DATABASE "osfrportalprod" to osfrportaluser;
+    =# \c osfrportalprod
+    osfrportalprod=# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "osfrportaluser";
+    osfrportalprod=# \q
+    ```
+* composer require osfrportal/osfrportal-laravel
+*
+
 
 После установки пакета необходимо опубликовать настройки и миграции
 php artisan vendor:publish --provider="Osfrportal\OsfrportalLaravel\Providers\OsfrportalServiceProvider\"

@@ -23,16 +23,17 @@ class SFRInstallController extends Controller
         $this->foldersCreate();
     }
 
-    private function foldersCreate() {
+    private function foldersCreate()
+    {
         $storageDocsConfig = Storage::disk('docsfiles')->getConfig();
         $pathDocs = Arr::get($storageDocsConfig, 'root');
-        if (!is_null($pathDocs)&&(!file_exists($pathDocs) || !is_dir($pathDocs))) {
+        if (!is_null($pathDocs) && (!file_exists($pathDocs) || !is_dir($pathDocs))) {
             mkdir(directory: $pathDocs, permissions: 0777, recursive: true);
         }
 
         $storageImportsConfig = Storage::disk('imports')->getConfig();
         $pathImports = Arr::get($storageImportsConfig, 'root');
-        if (!is_null($pathImports)&&(!file_exists($pathImports) || !is_dir($pathImports))) {
+        if (!is_null($pathImports) && (!file_exists($pathImports) || !is_dir($pathImports))) {
             mkdir(directory: $pathImports, permissions: 0777, recursive: true);
         }
 
@@ -114,6 +115,7 @@ class SFRInstallController extends Controller
                 ['configid' => Str::uuid(), 'key' => 'shedule_UKEPDailyTime', 'value' => '07:58', 'description' => 'Синхронизация сертификатов УКЭП из папки', 'crypted' => false, 'groupname' => 'shedule'],
                 ['configid' => Str::uuid(), 'key' => 'shedule_SKUDDailyTime', 'value' => '08:00', 'description' => 'Синхронизация информации о работниках и картах доступа, блокировка карт уволенных', 'crypted' => false, 'groupname' => 'shedule'],
                 ['configid' => Str::uuid(), 'key' => 'orion_soap_url', 'value' => null, 'description' => '', 'crypted' => false, 'groupname' => 'main'],
+                ['configid' => Str::uuid(), 'key' => 'ukep_folder', 'value' => '/mnt/nasportal/UKEPcerts', 'description' => 'Путь к смонтированной папке с сертификатами УКЭП для загрузки в систему', 'crypted' => false, 'groupname' => 'main'],
                 ['configid' => Str::uuid(), 'key' => 'ftp1c_enable', 'value' => false, 'description' => 'Включить обработку файлов выгрузок 1С с FTP сервера', 'crypted' => false, 'groupname' => 'ftp1c'],
                 ['configid' => Str::uuid(), 'key' => 'ftp1c_putfromimap', 'value' => false, 'description' => 'Сохранять полученные на почтовый ящик файлы выгрузок на FTP сервер', 'crypted' => false, 'groupname' => 'ftp1c'],
                 ['configid' => Str::uuid(), 'key' => 'ftp1c_host', 'value' => 'poib058backup.0058.pfr.ru', 'description' => 'Адрес FTP сервера', 'crypted' => false, 'groupname' => 'ftp1c'],

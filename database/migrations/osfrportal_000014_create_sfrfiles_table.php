@@ -11,9 +11,11 @@ return new class extends Migration {
             Schema::create('sfrfiles', function (Blueprint $table) {
                 $table->comment('Загруженные файлы');
                 $table->uuid('fileid')->unique();
-                $table->string('file_name')->nullable();
-                $table->string('file_path')->nullable();
+                $table->string('file_name');
+                $table->string('file_description');
+                $table->string('file_gosthash')->nullable();
                 $table->string('file_disk')->nullable();
+                $table->boolean('file_enabled')->default(true);
                 $table->timestamps();
             });
         }

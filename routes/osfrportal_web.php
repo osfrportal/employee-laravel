@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
-use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRImapReaderController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SfrDocsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRx509Controller;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRSysconfigController;
@@ -96,6 +96,13 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () 
         Route::get('/usbskdcers', 'profileUsbSkdCerts')->name('usbskdcerts');
         Route::get('/', 'profileIndex')->name('index');
     });
+    Route::controller(SfrDocsController::class)->prefix('docs')->name('docs.')->group(function () {
+        Route::get('/sign/xml/{docid}/{fileid}', 'apiGenXMLtoSign')->name('xmltosign');
+        Route::post('/sign/add', 'apiSaveUKEPSignToDB')->name('saveSignUKEP');
+        Route::post('/sign/addunep', 'apiSaveUNEPSign')->name('saveSignUNEP');
+        Route::get('/detail/{docid}', 'docsCard')->name('detail');
+        Route::get('/', 'docsIndex')->name('index');
+    });
 });
 
 
@@ -133,7 +140,10 @@ Route::middleware('doNotCacheResponse')->get('/ddconfig', function () {
     dump(Auth::user()->SfrPerson);
     dd(config());
 });
+Route::middleware('doNotCacheResponse')->get('/testnotification', function () {
 
+    Auth::user()->notify(new Osfrportal\OsfrportalLaravel\Notifications\NewDocs);
+});
 Route::middleware('doNotCacheResponse')->get('/test', function () {
     ResponseCache::clear();
     //$size = Storage::disk('ftp1c')->size('vacation_058 (TXT) 2023-05-26.txt');
@@ -147,9 +157,9 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
     $sfruser->pid = $pperson->pid;
     $sfruser->save();
 });
-Route::middleware('doNotCacheResponse')->get('/certstest', [SFRUkepController::class, 'test']);
 
 Route::middleware('doNotCacheResponse')->get('/x509test', [SFRx509Controller::class, 'parceX509certs']);
+Route::middleware('doNotCacheResponse')->get('/t1', [SFRUnepController::class, 'test']);
 
 Route::get('/', function () {
     //dd(config('auth'));

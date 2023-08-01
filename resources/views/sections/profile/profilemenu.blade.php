@@ -8,5 +8,5 @@
                             <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"
                                 target="__blank">Уведомления</a -->
         <a class="nav-link {{ active_link('osfrportal.profile.usbskdcerts') }} ms-0"
-            href="{{ route('osfrportal.profile.usbskdcerts') }}">Носители, СКУД, сертификаты</a>
+            href="{{ route('osfrportal.profile.usbskdcerts') }}">Бизнес-ресурсы</a>
     </nav>
