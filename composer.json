@@ -35,7 +35,7 @@
         "barryvdh/laravel-dompdf": "^2.0"
     },
     "license": "MIT",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Osfrportal\\OsfrportalLaravel\\": "src/"
