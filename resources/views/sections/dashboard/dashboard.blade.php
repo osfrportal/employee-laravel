@@ -2,7 +2,6 @@
 @section('dashboardTitle', 'Личный кабинет')
 @section('content')
     @can('admin-menu-show')
-    <div class="container">
       <div class="row">
         <div class="col-sm-2">
             @livewire('osfrportal::liveusers-count')
@@ -11,9 +10,12 @@
             @include('osfrportal::sections.docs.informers.unsigned_docs')
         </div>
       </div>
-    </div>
     @endcan
-
+        <div class="row">
+          <div class="col-sm-3">
+              @include('osfrportal::sections.docs.informers.unsigned_docs')
+          </div>
+        </div>
     @include('osfrportal::sections.dashboard.notifications.notifications_unread')
 @endsection
 @push('footer-scripts')
