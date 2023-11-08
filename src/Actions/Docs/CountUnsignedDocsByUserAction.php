@@ -16,14 +16,20 @@ class CountUnsignedDocsByUserAction
         $collectionSigns = collect();
         
         foreach ($allDocs as $doc) {
-            dump($doc->SfrDocsFiles);
+            foreach ($doc->SfrDocsFiles as $f) {
+                $collectionDocs->push([
+                    'fileid' => $f['fileid'],
+                ]);
+            }
             foreach ($doc->SfrDocsUserSigns as $s) {
                 $collectionSigns->push([
-                    'sign_fileid' => $s['sign_fileid'],
-                    'sign_pid' => $s['sign_pid']
+                    'fileid' => $s['sign_fileid'],
                 ]);
             }
         }
+        $collectionDocs->dump();
         $collectionSigns->dump();
+        $diffCollection = $collectionDocs->diff($collectionSigns);
+        $diffCollection->dump();
     }
 }
