@@ -12,7 +12,14 @@
           </div>
         </div>
       </div>
-
+      <div class="row">
+        <div class="col-sm-6">
+            @livewire('osfrportal::liveusers-count')
+        </div>
+        <div class="col-sm-6">
+            @include('osfrportal::sections.docs.informers.unsigned_docs')
+        </div>
+      </div>
 
     @endcan
 
