@@ -3,15 +3,6 @@
 @section('content')
     @can('admin-menu-show')
     <div class="container">
-        <div class="row">
-          <div class="col-1">
-            @livewire('osfrportal::liveusers-count')
-          </div>
-          <div class="col-1">
-            @include('osfrportal::sections.docs.informers.unsigned_docs')
-          </div>
-        </div>
-      </div>
       <div class="row">
         <div class="col-sm-2">
             @livewire('osfrportal::liveusers-count')
@@ -20,7 +11,7 @@
             @include('osfrportal::sections.docs.informers.unsigned_docs')
         </div>
       </div>
-
+    </div>
     @endcan
 
     @include('osfrportal::sections.dashboard.notifications.notifications_unread')
