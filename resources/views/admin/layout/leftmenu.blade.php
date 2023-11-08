@@ -135,7 +135,7 @@
                         @can('logs-skd')
                             <li><a class="dropdown-item" href="#">СКУД логи проходов</a></li>
                         @endcan
-                        <li><a class="dropdown-item" href="#">ChangeLog</a></li>
+                        <li><a class="dropdown-item" href="{{ route('osfrportal.admin.logs.changelog') }}">ChangeLog</a></li>
 
                     </ul>
                 </div>

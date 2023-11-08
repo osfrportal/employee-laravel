@@ -28,6 +28,10 @@ use Spatie\ResponseCache\Facades\ResponseCache;
  */
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->name('admin.')->group(function () {
 
+    Route::name('logs.')->prefix('logs')->group(function () {
+        Route::view('/', 'osfrportal::admin.logs.changelog')->name('changelog');
+    });
+
     Route::controller(SFRSysconfigController::class)->name('sysconfig.')->prefix('sysconfig')->group(function () {
         Route::post('/save', 'saveConfigList')->name('save');
         Route::get('/', 'showConfigList')->name('all');

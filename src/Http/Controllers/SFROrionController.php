@@ -41,7 +41,7 @@ class SFROrionController extends Controller
     private $rfidKeysUserArray;
     private $orionPersonCards;
 
-    //protected $usersToNotify;
+    protected $usersToNotify;
 
     public function __construct()
     {
@@ -54,7 +54,7 @@ class SFROrionController extends Controller
                 ->trace(false)
                 ->cache(WSDL_CACHE_NONE);
         });
-        //$this->usersToNotify = SfrUser::permission('system-notifications')->get();
+        $this->usersToNotify = SfrUser::permission('system-notifications')->get();
     }
     public function test()
     {
