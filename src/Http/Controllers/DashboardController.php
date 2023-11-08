@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+use Osfrportal\OsfrportalLaravel\Actions\Docs\CountUnsignedDocsByUserAction;
 
 class DashboardController extends Controller
 {
@@ -30,5 +31,9 @@ class DashboardController extends Controller
             })
             ->markAsRead();
         return response()->noContent();
+    }
+    public function docsCountUnsigned()
+    {
+        CountUnsignedDocsByUserAction::run();
     }
 }

@@ -163,4 +163,6 @@ class SfrDocsController extends Controller
     {
         return view('osfrportal::sections.docs.docs_card');
     }
+
+
 }
