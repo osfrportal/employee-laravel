@@ -23,7 +23,7 @@ class CountUnsignedDocsByUserAction
                 $collectionSigns->push($s['sign_fileid']);
             }
         }
-        $collectionSigns->pull('282fabe9-eae9-4821-87ed-237da2c06886');
+        $collectionSigns->pop();
         $collectionDocs->dump();
         $collectionSigns->dump();
         $diffCollection = $collectionDocs->diff($collectionSigns);
