@@ -30,6 +30,6 @@ class CountUnsignedDocsByUserAction
         $collectionDocs->dump();
         $collectionSigns->dump();
         $diffCollection = $collectionDocs->diff($collectionSigns);
-        $diffCollection->dump();
+        dump($diffCollection->all());
     }
 }
