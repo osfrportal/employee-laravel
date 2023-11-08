@@ -135,6 +135,8 @@
                         @can('logs-skd')
                             <li><a class="dropdown-item" href="#">СКУД логи проходов</a></li>
                         @endcan
+                        <li><a class="dropdown-item" href="#">ChangeLog</a></li>
+
                     </ul>
                 </div>
             </ul>
