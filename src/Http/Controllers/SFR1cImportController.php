@@ -6,6 +6,7 @@ use Osfrportal\OsfrportalLaravel\Enums\AbsenceTypesEnum;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
+use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonAbsence;
 
 use Osfrportal\OsfrportalLaravel\Imports\SFRAbsencesImport;
@@ -35,6 +36,8 @@ class SFR1cImportController extends Controller
 
     private $persons_from_csv;
 
+    protected $usersToNotify;
+
     public function __construct()
     {
         parent::__construct();
@@ -46,6 +49,8 @@ class SFR1cImportController extends Controller
         $this->otdel_file_name = sprintf('otdel_058 (TXT) %s.txt', $this->now_date_for_import);
         $this->pd_file_name = sprintf('pd_058 (TXT) %s.txt', $this->now_date_for_import);
         $this->movements_file_name = sprintf('kadry_058 (TXT) %s.txt', $this->now_date_for_import);
+
+        $this->usersToNotify = SfrUser::permission('system-notifications')->get();
     }
 
     private function SFRFileMergeFirstTwoLinesToOne($import_file_name)

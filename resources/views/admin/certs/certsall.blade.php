@@ -10,6 +10,9 @@
     </div>
 @endsection
 @section('content')
+    <div class="alert alert-info" role="alert">
+        Внимание! Загрузка данных для отображения списка может занимать до 3 минут!
+    </div>
     <table class="table table-striped table-sm dataTable no-footer" id="table-certs">
         <thead>
             <tr>

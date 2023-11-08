@@ -27,9 +27,8 @@
                 <ul class="list-group list-group-flush small ">
                     <li class="list-group-item">[ADD] В личном кабинете добавлено отображение количества документов, с которыми работник еще не ознакомился.</li>
                     <li class="list-group-item">[FIX] Исправлено отображение ведомости ознакомления и профиля работника в интерфейсе администратора. (ошибка в случае ознакомления рабоника УНЭПом)</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+                    <li class="list-group-item">[TEST] Добавлены уведомления о синхронизации. (уведомления пользователям группы system-notifications)</li>
+                    <li class="list-group-item">[ADD] Добавлено отображение списка сертификатов в базе.</li>
                   </ul>
             </div>
         </div>

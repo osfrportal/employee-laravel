@@ -36,7 +36,7 @@
                             <li><a class="dropdown-item" href="#">JaCarta/RuToken</a></li>
                         @endcan
                         @can('certs-manage')
-                            <li><a class="dropdown-item" href="#">Электронные подписи</a></li>
+                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.certs.all') }}">Электронные подписи</a></li>
                         @endcan
                         @can('crypto-manage')
                             <li><a class="dropdown-item" href="#">Криптосредства</a></li>
