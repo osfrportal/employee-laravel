@@ -137,7 +137,6 @@ Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->grou
 
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
-        Route::get('/dashboard/test', 'docsCountUnsigned');
         Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
         Route::post('/notifications/read', 'markNotificationRead')->name('markNotificationRead');
     });

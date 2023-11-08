@@ -23,11 +23,7 @@ class CountUnsignedDocsByUserAction
                 $collectionSigns->push($s['sign_fileid']);
             }
         }
-        $collectionSigns->pop();
-        $collectionDocs->dump();
-        $collectionSigns->dump();
         $diffCollection = $collectionDocs->diff($collectionSigns);
-        dump($diffCollection);
-        dump($diffCollection->count());
+        return $diffCollection->count();
     }
 }

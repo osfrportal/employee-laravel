@@ -19,8 +19,10 @@ class DashboardController extends Controller
     }
     public function dashboardIndex()
     {
+        $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
+
         $unreadNotifications = Auth::user()->unreadNotifications()->limit(10)->get()->toArray();
-        return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications]);
+        return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount]);
     }
 
     public function markNotificationRead(Request $request)
@@ -31,9 +33,5 @@ class DashboardController extends Controller
             })
             ->markAsRead();
         return response()->noContent();
-    }
-    public function docsCountUnsigned()
-    {
-        CountUnsignedDocsByUserAction::run();
     }
 }
