@@ -4,10 +4,10 @@
     @can('admin-menu-show')
     <div class="container">
         <div class="row">
-          <div class="col-3">
+          <div class="col-1">
             @livewire('osfrportal::liveusers-count')
           </div>
-          <div class="col-3">
+          <div class="col-1">
             @include('osfrportal::sections.docs.informers.unsigned_docs')
           </div>
         </div>
