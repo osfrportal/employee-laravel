@@ -14,8 +14,9 @@ class CountUnsignedDocsByUserAction
         $allDocs = SfrDocs::where('doc_data->docNeedSign', true)->with(['SfrDocsFiles', 'SfrDocsUserSigns'])->get();
         $collectionDocs = collect();
         $collectionSigns = collect();
-        $allDocs->SfrDocsFiles->dump();
+        
         foreach ($allDocs as $doc) {
+            $doc->SfrDocsFiles->dump();
             foreach ($doc->SfrDocsUserSigns as $s) {
                 $collectionSigns->push([
                     'sign_fileid' => $s['sign_fileid'],
