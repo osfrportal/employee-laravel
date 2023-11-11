@@ -30,7 +30,6 @@
 @push('footer-scripts')
     <?php
     $route_api_docs_all = route('osfrapi.osfrportal.admin.docs.all');
-    $route_api_groups_all = route('osfrapi.osfrportal.admin.docs.groups.all');
     ?>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -105,7 +104,6 @@
                         searchable: true,
                         render: function(data, type, full, meta) {
                             var docsTypes = JSON.parse({{ Js::from($groupsShort) ?? ''}});
-                            console.log('docsTypes', docsTypes[data]);
                             return docsTypes[data];
                         }
                     },
