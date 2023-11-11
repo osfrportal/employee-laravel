@@ -35,20 +35,19 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            function docsGroupsAjax() {
+            function docsGroupsAjax(groupUuid) {
                 var test = $.ajax({
                     url: '{{ route('osfrapi.osfrportal.admin.docs.groups.short') }}',
                     method: 'get',
                     dataType: 'json',
                     success: function(data){
-                        console.log(data['7ab90a1c-76c1-46da-99e1-eb2fe8887db1']);
-                        return data;
+                        return data[groupUuid];
                     }
                 });
-                console.log('test', test);
+                console.log('groupUuid', test);
                 return test;
             };
-            var docsTypes = docsGroupsAjax();
+            var docsTypes = docsGroupsAjax('24131561-339f-482a-9501-34dc5b8c24b4');
             console.log('docsTypes', docsTypes);
             $('#table-docs').DataTable({
                 ajax: '{{ route('osfrapi.osfrportal.admin.docs.all') }}',
