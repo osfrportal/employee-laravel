@@ -105,6 +105,7 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
             Route::get('/', 'groupsShowList')->name('all');
         })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
         Route::name('reports.')->prefix('reports')->group(function () {
+            Route::get('/byunits','reportsShowByUnits')->name('byunits');
             Route::get('/', 'reportsShowList')->name('all');
         })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);

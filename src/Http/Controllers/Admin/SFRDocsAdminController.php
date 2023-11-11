@@ -233,4 +233,9 @@ class SFRDocsAdminController extends Controller
     {
         return view('osfrportal::admin.docs.reports.reports_index');
     }
+
+    public function reportsShowByUnits()
+    {
+        return view('osfrportal::admin.docs.reports.byunits');
+    }
 }
