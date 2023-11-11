@@ -104,9 +104,10 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
+                            console.log('data', data);
                             var docsTypes = {{ Js::from($groupsShort) ?? ''}};
-                            console.log('docsTypes', docsTypes[data]);
-                            return docsTypes[data];
+                            console.log('docsTypes', docsTypes.data);
+                            return docsTypes.data;
                         }
                     },
                     {
