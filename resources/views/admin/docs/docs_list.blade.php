@@ -34,7 +34,7 @@
     ?>
     <script type="text/javascript">
         $(document).ready(function() {
-            var docsTypes = {{ $groupsShort ?? ''}};
+            var docsTypes = JSON.parse('{{ $groupsShort ?? ''}}');
             console.log('docsTypes', docsTypes);
             $('#table-docs').DataTable({
                 ajax: '{{ route('osfrapi.osfrportal.admin.docs.all') }}',
