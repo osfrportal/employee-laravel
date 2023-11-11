@@ -34,21 +34,7 @@
     ?>
     <script type="text/javascript">
         $(document).ready(function() {
-
-            function docsGroupsAjax(groupUuid) {
-                var test = $.ajax({
-                    url: '{{ route('osfrapi.osfrportal.admin.docs.groups.short') }}',
-                    method: 'get',
-                    dataType: 'json',
-                    success: function(data){
-                        return data[groupUuid];
-                        console.log(data[groupUuid]);
-                    }
-                });
-                console.log('groupUuid', test);
-                return test;
-            };
-            var docsTypes = docsGroupsAjax('24131561-339f-482a-9501-34dc5b8c24b4');
+            var docsTypes = {{ $groupsShort ?? ''}};
             console.log('docsTypes', docsTypes);
             $('#table-docs').DataTable({
                 ajax: '{{ route('osfrapi.osfrportal.admin.docs.all') }}',

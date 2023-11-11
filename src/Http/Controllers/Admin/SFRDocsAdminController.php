@@ -125,7 +125,8 @@ class SFRDocsAdminController extends Controller
     }
     public function docsShowList()
     {
-        return view('osfrportal::admin.docs.docs_list');
+        $groupsShort = $this->apiGroupsShortShow();
+        return view('osfrportal::admin.docs.docs_list', ['groupsShort' => $groupsShort]);
     }
     public function docsAddForm()
     {
