@@ -104,10 +104,9 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
-                            console.log('data', data);
-                            var docsTypes = {{ Js::from($groupsShort) ?? ''}};
-                            console.log('docsTypes', docsTypes.data);
-                            return docsTypes.data;
+                            var docsTypes = JSON.parse({{ Js::from($groupsShort) ?? ''}});
+                            console.log('docsTypes', docsTypes[data]);
+                            return docsTypes[data];
                         }
                     },
                     {
