@@ -34,8 +34,6 @@
     ?>
     <script type="text/javascript">
         $(document).ready(function() {
-            var docsTypes = {{ Js::from($groupsShort) ?? ''}};
-            console.log('docsTypes', docsTypes);
             $('#table-docs').DataTable({
                 ajax: '{{ route('osfrapi.osfrportal.admin.docs.all') }}',
 
@@ -98,6 +96,17 @@
                             } else {
                                 return '<h6 class="bi bi-dash-lg"></h6>';
                             }
+                        }
+                    },
+                    {
+                        // Actions
+                        targets: 2,
+                        orderable: true,
+                        searchable: true,
+                        render: function(data, type, full, meta) {
+                            var docsTypes = {{ Js::from($groupsShort) ?? ''}};
+                            console.log('docsTypes', docsTypes[data]);
+                            return docsTypes[data];
                         }
                     },
                     {
