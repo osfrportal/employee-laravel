@@ -37,6 +37,13 @@ class SFRDocsAdminController extends Controller
         $all = SfrDocGroups::all();
         return DataTables::of($all)->toJson();
     }
+    public function apiGroupsShortShow()
+    {
+        $collectionGroupsShort = collect();
+        $all = SfrDocGroups::get(['groupid', 'group_name']);
+        dump($all);
+        //return DataTables::of($all)->toJson();
+    }
     public function apiDocsShow()
     {
         $collectionDocs = collect();

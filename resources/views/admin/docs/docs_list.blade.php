@@ -17,6 +17,7 @@
             <tr>
                 <th>&nbsp;</th>
                 <th>Ознакомление</th>
+                <th>Группа документов</th>
                 <th>Номер</th>
                 <th>Дата</th>
                 <th>Наименование</th>
@@ -29,9 +30,18 @@
 @push('footer-scripts')
     <?php
     $route_api_docs_all = route('osfrapi.osfrportal.admin.docs.all');
+    $route_api_groups_all = route('osfrapi.osfrportal.admin.docs.groups.all');
     ?>
     <script type="text/javascript">
         $(document).ready(function() {
+            $.ajax({
+                url: '{{ route('osfrapi.osfrportal.admin.docs.groups.short') }}',
+                method: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
             $('#table-docs').DataTable({
                 ajax: '{{ route('osfrapi.osfrportal.admin.docs.all') }}',
 
@@ -40,6 +50,9 @@
                     },
                     {
                         data: 'docNeedSign'
+                    },
+                    {
+                        data: 'docGroup'
                     },
                     {
                         data: 'docNumber'
@@ -59,7 +72,7 @@
                 ],
                 columnDefs: [{
                         className: "dt-center",
-                        targets: [0, 1, 2, 3, 4, 5, 6]
+                        targets: [0, 1, 2, 3, 4, 5, 6, 7]
                     },
                     {
                         // Actions
@@ -95,7 +108,7 @@
                     },
                     {
                         // Actions
-                        targets: 3,
+                        targets: 4,
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {

@@ -46,6 +46,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::controller(SFRDocsAdminController::class)->name('docs.')->prefix('docs')->group(function () {
         Route::name('groups.')->prefix('groups')->group(function () {
+            Route::get('/short', 'apiGroupsShortShow')->name('short');
             Route::get('/', 'apiGroupsShow')->name('all');
         });
         Route::name('types.')->prefix('types')->group(function () {
