@@ -21,7 +21,12 @@
                 <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%"
                     fill="#007bff" dy=".3em">32x32</text>
             </svg>
-
+            <div class="pb-3 mb-0  lh-sm border-bottom w-100">
+                <span class="d-block  mb-2">11-11-2023</span>
+                <ul class="list-group list-group-flush small ">
+                    <li class="list-group-item">[ADD] Добавлен столбец Группа документов в управление документами</li>
+                  </ul>
+            </div>
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">08-11-2023</span>
                 <ul class="list-group list-group-flush small ">

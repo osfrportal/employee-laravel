@@ -40,9 +40,13 @@ class SfrDocs extends Model
         return $this->belongsToMany(SfrFiles::class, 'rel_sfrdocs_files', 'docid', 'fileid')->withTimestamps();
     }
 
-    public function SfrDocsUserSigns()
+    public function SfrDocsUserSigns($personid = null)
     {
-        $userPid = Auth::user()->SfrPerson->getPid();
+        if (empty($personid)) {
+            $userPid = Auth::user()->SfrPerson->getPid();
+        } else {
+            $userPid = $personid;
+        }
         return $this->hasMany(SfrSignatures::class, 'sign_docid', 'docid')->where('sign_pid', $userPid);
     }
 
