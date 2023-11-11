@@ -42,6 +42,7 @@
                     dataType: 'json',
                     success: function(data){
                         return data[groupUuid];
+                        console.log(data[groupUuid]);
                     }
                 });
                 console.log('groupUuid', test);
