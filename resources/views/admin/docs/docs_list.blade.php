@@ -46,6 +46,7 @@
                     }
                 });
                 console.log('test', test);
+                return test;
             };
             var docsTypes = docsGroupsAjax();
             console.log('docsTypes', docsTypes);
