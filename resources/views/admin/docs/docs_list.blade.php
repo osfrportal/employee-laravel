@@ -34,14 +34,21 @@
     ?>
     <script type="text/javascript">
         $(document).ready(function() {
-            $.ajax({
-                url: '{{ route('osfrapi.osfrportal.admin.docs.groups.short') }}',
-                method: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                }
-            });
+
+            function docsGroupsAjax() {
+                var test = $.ajax({
+                    url: '{{ route('osfrapi.osfrportal.admin.docs.groups.short') }}',
+                    method: 'get',
+                    dataType: 'json',
+                    success: function(data){
+                        console.log(data['7ab90a1c-76c1-46da-99e1-eb2fe8887db1']);
+                        return data;
+                    }
+                });
+                console.log('test', test);
+            };
+            var docsTypes = docsGroupsAjax();
+            console.log('docsTypes', docsTypes);
             $('#table-docs').DataTable({
                 ajax: '{{ route('osfrapi.osfrportal.admin.docs.all') }}',
 
