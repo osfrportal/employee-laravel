@@ -11,5 +11,5 @@
     </div>
 @endsection
 @section('content')
-    <a href="{{ route('osfrportal.admin.docs.reports.byunits') }}">Ознакомление по подразделениям</a>
+    <a href="{{ route('osfrportal.admin.docs.reports.byunits') }}" title="Отчет в разрезе подразделений">Ознакомление по подразделениям</a>
 @endsection
