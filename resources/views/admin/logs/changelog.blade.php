@@ -25,6 +25,7 @@
                 <span class="d-block  mb-2">11-11-2023</span>
                 <ul class="list-group list-group-flush small ">
                     <li class="list-group-item">[ADD] Добавлен столбец Группа документов в управление документами</li>
+                    <li class="list-group-item">[ADD] Добавлено журналирование в БД</li>
                   </ul>
             </div>
         </div>
