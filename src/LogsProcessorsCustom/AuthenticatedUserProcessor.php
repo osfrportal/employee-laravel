@@ -13,7 +13,11 @@ class AuthenticatedUserProcessor implements ProcessorInterface
      */
     public function __invoke(LogRecord $record)
     {
-        $record['extra']['user'] = Auth::user();
+        $user = Auth::user();
+        if (!empty($user)) {
+            $record['extra']['user'] = $user->username;
+            $record['extra']['sfrpersonpid'] = $user->sfrperson->getPid();
+        }
 
         return $record;
     }
