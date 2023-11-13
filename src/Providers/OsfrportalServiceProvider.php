@@ -315,7 +315,7 @@ class OsfrportalServiceProvider extends ServiceProvider
         $optionsLogToDB = [
             'connection' => 'pgsql',
             'collection' => 'sfrlogs',
-            'detailed' => false,
+            'detailed' => true,
             'model' => false,
             'queue' => true,
             'queue_name' => 'logs',
