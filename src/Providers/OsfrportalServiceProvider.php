@@ -44,6 +44,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->registerConfigFromDB();
             $this->registerStorageConfig();
             $this->registerMSSQLDatabases();
+            $this->registerLogToDBoptions();
         }
         Gate::after(function ($user, $ability) {
             return $user->hasRole('SuperAdmin'); // note this returns boolean
@@ -305,6 +306,25 @@ class OsfrportalServiceProvider extends ServiceProvider
 
         config([
             'database.connections' => array_merge($mssqlDatabases, config('database.connections', [])),
+        ]);
+    }
+
+    private function registerLogToDBoptions()
+    {
+        $options = [
+            'connection' => '',
+            'collection' => '',
+            'detailed' => false,
+            'model' => false,
+            'queue' => true,
+            'queue_name' => 'logs',
+            'queue_connection' => 'redis',
+            'max_records' => false,
+            'max_hours' => false,
+            'datetime_format' => 'Y-m-d H:i:s:ms',
+        ];
+        config([
+            'logtodb' => array_merge($options, config('logtodb', [])),
         ]);
     }
 }
