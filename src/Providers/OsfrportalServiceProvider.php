@@ -335,9 +335,9 @@ class OsfrportalServiceProvider extends ServiceProvider
                 'name' => 'Basic DB Logging',
                 'processors' => [
                     \Monolog\Processor\WebProcessor::class,
-                    \Monolog\Processor\IntrospectionProcessor::class,
+                    //\Monolog\Processor\IntrospectionProcessor::class,
                     \Osfrportal\OsfrportalLaravel\LogsProcessorsCustom\AuthenticatedUserProcessor::class,
-                    \danielme85\LaravelLogToDB\Processors\PhpVersionProcessor::class,
+                    //\danielme85\LaravelLogToDB\Processors\PhpVersionProcessor::class,
 
                 ],
             ],
