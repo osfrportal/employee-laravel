@@ -312,7 +312,7 @@ class OsfrportalServiceProvider extends ServiceProvider
 
     private function registerLogToDBoptions()
     {
-        $options = [
+        $optionsLogToDB = [
             'connection' => 'pgsql',
             'collection' => 'sfrlogs',
             'detailed' => false,
@@ -325,7 +325,18 @@ class OsfrportalServiceProvider extends ServiceProvider
             'datetime_format' => 'Y-m-d H:i:s:ms',
         ];
         config([
-            'logtodb' => array_merge($options, config('logtodb', [])),
+            'logtodb' => array_merge($optionsLogToDB, config('logtodb', [])),
+        ]);
+
+        $optionsLoggingChannel = [
+            'sfrlogs' => [
+                'driver' => 'custom',
+                'via' => danielme85\LaravelLogToDB\LogToDbHandler::class,
+                'name' => 'Basic DB Logging',
+            ],
+        ];
+        config([
+            'logging.channels' => array_merge($optionsLoggingChannel, config('logging.channels', [])),
         ]);
     }
 }
