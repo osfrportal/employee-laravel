@@ -331,12 +331,19 @@ class OsfrportalServiceProvider extends ServiceProvider
         $optionsLoggingChannel = [
             'sfrlogs' => [
                 'driver' => 'custom',
-                'via' => danielme85\LaravelLogToDB\LogToDbHandler::class,
+                'via' => \danielme85\LaravelLogToDB\LogToDbHandler::class,
                 'name' => 'Basic DB Logging',
             ],
         ];
         config([
             'logging.channels' => array_merge($optionsLoggingChannel, config('logging.channels', [])),
+        ]);
+        $optionsLoggingStack = [
+            'single',
+            'sfrlogs',
+        ];
+        config([
+            'logging.channels.stack.channels' => array_merge($optionsLoggingStack, config('logging.channels.stack.channels', [])),
         ]);
     }
 }
