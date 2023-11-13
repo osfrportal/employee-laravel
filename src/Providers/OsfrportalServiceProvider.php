@@ -335,6 +335,7 @@ class OsfrportalServiceProvider extends ServiceProvider
                 'name' => 'Basic DB Logging',
                 'processors' => [
                     \Monolog\Processor\WebProcessor::class,
+                    \Monolog\Processor\IntrospectionProcessor::class,
                 ],
             ],
         ];
