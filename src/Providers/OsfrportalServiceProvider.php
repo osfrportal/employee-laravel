@@ -315,7 +315,7 @@ class OsfrportalServiceProvider extends ServiceProvider
         $optionsLogToDB = [
             'connection' => 'pgsql',
             'collection' => 'sfrlogs',
-            'detailed' => true,
+            'detailed' => false,
             'model' => false,
             'queue' => true,
             'queue_name' => 'logs',
@@ -333,6 +333,9 @@ class OsfrportalServiceProvider extends ServiceProvider
                 'driver' => 'custom',
                 'via' => \danielme85\LaravelLogToDB\LogToDbHandler::class,
                 'name' => 'Basic DB Logging',
+                'processors' => [
+                    Monolog\Processor\WebProcessor::class,
+                ],
             ],
         ];
         config([
