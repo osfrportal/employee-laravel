@@ -334,7 +334,7 @@ class OsfrportalServiceProvider extends ServiceProvider
                 'via' => \danielme85\LaravelLogToDB\LogToDbHandler::class,
                 'name' => 'Basic DB Logging',
                 'processors' => [
-                    Monolog\Processor\WebProcessor::class,
+                    \Monolog\Processor\WebProcessor::class,
                 ],
             ],
         ];
