@@ -12,6 +12,18 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ active_link('osfrportal.profile.usbskdcerts') }}"
+                href="{{ route('osfrportal.profile.usbskdcerts') }}">
+                <span class="bi bi-passport"> Бизнес-ресурсы</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"
+                href="#">
+                <span class="bi bi-people"> Мои заместители</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ active_link('osfrportal.docs.index') }}" href="{{ route('osfrportal.docs.index') }}">
                 <span class="bi bi-archive"> Документы для ознакомления</span>
             </a>

@@ -9,4 +9,6 @@
                                 target="__blank">Уведомления</a -->
         <a class="nav-link {{ active_link('osfrportal.profile.usbskdcerts') }} ms-0"
             href="{{ route('osfrportal.profile.usbskdcerts') }}">Бизнес-ресурсы</a>
+            <a class="nav-link ms-0"
+            href="#">Мои заместители</a>
     </nav>
