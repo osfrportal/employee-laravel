@@ -343,7 +343,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             'sfrlogs',
         ];
         config([
-            'logging.channels.stack.channels' => array_merge($optionsLoggingStack, config('logging.channels.stack.channels', [])),
+            'logging.channels.stack.channels' => $optionsLoggingStack,
         ]);
     }
 }
