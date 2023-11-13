@@ -314,7 +314,7 @@ class OsfrportalServiceProvider extends ServiceProvider
     {
         $options = [
             'connection' => 'pgsql',
-            'collection' => '',
+            'collection' => 'sfrlogs',
             'detailed' => false,
             'model' => false,
             'queue' => true,
