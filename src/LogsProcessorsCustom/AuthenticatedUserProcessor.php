@@ -1,6 +1,6 @@
 <?php
 
-namespace Osfrportal\OsfrportalLaravel\LogsProcessorCustom;
+namespace Osfrportal\OsfrportalLaravel\LogsProcessorsCustom;
 
 use Illuminate\Support\Facades\Auth;
 use Monolog\LogRecord;
