@@ -28,6 +28,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
 use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
+use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 use phpseclib3\File\X509;
 
 use PDF;

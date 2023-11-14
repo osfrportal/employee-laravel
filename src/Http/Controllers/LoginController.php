@@ -10,6 +10,8 @@ use Osfrportal\OsfrportalLaravel\Http\Requests\RestorePassPostRequest;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Actions\SendPasswordToUserAction;
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 
 class LoginController extends Controller
 {
@@ -61,6 +63,11 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
+            $logContext = [
+                'personFullName' => Auth::user()->SfrPerson->getFullName(),
+                'personPid' => Auth::user()->SfrPerson->getPid(),
+            ];
+            LogAddAction::run(LogActionsEnum::LOG_AUTH(), 'Вход пользователя {personFullName}, pid: {personPid})', $logContext);
             //return redirect()->intended('osfrportal.dashboard');
             return Redirect::intended(route('osfrportal.dashboard'));
         }
