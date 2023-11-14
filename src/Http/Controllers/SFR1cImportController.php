@@ -24,6 +24,8 @@ use Osfrportal\OsfrportalLaravel\Notifications\SFR1cSync;
 
 use Carbon\Carbon;
 
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+
 class SFR1cImportController extends Controller
 {
     private $now_date_for_import;
@@ -77,11 +79,19 @@ class SFR1cImportController extends Controller
     {
         $save_file_name = 'tmp_absence.txt';
         $import_file_size = Storage::disk('ftp1c')->size($this->absence_file_name);
+        /*
         Log::withContext([
             'action' => LogActionsEnum::LOG_IMPORT_ABSENCE(),
             'file_name' => $this->absence_file_name,
         ]);
         Log::info('Старт импорта отсутствий', ['import_file_size' => $import_file_size]);
+        */
+        $logContext = [
+            'file_name' => $this->absence_file_name,
+            'import_file_size' => $import_file_size,
+        ];
+        LogAddAction::run(LogActionsEnum::LOG_IMPORT_ABSENCE(), 'Старт импорта файла отсутствий ({file_name}, размер: {import_file_size})', $logContext);
+
         if ((Storage::disk('ftp1c')->exists($this->absence_file_name)) && ($import_file_size > 0)) {
             Storage::put($save_file_name, $this->SFRFileMergeFirstTwoLinesToOne($this->absence_file_name));
             $import = new SFRAbsencesImport();
@@ -104,7 +114,9 @@ class SFR1cImportController extends Controller
                 Log::error('Не найден файл импорта');
             }
         }
-        Log::info('Конец импорта отсутствий', ['import_file_size' => $import_file_size]);
+        LogAddAction::run(LogActionsEnum::LOG_IMPORT_ABSENCE(), 'Конец импорта файла отсутствий ({file_name}, размер: {import_file_size})', $logContext);
+        
+        //Log::info('Конец импорта отсутствий', ['import_file_size' => $import_file_size]);
         Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла отсутствий завершен'));
     }
 
