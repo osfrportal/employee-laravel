@@ -22,7 +22,9 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self LOG_AD()
  * @method static self LOG_ADD_ADLOGIN()
  * @method static self LOG_VIEW_PERSON()
+ * @method static self LOG_DOC_SIGN()
  * @method static self LOG_AUTH()
+ * @method static self LOG_IMAP()
  * @method static self LOG_APP()
  *
  */
@@ -69,7 +71,9 @@ final class LogActionsEnum extends Enum
             'LOG_AD' => 70,
             'LOG_ADD_ADLOGIN' => 71,
             'LOG_VIEW_PERSON' => 80,
+            'LOG_DOC_SIGN' => 90,
             'LOG_AUTH' => 888,
+            'LOG_IMAP' => 998,
             'LOG_APP' => 999,
         ];
     }

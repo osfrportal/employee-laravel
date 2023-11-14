@@ -25,15 +25,17 @@ use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
 use Osfrportal\OsfrportalLaravel\Models\SfrFiles;
 
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRUnepController;
-
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 
 class SfrDocsController extends Controller
 {
     private function logSign($signdata)
     {
-        Log::info('Ознакомление с документом', [
+        $logContext = [
             'signdata' => $signdata,
-        ]);
+        ];
+        LogAddAction::run(LogActionsEnum::LOG_DOC_SIGN(), 'Ознакомление с документом', $logContext);
     }
     public function apiGenXMLtoSign(string $docid, string $fileid)
     {

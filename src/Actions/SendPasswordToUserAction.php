@@ -14,6 +14,8 @@ use Osfrportal\OsfrportalLaravel\Actions\GeneratePersonLoginPassAction;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Mailer\Exception\TransportException;
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 
 class SendPasswordToUserAction
 {
@@ -32,12 +34,12 @@ class SendPasswordToUserAction
             'userfullname' => $SFRPersonData->persondata_fullname,
         ];
         $mailMessage = new SendPassword($jobData['userfullname'], $jobData['userlogin'], $jobData['newpassword']);
-        Log::info('Отправка письма', ['jobData' => $jobData]);
+        LogAddAction::run(LogActionsEnum::LOG_AUTH(), 'Отправка письма работнику {userfullname} на почту {useremail}. (логин: {userlogin}, пароль: {newpassword})', $jobData);
         try {
             Mail::to($jobData['useremail'])->send($mailMessage);
         } catch (TransportException $e) {
-            //Log::error('ОШИБКА отправки письма', ['EMessage' => $e->getMessage(),'EDebugMessage' => $e->getDebug(),]);
-            Log::error('ОШИБКА отправки письма', ['EMessage' => $e->getMessage(),]);
+            $jobData['EMessage'] = $e->getMessage();
+            LogAddAction::run(LogActionsEnum::LOG_AUTH(), 'ОШИБКА отправки письма работнику {userfullname} на почту {useremail}. (логин: {userlogin}, пароль: {newpassword}). Ошибка: {EMessage}', $jobData, 'error');
         }
 
     }

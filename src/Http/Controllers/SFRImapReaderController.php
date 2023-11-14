@@ -11,8 +11,9 @@ use Webklex\PHPIMAP\Exceptions\ConnectionFailedException;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 
 class SFRImapReaderController extends Controller
 {
@@ -40,6 +41,7 @@ class SFRImapReaderController extends Controller
         try {
             $this->oClient->connect();
         } catch (ConnectionFailedException $exception) {
+            LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
             dd($exception->getMessage());
         }
     }
@@ -47,12 +49,9 @@ class SFRImapReaderController extends Controller
     {
         try {
             $oFolder = $this->oClient->getFolder('INBOX');
-            Log::info('Успешно подключились к IMAP');
+            LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Успешно подключились к IMAP');
         } catch (ConnectionFailedException $exception) {
-            //dd($exception->getMessage());
-            Log::critical('Ошибка подключения к IMAP: {msg}', [
-                'msg' => $exception->getMessage(),
-            ]);
+            LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
         }
         try {
             $aMessage = $oFolder->query()->since(now()->subDays(10))->unseen()->get();
@@ -60,7 +59,7 @@ class SFRImapReaderController extends Controller
             foreach ($aMessage as $oMessage) {
                 $mailFrom = $oMessage->getFrom()[0]->mail;
                 $att_date = CarbonImmutable::parse($oMessage->getDate())->format('Y-m-d');
-                Log::info('IMAP: обработка письма от {mailfrom} {att_date}', [
+                LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Обработка письма от {mailfrom} {att_date}', [
                     'mailfrom' => $mailFrom,
                     'att_date' => $att_date,
                 ]);
@@ -73,33 +72,27 @@ class SFRImapReaderController extends Controller
                         //echo $filename_out . '  (' . $oAttachment->get("size") . ')<br />';
                         if (Storage::disk('ftp1c')->missing($filename_out)) {
                             Storage::disk('ftp1c')->put($filename_out, $file_content);
-                            Log::info('IMAP: файл {filename_out} сохранен на FTP', [
+                            LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'IMAP: файл {filename_out} сохранен на FTP', [
                                 'filename_out' => $filename_out,
                             ]);
                         } else {
-                            Log::warning('IMAP: файл {filename_out} уже существует на FTP', [
+                            LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'IMAP: файл {filename_out} уже существует на FTP', [
                                 'filename_out' => $filename_out,
-                            ]);
+                            ], 'warning');
                         }
-                        //echo '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<br>';
                     }
                 } else {
-                    Log::info('IMAP: письмо от {mailfrom} {att_date} не имеет вложений', [
+                    LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'IMAP: письмо от {mailfrom} {att_date} не имеет вложений', [
                         'mailfrom' => $mailFrom,
                         'att_date' => $att_date,
                     ]);
                 }
                 $oMessage->setFlag('Seen');
-                //echo '-----------------------<br>';
             }
-
-
-            //echo '<hr>';
         } catch (GetMessagesFailedException $exception) {
-            //dd($exception->getMessage());
-            Log::critical('Ошибка получения списка писем IMAP: {msg}', [
+            LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка получения списка писем IMAP: {msg}', [
                 'msg' => $exception->getMessage(),
-            ]);
+            ],'error');
         }
     }
 }
