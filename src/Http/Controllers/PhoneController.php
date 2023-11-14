@@ -25,6 +25,8 @@ use Osfrportal\OsfrportalLaravel\Exports\SFRPhonesToXLSXExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Support\Facades\Log;
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 
 class PhoneController extends Controller
 {
@@ -146,16 +148,15 @@ class PhoneController extends Controller
 
             $person_data->SfrPersonContacts()->save($contactdata);
         }
-        /**
-         * TODO: Добавить лог
-         */
-        Log::info('Обновлены контактные данные пользователя', [
-            'person_fio' => $person_data->getFullName(),
+
+        $logContext = [
+            'personFullName' => $person_data->getFullName(),
+            'personPid' => $person_data->getPid(),
             'contactdata_new' => $contactdata_collection_json,
             'contactdata_old' => $contactdata_old,
-            'currentuser_pid' => $current_user->SfrPerson->getPid(),
-            'currentuser_fio' => $current_user->SfrPerson->getFullName(),
-        ]);
+        ];
+        LogAddAction::run(LogActionsEnum::LOG_PHONE_UPDATE(), 'Обновлены контактные данные работника {personFullName}, pid: {personPid})', $logContext);
+
 
         $this->flasher_interface->addSuccess('Данные успешно обновлены');
         return back();

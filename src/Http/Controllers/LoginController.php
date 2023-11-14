@@ -71,6 +71,7 @@ class LoginController extends Controller
             //return redirect()->intended('osfrportal.dashboard');
             return Redirect::intended(route('osfrportal.dashboard'));
         }
+        LogAddAction::run(LogActionsEnum::LOG_AUTH(), 'ОШИБКА входа пользователя {username})', $credentials, 'warning');
 
         return back()->withErrors([
             'name' => 'Неверный пароль. Запросите пароль по ссылке "Выслать пароль" и попробуйте еще раз.',
