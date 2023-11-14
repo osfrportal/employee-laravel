@@ -31,6 +31,7 @@ use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
 use phpseclib3\File\X509;
 
 use PDF;
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 
 use Osfrportal\OsfrportalLaravel\Actions\GeneratePersonLoginPassAction;
 use Osfrportal\OsfrportalLaravel\Actions\SendPasswordToUserAction;
@@ -182,6 +183,11 @@ class SFRPersonController extends Controller
         $docsSignsUser = $this->getPersonDocsSigns($personid);
 
         $SFRPersonStamps = $sfrperson->SfrPersonStamps;
+        $logContext = [
+            'personFullName' => $sfrperson->getFullName(),
+            'personPid' => $sfrperson->getPid(),
+        ];
+        LogAddAction::run(LogActionsEnum::LOG_VIEW_PERSON(), 'Просмотр профиля работника {personFullName}, pid: {personPid})', $logContext);
 
         //dump($SFRPersonStamps);
         //dump($sfrperson->SfrPersonOrion->RfidCards);
