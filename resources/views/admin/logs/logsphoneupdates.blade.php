@@ -33,7 +33,7 @@
                         @if (empty($logRecord['differences']))
                             Данные не изменялись
                         @else
-                        <table class="table table-sm mb-0">
+                        <table class="table table-sm mb-0 align-middle">
                             @foreach ($logRecord['differences'] as $diffkey => $diffvalue)
                                 <tr>
                                     <td>
