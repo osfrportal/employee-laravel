@@ -33,11 +33,9 @@
                         <table class="table table-sm mb-0">
                             @foreach ($logRecord['differences'] as $diffkey => $diffvalue)
                                 <tr>
-                                    <td colspan="3">
+                                    <td>
                                         {{ $logKeysDescription[$diffkey] ?? '' }}
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>{{ $diffvalue['old'] ?? '' }}</td>
                                     <td><i class="bi bi-arrow-right"></i></td>
                                     <td>{{ $diffvalue['new'] ?? '' }}</td>
