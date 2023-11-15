@@ -36,6 +36,8 @@
                                     <td colspan="3">
                                         {{ $logKeysDescription[$diffkey] ?? '' }}
                                     </td>
+                                </tr>
+                                <tr>
                                     <td>{{ $diffvalue['old'] ?? '' }}</td>
                                     <td> => </td>
                                     <td>{{ $diffvalue['new'] ?? '' }}</td>
