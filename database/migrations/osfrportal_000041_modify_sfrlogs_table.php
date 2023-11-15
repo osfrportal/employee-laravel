@@ -14,11 +14,7 @@ return new class extends Migration {
     {
         if (Schema::hasTable('sfrlogs')) {
             $sql_statement = sprintf('ALTER TABLE %s ALTER context TYPE JSON USING context::json;','sfrlogs');
-            //DB::statement($sql_statement);
-            Schema::table('sfrlogs', function (Blueprint $table) {
-                $table->json('context')->nullable()->change();
-            });
-
+            DB::statement($sql_statement);
         }
     }
 
