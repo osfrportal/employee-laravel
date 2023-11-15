@@ -43,22 +43,22 @@ class SFRLogsAdminController extends Controller
         $phone_update_logs = LogToDB::model(null, 'pgsql', 'sfrlogs')->orderByDesc('created_at')->whereJsonContains('context->action', LogActionsEnum::LOG_PHONE_UPDATE())->whereDate('created_at', '>=', Carbon::now()->subDays($days_count))->get();
         $phone_update_logs->each(function ($item) {
             $tmparr = [];
-           $tmparr = Arr::add($tmparr, 'message', $item->message);
-           $tmparr = Arr::add($tmparr, 'personFullName', $item->context['personFullName']);
-           $tmparr = Arr::add($tmparr, 'personPid', $item->context['personPid']);
-           $new = json_decode($item->context['contactdata_new'], true);
-           $old = json_decode($item->context['contactdata_old'], true);
-           $tmparr = Arr::add($tmparr, 'sfrperson_username', $item->extra['sfrperson_username']);
-           $tmparr = Arr::add($tmparr, 'sfrperson_pid', $item->extra['sfrperson_pid']);
-           $tmparr = Arr::add($tmparr, 'sfrperson_fio', $item->extra['sfrperson_fio']);
-           $tmparr = Arr::add($tmparr, 'created_at', Carbon::parse($item->created_at)->format('d.m.Y H:i:s'));
-           $differences = [];
-           foreach ($old as $key => $value) {
-            if ($value !== $new[$key])
-                $differences[$key] = [
-                    "old" => $value,
-                    "new" => $new[$key]
-                ];
+            $tmparr = Arr::add($tmparr, 'message', $item->message);
+            $tmparr = Arr::add($tmparr, 'personFullName', $item->context['personFullName']);
+            $tmparr = Arr::add($tmparr, 'personPid', $item->context['personPid']);
+            $new = json_decode($item->context['contactdata_new'], true);
+            $old = json_decode($item->context['contactdata_old'], true);
+            $tmparr = Arr::add($tmparr, 'sfrperson_username', $item->extra['sfrperson_username']);
+            $tmparr = Arr::add($tmparr, 'sfrperson_pid', $item->extra['sfrperson_pid']);
+            $tmparr = Arr::add($tmparr, 'sfrperson_fio', $item->extra['sfrperson_fio']);
+            $tmparr = Arr::add($tmparr, 'created_at', Carbon::parse($item->created_at)->format('d.m.Y H:i:s'));
+            $differences = [];
+            foreach ($old as $key => $value) {
+                if ($value !== $new[$key])
+                    $differences[$key] = [
+                        "old" => $value,
+                        "new" => $new[$key]
+                    ];
             }
 
             $tmparr = Arr::add($tmparr, 'differences', $differences);
