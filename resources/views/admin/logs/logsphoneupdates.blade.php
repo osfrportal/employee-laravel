@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>{{ $diffvalue['old'] ?? '' }}</td>
-                                    <td> => </td>
+                                    <td><i class="bi bi-arrow-right-square-fill"></i></td>
                                     <td>{{ $diffvalue['new'] ?? '' }}</td>
 
                                 </tr>
