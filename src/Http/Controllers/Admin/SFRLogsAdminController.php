@@ -51,7 +51,7 @@ class SFRLogsAdminController extends Controller
            $tmparr = Arr::add($tmparr, 'sfrperson_username', $item->extra['sfrperson_username']);
            $tmparr = Arr::add($tmparr, 'sfrperson_pid', $item->extra['sfrperson_pid']);
            $tmparr = Arr::add($tmparr, 'sfrperson_fio', $item->extra['sfrperson_fio']);
-           $tmparr = Arr::add($tmparr, 'created_at', $item->created_at);
+           $tmparr = Arr::add($tmparr, 'created_at', Carbon::parse($item->created_at)->format('d.m.Y H:i:s'));
            $differences = [];
            foreach ($old as $key => $value) {
             if ($value !== $new[$key])
