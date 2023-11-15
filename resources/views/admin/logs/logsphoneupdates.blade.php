@@ -28,7 +28,7 @@
                     <td>{{ $logRecord['message'] }}</td>
                     <td><a href="{{ route('osfrportal.admin.persons.detail', ['personid' => $logRecord['personPid']]) }}">{{ $logRecord['personFullName'] }}</a></td>
                     <td>
-                        @foreach ($differences as $diff)
+                        @foreach ($logRecord['differences'] as $diff)
                             @dump($diff)
                         @endforeach
                     </td>
