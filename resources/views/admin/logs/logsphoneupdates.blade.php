@@ -11,7 +11,7 @@
     </div>
 @endsection
 @section('content')
-    <table class="table table-sm table-responsive table-striped">
+    <table class="table table-sm table-responsive table-striped align-middle">
         <thead>
             <tr>
                 <th scope="col">Дата</th>
