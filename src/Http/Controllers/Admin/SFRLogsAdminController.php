@@ -14,6 +14,7 @@ use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 class SFRLogsAdminController extends Controller
 {
     private $phoneLogs;
+    private $systemLogs;
     /**
      * ----------------------------
      * API функции
