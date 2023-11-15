@@ -20,6 +20,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCertsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRStampsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLinksAdminController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLogsAdminController;
 use Illuminate\Support\Facades\Storage;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
@@ -28,9 +29,10 @@ use Spatie\ResponseCache\Facades\ResponseCache;
  */
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->name('admin.')->group(function () {
 
-    Route::name('logs.')->prefix('logs')->group(function () {
-        Route::view('/', 'osfrportal::admin.logs.changelog')->name('changelog');
-    });
+    Route::controller(SFRLogsAdminController::class)->name('logs.')->prefix('logs')->group(function () {
+        Route::view('/changelog', 'osfrportal::admin.logs.changelog')->name('changelog');
+        Route::get('/phoneupdates', 'logsPhoneUpdates')->name('logsphoneupdates');
+    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFRSysconfigController::class)->name('sysconfig.')->prefix('sysconfig')->group(function () {
         Route::post('/save', 'saveConfigList')->name('save');

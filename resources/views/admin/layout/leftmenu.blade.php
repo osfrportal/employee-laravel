@@ -127,7 +127,7 @@
                             <li><a class="dropdown-item" href="#">Системные</a></li>
                         @endcan
                         @can('logs-phone')
-                            <li><a class="dropdown-item" href="#">Обновление телефонного справочника</a></li>
+                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.logs.logsphoneupdates') }}">Обновление телефонного справочника</a></li>
                         @endcan
                         @can('logs-ad')
                             <li><a class="dropdown-item" href="#">AD входы на ПК</a></li>
