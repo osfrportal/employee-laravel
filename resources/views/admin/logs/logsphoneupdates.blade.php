@@ -30,6 +30,9 @@
                             href="{{ route('osfrportal.admin.persons.detail', ['personid' => $logRecord['personPid']]) }}">{{ $logRecord['personFullName'] }}</a>
                     </td>
                     <td>
+                        @if (empty($logRecord['differences']))
+                            Данные не изменялись
+                        @else
                         <table class="table table-sm mb-0">
                             @foreach ($logRecord['differences'] as $diffkey => $diffvalue)
                                 <tr>
@@ -43,6 +46,7 @@
                                 </tr>
                             @endforeach
                         </table>
+                        @endif
                     </td>
                     <td><a
                             href="{{ route('osfrportal.admin.persons.detail', ['personid' => $logRecord['sfrperson_pid']]) }}">{{ $logRecord['sfrperson_fio'] }}

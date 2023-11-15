@@ -32,8 +32,8 @@ class SFRLogsAdminController extends Controller
             'room' => 'Кабинет',
             'address' => 'Адрес (почтовый)',
             'email_ext' => 'Адрес (электронный)',
-            'phone_external' => 'Телефон (ВТС)',
-            'phone_internal' => 'Телефон (городской)',
+            'phone_internal' => 'Телефон (ВТС)',
+            'phone_external' => 'Телефон (городской)',
             'phone_mobile' => 'Телефон (мобильный)',
             'areacode' => 'Код города',
         ];
