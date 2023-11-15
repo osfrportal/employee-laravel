@@ -27,7 +27,7 @@ class SFRLogsAdminController extends Controller
     public function logsPhoneUpdates(Request $request)
     {
         $days_count = 30;
-        $phone_update_logs = LogToDB::model('sfrlogs')->orderByDesc('created_at')->whereJsonContains('context->action', LogActionsEnum::LOG_PHONE_UPDATE())->whereDate('created_at', '>=', Carbon::now()->subDays($days_count))->get();
+        $phone_update_logs = LogToDB::model(null, 'pgsql', 'sfrlogs')->orderByDesc('created_at')->whereJsonContains('context->action', LogActionsEnum::LOG_PHONE_UPDATE())->whereDate('created_at', '>=', Carbon::now()->subDays($days_count))->get();
         $phone_update_logs->dump();
 
         return view('osfrportal::admin.logs.logsphoneupdates');
