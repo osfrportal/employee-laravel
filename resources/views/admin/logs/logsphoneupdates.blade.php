@@ -30,7 +30,7 @@
                             href="{{ route('osfrportal.admin.persons.detail', ['personid' => $logRecord['personPid']]) }}">{{ $logRecord['personFullName'] }}</a>
                     </td>
                     <td>
-                        <table class="table table-sm table-responsive table-striped">
+                        <table class="table table-sm mb-0">
                             @foreach ($logRecord['differences'] as $diffkey => $diffvalue)
                                 <tr>
                                     <td colspan="3">
@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>{{ $diffvalue['old'] ?? '' }}</td>
-                                    <td><i class="bi bi-arrow-right-square-fill"></i></td>
+                                    <td><i class="bi bi-arrow-right"></i></td>
                                     <td>{{ $diffvalue['new'] ?? '' }}</td>
 
                                 </tr>
