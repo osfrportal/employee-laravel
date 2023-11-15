@@ -155,7 +155,7 @@ class PhoneController extends Controller
             'contactdata_new' => $contactdata_collection_json,
             'contactdata_old' => $contactdata_old,
         ];
-        LogAddAction::run(LogActionsEnum::LOG_PHONE_UPDATE(), 'Обновлены контактные данные работника {personFullName}, pid: {personPid})', $logContext);
+        LogAddAction::run(LogActionsEnum::LOG_PHONE_UPDATE(), 'Обновлены контактные данные работника {personFullName}', $logContext);
 
 
         $this->flasher_interface->addSuccess('Данные успешно обновлены');

@@ -188,7 +188,7 @@ class SFRPersonController extends Controller
             'personFullName' => $sfrperson->getFullName(),
             'personPid' => $sfrperson->getPid(),
         ];
-        LogAddAction::run(LogActionsEnum::LOG_VIEW_PERSON(), 'Просмотр профиля работника {personFullName}, pid: {personPid})', $logContext);
+        LogAddAction::run(LogActionsEnum::LOG_VIEW_PERSON(), 'Просмотр профиля работника {personFullName}, pid: {personPid}', $logContext);
 
         //dump($SFRPersonStamps);
         //dump($sfrperson->SfrPersonOrion->RfidCards);
