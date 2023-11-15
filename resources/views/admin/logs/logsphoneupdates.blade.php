@@ -29,7 +29,7 @@
                     <td><a
                             href="{{ route('osfrportal.admin.persons.detail', ['personid' => $logRecord['personPid']]) }}">{{ $logRecord['personFullName'] }}</a>
                     </td>
-                    <td>
+                    <td class="text-center">
                         @if (empty($logRecord['differences']))
                             Данные не изменялись
                         @else
