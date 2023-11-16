@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use danielme85\LaravelLogToDB\LogToDB;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
+use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData
 
 class SFRLogsAdminController extends Controller
 {
@@ -54,6 +55,10 @@ class SFRLogsAdminController extends Controller
             $tmparr = Arr::add($tmparr, 'sfrperson_fio', $item->extra['sfrperson_fio']);
             $tmparr = Arr::add($tmparr, 'created_at', Carbon::parse($item->created_at)->format('d.m.Y H:i:s'));
             $differences = [];
+            if (empty($old)) {
+                $blank_json = new SFRPhoneContactData();
+                $old = $blank_json->toArray();
+            }
             if (!empty($old) && !empty($new)) {
                 foreach ($old as $key => $value) {
                     if ($value !== $new[$key])
