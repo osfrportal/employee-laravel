@@ -54,14 +54,15 @@ class SFRLogsAdminController extends Controller
             $tmparr = Arr::add($tmparr, 'sfrperson_fio', $item->extra['sfrperson_fio']);
             $tmparr = Arr::add($tmparr, 'created_at', Carbon::parse($item->created_at)->format('d.m.Y H:i:s'));
             $differences = [];
-            foreach ($old as $key => $value) {
-                if ($value !== $new[$key])
-                    $differences[$key] = [
-                        "old" => $value,
-                        "new" => $new[$key]
-                    ];
+            if (!empty($old) && !empty($new)) {
+                foreach ($old as $key => $value) {
+                    if ($value !== $new[$key])
+                        $differences[$key] = [
+                            "old" => $value,
+                            "new" => $new[$key]
+                        ];
+                }
             }
-
             $tmparr = Arr::add($tmparr, 'differences', $differences);
 
             $this->phoneLogs->push($tmparr);
