@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use danielme85\LaravelLogToDB\LogToDB;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
-use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData
+use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 
 class SFRLogsAdminController extends Controller
 {
