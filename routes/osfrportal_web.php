@@ -145,6 +145,7 @@ Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->grou
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
+        Route::get('/dashboard2', 'dashboardIndex2')->name('dashboard2');
         Route::post('/notifications/read', 'markNotificationRead')->name('markNotificationRead');
     });
     Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
