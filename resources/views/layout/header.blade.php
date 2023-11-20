@@ -19,6 +19,7 @@
     <link href="{{ asset('osfrportal/css/btn-back-to-top.css') }}" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/other.css') }}" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/multiform.css') }}" rel="stylesheet">
+    <link href="{{ asset('osfrportal/css/flasher/flasher.css') }}" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/flasher_noty_bootstrap5_theme.css') }}" rel="stylesheet">
 
 
