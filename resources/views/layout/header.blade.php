@@ -4,8 +4,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/ico" href="{{ asset('osfrportal/images/favicon.ico') }}" />
     <link href="{{ asset('osfrportal/css/sfrfonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('osfrportal/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 
     <link href="{{ asset('osfrportal/css/tabler-icons/tabler-icons.css') }}" rel="stylesheet">
