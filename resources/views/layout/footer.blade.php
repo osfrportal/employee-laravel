@@ -30,7 +30,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $.fn.select2.defaults.set('amdLanguageBase', '/osfrportal/js/select2/i18n/');
 </script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/btn-back-to-top.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/inputmask.binding.js') }}"></script>

@@ -45,6 +45,7 @@
 @push('footer-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
+            $.fn.select2.defaults.set('amdLanguageBase', '/osfrportal/js/select2/i18n/');
             $('#select2-permissions').select2({
                 theme: 'bootstrap-5',
                 ajax: {
