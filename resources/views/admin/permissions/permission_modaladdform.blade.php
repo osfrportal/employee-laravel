@@ -46,8 +46,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#select2-roles').select2({
-                theme: 'bootstrap-5',
-                language: 'ru',
                 ajax: {
                     dataType: 'json',
                     url: function(params) {

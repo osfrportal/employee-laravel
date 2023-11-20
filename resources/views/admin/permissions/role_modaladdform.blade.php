@@ -47,8 +47,6 @@
         $(document).ready(function() {
             
             $('#select2-permissions').select2({
-                theme: 'bootstrap-5',
-                language: 'ru',
                 ajax: {
                     dataType: 'json',
                     url: function(params) {

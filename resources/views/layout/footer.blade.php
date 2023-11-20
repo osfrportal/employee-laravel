@@ -31,6 +31,9 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $.fn.select2.defaults.set('theme', 'bootstrap-5');
+    $.fn.select2.defaults.set('language', 'ru');
+    
 </script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/btn-back-to-top.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/inputmask.binding.js') }}"></script>
