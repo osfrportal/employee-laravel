@@ -48,8 +48,7 @@
                                                 </svg>
                                             @endif
                                         @endif
-                                        <i
-                                            class="bi {{ $rfidKey->tkeydata->CodeType === 1 ? 'bi-key' : 'bi-credit-card' }}"></i>
+
                                         <div class="ms-4">
                                             <div class="text-xs text-muted">
                                                 @switch($rfidKey->tkeydata->CodeType)
