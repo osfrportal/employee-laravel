@@ -24,8 +24,8 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">20-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item">[FIX] Портал переведен на использование корпоративного шрифта Montserrat</li>
-                    <li class="list-group-item">[FIX] Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки</li>
+                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Портал переведен на использование корпоративного шрифта Montserrat</li>
+                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки</li>
                 </ul>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">15-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item ti ti-code-plus">[ADD] Логи / Журнал обновления телефонного справочника</li>
+                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> Логи / Журнал обновления телефонного справочника</li>
                 </ul>
             </div>
         </div>
@@ -55,8 +55,8 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">11-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item">[ADD] Добавлен столбец Группа документов в управление документами</li>
-                    <li class="list-group-item">[ADD] Добавлено журналирование в БД</li>
+                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> Добавлен столбец Группа документов в управление документами</li>
+                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> Добавлено журналирование в БД</li>
                 </ul>
             </div>
         </div>
@@ -71,13 +71,13 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">08-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item">[ADD] В личном кабинете добавлено отображение количества документов, с
+                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> В личном кабинете добавлено отображение количества документов, с
                         которыми работник еще не ознакомился.</li>
-                    <li class="list-group-item">[FIX] Исправлено отображение ведомости ознакомления и профиля работника в
+                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Исправлено отображение ведомости ознакомления и профиля работника в
                         интерфейсе администратора. (ошибка в случае ознакомления рабоника УНЭПом)</li>
-                    <li class="list-group-item">[TEST] Добавлены уведомления о синхронизации. (уведомления пользователям
+                    <li class="list-group-item">[TEST] <i class="ti ti-code-dots"></i> Добавлены уведомления о синхронизации. (уведомления пользователям
                         группы system-notifications)</li>
-                    <li class="list-group-item">[ADD] Добавлено отображение списка сертификатов в базе.</li>
+                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> Добавлено отображение списка сертификатов в базе.</li>
                 </ul>
             </div>
         </div>
