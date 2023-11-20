@@ -40,7 +40,7 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">15-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item">[ADD] Логи / Журнал обновления телефонного справочника</li>
+                    <li class="list-group-item ti ti-code-plus">[ADD] Логи / Журнал обновления телефонного справочника</li>
                 </ul>
             </div>
         </div>
