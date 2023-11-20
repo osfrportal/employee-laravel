@@ -24,8 +24,28 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">20-11-2023</span>
                 <ul class="list-group list-group-flush small">
-                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Портал переведен на использование корпоративного шрифта Montserrat</li>
-                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки</li>
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-asterix" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                        <path d="M12 11.875l3 -1.687" />
+                        <path d="M12 11.875v3.375" />
+                        <path d="M12 11.875l-3 -1.687" />
+                        <path d="M12 11.875l3 1.688" />
+                        <path d="M12 8.5v3.375" />
+                        <path d="M12 11.875l-3 1.688" />
+                        <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                      </svg> Портал переведен на использование корпоративного шрифта Montserrat</li>
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-asterix" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                        <path d="M12 11.875l3 -1.687" />
+                        <path d="M12 11.875v3.375" />
+                        <path d="M12 11.875l-3 -1.687" />
+                        <path d="M12 11.875l3 1.688" />
+                        <path d="M12 8.5v3.375" />
+                        <path d="M12 11.875l-3 1.688" />
+                        <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                      </svg> Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки</li>
                 </ul>
             </div>
         </div>
@@ -40,7 +60,13 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">15-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> Логи / Журнал обновления телефонного справочника</li>
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 12h6" />
+                        <path d="M12 9v6" />
+                        <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                        <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                      </svg> Логи / Журнал обновления телефонного справочника</li>
                 </ul>
             </div>
         </div>
@@ -55,14 +81,14 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">11-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item">[ADD] <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M9 12h6" />
                         <path d="M12 9v6" />
                         <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
                       </svg> Добавлен столбец Группа документов в управление документами</li>
-                    <li class="list-group-item">[ADD] <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M9 12h6" />
                         <path d="M12 9v6" />
@@ -83,13 +109,42 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">08-11-2023</span>
                 <ul class="list-group list-group-flush small ">
-                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> В личном кабинете добавлено отображение количества документов, с
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 12h6" />
+                        <path d="M12 9v6" />
+                        <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                        <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                      </svg> В личном кабинете добавлено отображение количества документов, с
                         которыми работник еще не ознакомился.</li>
-                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Исправлено отображение ведомости ознакомления и профиля работника в
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-asterix" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                        <path d="M12 11.875l3 -1.687" />
+                        <path d="M12 11.875v3.375" />
+                        <path d="M12 11.875l-3 -1.687" />
+                        <path d="M12 11.875l3 1.688" />
+                        <path d="M12 8.5v3.375" />
+                        <path d="M12 11.875l-3 1.688" />
+                        <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                      </svg> Исправлено отображение ведомости ознакомления и профиля работника в
                         интерфейсе администратора. (ошибка в случае ознакомления рабоника УНЭПом)</li>
-                    <li class="list-group-item">[TEST] <i class="ti ti-code-dots"></i> Добавлены уведомления о синхронизации. (уведомления пользователям
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15 12h.01" />
+                        <path d="M12 12h.01" />
+                        <path d="M9 12h.01" />
+                        <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                        <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                      </svg> Добавлены уведомления о синхронизации. (уведомления пользователям
                         группы system-notifications)</li>
-                    <li class="list-group-item">[ADD] <i class="ti ti-code-plus"></i> Добавлено отображение списка сертификатов в базе.</li>
+                    <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 12h6" />
+                        <path d="M12 9v6" />
+                        <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
+                        <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                      </svg> Добавлено отображение списка сертификатов в базе.</li>
                 </ul>
             </div>
         </div>
