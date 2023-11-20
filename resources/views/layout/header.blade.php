@@ -28,4 +28,4 @@
     @stack('header-css')
     @stack('header-scripts')
     @livewireStyles
-    <link href="{{ asset('osfrportal/css/flasher/flasher.css') }}" rel="stylesheet">
+
