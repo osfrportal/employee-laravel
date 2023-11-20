@@ -1,11 +1,10 @@
 <script type="text/javascript" src="{{ asset('osfrportal/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/jquery.inputmask.min.js') }}"></script>
-<script src="https://unpkg.com/@popperjs/core"></script>
+<script type="text/javascript" src="{{ asset('osfrportal/js/popper.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/select2/select2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/select2/i18n/ru.js') }}"></script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="{{ asset('osfrportal/js/sweetalert.min.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('osfrportal/js/datatables.min.js') }}"></script>
 
