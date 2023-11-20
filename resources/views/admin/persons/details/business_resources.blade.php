@@ -124,8 +124,17 @@
                             <div
                                 class="d-flex align-items-center justify-content-between px-4 @if ($cert->revoked) {{ 'alert alert-danger' }} @else {{ $cert->certvalidto->isPast() ? 'alert alert-dark' : 'alert alert-success' }} @endif">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt=""
-                                        class="icon-small" />
+                                    @if ($cert->revoked)
+                                        <div class="text-xs">
+                                            <b>ОТОЗВАН {{ $cert->revokedate->format('d.m.Y') ?? '' }}</b>
+                                        </div>
+                                    @else
+                                        @if ($cert->certvalidto->isPast())
+                                            <div class="text-xs">Истек:
+                                                {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
+                                            </div>
+                                        @endif
+                                    @endif
                                     <div class="ms-4">
                                         @if ($cert->revoked)
                                             <div class="text-xs">

@@ -135,8 +135,6 @@
                                             <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889" />
                                           </svg>
                                         @endif
-                                        <img src="{{ asset('osfrportal/images/logo_certificate.svg') }}" alt=""
-                                            class="icon-small" />
                                         <div class="ms-4">
                                             @if ($cert->revoked)
                                                 <div class="text-xs">
