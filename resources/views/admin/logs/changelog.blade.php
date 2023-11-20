@@ -34,6 +34,7 @@
                         <path d="M12 8.5v3.375" />
                         <path d="M12 11.875l-3 1.688" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        <title>[FIX]</title>
                       </svg> Портал переведен на использование корпоративного шрифта Montserrat</li>
                     <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-asterix" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -45,6 +46,7 @@
                         <path d="M12 8.5v3.375" />
                         <path d="M12 11.875l-3 1.688" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        <title>[FIX]</title>
                       </svg> Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки</li>
                 </ul>
             </div>
@@ -66,6 +68,7 @@
                         <path d="M12 9v6" />
                         <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        <title>[ADD]</title>
                       </svg> Логи / Журнал обновления телефонного справочника</li>
                 </ul>
             </div>
@@ -88,12 +91,14 @@
                         <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
                       </svg> Добавлен столбец Группа документов в управление документами</li>
+                      <title>[ADD]</title>
                     <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M9 12h6" />
                         <path d="M12 9v6" />
                         <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        <title>[ADD]</title>
                       </svg> Добавлено журналирование в БД</li>
                 </ul>
             </div>
@@ -115,6 +120,7 @@
                         <path d="M12 9v6" />
                         <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        <title>[ADD]</title>
                       </svg> В личном кабинете добавлено отображение количества документов, с
                         которыми работник еще не ознакомился.</li>
                     <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-asterix" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -127,6 +133,7 @@
                         <path d="M12 8.5v3.375" />
                         <path d="M12 11.875l-3 1.688" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        <title>[FIX]</title>
                       </svg> Исправлено отображение ведомости ознакомления и профиля работника в
                         интерфейсе администратора. (ошибка в случае ознакомления рабоника УНЭПом)</li>
                     <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -136,6 +143,7 @@
                         <path d="M9 12h.01" />
                         <path d="M6 19a2 2 0 0 1 -2 -2v-4l-1 -1l1 -1v-4a2 2 0 0 1 2 -2" />
                         <path d="M18 19a2 2 0 0 0 2 -2v-4l1 -1l-1 -1v-4a2 2 0 0 0 -2 -2" />
+                        <title>[TEST]</title>
                       </svg> Добавлены уведомления о синхронизации. (уведомления пользователям
                         группы system-notifications)</li>
                     <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" title="[ADD]">
