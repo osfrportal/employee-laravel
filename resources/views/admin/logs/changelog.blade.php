@@ -24,7 +24,7 @@
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">20-11-2023</span>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Портал переведен на использование корпоративного шрифта Montserrat</li>
+                    <li class="list-group-item">[FIX] <i class="ti ti-code-asterix" width="48" height="48"></i> Портал переведен на использование корпоративного шрифта Montserrat</li>
                     <li class="list-group-item">[FIX] <i class="ti ti-code-asterix"></i> Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки</li>
                 </ul>
             </div>
