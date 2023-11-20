@@ -46,7 +46,6 @@
                 var button = event.relatedTarget
                 var recipient = button.getAttribute('data-bs-whatever')
                 $('#js-persons-infosystems-ajax').select2({
-                    theme: 'bootstrap-5',
                     dropdownParent: stampIssueDialogModal,
                     ajax: {
                         dataType: 'json',

@@ -92,7 +92,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#docType').select2({
-                theme: 'bootstrap-5',
                 ajax: {
                     dataType: 'json',
                     url: function(params) {
@@ -101,7 +100,6 @@
                 }
             });
             $('#docGroup').select2({
-                theme: 'bootstrap-5',
                 ajax: {
                     dataType: 'json',
                     url: function(params) {
