@@ -25,6 +25,7 @@
                 <span class="d-block  mb-2">20-11-2023</span>
                 <ul class="list-group list-group-flush small ">
                     <li class="list-group-item">[FIX] Портал переведен на использование корпоративного шрифта Montserrat</li>
+                    <li class="list-group-item">[FIX] Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки</li>
                 </ul>
             </div>
         </div>
