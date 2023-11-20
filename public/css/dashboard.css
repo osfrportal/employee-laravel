@@ -924,3 +924,55 @@ html:not([dir=rtl]) .timeline .timeline-item.timeline-item-transparent .timeline
 .timeline .timeline-indicator-gray i {
     color: rgba(38,60,85,.5) !important
 }
+@keyframes pulse-keyframes {
+    0% {
+        opacity: 1;
+        transform: scale3d(.8,.8,.8)
+    }
+
+    50% {
+        transform: scaleX(1);
+        opacity: 1
+    }
+
+    to {
+        opacity: 1;
+        transform: scale3d(.8,.8,.8)
+    }
+}
+@keyframes tada-keyframes {
+    0% {
+        transform: scaleX(1)
+    }
+
+    10%,5% {
+        transform: scale3d(.9,.9,.9) rotate(-5deg)
+    }
+
+    15%,25%,35%,45% {
+        transform: scale3d(1.1,1.1,1.1) rotate(5deg)
+    }
+
+    20%,30%,40% {
+        transform: scale3d(1.1,1.1,1.1) rotate(-5deg)
+    }
+
+    50% {
+        transform: scaleX(1)
+    }
+}
+
+.icon-pulse {
+    animation: pulse-keyframes 2s ease infinite;
+    animation-fill-mode: both
+}
+
+.icon-pulse,.icon-tada {
+    display: block;
+    transition: all .15s ease 0s
+}
+
+.icon-tada {
+    animation: tada-keyframes 3s ease infinite;
+    animation-fill-mode: both
+}
