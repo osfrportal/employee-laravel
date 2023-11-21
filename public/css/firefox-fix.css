@@ -6,6 +6,6 @@ html {
 
 @-moz-document url-prefix() {
     body {
-        font-weight: lighter !important;
+        font-weight: normal !important;
     }
 }
