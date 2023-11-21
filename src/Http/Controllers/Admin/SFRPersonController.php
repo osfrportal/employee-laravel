@@ -177,7 +177,6 @@ class SFRPersonController extends Controller
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
         $SFRUserData = $sfrperson->SfrUser;
         $SFRUserLastActivity = $SFRUserData->getLastActivity();
-        dump($SFRUserLastActivity);
         $SFRPhoneContactData = SFRPhoneContactData::from($sfrperson);
         $SFRPersonCerts = $sfrperson->SfrPersonCerts;
         $rfidKeysUser = $sfrperson->getPersonRfidCards();
