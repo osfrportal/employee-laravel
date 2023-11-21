@@ -21,6 +21,7 @@
                     <th>Отчество</th>
                     <th>Должность</th>
                     <th>Поразделение</th>
+                    <th>Активность на портале</th>
                     <th>Отпуск</th>
                 </tr>
             </thead>
@@ -60,6 +61,9 @@
                     },
                     {
                         data: 'persondata_unit_name'
+                    },
+                    {
+                        data: 'persondata_lastactivity'
                     },
                     {
                         data: 'persondata_vacation'
@@ -119,6 +123,12 @@
                     },
                     {
                         targets: 7,
+                        orderable: true,
+                        searchable: false,
+                        className: 'dt-left',
+                    },
+                    {
+                        targets: 8,
                         orderable: false,
                         searchable: false,
                         className: 'dt-left',

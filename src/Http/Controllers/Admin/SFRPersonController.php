@@ -172,11 +172,10 @@ class SFRPersonController extends Controller
     {
         $this->authorize($this->permissionView);
 
-        $sfrperson = SfrPerson::where('pid', $personid)->first();
+        $sfrperson = SfrPerson::where('pid', $personid)->with('SfrUser')->first();
         $SFRPersonData = SFRPersonData::from($sfrperson);
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
         $SFRUserData = $sfrperson->SfrUser;
-        $SFRUserLastActivity = $SFRUserData->getLastActivity();
         $SFRPhoneContactData = SFRPhoneContactData::from($sfrperson);
         $SFRPersonCerts = $sfrperson->SfrPersonCerts;
         $rfidKeysUser = $sfrperson->getPersonRfidCards();
@@ -201,7 +200,6 @@ class SFRPersonController extends Controller
             'rfidKeysUser' => $rfidKeysUser,
             'docsSignsUser' => $docsSignsUser,
             'SFRPersonStamps' => $SFRPersonStamps,
-            'SFRUserLastActivity' => $SFRUserLastActivity,
         ]);
     }
 
