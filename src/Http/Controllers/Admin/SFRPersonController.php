@@ -176,7 +176,7 @@ class SFRPersonController extends Controller
         $SFRPersonData = SFRPersonData::from($sfrperson);
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
         $SFRUserData = $sfrperson->SfrUser;
-        $SFRUserLastActivity = $sfrperson->SfrUser;
+        $SFRUserLastActivity = $SFRUserData->getLastActivity();
         dump($SFRUserLastActivity);
         $SFRPhoneContactData = SFRPhoneContactData::from($sfrperson);
         $SFRPersonCerts = $sfrperson->SfrPersonCerts;
