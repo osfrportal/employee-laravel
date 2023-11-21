@@ -3,7 +3,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col">Последняя активность</div>
-            <div class="col"><b>{{ $SFRUserData->getLastActivity() ?? '-' }}</b></div>
+            <div class="col"><b>{{ $SFRUserLastActivity ?? '-' }}</b></div>
         </div>
         <div class="row">
             <div class="col">Имя пользователя</div>
