@@ -180,6 +180,11 @@ class SfrPerson extends Model
         return $this->pid;
     }
 
+    public function getLastActivity()
+    {
+        return $this->SfrUser->getLastActivity();
+    }
+
     /**
      *
      * @return string

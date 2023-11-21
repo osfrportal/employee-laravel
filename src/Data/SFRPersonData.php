@@ -83,8 +83,11 @@ class SFRPersonData extends Data
             $personAbsenceFormatted = null;
             $personAbsenceEndFormatted = null;
         }
-
-        $personLastActivity = $person->SfrUser()->getLastActivity();
+        if (!is_null($person)) {
+            $personLastActivity = $person->getLastActivity();
+        } else {
+            $personLastActivity = null;
+        }
 
         return new self(
             persondata_pid: $person->getPid(),
