@@ -51,7 +51,7 @@ class SFRPersonController extends Controller
     {
         //$this->authorize($this->permissionView);
 
-        $sfrpersons = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->get())->toCollection();
+        $sfrpersons = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
         //return DataTables::of($sfrpersons)->toJson();
         return DataTables::of($sfrpersons)
             ->setRowClass(function ($person) {

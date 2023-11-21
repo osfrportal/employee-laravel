@@ -182,7 +182,7 @@ class SfrPerson extends Model
 
     public function getLastActivity()
     {
-        $u = $this->with('SfrUser')->SfrUser->first();
+        $u = $this->SfrUser;
         if (!is_null($u)) {
             $out = $u->getLastActivity();
         } else {
