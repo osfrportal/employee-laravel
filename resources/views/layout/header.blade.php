@@ -3,7 +3,7 @@
     <meta name="description" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/ico" href="{{ asset('osfrportal/images/favicon.ico') }}" />
-    <link href="{{ asset('osfrportal/css/sfrfonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('osfrportal/css/sfrfonts.css') }}" rel="preload" as="style">
     <link href="{{ asset('osfrportal/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('osfrportal/css/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
