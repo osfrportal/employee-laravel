@@ -22,7 +22,7 @@
     <link href="{{ asset('osfrportal/css/flasher/flasher-noty.css') }}" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/flasher_noty_bootstrap5_theme.css') }}" rel="stylesheet">
 
-
+    <link href="{{ asset('osfrportal/css/firefox-fix.css') }}" rel="stylesheet">
 
     <meta name="theme-color" content="#712cf9">
 
