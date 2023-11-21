@@ -26,6 +26,7 @@ class SFRPersonData extends Data
         public ?string $persondata_birthday = null,
         public ?string $persondata_inn = null,
         public ?string $persondata_snils = null,
+        public ?string $persondata_lastactivity = null,
         //public ?string $persondata_= null,
     ) {
     }
@@ -33,6 +34,7 @@ class SFRPersonData extends Data
     public static function defValues(): SFRPersonData
     {
         return new self(
+            null,
             null,
             null,
             null,
@@ -82,6 +84,8 @@ class SFRPersonData extends Data
             $personAbsenceEndFormatted = null;
         }
 
+        $personLastActivity = $person->SfrUser->getLastActivity();
+
         return new self(
             persondata_pid: $person->getPid(),
             persondata_tabnum: $person->getTabNum(),
@@ -100,6 +104,7 @@ class SFRPersonData extends Data
             persondata_snils: $person->getSNILS(),
             persondata_birthday: $person->getBirthDate(),
             persondata_fullname: $person->getFullName(),
+            persondata_lastactivity: $personLastActivity,
         );
     }
 }

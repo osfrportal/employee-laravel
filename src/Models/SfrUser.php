@@ -70,7 +70,7 @@ class SfrUser extends Authenticatable
 
     public function getLastActivity()
     {
-        $usessions = $this->SfrUserSessions();
+        $usessions = $this->SfrUserSessions;
         if (!is_null($usessions)) {
             return Carbon::createFromTimestamp($usessions->last_activity)->format('d.m.Y H:i:s');
         } else {
