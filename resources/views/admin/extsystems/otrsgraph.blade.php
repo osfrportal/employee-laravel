@@ -26,6 +26,10 @@
 @endsection
 @push('footer-scripts')
 <script type="module">
+    <?php
+    $route_api_ozi = route('osfrapi.osfrportal.admin.otrs.stats', ['otrs_graph_unit' => 'ozi']);
+    $route_api_oit = route('osfrapi.osfrportal.admin.otrs.stats', ['otrs_graph_unit' => 'oit']);
+    ?>
     var progress = document.getElementById('animationProgress');
     // Graphs
     const graph_options = {
@@ -68,7 +72,7 @@
     if (document.getElementById('OtrsOZICreatedTicketsChart')) {
             $.ajax({
                 type: 'GET',
-                url: '/api/osfr/v1/osfrportal/admin/otrs/stats/ozi',
+                url: '{{ $route_api_ozi }}',
                 datatype: 'json',
                 success: function (result) {
                     var ctx_ozi = document.getElementById('OtrsOZICreatedTicketsChart');
@@ -85,7 +89,7 @@
         if (document.getElementById('OtrsITCreatedTicketsChart')) {
             $.ajax({
                 type: 'GET',
-                url: '/api/osfr/v1/osfrportal/admin/otrs/stats/oit',
+                url: '{{ $route_api_oit }}',
                 datatype: 'json',
                 success: function (result) {
                     var ctx_it = document.getElementById('OtrsITCreatedTicketsChart');
