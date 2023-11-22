@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Actions\Docs\CountUnsignedDocsByUserAction;
+use Osfrportal\OsfrportalLaravel\Actions\LiveUsersListAction;
 
 class DashboardController extends Controller
 {
@@ -26,6 +27,7 @@ class DashboardController extends Controller
     }
     public function dashboardIndex2()
     {
+        LiveUsersListAction::run();
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $unreadNotifications = Auth::user()->unreadNotifications()->limit(10)->get()->toArray();
