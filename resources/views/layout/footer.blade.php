@@ -8,6 +8,7 @@
 
 <script type="text/javascript" src="{{ asset('osfrportal/js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/apexcharts/apexcharts.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('osfrportal/js/chartjs/chart.min.js') }}"></script>
 
 <script type="text/javascript">
     //default values for DataTables
