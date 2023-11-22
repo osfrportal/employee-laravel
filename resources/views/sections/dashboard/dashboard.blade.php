@@ -6,6 +6,10 @@
             <div class="col-sm-2">
                 @livewire('osfrportal::liveusers-count')
             </div>
+            <div class="col-sm-2">
+                <div id="liveusersChart">
+                </div>
+            </div>
         </div>
     @endcan
     <div class="row">
@@ -17,6 +21,25 @@
 @endsection
 @push('footer-scripts')
     <script type="module">
+        var options = {
+          series: [70],
+          chart: {
+          height: 350,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              size: '70%',
+            }
+          },
+        },
+        labels: ['Cricket'],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#liveusersChart"), options);
+        chart.render();
+
         function sendMarkRequest(id = null) {
             return $.ajax("{{ route('osfrportal.markNotificationRead') }}", {
                 method: 'POST',
