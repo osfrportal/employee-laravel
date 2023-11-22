@@ -18,7 +18,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCertsAdminController;
  * Административные маршруты
  */
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::prefix('orts')->name('otrs.')->group(function () {
+    Route::prefix('otrs')->name('otrs.')->group(function () {
         Route::controller(SFROtrsAdminController::class)->group(function () {
             Route::get('/stats/{otrs_graph_unit}', 'APIStatsOut')->name('stats');
         });
