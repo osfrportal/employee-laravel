@@ -80,7 +80,7 @@
                     var mychart_ozi = new Chart(ctx_ozi,
                         {
                             type: 'line',
-                            data: result['data'],
+                            data: result,
                             options: graph_options
                         })
                 }
@@ -97,7 +97,7 @@
                     var mychart_it = new Chart(ctx_it,
                         {
                             type: 'line',
-                            data: result['data'],
+                            data: result,
                             options: graph_options,
                         });
                 }

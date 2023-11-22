@@ -11,6 +11,8 @@ use Carbon\CarbonImmutable;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Pagination\Paginator;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Console\Scheduling\Schedule;
@@ -104,6 +106,11 @@ class OsfrportalServiceProvider extends ServiceProvider
         }
         $this->registerLiwevireComponents();
         $this->registerBladeDirectives();
+        //шаблон paginator по умолчанию на bootstrap-5
+        Paginator::useBootstrapFive();
+        //отключить обертывание самого верхнего ресурса
+        //https://laravel.su/docs/8.x/eloquent-resources
+        JsonResource::withoutWrapping();
 
     }
     /**
