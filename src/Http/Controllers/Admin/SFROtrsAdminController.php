@@ -16,6 +16,6 @@ class SFROtrsAdminController extends Controller
 {
     public function APIStatsOut(Request $request) {
         $collection = collect();
-    return new SFROtrsStatsCollection($collection);
+        return new SFROtrsStatsCollection($collection);
     }
 }
