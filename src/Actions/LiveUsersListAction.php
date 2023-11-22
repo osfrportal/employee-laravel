@@ -25,7 +25,11 @@ class LiveUsersListAction
             //dump($keys);
             foreach ($keys as $key) {
                 $exploded = Str::of($key)->explode(':');
-                dump($exploded[1]);
+                $userUuid = $exploded[1];
+                if (Str::isUuid($userUuid)) {
+                    dump($userUuid);
+                }
+
             }
         } while ($cursor != 0);
 
