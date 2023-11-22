@@ -26,7 +26,14 @@ class LiveUsersListAction
                 $exploded = Str::of($key)->explode(':');
                 $userUuid = $exploded[1];
                 if (Str::isUuid($userUuid)) {
-                    $collectionUserIDs->push($userUuid);
+                    $user = SfrUser::where('userid', $userUuid)->first();
+                    $userArray = [
+                        'uid' => $userUuid,
+                        'pid' => $user->pid,
+                        'fullname' => $user->SfrPerson->getFullname(),
+                        'lastactivity' => $user->getLastActivity(),
+                    ];
+                    $collectionUserIDs->push($userArray);
                 }
 
             }
