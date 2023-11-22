@@ -26,7 +26,7 @@ class LiveUsersListAction
                 $exploded = Str::of($key)->explode(':');
                 $userUuid = $exploded[1];
                 if (Str::isUuid($userUuid)) {
-                    $collectionUserIDs->pull($userUuid);
+                    $collectionUserIDs->push($userUuid);
                 }
 
             }
