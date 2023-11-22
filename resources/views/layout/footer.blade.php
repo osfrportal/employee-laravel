@@ -8,9 +8,12 @@
 
 <script type="text/javascript" src="{{ asset('osfrportal/js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/apexcharts/apexcharts.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('osfrportal/js/chartjs/chart.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('osfrportal/js/chartjs/chart.udm.min.js') }}"></script>
 
 <script type="text/javascript">
+    //default for chart.js
+    Chart.defaults.interaction.mode = 'nearest';
+
     //default values for DataTables
     $.extend($.fn.dataTable.defaults, {
         language: {
