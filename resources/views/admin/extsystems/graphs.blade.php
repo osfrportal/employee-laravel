@@ -1,5 +1,5 @@
 <div class="col">
-    <div class="my-3 p-3 bg-body rounded shadow-sm text-center">
+    <div class="my-3 p-3 bg-body rounded shadow-sm text-center otrs-chart">
         <div class="card-header">Заявки ОЗИ за период 30 дней</div>
         <div class="card-body text-primary">
 
@@ -11,14 +11,12 @@
     </div>
 </div>
 <div class="col">
-    <div class="my-3 p-3 bg-body rounded shadow-sm text-center" style="max-width: 12rem;">
+    <div class="my-3 p-3 bg-body rounded shadow-sm text-center otrs-chart">
         <div class="card-header">Заявки ИТ за период 30 дней</div>
         <div class="card-body text-primary">
-            <div class="container float-start otrs-chart">
                 <canvas id="OtrsITCreatedTicketsChart">
                     <p>Заявки ИТ за период 30 дней</p>
                 </canvas>
-            </div>
         </div>
     </div>
 </div>
