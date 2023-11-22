@@ -1,7 +1,32 @@
 @extends('osfrportal::layout')
 @section('dashboardTitle', 'NEW Личный кабинет')
+@push('footer-scripts')
+    <script type="module">
+        var options = {
+          series: [70],
+          chart: {
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              size: '70%',
+            }
+          },
+        },
+        labels: ['Активные пользователи'],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#liveusersChart"), options);
+        chart.render();
+    </script>
+@endpush
 @section('content')
 <div class="content-wrapper">
+    <div class="col-sm-2">
+        <div id="liveusersChart">
+        </div>
+    </div>
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <!-- Website Analytics-->
