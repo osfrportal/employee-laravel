@@ -73,7 +73,6 @@
                 datatype: 'json',
                 success: function (result) {
                     var ctx_ozi = document.getElementById('OtrsOZICreatedTicketsChart');
-                    graph_options['plugins']['title']['text'] = 'Заявки ОЗИ за период 30 дней';
                     var mychart_ozi = new Chart(ctx_ozi,
                         {
                             type: 'line',
@@ -90,7 +89,6 @@
                 datatype: 'json',
                 success: function (result) {
                     var ctx_it = document.getElementById('OtrsITCreatedTicketsChart');
-                    graph_options['plugins']['title']['text'] = 'Заявки ИТ за период 30 дней';
                     var mychart_it = new Chart(ctx_it,
                         {
                             type: 'line',
