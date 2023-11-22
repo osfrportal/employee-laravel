@@ -30,6 +30,7 @@ class LiveUsersListAction
                     $userArray = [
                         'uid' => $userUuid,
                         'pid' => $user->pid,
+                        'username' => $user->username,
                         'fullname' => $user->SfrPerson->getFullname(),
                         'lastactivity' => $user->getLastActivity(),
                     ];
