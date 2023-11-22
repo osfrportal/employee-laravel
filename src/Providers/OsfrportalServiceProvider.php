@@ -44,7 +44,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->registerConfigFromDB();
             $this->registerStorageConfig();
             $this->registerMSSQLDatabases();
-            
+
         }
         Gate::after(function ($user, $ability) {
             return $user->hasRole('SuperAdmin'); // note this returns boolean
@@ -302,6 +302,17 @@ class OsfrportalServiceProvider extends ServiceProvider
                 'prefix' => '',
                 'prefix_indexes' => true,
                 'trust_server_certificate' => env('ADOC_DB_TRUST_SERVER_CERTIFICATE', 'false'),
+            ],
+            'otrspgsql' => [
+                'driver' => 'pgsql',
+                'host' => env('OTRS_DB_HOST', 'localhost'),
+                'port' => env('OTRS_DB_PORT', '5432'),
+                'database' => env('OTRS_DB_DATABASE', 'forge'),
+                'username' => env('OTRS_DB_USERNAME', 'forge'),
+                'password' => env('OTRS_DB_PASSWORD', ''),
+                'charset' => 'utf8',
+                'prefix' => '',
+                'prefix_indexes' => true,
             ],
         ];
 
