@@ -24,7 +24,6 @@
         var options = {
           series: [70],
           chart: {
-          height: 350,
           type: 'radialBar',
         },
         plotOptions: {
@@ -34,7 +33,7 @@
             }
           },
         },
-        labels: ['Cricket'],
+        labels: ['Активные пользователи'],
         };
 
         var chart = new ApexCharts(document.querySelector("#liveusersChart"), options);
