@@ -8,7 +8,7 @@
 
 <script type="text/javascript" src="{{ asset('osfrportal/js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/apexcharts/apexcharts.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('osfrportal/js/chartjs/chart.udm.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('osfrportal/js/chartjs/chart.umd.min.js') }}"></script>
 
 <script type="text/javascript">
     //default for chart.js
