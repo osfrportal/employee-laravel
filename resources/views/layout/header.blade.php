@@ -24,6 +24,8 @@
 
     <link href="{{ asset('osfrportal/css/firefox-fix.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('osfrportal/css/apexcharts/apexcharts.css') }}" rel="stylesheet">
+
     <meta name="theme-color" content="#712cf9">
 
     @stack('header-css')

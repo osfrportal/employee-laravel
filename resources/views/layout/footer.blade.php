@@ -7,6 +7,7 @@
 <script type="text/javascript" src="{{ asset('osfrportal/js/sweetalert.min.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('osfrportal/js/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('osfrportal/js/apexcharts/apexcharts.min.js') }}"></script>
 
 <script type="text/javascript">
     //default values for DataTables
@@ -32,7 +33,13 @@
     });
     $.fn.select2.defaults.set('theme', 'bootstrap-5');
     $.fn.select2.defaults.set('language', 'ru');
-    
+    $.getJSON('/osfrportal/lang/apexcharts-ru.json', function(data) {
+        var ru = data;
+        Apex.chart = {
+            locales: [ru],
+            defaultLocale: "ru",
+        }
+    });
 </script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/btn-back-to-top.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/inputmask.binding.js') }}"></script>
