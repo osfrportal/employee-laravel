@@ -16,7 +16,7 @@ class LiveUsersListAction
     use AsAction;
     private function listUserIdFromRedis() {
         $collectionUserIDs = collect();
-        $cursor = 0;
+        $cursor = null;
         $redis_prefix = config('database.redis.options.prefix');
         $pattern = $redis_prefix . 'live_users:*';
         do {
