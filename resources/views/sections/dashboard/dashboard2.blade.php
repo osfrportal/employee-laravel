@@ -24,9 +24,16 @@
 @section('content')
 <div class="content-wrapper">
     <div class="col-sm-2">
-        <div id="liveusersChart">
+    <div class="my-3 p-3 bg-body rounded shadow-sm text-center" style="max-width: 12rem;">
+        <div class="card-header">Активные пользователи</div>
+        <div class="card-body text-primary">
+            <h2 class="bi bi-people card-text">
+                <div id="liveusersChart">
+                </div>
+            </h2>
         </div>
     </div>
+</div>
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <!-- Website Analytics-->
