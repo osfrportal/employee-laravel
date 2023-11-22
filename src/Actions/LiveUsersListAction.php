@@ -14,9 +14,8 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 class LiveUsersListAction
 {
     use AsAction;
-
-    public function handle()
-    {
+    private function listUserIdFromRedis() {
+        $collectionUserIDs = collect();
         $cursor = 0;
         $redis_prefix = config('database.redis.options.prefix');
         $pattern = $redis_prefix . 'live_users:*';
@@ -27,12 +26,17 @@ class LiveUsersListAction
                 $exploded = Str::of($key)->explode(':');
                 $userUuid = $exploded[1];
                 if (Str::isUuid($userUuid)) {
-                    dump($userUuid);
+                    $collectionUserIDs->pull($userUuid);
                 }
 
             }
         } while ($cursor != 0);
+        dump($collectionUserIDs);
+    }
 
+    public function handle()
+    {
+        $this->listUserIdFromRedis();
     }
 
 }
