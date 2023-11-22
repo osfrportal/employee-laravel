@@ -21,6 +21,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCertsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRStampsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLinksAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLogsAdminController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFROtrsAdminController;
 use Illuminate\Support\Facades\Storage;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
@@ -28,6 +29,10 @@ use Spatie\ResponseCache\Facades\ResponseCache;
  * Административные маршруты
  */
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->name('admin.')->group(function () {
+
+    Route::controller(SFROtrsAdminController::class)->name('otrs.')->prefix('otrs')->group(function () {
+        Route::view('/', 'osfrportal::admin.extsystems.otrsgraph')->name('all');
+    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFRLogsAdminController::class)->name('logs.')->prefix('logs')->group(function () {
         Route::view('/changelog', 'osfrportal::admin.logs.changelog')->name('changelog');

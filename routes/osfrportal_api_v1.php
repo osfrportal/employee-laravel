@@ -6,6 +6,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFROtrsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\PhoneController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SfrDocsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCertsAdminController;
@@ -17,6 +18,12 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCertsAdminController;
  * Административные маршруты
  */
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('orts')->name('otrs.')->group(function () {
+        Route::controller(SFROtrsAdminController::class)->group(function () {
+            Route::get('/stats/{otrs_graph_unit}', 'APIStatsOut')->name('stats');
+        });
+    });
+
     Route::prefix('select2')->name('select2.')->group(function () {
         Route::prefix('permissions')->name('permissions.')->controller(PermissionsController::class)->group(function () {
             Route::get('/roles', 'APISelect2ShowRolesList')->name('roles_all');
