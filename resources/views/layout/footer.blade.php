@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
     //default for chart.js
-    Chart.defaults.interaction.mode = 'nearest';
+    //Chart.defaults.interaction.mode = 'nearest';
 
     //default values for DataTables
     $.extend($.fn.dataTable.defaults, {
