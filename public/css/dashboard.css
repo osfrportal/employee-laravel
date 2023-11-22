@@ -1,6 +1,6 @@
 body {
     font-size: .875rem;
-    font-family: "Montserrat", var(--bs-body-font-family);
+    /* font-family: "Montserrat", var(--bs-body-font-family); */
 }
 
 .feather {
