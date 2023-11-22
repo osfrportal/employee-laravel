@@ -7,6 +7,9 @@
                 @livewire('osfrportal::liveusers-count')
             </div>
         </div>
+        <div class="row">
+            @include('osfrportal::admin.extsystems.graphs')
+        </div>
     @endcan
     <div class="row">
         <div class="col-sm-3">
