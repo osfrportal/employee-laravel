@@ -22,7 +22,11 @@ class LiveUsersListAction
         $pattern = $redis_prefix . 'live_users:*';
         do {
             list($cursor, $keys) = Redis::scan($cursor, 'match', $pattern);
-            dump($keys);
+            //dump($keys);
+            foreach ($keys as $key) {
+                $exploded = Str::of($key)->explode(':');
+                dump($exploded[1]);
+            }
         } while ($cursor != 0);
 
     }
