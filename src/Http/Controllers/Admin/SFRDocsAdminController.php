@@ -12,6 +12,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
 use Osfrportal\OsfrportalLaravel\Data\SFRUnitData;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 
@@ -240,13 +241,15 @@ class SFRDocsAdminController extends Controller
     {
         $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->get();
         foreach ($allRootUnits as $rootUnit) {
+            $unitData = ['unitid' => $rootUnit->unitid, 'unitname' => $rootUnit->unitname, 'unitcode' => $rootUnit->unitcode, 'unitnameshort' => $rootUnit->unitnameshort, 'unitparentid' => $rootUnit->unitparentid, 'unitsortorder' => $rootUnit->unitsortorder];
             $childUnits = [];
             if (count($rootUnit->children) > 0) {
                 foreach ($rootUnit->children as $childUnit) {
                     $childUnits[] = ['unitid' => $childUnit->unitid, 'unitname' => $childUnit->unitname, 'unitcode' => $childUnit->unitcode, 'unitnameshort' => $childUnit->unitnameshort, 'unitparentid' => $childUnit->unitparentid, 'unitsortorder' => $childUnit->unitsortorder];
                 }
+                $unitData = Arr::prepend($unitData, 'childunits', SFRUnitData::collection($childUnits));
             }
-            dump(['unitid' => $rootUnit->unitid, 'unitname' => $rootUnit->unitname, 'unitcode' => $rootUnit->unitcode, 'unitnameshort' => $rootUnit->unitnameshort, 'unitparentid' => $rootUnit->unitparentid, 'unitsortorder' => $rootUnit->unitsortorder, 'childunits' => SFRUnitData::collection($childUnits)]);
+            dump(SFRUnitData::from($unitData));
         }
 
         return view('osfrportal::admin.docs.reports.byunits');
