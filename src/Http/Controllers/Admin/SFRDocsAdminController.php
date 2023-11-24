@@ -239,6 +239,7 @@ class SFRDocsAdminController extends Controller
 
     public function reportsShowByUnits()
     {
+        $unitsCollection = collect();
         $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->get();
         foreach ($allRootUnits as $rootUnit) {
             $unitData = [
@@ -263,9 +264,9 @@ class SFRDocsAdminController extends Controller
                 }
                 $unitData = Arr::prepend($unitData, SFRUnitData::collection($childUnits), 'childunits');
             }
-            dump(SFRUnitData::from($unitData));
+            $unitsCollection->push(SFRUnitData::from($unitData));
         }
 
-        return view('osfrportal::admin.docs.reports.byunits');
+        return view('osfrportal::admin.docs.reports.byunits', ['unitsCollection'=> $unitsCollection]);
     }
 }

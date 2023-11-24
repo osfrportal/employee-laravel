@@ -13,4 +13,7 @@
 @endsection
 @section('content')
     Отчет
+    @foreach ($unitsCollection as $unit)
+        @dump($unit);
+    @endforeach
 @endsection
