@@ -233,15 +233,19 @@ class SFRDocsAdminController extends Controller
     //ОТЧЕТЫ
     public function reportsShowList()
     {
-        $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->get();
-        foreach ($allRootUnits as $rootUnit) {
-            dump(['unitid' => $rootUnit->unitid, 'unitname' => $rootUnit->unitname, 'unitcode' => $rootUnit->unitcode]);
-        }
         return view('osfrportal::admin.docs.reports.reports_index');
     }
 
     public function reportsShowByUnits()
     {
+        $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->get();
+        foreach ($allRootUnits as $rootUnit) {
+            dump(['unitid' => $rootUnit->unitid, 'unitname' => $rootUnit->unitname, 'unitcode' => $rootUnit->unitcode]);
+            if (!is_null($rootUnit->children)) {
+                dump($rootUnit->children);
+            }
+        }
+
         return view('osfrportal::admin.docs.reports.byunits');
     }
 }
