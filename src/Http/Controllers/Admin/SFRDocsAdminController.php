@@ -246,7 +246,7 @@ class SFRDocsAdminController extends Controller
                 foreach ($rootUnit->children as $childUnit) {
                     $childUnits[] = ['unitid' => $childUnit->unitid, 'unitname' => $childUnit->unitname, 'unitcode' => $childUnit->unitcode];
                 }
-                dump($childUnits);
+                dump(SFRUnitData::collection($childUnits));
             }
         }
 
