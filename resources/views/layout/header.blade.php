@@ -26,6 +26,8 @@
 
     <link href="{{ asset('osfrportal/css/apexcharts/apexcharts.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('osfrportal/css/quill/quill.core.css') }}" rel="stylesheet">
+
     <meta name="theme-color" content="#712cf9">
 
     @stack('header-css')

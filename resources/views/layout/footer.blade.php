@@ -10,6 +10,8 @@
 <script type="text/javascript" src="{{ asset('osfrportal/js/apexcharts/apexcharts.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/chartjs/chart.umd.min.js') }}"></script>
 
+<script type="text/javascript" src="{{ asset('osfrportal/js/quill/quill.min.js') }}"></script>
+
 <script type="text/javascript">
     //default for chart.js
     //Chart.defaults.interaction.mode = 'nearest';
