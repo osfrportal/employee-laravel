@@ -240,9 +240,13 @@ class SFRDocsAdminController extends Controller
     {
         $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->get();
         foreach ($allRootUnits as $rootUnit) {
+            $childUnits = [];
             dump(['unitid' => $rootUnit->unitid, 'unitname' => $rootUnit->unitname, 'unitcode' => $rootUnit->unitcode]);
-            if (!is_null($rootUnit->children)) {
-                dump($rootUnit->children);
+            if (count($rootUnit->children) > 0) {
+                foreach ($rootUnit->children as $childUnit) {
+                    $childUnits[] = ['unitid' => $childUnit->unitid, 'unitname' => $childUnit->unitname, 'unitcode' => $childUnit->unitcode];
+                }
+                dump($childUnits);
             }
         }
 
