@@ -6,8 +6,10 @@ use Osfrportal\OsfrportalLaravel\Models\SfrDocGroups;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocTypes;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
 use Osfrportal\OsfrportalLaravel\Models\SfrFiles;
+use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
+use Osfrportal\OsfrportalLaravel\Data\SFRUnitData;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -231,6 +233,10 @@ class SFRDocsAdminController extends Controller
     //ОТЧЕТЫ
     public function reportsShowList()
     {
+        $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->get();
+        foreach ($allRootUnits as $rootUnit) {
+            dump(['unitid' => $rootUnit->unitid, 'unitname' => $rootUnit->unitname, 'unitcode' => $rootUnit->unitcode]);
+        }
         return view('osfrportal::admin.docs.reports.reports_index');
     }
 
