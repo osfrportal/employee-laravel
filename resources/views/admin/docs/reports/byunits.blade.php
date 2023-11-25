@@ -12,6 +12,6 @@
     </div>
 @endsection
 @section('content')
-    Отчет
     @include('osfrportal::admin.docs.reports.select2units')
+    @include('osfrportal::admin.docs.reports.select2docs')
 @endsection
