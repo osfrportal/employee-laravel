@@ -12,6 +12,14 @@
     </div>
 @endsection
 @section('content')
+<div class="mb-3">
+    <label for="js-all-sfrunits-ajax" class="form-label">Подразделения</label>
     @include('osfrportal::admin.docs.reports.select2units')
+  </div>
+  <div class="mb-3">
+    <label for="js-all-sfrdocs-ajax" class="form-label">Документы</label>
     @include('osfrportal::admin.docs.reports.select2docs')
+  </div>
+
+
 @endsection
