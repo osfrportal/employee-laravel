@@ -16,7 +16,7 @@ class Select2UnitsAllCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection,
+            'results' => $this->collection,
         ];
     }
 }
