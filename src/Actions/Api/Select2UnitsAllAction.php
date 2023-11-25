@@ -17,7 +17,7 @@ class Select2UnitsAllAction
     {
         $this->sfr_units_select2_collection = new Collection();
 
-        SfrUnits::withCount('persons')->get()->each(function ($item, $key) {
+        SfrUnits::all()->each(function ($item, $key) {
             $tmp_arr = [
                 'id' => $item->unitid,
                 'text' => $item->unitname,

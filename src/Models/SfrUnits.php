@@ -19,20 +19,21 @@ class SfrUnits extends Model
         'unitcode',
         'unitparentid'
     ];
+    protected $withCount = ['persons'];
 
     /**
      * Дочерние подразделения
      */
     public function children()
     {
-        return $this->hasMany(SfrUnits::class, 'unitparentid')->orderBy('unitname', 'ASC')->orderBy('unitsortorder', 'ASC')->withCount('persons');
+        return $this->hasMany(SfrUnits::class, 'unitparentid')->orderBy('unitname', 'ASC')->orderBy('unitsortorder', 'ASC');
     }
     /**
      * Родительское подразделение
      */
     public function parent()
     {
-        return $this->belongsTo(SfrUnits::class, 'unitparentid')->withCount('persons');
+        return $this->belongsTo(SfrUnits::class, 'unitparentid');
     }
     /**
      * Работники подразделения
