@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="withChildUnits">
+                <input class="form-check-input" type="checkbox" role="switch" id="withChildUnits" name="withChildUnits">
                 <label class="form-check-label" for="withChildUnits">Включая подчиненные подразделения</label>
             </div>
         </div>
