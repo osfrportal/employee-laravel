@@ -6,7 +6,7 @@ use Lorisleiva\Actions\Concerns\AsAction;
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Http\Resources\SFRSelect2UnitsAllCollection;
 use Illuminate\Support\Collection;
-
+use Illuminate\Support\Arr;
 
 class Select2UnitsAllAction
 {
@@ -18,14 +18,11 @@ class Select2UnitsAllAction
         $this->sfr_units_select2_collection = new Collection();
 
         SfrUnits::all()->each(function ($item, $key) {
-            $tmp_arr = [
-                'id' => $item->unitid,
-                'text' => $item->unitname,
-            ];
+            $tmp_arr = [];
+            $tmp_arr = Arr::add($tmp_arr, 'id', $item->unitid);
+            $tmp_arr = Arr::add($tmp_arr, 'text', $item->unitname);
             if ($item->persons_count < 1) {
-                $tmp_arr = [
-                    'disabled' => true,
-                ];
+                $tmp_arr = Arr::add($tmp_arr, 'disabled', true);
             }
             $this->sfr_units_select2_collection->push($tmp_arr);
         });
