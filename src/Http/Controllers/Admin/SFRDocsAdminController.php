@@ -239,10 +239,12 @@ class SFRDocsAdminController extends Controller
         return view('osfrportal::admin.docs.reports.reports_index');
     }
 
-    public function reportsShowByUnits()
+    public function reportsShowByUnits(Request $request)
     {
-        $htest = HierarchyUnitsListAction::run();
-        dump($htest);
+        if ($request->has('units')) {
+            $htest = HierarchyUnitsListAction::run($request->input('units'));
+            dump($htest);
+        }
         return view('osfrportal::admin.docs.reports.byunits');
     }
 }
