@@ -41,6 +41,7 @@
     $.fn.select2.defaults.set('theme', 'bootstrap-5');
     $.fn.select2.defaults.set('language', 'ru');
     $.fn.select2.defaults.set('minimumInputLength', 4);
+    $.fn.select2.defaults.set('allowClear', true);
 
     $.getJSON('/osfrportal/lang/apexcharts-ru.json', function(data) {
         var ru = data;
