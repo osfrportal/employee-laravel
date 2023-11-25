@@ -10,7 +10,7 @@
                 ajax: {
                     dataType: 'json',
                     url: function(params) {
-                        return "{{ route('osfrapi.osfrportal.admin.units.all') }}";
+                        return "{{ route('osfrapi.osfrportal.admin.select2.units.all') }}";
                     }
                 }
             });
