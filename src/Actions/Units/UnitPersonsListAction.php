@@ -14,7 +14,7 @@ class UnitPersonsListAction
 {
     use AsAction;
     
-    public function handle($unitData) : SFRPersonData
+    public function handle($unitData) : DataCollection
     {
         $persons = [];
 
