@@ -13,6 +13,8 @@
 @endsection
 @section('content')
     Отчет
+    @include('osfrportal::admin.docs.reports.select2units')
+
     @foreach ($unitsCollection as $unit)
         @dump($unit);
     @endforeach
