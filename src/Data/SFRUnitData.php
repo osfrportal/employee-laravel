@@ -19,6 +19,7 @@ class SFRUnitData extends Data
         public ?string $unitsortorder = null,
         #[DataCollectionOf(SFRUnitData::class)]
         public ?DataCollection $childunits = null,
+        public ?int $persons_count = 0,
     ) {}
 
     public static function defValues(): SFRUnitData {
@@ -29,7 +30,8 @@ class SFRUnitData extends Data
             null,
             null,
             null,
-            null
+            null,
+            0
         );
     }
 }

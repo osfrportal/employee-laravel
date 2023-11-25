@@ -23,7 +23,9 @@ class Select2UnitsAllAction
                 'text' => $item->unitname,
                 'persons_count' => $item->persons_count,
             ];
-            $this->sfr_units_select2_collection->push($tmp_arr);
+            if ($item->persons_count > 0) {
+                $this->sfr_units_select2_collection->push($tmp_arr);
+            }
         });
         $api_data = $this->sfr_units_select2_collection->sortBy(['text'])->values()->all();
 
