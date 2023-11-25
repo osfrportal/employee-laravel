@@ -22,9 +22,12 @@ class Select2UnitsAllAction
                 'id' => $item->unitid,
                 'text' => $item->unitname,
             ];
-            if ($item->persons_count > 0) {
-                $this->sfr_units_select2_collection->push($tmp_arr);
+            if ($item->persons_count < 1) {
+                $tmp_arr = [
+                    'disabled' => true,
+                ];
             }
+            $this->sfr_units_select2_collection->push($tmp_arr);
         });
         $api_data = $this->sfr_units_select2_collection->sortBy(['text'])->values()->all();
 

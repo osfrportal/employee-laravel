@@ -37,8 +37,10 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     $.fn.select2.defaults.set('theme', 'bootstrap-5');
     $.fn.select2.defaults.set('language', 'ru');
+
     $.getJSON('/osfrportal/lang/apexcharts-ru.json', function(data) {
         var ru = data;
         Apex.chart = {
