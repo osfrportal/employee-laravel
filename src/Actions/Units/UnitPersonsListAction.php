@@ -3,19 +3,22 @@ namespace Osfrportal\OsfrportalLaravel\Actions\Units;
 
 use Lorisleiva\Actions\Concerns\AsAction;
 
-
-use Osfrportal\OsfrportalLaravel\Data\SFRUnitData;
+use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Spatie\LaravelData\DataCollection;
-
+/**
+ * Работники подразделения
+ */
 class UnitPersonsListAction
 {
     use AsAction;
-    
-    public function handle($unitData) : DataCollection
+    /**
+     * Работники подразделения
+     * @param SfrUnits $unitData
+     * @return \Spatie\LaravelData\DataCollection
+     */
+    public function handle(SfrUnits $unitData) : DataCollection
     {
         $persons = [];
 

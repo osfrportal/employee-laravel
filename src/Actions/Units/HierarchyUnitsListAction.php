@@ -25,9 +25,10 @@ class HierarchyUnitsListAction
      * @param array $unitsIds
      * @param bool $withChildren
      * @param bool $withSfrPersonData
-     * @return SFRUnitData
+     * @return Collection
      */
-    public function handle($unitsIds = [], $withChildren = true, $withSfrPersonData = false) {
+    public function handle($unitsIds = [], $withChildren = true, $withSfrPersonData = false) : Collection
+    {
         $unitsCollection = collect();
         if (is_array($unitsIds) && count($unitsIds) > 0) {
             $allRootUnits = SfrUnits::whereIn('unitid', $unitsIds)->orderBy('unitsortorder', 'ASC')->orderBy('unitname', 'ASC')->get();
@@ -35,8 +36,8 @@ class HierarchyUnitsListAction
             $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->orderBy('unitname', 'ASC')->get();
         }
         foreach ($allRootUnits as $rootUnit) {
-            $unitRootPersons = UnitPersonsListAction::run($rootUnit);
-            dump($unitRootPersons);
+            $unitRootPersons = ($withSfrPersonData ? UnitPersonsListAction::run($rootUnit) : []);
+
             $unitData = [
                 'unitid' => $rootUnit->unitid,
                 'unitname' => $rootUnit->unitname,
@@ -51,7 +52,7 @@ class HierarchyUnitsListAction
                 $childUnits = [];
                 if (count($rootUnit->children) > 0) {
                     foreach ($rootUnit->children as $childUnit) {
-                        $unitChildPersons = UnitPersonsListAction::run($childUnit);
+                        $unitChildPersons = ($withSfrPersonData ? UnitPersonsListAction::run($childUnit) : []);
 
                         $childUnits[] = [
                             'unitid' => $childUnit->unitid,
