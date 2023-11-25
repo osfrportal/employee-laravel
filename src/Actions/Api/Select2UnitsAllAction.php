@@ -17,7 +17,7 @@ class Select2UnitsAllAction
         $this->sfr_units_select2_collection = new Collection();
 
         SfrUnits::all()->each(function ($item, $key) {
-            dump($item)
+            dump($item);
             $tmp_arr = [
                 'id' => $item->unitid,
                 'text' => $item->unitname,
