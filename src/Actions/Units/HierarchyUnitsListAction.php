@@ -35,7 +35,6 @@ class HierarchyUnitsListAction
                 'unitparentid' => $rootUnit->unitparentid,
                 'unitsortorder' => $rootUnit->unitsortorder,
                 'persons_count' => $rootUnit->persons_count,
-                'children_count' => $rootUnit->children_count,
             ];
             $childUnits = [];
             if (count($rootUnit->children) > 0) {
