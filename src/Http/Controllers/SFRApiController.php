@@ -18,6 +18,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrDocTypes;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocGroups;
 use Osfrportal\OsfrportalLaravel\Models\SfrSignatures;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
+use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
@@ -34,6 +35,7 @@ class SFRApiController extends Controller
 {
     public function apiSelect2UnitsAll(Request $request)
     {
+        dump(SfrUnits::all());
         $data = Select2UnitsAllAction::make();
         return response()->json(data: $data, options: JSON_UNESCAPED_UNICODE);
     }
