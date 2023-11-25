@@ -20,11 +20,11 @@ class UnitPersonsListAction
      */
     public function handle(SfrUnits $unitData) : DataCollection
     {
-        $exceptProps = [
+        $exceptProps = implode(', ',[
             'persondata_snils',
             'persondata_inn',
             'persondata_birthday',
-        ];
+        ]);
         $persons = [];
 
         $pers = $unitData->SfrPersons;
