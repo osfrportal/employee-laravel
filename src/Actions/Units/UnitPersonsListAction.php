@@ -19,7 +19,7 @@ class UnitPersonsListAction
     {
         $persons = [];
 
-        $pers = $unitData->SfrPersons();
+        $pers = $unitData->SfrPersons;
         foreach ($pers as $person) {
             $persons[] = SFRPersonData::fromModel($person);
         }
