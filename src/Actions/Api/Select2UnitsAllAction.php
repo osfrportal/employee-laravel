@@ -4,6 +4,7 @@ namespace Osfrportal\OsfrportalLaravel\Actions\Api;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
+use Osfrportal\OsfrportalLaravel\Http\Resources\SFRSelect2UnitsAllCollection;
 use Illuminate\Support\Collection;
 
 
@@ -23,9 +24,9 @@ class Select2UnitsAllAction
             ];
             $this->sfr_units_select2_collection->push($tmp_arr);
         });
-        $api_data['results'] = $this->sfr_units_select2_collection->sortBy(['text'])->values()->all();
+        $api_data = $this->sfr_units_select2_collection->sortBy(['text'])->values()->all();
 
-        return $api_data;
+        return new SFRSelect2UnitsAllCollection($api_data);
     }
 
 }
