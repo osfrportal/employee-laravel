@@ -20,6 +20,8 @@ use Yajra\DataTables\DataTables;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use Osfrportal\OsfrportalLaravel\Actions\Units\HierarchyUnitsListAction;
+
 class SFRDocsAdminController extends Controller
 {
     private $apiDocsGroupsSelect2Collection;
@@ -239,36 +241,8 @@ class SFRDocsAdminController extends Controller
 
     public function reportsShowByUnits()
     {
-        $unitsCollection = collect();
-        $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->withCount('persons')->orderBy('unitname', 'ASC')->get();
-        foreach ($allRootUnits as $rootUnit) {
-            $unitData = [
-                'unitid' => $rootUnit->unitid,
-                'unitname' => $rootUnit->unitname,
-                'unitcode' => $rootUnit->unitcode,
-                'unitnameshort' => $rootUnit->unitnameshort,
-                'unitparentid' => $rootUnit->unitparentid,
-                'unitsortorder' => $rootUnit->unitsortorder,
-                'persons_count' => $rootUnit->persons_count,
-            ];
-            $childUnits = [];
-            if (count($rootUnit->children) > 0) {
-                foreach ($rootUnit->children as $childUnit) {
-                    $childUnits[] = [
-                        'unitid' => $childUnit->unitid,
-                        'unitname' => $childUnit->unitname,
-                        'unitcode' => $childUnit->unitcode,
-                        'unitnameshort' => $childUnit->unitnameshort,
-                        'unitparentid' => $childUnit->unitparentid,
-                        'unitsortorder' => $childUnit->unitsortorder,
-                        'persons_count' => $childUnit->persons_count,
-                    ];
-                }
-                $unitData = Arr::prepend($unitData, SFRUnitData::collection($childUnits), 'childunits');
-            }
-            $unitsCollection->push(SFRUnitData::from($unitData));
-        }
-
-        return view('osfrportal::admin.docs.reports.byunits', ['unitsCollection'=> $unitsCollection]);
+        $htest = HierarchyUnitsListAction::run(['e2bd9733-e0cf-4925-83ec-4b674613ab68','d857af8d-a1ba-4fce-87ff-b83393e38c67']);
+        dump($htest);
+        return view('osfrportal::admin.docs.reports.byunits');
     }
 }
