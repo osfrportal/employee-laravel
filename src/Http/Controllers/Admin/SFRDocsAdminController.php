@@ -258,7 +258,9 @@ class SFRDocsAdminController extends Controller
         $htest = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
         //dump($htest);
         foreach ($htest as $ht) {
-            dump($ht->unitpersons);
+            foreach ($ht->unitpersons as $pers) {
+                dump($pers);
+            }
         }
 
         return view('osfrportal::admin.docs.reports.byunits');
