@@ -35,7 +35,7 @@ class SFRApiController extends Controller
 {
     public function apiSelect2UnitsAll(Request $request)
     {
-        $data = Select2UnitsAllAction::make();
+        $data = Select2UnitsAllAction::run();
         return response()->json(data: $data, options: JSON_UNESCAPED_UNICODE);
     }
 }
