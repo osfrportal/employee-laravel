@@ -19,7 +19,7 @@ class SfrUnits extends Model
         'unitcode',
         'unitparentid'
     ];
-    protected $withCount = ['persons', 'children'];
+    protected $withCount = ['persons'];
 
     /**
      * Дочерние подразделения

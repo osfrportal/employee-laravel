@@ -18,11 +18,11 @@ class HierarchyUnitsListAction
      */
     public function handle($unitsIds = []) {
         $unitsCollection = collect();
-        //if (is_array($unitsIds) && count($unitsIds) > 0) {
-          //  $allRootUnits = SfrUnits::whereIn('unitid', $unitsIds)->orderBy('unitsortorder', 'ASC')->orderBy('unitname', 'ASC')->get();
-        //} else {
+        if (is_array($unitsIds) && count($unitsIds) > 0) {
+            $allRootUnits = SfrUnits::whereIn('unitid', $unitsIds)->orderBy('unitsortorder', 'ASC')->orderBy('unitname', 'ASC')->get();
+        } else {
             $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->orderBy('unitname', 'ASC')->get();
-        //}
+        }
         foreach ($allRootUnits as $rootUnit) {
             $unitData = [
                 'unitid' => $rootUnit->unitid,
