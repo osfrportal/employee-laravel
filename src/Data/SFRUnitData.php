@@ -20,6 +20,8 @@ class SFRUnitData extends Data
         #[DataCollectionOf(SFRUnitData::class)]
         public ?DataCollection $childunits = null,
         public ?int $persons_count = 0,
+        #[DataCollectionOf(SFRPersonData::class)]
+        public ?DataCollection $unitpersons = null,
     ) {}
 
     public static function defValues(): SFRUnitData {
@@ -31,7 +33,8 @@ class SFRUnitData extends Data
             null,
             null,
             null,
-            0
+            0,
+            null
         );
     }
 }
