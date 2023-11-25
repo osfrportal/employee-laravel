@@ -246,6 +246,8 @@ class SFRDocsAdminController extends Controller
         $sfrdocs = [];
         $withChildUnits = false;
 
+        $personsForReport = [];
+
         if ($request->has('sfrunits')) {
             $sfrunits = $request->input('sfrunits');
         }
@@ -255,20 +257,21 @@ class SFRDocsAdminController extends Controller
         if ($request->has('withChildUnits')) {
             $withChildUnits = $request->input('withChildUnits') ? true : false;
         }
-        $htest = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
-        dump($htest);
-        foreach ($htest as $ht) {
-            foreach ($ht->unitpersons as $pers) {
-                dump($pers);
+        $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
+        //dump($htest);
+        foreach ($hierarchyUnits as $unit) {
+            foreach ($unit->unitpersons as $unitRootPerson) {
+                $personsForReport[] = $unitRootPerson;
             }
-            if (!is_null($ht->childunits)) {
-                foreach ($ht->childunits as $htchild) {
-                    foreach ($htchild->unitpersons as $perschild) {
-                        dump($perschild);
+            if (!is_null($unit->childunits)) {
+                foreach ($unit->childunits as $unitChild) {
+                    foreach ($unitChild->unitpersons as $unitChildPerson) {
+                        $personsForReport[] = $unitChildPerson;
                     }
                 }
             }
         }
+        dump($personsForReport);
 
         return view('osfrportal::admin.docs.reports.byunits');
     }
