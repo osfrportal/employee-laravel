@@ -241,7 +241,7 @@ class SFRDocsAdminController extends Controller
 
     public function reportsShowByUnits()
     {
-        $htest = HierarchyUnitsListAction::run(['e2bd9733-e0cf-4925-83ec-4b674613ab68','d857af8d-a1ba-4fce-87ff-b83393e38c67']);
+        $htest = HierarchyUnitsListAction::run();
         dump($htest);
         return view('osfrportal::admin.docs.reports.byunits');
     }
