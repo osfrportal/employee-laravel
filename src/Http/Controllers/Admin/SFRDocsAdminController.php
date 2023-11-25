@@ -248,7 +248,8 @@ class SFRDocsAdminController extends Controller
                 'unitcode' => $rootUnit->unitcode,
                 'unitnameshort' => $rootUnit->unitnameshort,
                 'unitparentid' => $rootUnit->unitparentid,
-                'unitsortorder' => $rootUnit->unitsortorder
+                'unitsortorder' => $rootUnit->unitsortorder,
+                'persons_count' => $rootUnit->persons_count,
             ];
             $childUnits = [];
             if (count($rootUnit->children) > 0) {
@@ -259,7 +260,8 @@ class SFRDocsAdminController extends Controller
                         'unitcode' => $childUnit->unitcode,
                         'unitnameshort' => $childUnit->unitnameshort,
                         'unitparentid' => $childUnit->unitparentid,
-                        'unitsortorder' => $childUnit->unitsortorder
+                        'unitsortorder' => $childUnit->unitsortorder,
+                        'persons_count' => $childUnit->persons_count,
                     ];
                 }
                 $unitData = Arr::prepend($unitData, SFRUnitData::collection($childUnits), 'childunits');
