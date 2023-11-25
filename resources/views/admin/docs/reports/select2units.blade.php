@@ -8,6 +8,7 @@
             $('#js-all-sfrunits-ajax').select2({
                 ajax: {
                     dataType: 'json',
+                    delay: 500,
                     url: function(params) {
                         return "{{ route('osfrapi.osfrportal.admin.select2.units.all') }}";
                     }
