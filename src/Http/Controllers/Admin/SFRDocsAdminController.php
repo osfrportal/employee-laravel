@@ -261,6 +261,13 @@ class SFRDocsAdminController extends Controller
             foreach ($ht->unitpersons as $pers) {
                 dump($pers);
             }
+            if (!is_null($ht->childunits)) {
+                foreach ($ht->childunits as $htchild) {
+                    foreach ($htchild->unitpersons as $perschild) {
+                        dump($perschild);
+                    }
+                }
+            }
         }
 
         return view('osfrportal::admin.docs.reports.byunits');
