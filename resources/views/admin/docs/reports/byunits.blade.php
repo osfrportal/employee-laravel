@@ -30,4 +30,8 @@
 
         <button type="submit" class="btn btn-primary">Сформировать ведомость</button>
     </form>
+
+    <div class="m-3">
+        @dump($personsForReport)
+    </div>
 @endsection

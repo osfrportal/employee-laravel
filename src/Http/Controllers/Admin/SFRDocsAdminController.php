@@ -272,10 +272,7 @@ class SFRDocsAdminController extends Controller
             }
         }
         //dump($personsForReport);
-        foreach ($personsForReport as $personTest) {
-            dump($personTest->persondata_snils);
-        }
 
-        return view('osfrportal::admin.docs.reports.byunits');
+        return view('osfrportal::admin.docs.reports.byunits', ['personsForReport'=> $personsForReport]);
     }
 }
