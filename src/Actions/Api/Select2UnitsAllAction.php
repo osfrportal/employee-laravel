@@ -17,7 +17,6 @@ class Select2UnitsAllAction
         $this->sfr_units_select2_collection = new Collection();
 
         SfrUnits::all()->each(function ($item, $key) {
-            dump($item);
             $tmp_arr = [
                 'id' => $item->unitid,
                 'text' => $item->unitname,
@@ -25,9 +24,8 @@ class Select2UnitsAllAction
             $this->sfr_units_select2_collection->push($tmp_arr);
         });
         $api_data['results'] = $this->sfr_units_select2_collection->sortBy(['text'])->values()->all();
-        //return response()->json(data: $api_data, options: JSON_UNESCAPED_UNICODE);
-        dump($api_data);
-        //return $api_data;
+
+        return $api_data;
     }
 
 }
