@@ -243,7 +243,7 @@ class SFRDocsAdminController extends Controller
     {
         $sfrunits = [];
         $sfrdocs = [];
-        $withChildrenUnits = false;
+        $withChildUnits = false;
 
         dump($request->all());
 
@@ -254,9 +254,9 @@ class SFRDocsAdminController extends Controller
             $sfrdocs = $request->input('sfrdocs');
         }
         if ($request->has('withChildrenUnits')) {
-            $withChildrenUnits = $request->input('withChildrenUnits');
+            $withChildUnits = $request->input('withChildUnits');
         }
-        $htest = HierarchyUnitsListAction::run($sfrunits, $withChildrenUnits);
+        $htest = HierarchyUnitsListAction::run($sfrunits, $withChildUnits);
         dump($htest);
 
         return view('osfrportal::admin.docs.reports.byunits');
