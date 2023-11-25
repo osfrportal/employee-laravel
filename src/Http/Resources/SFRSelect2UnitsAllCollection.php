@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SFRSelect2UnitsAllCollection extends ResourceCollection
 {
+    public $preserveKeys = true;
+
     /**
      * Transform the resource into an array.
      *
