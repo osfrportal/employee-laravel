@@ -240,7 +240,7 @@ class SFRDocsAdminController extends Controller
     public function reportsShowByUnits()
     {
         $unitsCollection = collect();
-        $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->withCount('persons')->with('children')->orderBy('unitname', 'ASC')->get();
+        $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->withCount('persons')->orderBy('unitname', 'ASC')->get();
         foreach ($allRootUnits as $rootUnit) {
             $unitData = [
                 'unitid' => $rootUnit->unitid,

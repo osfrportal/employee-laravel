@@ -21,7 +21,6 @@ class Select2UnitsAllAction
             $tmp_arr = [
                 'id' => $item->unitid,
                 'text' => $item->unitname,
-                'persons_count' => $item->persons_count,
             ];
             if ($item->persons_count > 0) {
                 $this->sfr_units_select2_collection->push($tmp_arr);
