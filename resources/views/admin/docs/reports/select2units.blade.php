@@ -1,6 +1,6 @@
-<select class="form-select form-select-sm mb-3" id="js-all-sfrunits-ajax" name="sfrunits"
+<select class="form-select form-select-sm mb-3" id="js-all-sfrunits-ajax" name="sfrunits[]"
     data-placeholder="Выберите подразделение" data-allow-clear="true" data-language="ru"
-    data-selection-css-class="select2--small" data-dropdown-css-class="select2--small"></select>
+    data-selection-css-class="select2--small" data-dropdown-css-class="select2--small" multiple="multiple"></select>
 
 @push('footer-scripts')
     <script type="module">
