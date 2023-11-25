@@ -19,12 +19,9 @@ class HierarchyUnitsListAction
 
     /**
      * Возвращает иерархическую структуру SFRUnitData с коллекцией дочерними подразделениями
-     * Если параметр unitsIds передан true - выводится информация по запрошенным юнитам.
-     * Если параметр withChildren передан true - выводится структура с дочерними подразделениями.
-     * Если параметр withSfrPersonData передан true - выводится информация по работникам подразделения
-     * @param array $unitsIds
-     * @param bool $withChildren
-     * @param bool $withSfrPersonData
+     * @param array $unitsIds Если параметр true - выводится информация по запрошенным юнитам.
+     * @param bool $withChildren Если параметр true - выводится структура с дочерними подразделениями.
+     * @param bool $withSfrPersonData Если параметр true - выводится информация по работникам подразделения
      * @return Collection
      */
     public function handle($unitsIds = [], $withChildren = true, $withSfrPersonData = false) : Collection

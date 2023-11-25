@@ -241,6 +241,7 @@ class SFRDocsAdminController extends Controller
 
     public function reportsShowByUnits(Request $request)
     {
+        $withSfrPersonData = true;
         $sfrunits = [];
         $sfrdocs = [];
         $withChildUnits = false;
@@ -254,7 +255,7 @@ class SFRDocsAdminController extends Controller
         if ($request->has('withChildUnits')) {
             $withChildUnits = $request->input('withChildUnits') ? true : false;
         }
-        $htest = HierarchyUnitsListAction::run($sfrunits, $withChildUnits);
+        $htest = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
         dump($htest);
 
         return view('osfrportal::admin.docs.reports.byunits');
