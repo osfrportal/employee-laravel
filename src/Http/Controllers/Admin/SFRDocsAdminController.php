@@ -243,8 +243,6 @@ class SFRDocsAdminController extends Controller
     {
         $sfrunits = [];
         $sfrdocs = [];
-        $query = $request->query();
-        dump($query);
         if ($request->has('sfrunits')) {
             $sfrunits = $request->input('sfrunits');
         }

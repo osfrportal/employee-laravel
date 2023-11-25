@@ -19,7 +19,7 @@ class HierarchyUnitsListAction
      * @param array $unitsIds
      * @return SFRUnitData
      */
-    public function handle($unitsIds = []) {
+    public function handle($unitsIds = [], $withChildren = true) {
         $unitsCollection = collect();
         if (is_array($unitsIds) && count($unitsIds) > 0) {
             $allRootUnits = SfrUnits::whereIn('unitid', $unitsIds)->orderBy('unitsortorder', 'ASC')->orderBy('unitname', 'ASC')->get();
@@ -36,20 +36,22 @@ class HierarchyUnitsListAction
                 'unitsortorder' => $rootUnit->unitsortorder,
                 'persons_count' => $rootUnit->persons_count,
             ];
-            $childUnits = [];
-            if (count($rootUnit->children) > 0) {
-                foreach ($rootUnit->children as $childUnit) {
-                    $childUnits[] = [
-                        'unitid' => $childUnit->unitid,
-                        'unitname' => $childUnit->unitname,
-                        'unitcode' => $childUnit->unitcode,
-                        'unitnameshort' => $childUnit->unitnameshort,
-                        'unitparentid' => $childUnit->unitparentid,
-                        'unitsortorder' => $childUnit->unitsortorder,
-                        'persons_count' => $childUnit->persons_count,
-                    ];
+            if ($withChildren) {
+                $childUnits = [];
+                if (count($rootUnit->children) > 0) {
+                    foreach ($rootUnit->children as $childUnit) {
+                        $childUnits[] = [
+                            'unitid' => $childUnit->unitid,
+                            'unitname' => $childUnit->unitname,
+                            'unitcode' => $childUnit->unitcode,
+                            'unitnameshort' => $childUnit->unitnameshort,
+                            'unitparentid' => $childUnit->unitparentid,
+                            'unitsortorder' => $childUnit->unitsortorder,
+                            'persons_count' => $childUnit->persons_count,
+                        ];
+                    }
+                    $unitData = Arr::prepend($unitData, SFRUnitData::collection($childUnits), 'childunits');
                 }
-                $unitData = Arr::prepend($unitData, SFRUnitData::collection($childUnits), 'childunits');
             }
             $unitsCollection->push(SFRUnitData::from($unitData));
         }
