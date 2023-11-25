@@ -20,16 +20,11 @@ class UnitPersonsListAction
      */
     public function handle(SfrUnits $unitData) : DataCollection
     {
-        $exceptProps = implode(', ',[
-            'persondata_snils',
-            'persondata_inn',
-            'persondata_birthday',
-        ]);
         $persons = [];
 
         $pers = $unitData->SfrPersons;
         foreach ($pers as $person) {
-            $persons[] = SFRPersonData::fromModel($person)->exclude($exceptProps);
+            $persons[] = SFRPersonData::fromModel($person);
         }
 
         return SFRPersonData::collection($persons);
