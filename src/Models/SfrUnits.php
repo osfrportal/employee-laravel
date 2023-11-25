@@ -24,7 +24,7 @@ class SfrUnits extends Model
      */
     public function children()
     {
-        return $this->hasMany(SfrUnits::class, 'unitparentid')->orderBy('unitname', 'ASC')->orderBy('unitsortorder', 'ASC');
+        return $this->hasMany(SfrUnits::class, 'unitparentid')->orderBy('unitname', 'ASC')->orderBy('unitsortorder', 'ASC')->withCount('persons');
     }
     /**
      * Родительское подразделение
