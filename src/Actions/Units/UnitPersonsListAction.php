@@ -29,7 +29,7 @@ class UnitPersonsListAction
 
         $pers = $unitData->SfrPersons;
         foreach ($pers as $person) {
-            $persons[] = SFRPersonData::fromModel($person)->except($exceptProps);
+            $persons[] = SFRPersonData::fromModel($person)->exclude($exceptProps);
         }
 
         return SFRPersonData::collection($persons);
