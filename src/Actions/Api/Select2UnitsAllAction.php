@@ -4,14 +4,13 @@ namespace Osfrportal\OsfrportalLaravel\Actions\Api;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
-use Osfrportal\OsfrportalLaravel\Http\Resources\Select2UnitsAllCollection;
 use Illuminate\Support\Collection;
 
 
 class Select2UnitsAllAction
 {
     use AsAction;
-    private $sfr_units_select2_collection;
+    public $sfr_units_select2_collection;
 
     public function handle()
     {
@@ -25,7 +24,8 @@ class Select2UnitsAllAction
         });
         $api_data['results'] = $this->sfr_units_select2_collection->sortBy(['text'])->values()->all();
         //return response()->json(data: $api_data, options: JSON_UNESCAPED_UNICODE);
-        return $api_data;
+        dump($api_data);
+        //return $api_data;
     }
 
 }
