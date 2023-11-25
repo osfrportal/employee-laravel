@@ -19,6 +19,7 @@ class SfrUnits extends Model
         'unitcode',
         'unitparentid'
     ];
+
     /**
      * Дочерние подразделения
      */
@@ -31,7 +32,7 @@ class SfrUnits extends Model
      */
     public function parent()
     {
-        return $this->belongsTo(SfrUnits::class, 'unitparentid');
+        return $this->belongsTo(SfrUnits::class, 'unitparentid')->withCount('persons');
     }
     /**
      * Работники подразделения
