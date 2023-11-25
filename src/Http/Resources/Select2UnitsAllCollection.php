@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class Select2UnitsAllCollection extends ResourceCollection
 {
+    public $collects = SfrUnits::class;
     /**
      * Transform the resource collection into an array.
      *
