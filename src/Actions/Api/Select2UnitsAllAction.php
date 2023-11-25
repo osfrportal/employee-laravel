@@ -14,7 +14,7 @@ class Select2UnitsAllAction
     public function handle()
     {
         $clt = new Select2UnitsAllCollection(SfrUnits::all());
-        dump($clt);
+        return $clt;
     }
 
 }
