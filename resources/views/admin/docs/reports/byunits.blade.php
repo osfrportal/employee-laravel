@@ -18,6 +18,12 @@
             @include('osfrportal::admin.docs.reports.select2units')
         </div>
         <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="withChildUnits">
+                <label class="form-check-label" for="withChildUnits">Включая подчиненные подразделения</label>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="js-all-sfrdocs-ajax" class="form-label">Документы</label>
             @include('osfrportal::admin.docs.reports.select2docs')
         </div>
