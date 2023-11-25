@@ -8,7 +8,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFROtrsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\PhoneController;
-use Osfrportal\OsfrportalLaravel\Http\Controllers\SfrDocsController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRApiController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCertsAdminController;
 
 //'prefix' => 'api/osfr/v1/osfrportal/admin',
@@ -32,6 +32,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('docs')->name('docs.')->controller(SFRDocsAdminController::class)->group(function () {
             Route::get('/groups', 'apiSelect2ShowDocsGroups')->name('groups_all');
             Route::get('/types', 'apiSelect2ShowDocsTypes')->name('types_all');
+        });
+        Route::prefix('units')->name('units.')->controller(SFRApiController::class)->group(function () {
+            Route::get('/', 'apiSelect2UnitsAll')->name('all');
         });
     });
 

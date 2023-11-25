@@ -243,22 +243,22 @@ class SFRDocsAdminController extends Controller
         $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->get();
         foreach ($allRootUnits as $rootUnit) {
             $unitData = [
-                'unitid' => $rootUnit->unitid, 
-                'unitname' => $rootUnit->unitname, 
-                'unitcode' => $rootUnit->unitcode, 
-                'unitnameshort' => $rootUnit->unitnameshort, 
-                'unitparentid' => $rootUnit->unitparentid, 
+                'unitid' => $rootUnit->unitid,
+                'unitname' => $rootUnit->unitname,
+                'unitcode' => $rootUnit->unitcode,
+                'unitnameshort' => $rootUnit->unitnameshort,
+                'unitparentid' => $rootUnit->unitparentid,
                 'unitsortorder' => $rootUnit->unitsortorder
             ];
             $childUnits = [];
             if (count($rootUnit->children) > 0) {
                 foreach ($rootUnit->children as $childUnit) {
                     $childUnits[] = [
-                        'unitid' => $childUnit->unitid, 
-                        'unitname' => $childUnit->unitname, 
-                        'unitcode' => $childUnit->unitcode, 
-                        'unitnameshort' => $childUnit->unitnameshort, 
-                        'unitparentid' => $childUnit->unitparentid, 
+                        'unitid' => $childUnit->unitid,
+                        'unitname' => $childUnit->unitname,
+                        'unitcode' => $childUnit->unitcode,
+                        'unitnameshort' => $childUnit->unitnameshort,
+                        'unitparentid' => $childUnit->unitparentid,
                         'unitsortorder' => $childUnit->unitsortorder
                     ];
                 }
