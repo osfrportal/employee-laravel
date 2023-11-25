@@ -241,6 +241,8 @@ class SFRDocsAdminController extends Controller
 
     public function reportsShowByUnits(Request $request)
     {
+        $query = $request->query();
+        dump($query);
         if ($request->has('units')) {
             $htest = HierarchyUnitsListAction::run($request->input('units'));
             dump($htest);
