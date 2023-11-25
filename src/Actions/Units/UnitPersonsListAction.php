@@ -9,6 +9,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Spatie\LaravelData\DataCollection;
 
 class UnitPersonsListAction
 {
