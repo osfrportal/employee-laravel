@@ -48,4 +48,8 @@ class SfrUnits extends Model
         ];
         return $this->hasManyThrough(SfrPerson::class, SfrEmpUnit::class, 'unitid', 'pid', 'unitid', 'pid')->with($with_relations);
     }
+    public function persons()
+    {
+        return $this->hasManyThrough(SfrPerson::class, SfrEmpUnit::class, 'unitid', 'pid', 'unitid', 'pid');
+    }
 }
