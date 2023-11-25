@@ -256,7 +256,7 @@ class SFRDocsAdminController extends Controller
             $withChildUnits = $request->input('withChildUnits') ? true : false;
         }
         $htest = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
-        //dump($htest);
+        dump($htest);
         foreach ($htest as $ht) {
             foreach ($ht->unitpersons as $pers) {
                 dump($pers);
