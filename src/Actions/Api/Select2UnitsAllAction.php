@@ -13,7 +13,8 @@ class Select2UnitsAllAction
 
     public function handle()
     {
-        return new Select2UnitsAllCollection(SfrUnits::all());
+        $clt = new Select2UnitsAllCollection(SfrUnits::all());
+        dump($clt);
     }
 
 }
