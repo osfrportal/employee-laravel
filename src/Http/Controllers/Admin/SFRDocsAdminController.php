@@ -245,16 +245,14 @@ class SFRDocsAdminController extends Controller
         $sfrdocs = [];
         $withChildUnits = false;
 
-        dump($request->all());
-
         if ($request->has('sfrunits')) {
             $sfrunits = $request->input('sfrunits');
         }
         if ($request->has('sfrdocs')) {
             $sfrdocs = $request->input('sfrdocs');
         }
-        if ($request->has('withChildrenUnits')) {
-            $withChildUnits = $request->input('withChildUnits');
+        if ($request->has('withChildUnits')) {
+            $withChildUnits = $request->input('withChildUnits') ? true : false;
         }
         $htest = HierarchyUnitsListAction::run($sfrunits, $withChildUnits);
         dump($htest);
