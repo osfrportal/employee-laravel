@@ -244,7 +244,7 @@ class SFRDocsAdminController extends Controller
         return view('osfrportal::admin.docs.reports.byunits');
     }
 
-    public function reportsMakeByUnit(Request $request)
+    public function reportsMakeByUnits(Request $request)
     {
         $withSfrPersonData = true;
         $sfrunits = [];
