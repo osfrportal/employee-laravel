@@ -4,6 +4,7 @@ namespace Osfrportal\OsfrportalLaravel\Actions\Api;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
+use Osfrportal\OsfrportalLaravel\Models\SfrDocGroups;
 use Osfrportal\OsfrportalLaravel\Http\Resources\SFRSelect2DocsAllCollection;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
@@ -15,6 +16,10 @@ class Select2DocsAllAction
 
     public function handle()
     {
+        SfrDocGroups::with(['SfrDocs'])->get()->each(function ($item, $key) {
+            dump($item);
+        });
+
         $this->sfr_docs_select2_collection = new Collection();
 
         SfrDocs::with(['docGroup', 'docType'])->get()->each(function ($item, $key) {
