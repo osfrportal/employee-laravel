@@ -20,6 +20,8 @@ class SFRDocData extends Data
         public bool $docNeedSign = false,
         public ?string $docId = "",
         public ?int $docFileCount = 0,
+        public ?string $docTypeName = "",
+        public ?string $docGroupName = "",
     ) {
     }
     public static function rules(): array
@@ -56,6 +58,8 @@ class SFRDocData extends Data
             $docData->docNeedSign,
             $doc->docid,
             $doc->SfrDocsFiles()->count(),
+            $doc->docType,
+            $doc->docGroup,
         );
     }
 }
