@@ -20,11 +20,7 @@
             }
             console.log(context);
             $('#js-all-sfrdocs-ajax').select2({
-                ajax: {
-                    dataType: 'json',
-                    delay: 500,
-                    url: "{{ route('osfrapi.osfrportal.admin.select2.docs.allgrouped') }}",
-                }
+                data: context
             });
             $('#js-all-sfrdocs-ajax').on('select2:opening select2:closing', function(event) {
                 var $searchfield = $(this).parent().find('.select2-search__field');
