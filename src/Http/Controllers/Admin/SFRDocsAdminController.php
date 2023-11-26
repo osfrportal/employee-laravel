@@ -10,6 +10,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
 use Osfrportal\OsfrportalLaravel\Data\SFRUnitData;
+use Osfrportal\OsfrportalLaravel\Data\SFRSignData;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -291,7 +292,12 @@ class SFRDocsAdminController extends Controller
             $docDataDTO = SFRDocData::forList($doc);
             dump($docDataDTO);
             foreach ($personsForReport as $person) {
-                dump($doc->SfrDocsUserSigns($person->persondata_pid)->get());
+                
+                $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
+                foreach ($personSigns as $personSign) {
+                    $signDTO = SFRSignData::fromXML($personSign->sign_data);
+                    dump($signDTO);
+                }
             }
         }
         
