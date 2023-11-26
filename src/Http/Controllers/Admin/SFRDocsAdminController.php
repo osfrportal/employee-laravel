@@ -21,6 +21,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use Osfrportal\OsfrportalLaravel\Actions\Units\HierarchyUnitsListAction;
+use Osfrportal\OsfrportalLaravel\Http\Requests\ReportsMakeByUnitsRequest;
 
 class SFRDocsAdminController extends Controller
 {
@@ -244,7 +245,7 @@ class SFRDocsAdminController extends Controller
         return view('osfrportal::admin.docs.reports.byunits');
     }
 
-    public function reportsMakeByUnits(Request $request)
+    public function reportsMakeByUnits(ReportsMakeByUnitsRequest $request)
     {
         $withSfrPersonData = true;
         $sfrunits = [];
@@ -281,7 +282,8 @@ class SFRDocsAdminController extends Controller
         //dump($personsForReport);
         */
 
-        $this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
-        return back();
+        //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
+        //return back();
+        dump($request->all());
     }
 }
