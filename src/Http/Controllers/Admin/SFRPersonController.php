@@ -116,7 +116,7 @@ class SFRPersonController extends Controller
                 $sign = SfrSignatures::where('sign_fileid', $docFile->fileid)->where('sign_pid', $personId)->first();
 
                 if (!is_null($sign)) {
-                    $signDTO = SFRSignData::fromXML($personSign);
+                    $signDTO = SFRSignData::fromXML($sign);
 
                     $signCertValidDates = '';
                     $signCertHash = '';
