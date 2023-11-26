@@ -26,7 +26,13 @@ class SFRSignData extends Data
     {
         $xml = @simplexml_load_string(data: $sign->sign_data, options: LIBXML_NOCDATA);
         $x509 = new X509();
-        $cert_509 = $x509->loadX509($xml->Signature->KeyInfo->X509Data->X509Certificate);
+        if (!is_null($xml->children('ds', true))) {
+            $xmlSignatureKeyInfo = $xml->children('ds', true)->Signature->KeyInfo;
+        }
+        if (!is_null($xml->Signature->KeyInfo)) {
+            $xmlSignatureKeyInfo = $xml->Signature->KeyInfo;
+        }
+        $cert_509 = $x509->loadX509($xmlSignatureKeyInfo->X509Data->X509Certificate);
         $cert_x509_DN = $x509->getDN(X509::DN_OPENSSL);
         $notBefore = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notBefore.utcTime'));
         $notAfter = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notAfter.utcTime'));
