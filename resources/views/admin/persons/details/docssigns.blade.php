@@ -48,6 +48,10 @@
                                             <td>Действителен:</td>
                                             <td>{{ $docsSign['signCertValidDates'] ?? '' }}</td>
                                         </tr>
+                                        <tr>
+                                            <td>Выдан:</td>
+                                            <td>{{ $docsSign['signIssuerCN'] ?? '' }}</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </td>
