@@ -9,10 +9,7 @@
                 ajax: {
                     dataType: 'json',
                     delay: 500,
-                    url: function(params) {
-                        
-                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.allgrouped') }}";
-                    }
+                    url: "{{ route('osfrapi.osfrportal.admin.select2.docs.allgrouped') }}",
                 }
             });
         });
