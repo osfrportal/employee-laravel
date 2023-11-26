@@ -31,6 +31,7 @@ class Select2DocsAllGroupedAction
                 $tmpGroupArr = [];
                 $tmpGroupArr = Arr::add($tmpGroupArr, 'text', $item->group_name);
                 $tmpGroupArr = Arr::add($tmpGroupArr, 'children', $this->sfrDocsSelect2Collection);
+                $this->sfrDocsGroupedSelect2Collection->push($tmpGroupArr);
             }
         });
 
