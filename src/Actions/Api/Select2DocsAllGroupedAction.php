@@ -9,7 +9,7 @@ use Osfrportal\OsfrportalLaravel\Http\Resources\SFRSelect2DocsAllCollection;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 
-class Select2DocsAllAction
+class Select2DocsAllGroupedAction
 {
     use AsAction;
     public $sfr_docs_select2_collection;

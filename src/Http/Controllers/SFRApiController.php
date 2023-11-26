@@ -30,7 +30,7 @@ use Osfrportal\OsfrportalLaravel\Exports\SFRDocsSignsExport;
 use Illuminate\Support\Facades\Log;
 
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2UnitsAllAction;
-use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocsAllAction;
+use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocsAllGroupedAction;
 
 class SFRApiController extends Controller
 {
@@ -40,9 +40,9 @@ class SFRApiController extends Controller
         return $data;
     }
 
-    public function apiSelect2DocsAll(Request $request)
+    public function apiSelect2DocsGroupedAll(Request $request)
     {
-        $data = Select2DocsAllAction::run();
+        $data = Select2DocsAllGroupedAction::run();
         return $data;
     }
 }
