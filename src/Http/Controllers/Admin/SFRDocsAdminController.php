@@ -263,6 +263,13 @@ class SFRDocsAdminController extends Controller
         if ($request->has('withChildUnits')) {
             $withChildUnits = $request->input('withChildUnits') ? true : false;
         }
+
+        //получаем список документов для формирования ведомости
+        if (is_array($sfrdocs) && count($sfrdocs) > 0) {
+            $allDocs = SfrDocs::whereIn('docid', $sfrdocs)->get();
+        } else {
+            $allDocs = SfrDocs::get();
+        }
         
         $personsForReport = [];
         $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
@@ -279,7 +286,12 @@ class SFRDocsAdminController extends Controller
                 }
             }
         }
-        dump($personsForReport);
+        //dump($personsForReport);
+        foreach ($allDocs as $doc) {
+            foreach ($personsForReport as $person) {
+                dump($doc->SfrDocsUserSigns($person->persondata_pid));
+            }
+        }
         
 
         //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
