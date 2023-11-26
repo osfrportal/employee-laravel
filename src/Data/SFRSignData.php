@@ -19,6 +19,7 @@ class SFRSignData extends Data
         public ?string $signCertCN = '',
         public ?string $signCertValidDates = '',
         public ?string $signDateTime = '',
+        public ?string $signIssuerCN = '',
     ) {
     }
 
@@ -33,8 +34,8 @@ class SFRSignData extends Data
             $xmlSignatureKeyInfo = $xml->Signature->KeyInfo;
         }
         $cert_509 = $x509->loadX509($xmlSignatureKeyInfo->X509Data->X509Certificate);
-        dump(Arr::get($cert_509, 'tbsCertificate.issuer'));
         $cert_x509_DN = $x509->getDN(X509::DN_OPENSSL);
+        $cert_x509_issuerDN = $x509->getIssuerDN(X509::DN_OPENSSL);
         $notBefore = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notBefore.utcTime'));
         $notAfter = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notAfter.utcTime'));
         $signCertValidDates = sprintf("с %s по %s", $notBefore->format('d.m.Y'), $notAfter->format('d.m.Y'));
@@ -45,6 +46,7 @@ class SFRSignData extends Data
             Arr::get($cert_x509_DN, 'CN'),
             $signCertValidDates,
             $sign->created_at->format('d.m.Y H:i:s'),
+            Arr::get($cert_x509_issuerDN, 'CN'),
         );
 
     }
