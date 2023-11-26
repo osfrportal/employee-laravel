@@ -27,6 +27,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
+use Osfrportal\OsfrportalLaravel\Data\SFRSignData;
 use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 use phpseclib3\File\X509;
@@ -115,6 +116,8 @@ class SFRPersonController extends Controller
                 $sign = SfrSignatures::where('sign_fileid', $docFile->fileid)->where('sign_pid', $personId)->first();
 
                 if (!is_null($sign)) {
+                    $signDTO = SFRSignData::fromXML($personSign);
+
                     $signCertValidDates = '';
                     $signCertHash = '';
                     $cert_x509_DN = [];
@@ -139,18 +142,14 @@ class SFRPersonController extends Controller
                         $signCertValidDates = sprintf("с %s по %s", $notBefore->format('d.m.Y'), $notAfter->format('d.m.Y'));
                         $signCertHash = Str::upper($cert_509['tbsCertificate']['serialNumber']->toHex());
                     }
-                    $filesList = [
+                    $filesList_tmp = [
                         'docDateNumber' => $docDateNumber,
                         'docName' => $docDataDTO->docName,
                         'docTypeName' => $docDataDTO->docTypeName,
                         'docFileDescription' => $docFile->file_description,
                         'docSigned' => true,
-                        'signLabel' => CertsTypesEnum::from($sign->sign_type)->label,
-                        'signCertHash' => $signCertHash,
-                        'signCertCN' => Arr::get($cert_x509_DN, 'CN', ''),
-                        'signCertValidDates' => $signCertValidDates,
-                        'signDateTime' => $sign->created_at->format('d.m.Y H:i:s'),
                     ];
+                    $filesList = Arr::collapse([$filesList_tmp, $signDTO->toArray()]);
                 } else {
                     $filesList = [
                         'docDateNumber' => $docDateNumber,
