@@ -17,7 +17,7 @@ class Select2DocsAllAction
     {
         $this->sfr_docs_select2_collection = new Collection();
 
-        SfrDocs::all()->each(function ($item, $key) {
+        SfrDocs::with(['docGroup', 'docType'])->get()->each(function ($item, $key) {
             dump($item);
             $tmp_arr = [];
             $tmp_arr = Arr::add($tmp_arr, 'id', $item->docid);
