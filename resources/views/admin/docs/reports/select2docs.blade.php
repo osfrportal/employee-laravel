@@ -10,7 +10,7 @@
                 async: false,
                 dataType: 'json',
                 success: function(json) {
-                    console.log(json.result);
+                    console.log(json);
                     $('#js-all-sfrdocs-ajax').select2({
                         data: json.result
                     });
