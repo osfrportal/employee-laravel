@@ -296,7 +296,7 @@ class SFRDocsAdminController extends Controller
                 $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                 foreach ($personSigns as $personSign) {
                     $signDTO = SFRSignData::fromXML($personSign);
-                    dump($signDTO);
+                    dump($signDTO->toArray());
                 }
             }
         }
