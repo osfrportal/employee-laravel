@@ -117,31 +117,6 @@ class SFRPersonController extends Controller
 
                 if (!is_null($sign)) {
                     $signDTO = SFRSignData::fromXML($sign);
-
-                    $signCertValidDates = '';
-                    $signCertHash = '';
-                    $cert_x509_DN = [];
-                    $xmlSignatureKeyInfo = '';
-                    $xml = @simplexml_load_string(data: $sign->sign_data, options: LIBXML_NOCDATA | LIBXML_NSCLEAN);
-
-                    $x509 = new X509();
-                    //dump($xml);
-                    //dump($sign);
-                    if (!is_null($xml->children('ds', true))) {
-                        $xmlSignatureKeyInfo = $xml->children('ds', true)->Signature->KeyInfo;
-                    }
-                    if (!is_null($xml->Signature->KeyInfo)) {
-                        $xmlSignatureKeyInfo = $xml->Signature->KeyInfo;
-                    }
-                    if (!is_null($xmlSignatureKeyInfo)) {
-                        $cert_509 = $x509->loadX509($xmlSignatureKeyInfo->X509Data->X509Certificate);
-                        $cert_x509_DN = $x509->getDN(X509::DN_OPENSSL);
-
-                        $notBefore = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notBefore.utcTime'));
-                        $notAfter = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notAfter.utcTime'));
-                        $signCertValidDates = sprintf("с %s по %s", $notBefore->format('d.m.Y'), $notAfter->format('d.m.Y'));
-                        $signCertHash = Str::upper($cert_509['tbsCertificate']['serialNumber']->toHex());
-                    }
                     $filesList_tmp = [
                         'docDateNumber' => $docDateNumber,
                         'docName' => $docDataDTO->docName,
