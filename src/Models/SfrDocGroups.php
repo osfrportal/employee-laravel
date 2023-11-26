@@ -22,6 +22,6 @@ class SfrDocGroups extends Model
 
     public function SfrDocs()
     {
-        return $this->hasMany(SfrDocs::class, 'doc_groupid', 'groupid');
+        return $this->hasMany(SfrDocs::class, 'doc_groupid', 'groupid')->with(['docType']);
     }
 }
