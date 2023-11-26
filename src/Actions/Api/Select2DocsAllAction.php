@@ -18,6 +18,7 @@ class Select2DocsAllAction
         $this->sfr_docs_select2_collection = new Collection();
 
         SfrDocs::all()->each(function ($item, $key) {
+            dump($item);
             $tmp_arr = [];
             $tmp_arr = Arr::add($tmp_arr, 'id', $item->docid);
             $tmp_arr = Arr::add($tmp_arr, 'text', sprintf('№%s от %s - %s', $item->doc_number, $item->doc_date, $item->doc_name));

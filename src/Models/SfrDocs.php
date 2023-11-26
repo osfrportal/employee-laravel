@@ -50,4 +50,13 @@ class SfrDocs extends Model
         return $this->hasMany(SfrSignatures::class, 'sign_docid', 'docid')->where('sign_pid', $userPid);
     }
 
+    public function docGroup()
+    {
+        return $this->hasOne(SfrDocGroups::class, 'groupid', 'doc_groupid');
+    }
+    public function docType()
+    {
+        return $this->hasOne(SfrDocTypes::class, 'typeid', 'doc_typeid');
+    }
+
 }
