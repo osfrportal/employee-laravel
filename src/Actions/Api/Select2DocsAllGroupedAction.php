@@ -17,7 +17,12 @@ class Select2DocsAllGroupedAction
     public function handle()
     {
         SfrDocGroups::with(['SfrDocs'])->get()->each(function ($item, $key) {
-            dump($item);
+            if ($item->sfr_docs_count > 0) {
+                dump($item->group_name);
+                foreach ($item->SfrDocs as $sfrdoc) {
+                    dump(sprintf('%s №%s от %s - %s', $sfrdoc->docType->type_name, $sfrdoc->doc_number, $sfrdoc->doc_date, $sfrdoc->doc_name));
+                }
+            }
         });
 
         $this->sfr_docs_select2_collection = new Collection();
