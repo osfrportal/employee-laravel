@@ -10,7 +10,7 @@
                     dataType: 'json',
                     delay: 500,
                     url: function(params) {
-                        return "{{ route('osfrapi.osfrportal.admin.select2.units.all') }}";
+                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.all') }}";
                     }
                 }
             });

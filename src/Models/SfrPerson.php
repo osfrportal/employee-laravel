@@ -171,6 +171,12 @@ class SfrPerson extends Model
         return $ukepLastValid;
     }
 
+    public function SfrPersonSignatures()
+    {
+            return $this->hasMany(SfrSignatures::class, 'sign_pid', 'pid');
+    }
+
+
     /**
      *
      * @return string

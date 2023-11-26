@@ -36,6 +36,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('units')->name('units.')->controller(SFRApiController::class)->group(function () {
             Route::get('/', 'apiSelect2UnitsAll')->name('all');
         });
+        Route::prefix('docs')->name('docs.')->controller(SFRApiController::class)->group(function () {
+            Route::get('/', 'apiSelect2DocsAll')->name('all');
+        });
     });
 
     Route::controller(PermissionsController::class)->group(function () {
