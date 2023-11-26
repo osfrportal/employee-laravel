@@ -33,6 +33,7 @@ class SFRSignData extends Data
             $xmlSignatureKeyInfo = $xml->Signature->KeyInfo;
         }
         $cert_509 = $x509->loadX509($xmlSignatureKeyInfo->X509Data->X509Certificate);
+        dump(Arr::get($cert_509, 'tbsCertificate.issuer'));
         $cert_x509_DN = $x509->getDN(X509::DN_OPENSSL);
         $notBefore = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notBefore.utcTime'));
         $notAfter = new Carbon(Arr::get($cert_509, 'tbsCertificate.validity.notAfter.utcTime'));
