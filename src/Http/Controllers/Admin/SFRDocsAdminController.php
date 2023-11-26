@@ -288,8 +288,9 @@ class SFRDocsAdminController extends Controller
         }
         //dump($personsForReport);
         foreach ($allDocs as $doc) {
+            dump($doc);
             foreach ($personsForReport as $person) {
-                dump($doc->SfrDocsUserSigns($person->persondata_pid));
+                dump($doc->SfrDocsUserSigns($person->persondata_pid)->get());
             }
         }
         
