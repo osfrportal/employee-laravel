@@ -21,6 +21,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
+use Osfrportal\OsfrportalLaravel\Data\SFRSignData;
 use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
 use phpseclib3\File\X509;
 use Carbon\Carbon;
