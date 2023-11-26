@@ -16,6 +16,7 @@
         <div class="mb-3">
             <label for="js-all-sfrunits-ajax" class="form-label">Подразделения</label>
             @include('osfrportal::admin.docs.reports.select2units')
+            <div class="form-text">Если не выбрано подразделение - отбор идет по всем подразделениям.</div>
         </div>
         <div class="mb-3">
             <div class="form-check form-switch">
@@ -26,13 +27,9 @@
         <div class="mb-3">
             <label for="js-all-sfrdocs-ajax" class="form-label">Документы</label>
             @include('osfrportal::admin.docs.reports.select2docs')
+            <div class="form-text">Если не выбран документ - отбор идет по всем документам.</div>
         </div>
 
         <button type="submit" class="btn btn-primary">Сформировать ведомость</button>
     </form>
-
-    <div class="alert alert-primary" role="alert">
-        Если не выбрано подразделение - отбор идет по всем подразделениям.<br>
-        Если не выбран документ - отбор идет по всем документам.
-    </div>
 @endsection
