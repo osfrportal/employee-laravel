@@ -58,8 +58,8 @@ class SFRDocData extends Data
             $docData->docNeedSign,
             $doc->docid,
             $doc->SfrDocsFiles()->count(),
-            $doc->docType,
-            $doc->docGroup,
+            $doc->docType->type_name,
+            $doc->docGroup->group_name,
         );
     }
 }
