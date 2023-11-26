@@ -5,11 +5,20 @@
 @push('footer-scripts')
     <script type="module">
         $(document).ready(function() {
-            var test = $.getJSON("{{ route('osfrapi.osfrportal.admin.select2.docs.allgrouped') }}", function(data) {
-                console.log(data.text);
-                console.log(data.error);
+            var context;
+            $.ajax({
+                url: "{{ route('osfrapi.osfrportal.admin.select2.docs.allgrouped') }}",
+                async: false,
+                dataType: 'json',
+                success: function(json) {
+                    assignVariable(json);
+                }
             });
-            console.log(test);
+
+            function assignVariable(data) {
+                context = data;
+            }
+            console.log(context);
             $('#js-all-sfrdocs-ajax').select2({
                 ajax: {
                     dataType: 'json',
