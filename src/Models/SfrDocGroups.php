@@ -20,6 +20,8 @@ class SfrDocGroups extends Model
         'group_data',
     ];
 
+    protected $withCount = ['SfrDocs'];
+
     public function SfrDocs()
     {
         return $this->hasMany(SfrDocs::class, 'doc_groupid', 'groupid')->with(['docType']);
