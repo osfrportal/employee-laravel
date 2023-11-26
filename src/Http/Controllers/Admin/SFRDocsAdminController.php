@@ -263,7 +263,7 @@ class SFRDocsAdminController extends Controller
         if ($request->has('withChildUnits')) {
             $withChildUnits = $request->input('withChildUnits') ? true : false;
         }
-        /*
+        
         $personsForReport = [];
         $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
         //dump($htest);
@@ -279,11 +279,10 @@ class SFRDocsAdminController extends Controller
                 }
             }
         }
-        //dump($personsForReport);
-        */
+        dump($personsForReport);
+        
 
         //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
         //return back();
-        dump($request->all());
     }
 }

@@ -12,7 +12,8 @@ class ReportsMakeByUnitsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->can('links-manage');
+        //return Auth::user()->can('links-manage');
+        return true;
     }
 
     /**
