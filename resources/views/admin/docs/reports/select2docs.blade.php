@@ -10,8 +10,9 @@
                 async: false,
                 dataType: 'json',
                 success: function(json) {
+                    console.log(json.result);
                     $('#js-all-sfrdocs-ajax').select2({
-                        data: json
+                        data: json.result
                     });
                 }
             });
