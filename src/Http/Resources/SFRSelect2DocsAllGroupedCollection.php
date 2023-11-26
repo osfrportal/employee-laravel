@@ -4,7 +4,7 @@ namespace Osfrportal\OsfrportalLaravel\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class SFRSelect2DocsAllCollection extends ResourceCollection
+class SFRSelect2DocsAllGroupedCollection extends ResourceCollection
 {
     public $preserveKeys = true;
 
