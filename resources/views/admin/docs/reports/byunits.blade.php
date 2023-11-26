@@ -12,7 +12,8 @@
     </div>
 @endsection
 @section('content')
-    <form>
+    <form method="POST" action="{{ route('osfrportal.admin.docs.reports.byunits') }}">
+        @csrf
         <div class="mb-3">
             <label for="js-all-sfrunits-ajax" class="form-label">Подразделения</label>
             @include('osfrportal::admin.docs.reports.select2units')

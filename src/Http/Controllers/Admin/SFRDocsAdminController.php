@@ -241,6 +241,11 @@ class SFRDocsAdminController extends Controller
 
     public function reportsShowByUnits(Request $request)
     {
+        return view('osfrportal::admin.docs.reports.byunits');
+    }
+
+    public function reportsMakeByUnit(Request $request)
+    {
         $withSfrPersonData = true;
         $sfrunits = [];
         $sfrdocs = [];
@@ -275,6 +280,8 @@ class SFRDocsAdminController extends Controller
         }
         //dump($personsForReport);
         */
-        return view('osfrportal::admin.docs.reports.byunits');
+
+        $this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
+        return back();
     }
 }
