@@ -129,10 +129,10 @@ class ProfileController extends Controller
         foreach ($allDocs as $doc) {
 
             $docDataDTO = SFRDocData::forList($doc);
-            $docType = SfrDocTypes::where('typeid', $docDataDTO->docType)->firstOrFail('type_name');
-            $docGroup = SfrDocGroups::where('groupid', $docDataDTO->docGroup)->firstOrFail('group_name');
-            $docDataDTO->docTypeName = $docType->type_name;
-            $docDataDTO->docGroupName = $docGroup->group_name;
+            //$docType = SfrDocTypes::where('typeid', $docDataDTO->docType)->firstOrFail('type_name');
+            //$docGroup = SfrDocGroups::where('groupid', $docDataDTO->docGroup)->firstOrFail('group_name');
+            //$docDataDTO->docTypeName = $docType->type_name;
+            //$docDataDTO->docGroupName = $docGroup->group_name;
             $docDataDTO->docDate = Carbon::parse($docDataDTO->docDate)->format('d.m.Y');
 
             $docDateNumber = sprintf("№%s от %s", $docDataDTO->docNumber, $docDataDTO->docDate);
