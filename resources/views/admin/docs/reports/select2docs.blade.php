@@ -7,12 +7,11 @@
         $(document).ready(function() {
             $.ajax({
                 url: "{{ route('osfrapi.osfrportal.admin.select2.docs.allgrouped') }}",
-                async: false,
                 dataType: 'json',
                 success: function(json) {
-                    console.log(json);
+                    console.log(json.results);
                     $('#js-all-sfrdocs-ajax').select2({
-                        data: json.result
+                        data: json.results,
                     });
                 }
             });
