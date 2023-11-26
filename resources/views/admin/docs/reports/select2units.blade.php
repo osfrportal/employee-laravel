@@ -5,16 +5,14 @@
 @push('footer-scripts')
     <script type="module">
         $(document).ready(function() {
-            $('#js-all-sfrunits-ajax').select2({
-                ajax: {
-                    dataType: 'json',
-                    delay: 500,
-                    url: "{{ route('osfrapi.osfrportal.admin.select2.units.all') }}",
+            $.ajax({
+                url: "{{ route('osfrapi.osfrportal.admin.select2.units.all') }}",
+                dataType: 'json',
+                success: function(json) {
+                    $('#js-all-sfrunits-ajax').select2({
+                        data: json.results,
+                    });
                 }
-            });
-            $('#js-all-sfrunits-ajax').on('select2:opening select2:closing', function(event) {
-                var $searchfield = $(this).parent().find('.select2-search__field');
-                $searchfield.prop('disabled', true);
             });
         });
     </script>

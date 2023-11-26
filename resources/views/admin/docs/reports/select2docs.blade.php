@@ -9,7 +9,6 @@
                 url: "{{ route('osfrapi.osfrportal.admin.select2.docs.allgrouped') }}",
                 dataType: 'json',
                 success: function(json) {
-                    console.log(json.results);
                     $('#js-all-sfrdocs-ajax').select2({
                         data: json.results,
                     });
