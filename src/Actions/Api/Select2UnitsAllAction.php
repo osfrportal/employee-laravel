@@ -24,7 +24,9 @@ class Select2UnitsAllAction
             if ($item->persons_count < 1) {
                 $tmp_arr = Arr::add($tmp_arr, 'disabled', true);
             }
-            $this->sfr_units_select2_collection->push($tmp_arr);
+            if ($item->persons_count > 0) {
+                $this->sfr_units_select2_collection->push($tmp_arr);
+            }
         });
         $api_data = $this->sfr_units_select2_collection->sortBy(['text'])->values()->all();
 
