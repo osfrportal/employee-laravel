@@ -30,4 +30,9 @@
 
         <button type="submit" class="btn btn-primary">Сформировать ведомость</button>
     </form>
+
+    <div class="alert alert-primary" role="alert">
+        Если не выбрано подразделение - отбор идет по всем подразделениям.<br>
+        Если не выбран документ - отбор идет по всем документам.
+    </div>
 @endsection
