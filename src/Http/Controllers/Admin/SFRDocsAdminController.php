@@ -294,7 +294,6 @@ class SFRDocsAdminController extends Controller
         foreach ($allDocs as $doc) {
 
             $tmp = [];
-            dump($personsForReport);
             foreach ($personsForReport as $person) {
                 $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                 $personSignsCollection = [];
@@ -308,7 +307,7 @@ class SFRDocsAdminController extends Controller
 
             $docDataDTO = SFRDocData::forList($doc);
             $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collection($tmp);
-            //dump($docDataDTO);
+            dump($docDataDTO);
         }
 
 
