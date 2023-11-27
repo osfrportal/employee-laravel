@@ -292,10 +292,11 @@ class SFRDocsAdminController extends Controller
         }
         //dump($personsForReport);
         foreach ($allDocs as $doc) {
-            $personSignsCollection = [];
+
             $tmp = [];
             foreach ($personsForReport as $person) {
                 $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
+                $personSignsCollection = [];
                 foreach ($personSigns as $personSign) {
                     $signDTO = SFRSignData::fromXML($personSign);
                     $personSignsCollection[] = $signDTO;
