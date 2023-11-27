@@ -294,6 +294,7 @@ class SFRDocsAdminController extends Controller
         foreach ($allDocs as $doc) {
 
             $tmp = [];
+            dump($personsForReport->count());
             foreach ($personsForReport as $person) {
                 $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                 $personSignsCollection = [];
