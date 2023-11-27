@@ -4,7 +4,8 @@ namespace Osfrportal\OsfrportalLaravel\Data;
 
 
 use Spatie\LaravelData\Data;
-
+use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Attributes\DataCollectionOf;
 
 class SFRDocData extends Data
 {
@@ -22,6 +23,8 @@ class SFRDocData extends Data
         public ?int $docFileCount = 0,
         public ?string $docTypeName = "",
         public ?string $docGroupName = "",
+        #[DataCollectionOf(SFRSignData::class)]
+        public ?DataCollection $docPersonSigns = null,
     ) {
     }
     public static function rules(): array
