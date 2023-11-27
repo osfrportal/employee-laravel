@@ -253,7 +253,7 @@ class SFRDocsAdminController extends Controller
         $sfrdocs = [];
         $withChildUnits = false;
 
-        
+
 
         if ($request->has('sfrunits')) {
             $sfrunits = $request->input('sfrunits');
@@ -271,7 +271,7 @@ class SFRDocsAdminController extends Controller
         } else {
             $allDocs = SfrDocs::get();
         }
-        
+
         $personsForReport = [];
         $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
         //dump($htest);
@@ -289,18 +289,21 @@ class SFRDocsAdminController extends Controller
         }
         //dump($personsForReport);
         foreach ($allDocs as $doc) {
-            $docDataDTO = SFRDocData::forList($doc);
-            dump($docDataDTO);
+
+
             foreach ($personsForReport as $person) {
-                
+                $personSignsCollection = [];
                 $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                 foreach ($personSigns as $personSign) {
                     $signDTO = SFRSignData::fromXML($personSign);
-                    dump($signDTO->toArray());
+                    $personSignsCollection[] = $signDTO;
                 }
             }
+            $docDataDTO = SFRDocData::forList($doc);
+            $docDataDTO->docPersonSigns = SFRSignData::collection($personSignsCollection);
+            dump($docDataDTO);
         }
-        
+
 
         //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
         //return back();
