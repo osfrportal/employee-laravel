@@ -11,6 +11,8 @@ use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
 use Osfrportal\OsfrportalLaravel\Data\SFRUnitData;
 use Osfrportal\OsfrportalLaravel\Data\SFRSignData;
+use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
+use Osfrportal\OsfrportalLaravel\Data\SFRDocSignsByPersonData;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -22,6 +24,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use Osfrportal\OsfrportalLaravel\Actions\Units\HierarchyUnitsListAction;
+
 use Osfrportal\OsfrportalLaravel\Http\Requests\ReportsMakeByUnitsRequest;
 
 class SFRDocsAdminController extends Controller
@@ -289,18 +292,19 @@ class SFRDocsAdminController extends Controller
         }
         //dump($personsForReport);
         foreach ($allDocs as $doc) {
-
             $personSignsCollection = [];
             foreach ($personsForReport as $person) {
-
+                $personDTO = SFRPersonData::fromModel($person);
                 $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                 foreach ($personSigns as $personSign) {
                     $signDTO = SFRSignData::fromXML($personSign);
                     $personSignsCollection[] = $signDTO;
                 }
             }
+            $personSignsDTO = SFRSignData::collection($personSignsCollection);
+
             $docDataDTO = SFRDocData::forList($doc);
-            $docDataDTO->docPersonSigns = SFRSignData::collection($personSignsCollection);
+            $docDataDTO->docPersonSigns = new SFRDocSignsByPersonData($personDTO, $personSignsDTO);
             dump($docDataDTO);
         }
 

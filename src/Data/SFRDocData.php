@@ -23,7 +23,7 @@ class SFRDocData extends Data
         public ?int $docFileCount = 0,
         public ?string $docTypeName = "",
         public ?string $docGroupName = "",
-        #[DataCollectionOf(SFRSignData::class)]
+        #[DataCollectionOf(SFRDocSignsByPersonData::class)]
         public ?DataCollection $docPersonSigns = null,
     ) {
     }
