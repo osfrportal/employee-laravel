@@ -294,7 +294,6 @@ class SFRDocsAdminController extends Controller
         foreach ($allDocs as $doc) {
             $personSignsCollection = [];
             foreach ($personsForReport as $person) {
-                $personDTO = SFRPersonData::fromModel($person);
                 $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                 foreach ($personSigns as $personSign) {
                     $signDTO = SFRSignData::fromXML($personSign);
@@ -304,7 +303,7 @@ class SFRDocsAdminController extends Controller
             $personSignsDTO = SFRSignData::collection($personSignsCollection);
 
             $docDataDTO = SFRDocData::forList($doc);
-            $docDataDTO->docPersonSigns = new SFRDocSignsByPersonData($personDTO, $personSignsDTO);
+            $docDataDTO->docPersonSigns = new SFRDocSignsByPersonData($person, $personSignsDTO);
             dump($docDataDTO);
         }
 
