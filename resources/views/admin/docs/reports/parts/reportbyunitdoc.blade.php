@@ -83,6 +83,9 @@
                                 </tr>
                             @endif
                         @endforeach
+                        <tr class="table-group-divider">
+                            <td colspan="5"></td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
