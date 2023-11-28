@@ -313,6 +313,6 @@ class SFRDocsAdminController extends Controller
 
         //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
         //return back();
-        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc');
+        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc', ['docDataDTO' => $docDataDTO]);
     }
 }

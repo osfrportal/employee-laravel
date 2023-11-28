@@ -12,7 +12,7 @@
     </div>
 @endsection
 @section('content')
-    @foreach ($SFRDocData as $doc)
+    @foreach ($docDataDTO as $doc)
         @dump($doc)
     @endforeach
 @endsection
