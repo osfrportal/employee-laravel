@@ -24,7 +24,7 @@
         <tbody class="table-group-divider">
             @foreach ($allDocsArray as $doc)
                 @foreach ($doc->docPersonSigns as $person)
-                @dump($person)
+                @dump($person->signData->count())
                     @foreach ($person->signData as $personSign)
                         <tr>
                             <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
