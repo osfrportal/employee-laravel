@@ -12,9 +12,9 @@
     </div>
 @endsection
 @section('content')
-    <table class="table table-hover">
+    <table class="table table-hover table-responsive">
         <thead>
-            <tr>
+            <tr class="align-middle">
                 <th scope="col">Документ</th>
                 <th scope="col">Подразделение</th>
                 <th scope="col">Работник</th>
@@ -27,7 +27,7 @@
                 @foreach ($doc->docPersonSigns as $person)
                     @if ($person->signData->count() > 0)
                         @foreach ($person->signData as $personSign)
-                            <tr>
+                            <tr class="align-middle">
                                 <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
                                 <td>{{ $person->personData->persondata_unit_name }}</td>
                                 <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}</td>
@@ -65,7 +65,7 @@
                             </tr>
                         @endforeach
                     @else
-                        <tr>
+                        <tr class="align-middle alert alert-danger">
                             <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
                             <td>{{ $person->personData->persondata_unit_name }}</td>
                             <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}</td>
