@@ -24,14 +24,78 @@
         <tbody class="table-group-divider">
             @foreach ($allDocsArray as $doc)
                 @foreach ($doc->docPersonSigns as $person)
-                    <tr>
-                        <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
-                        <td>@dump($doc)</td>
-                        <td>@dump($person)</td>
-                        <td>@mdo</td>
-                    </tr>
+                    @foreach ($person->signData as $personSign)
+                        <tr>
+                            <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
+                            <td>{{ $person->personData->persondata_fullname }}</td>
+                            <td>{{ $personSign->signDateTime ?? '' }}</td>
+                            <td>
+                                <div class="stamp">
+                                    <div class="d-flex justify-content-start stampmain">
+                                        <div class="p2"><img src="{{ asset('osfrportal/images/logo.svg') }}"
+                                                alt=""></div>
+                                        <div class="p2">&nbsp;</div>
+                                        <div class="align-self-center p2">Документ подписан электронной подписью
+                                            ({{ $personSign->signLabel ?? '' }})
+                                        </div>
+                                    </div>
+                                    <table class="stampbottom">
+                                        <tr>
+                                            <td>Сертификат:</td>
+                                            <td>{{ $personSign->signCertHash ?? '' }}</td>
+                                        </tr>
+                                        <tr class="stampbold">
+                                            <td>Владелец:</td>
+                                            <td>{{ $personSign->signCertCN ?? '' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Действителен:</td>
+                                            <td>{{ $personSign->signCertValidDates ?? '' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Выдан:</td>
+                                            <td>{{ $personSign->signIssuerCN ?? '' }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endforeach
             @endforeach
         </tbody>
     </table>
 @endsection
+@push('header-css')
+    <style>
+        .stamp {
+            display: inline-block;
+            font-family: var(--bs-font-monospace);
+            padding: .5rem;
+            border: 3px double var(--bs-blue);
+            border-radius: 6px;
+            color: var(--bs-blue);
+        }
+
+        .stampmain {
+            font-size: .75rem;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .stampbottom {
+            margin-top: 3px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            line-height: 100%;
+        }
+
+        .stampbottom td {
+            padding: 0 1px;
+        }
+
+        .stampbold {
+            font-weight: bold;
+        }
+    </style>
+@endpush
