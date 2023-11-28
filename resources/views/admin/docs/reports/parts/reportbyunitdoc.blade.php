@@ -23,7 +23,6 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr class="align-middle">
-                        <th scope="col">Документ</th>
                         <th scope="col">Подразделение</th>
                         <th scope="col">Работник</th>
                         <th scope="col">Дата ознакомления</th>
@@ -32,11 +31,13 @@
                 </thead>
                 <tbody class="table-group-divider">
                     @foreach ($allDocsArray as $doc)
+                    <tr class="table-group-divider">
+                        <td colspan="4">{{ $doc->docTypeName }} {{ $doc->docName }}</td>
+                    </tr>
                         @foreach ($doc->docPersonSigns as $person)
                             @if ($person->signData->count() > 0)
                                 @foreach ($person->signData as $personSign)
                                     <tr class="align-middle">
-                                        <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
                                         <td>{{ $person->personData->persondata_unit_name }}</td>
                                         <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}
                                         </td>
@@ -75,7 +76,6 @@
                                 @endforeach
                             @else
                                 <tr class="align-middle alert alert-danger">
-                                    <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
                                     <td>{{ $person->personData->persondata_unit_name }}</td>
                                     <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}
                                     </td>
@@ -83,9 +83,6 @@
                                 </tr>
                             @endif
                         @endforeach
-                        <tr class="table-group-divider">
-                            <td colspan="5"></td>
-                        </tr>
                     @endforeach
                 </tbody>
             </table>
