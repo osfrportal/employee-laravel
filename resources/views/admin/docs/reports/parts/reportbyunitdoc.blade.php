@@ -12,7 +12,7 @@
     </div>
 @endsection
 @section('content')
-    @foreach ($docDataDTO as $doc)
+    @foreach ($allDocsArray as $doc)
         @dump($doc)
     @endforeach
 @endsection

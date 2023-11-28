@@ -291,6 +291,7 @@ class SFRDocsAdminController extends Controller
             }
         }
         //dump($personsForReport);
+        $allDocsArray = [];
         foreach ($allDocs as $doc) {
 
             $tmp = [];
@@ -307,12 +308,12 @@ class SFRDocsAdminController extends Controller
 
             $docDataDTO = SFRDocData::forList($doc);
             $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collection($tmp);
-            dump($docDataDTO);
+            $allDocsArray[] = $docDataDTO;
         }
 
 
         //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
         //return back();
-        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc', ['docDataDTO' => $docDataDTO]);
+        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc', ['allDocsArray' => $allDocsArray]);
     }
 }
