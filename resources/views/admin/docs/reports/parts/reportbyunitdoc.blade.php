@@ -32,7 +32,7 @@
                 <tbody class="table-group-divider">
                     @foreach ($allDocsArray as $doc)
                     <tr class="table-group-divider">
-                        <td colspan="4" class="font-monospace table-primary">{{ $doc->docTypeName }} №{{ $doc->docNumber }} от {{ \Carbon\Carbon::from($doc->docDate)->format('d.m.Y') }} {{ $doc->docName }}</td>
+                        <td colspan="4" class="font-monospace table-primary">{{ $doc->docTypeName }} №{{ $doc->docNumber }} от {{ \Carbon\Carbon::parse($doc->docDate)->format('d.m.Y') }} {{ $doc->docName }}</td>
                     </tr>
                         @foreach ($doc->docPersonSigns as $person)
                             @if ($person->signData->count() > 0)
