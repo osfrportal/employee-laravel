@@ -16,6 +16,7 @@
         <thead>
             <tr>
                 <th scope="col">Документ</th>
+                <th scope="col">Подразделение</th>
                 <th scope="col">Работник</th>
                 <th scope="col">Дата ознакомления</th>
                 <th scope="col">Подпись</th>
@@ -28,6 +29,7 @@
                         @foreach ($person->signData as $personSign)
                             <tr>
                                 <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
+                                <td>@dump($person)</td>
                                 <td>{{ $person->personData->persondata_fullname }}</td>
                                 <td>{{ $personSign->signDateTime ?? '' }}</td>
                                 <td>
@@ -65,6 +67,7 @@
                     @else
                         <tr>
                             <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
+                            <td>-</td>
                             <td>{{ $person->personData->persondata_fullname }}</td>
                             <td colspan="2">Не ознакомлен</td>
                         </tr>
