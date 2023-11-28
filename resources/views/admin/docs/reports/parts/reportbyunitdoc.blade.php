@@ -29,8 +29,8 @@
                         @foreach ($person->signData as $personSign)
                             <tr>
                                 <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
-                                <td>@dump($person)</td>
-                                <td>{{ $person->personData->persondata_fullname }}</td>
+                                <td>{{ $person->personData->persondata_unit_name }}</td>
+                                <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}</td>
                                 <td>{{ $personSign->signDateTime ?? '' }}</td>
                                 <td>
                                     <div class="stamp">
@@ -67,8 +67,8 @@
                     @else
                         <tr>
                             <td>{{ $doc->docTypeName }} {{ $doc->docName }}</td>
-                            <td>-</td>
-                            <td>{{ $person->personData->persondata_fullname }}</td>
+                            <td>{{ $person->personData->persondata_unit_name }}</td>
+                            <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}</td>
                             <td colspan="2">Не ознакомлен</td>
                         </tr>
                     @endif
