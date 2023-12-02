@@ -16,7 +16,7 @@
             @include('osfrportal::sections.docs.informers.unsigned_docs')
         </div>
     </div>
-    @if ($unreadNotifications->count() > 0)
+    @if (count($unreadNotifications) > 0)
         <div class="row">
             @include('osfrportal::sections.dashboard.notifications.notifications_unread')
         </div>
