@@ -18,15 +18,18 @@
                         <div class="card-body px-0">
                             <div class="list-group list-group-flush list-group-hoverable">
                                 @foreach ($rfidKeysUser as $rfidKey)
-                                    <div class="list-group-item {{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? 'bg-danger' : 'bg-success' }} bg-opacity-25">
+                                    <div
+                                        class="list-group-item {{ $rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true ? 'bg-danger' : 'bg-success' }} bg-opacity-25">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 @if ($rfidKey->tkeydata->CodeType === 1)
                                                     <div
-                                                        class="ti ti-key{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></div>
+                                                        class="ti ti-key{{ $rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true ? '-off' : '' }} icon-size-32">
+                                                    </div>
                                                 @else
                                                     <div
-                                                        class="ti ti-id-badge{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></div>
+                                                        class="ti ti-id-badge{{ $rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true ? '-off' : '' }} icon-size-32">
+                                                    </div>
                                                 @endif
                                             </div>
                                             <div class="col text-truncate">
@@ -119,68 +122,76 @@
                             Электронная подпись
                         </div>
                         <div class="card-body px-0">
-                            @foreach ($certsUser as $cert)
-                                <div
-                                    class="d-flex align-items-center justify-content-between px-4 @if ($cert->revoked) {{ 'alert alert-danger' }} @else {{ $cert->certvalidto->isPast() ? 'alert alert-dark' : 'alert alert-success' }} @endif">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ti ti-award{{ ($cert->revoked || $cert->certvalidto->isPast()) ? '-off' : '' }} icon-size-32"></div>
-                                        <div class="ms-4">
-                                            @if ($cert->revoked)
-                                                <div class="text-xs">
-                                                    <b>ОТОЗВАН {{ $cert->revokedate->format('d.m.Y') ?? '' }}</b>
+                            <div class="list-group list-group-flush list-group-hoverable">
+                                @foreach ($certsUser as $cert)
+                                    <div
+                                        class="list-group-item @if ($cert->revoked) {{ 'bg-danger' }} @else {{ $cert->certvalidto->isPast() ? 'bg-dark' : 'bg-success' }} @endif bg-opacity-25">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <div
+                                                    class="ti ti-award{{ $cert->revoked || $cert->certvalidto->isPast() ? '-off' : '' }} icon-size-32">
                                                 </div>
-                                            @else
-                                                @if ($cert->certvalidto->isPast())
-                                                    <div class="text-xs">Истек:
-                                                        {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
+                                            </div>
+                                            <div class="col text-truncate">
+                                                <div class="ms-4">
+                                                    @if ($cert->revoked)
+                                                        <div class="text-xs">
+                                                            <b>ОТОЗВАН {{ $cert->revokedate->format('d.m.Y') ?? '' }}</b>
+                                                        </div>
+                                                    @else
+                                                        @if ($cert->certvalidto->isPast())
+                                                            <div class="text-xs">Истек:
+                                                                {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                    <div
+                                                        class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                        Вид:
+                                                        @switch($cert->certtype)
+                                                            @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
+                                                                Усиленный квалифицированный (УКЭП)
+                                                            @break
+
+                                                            @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
+                                                                Усиленный неквалифицированный (УНЭП)
+                                                            @break
+
+                                                            @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::DOMAIN())
+                                                                Вход в операционную систему (ActiveDirectory)
+                                                            @break
+
+                                                            @default
+                                                                Не определен
+                                                        @endswitch
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <div
-                                                class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                Вид:
-                                                @switch($cert->certtype)
-                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
-                                                        Усиленный квалифицированный (УКЭП)
-                                                    @break
-
-                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
-                                                        Усиленный неквалифицированный (УНЭП)
-                                                    @break
-
-                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::DOMAIN())
-                                                        Вход в операционную систему (ActiveDirectory)
-                                                    @break
-
-                                                    @default
-                                                        Не определен
-                                                @endswitch
-                                            </div>
-                                            @if (!is_null($cert->certdata->Ogrn) && !is_null($cert->certdata->Innle))
-                                                <div class="text-xs">
-                                                    Тип: Сертификат юридического лица
+                                                    @if (!is_null($cert->certdata->Ogrn) && !is_null($cert->certdata->Innle))
+                                                        <div class="text-xs">
+                                                            Тип: Сертификат юридического лица
+                                                        </div>
+                                                    @endif
+                                                    <div
+                                                        class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                        Кому выдан: {{ $cert->certdata->commonName ?? '' }}
+                                                    </div>
+                                                    <div
+                                                        class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                        Срок действия: с
+                                                        {{ $cert->certvalidfrom->format('d.m.Y') ?? '' }}
+                                                        по
+                                                        {{ $cert->certvalidto->format('d.m.Y') ?? '' }}</div>
+                                                    <div class="small text-muted">
+                                                        Номер сертификата: {{ $cert->certserial ?? '' }}
+                                                    </div>
+                                                    <div class="small text-muted">
+                                                        Издатель: {{ $cert->certdata->iss_commonName ?? '' }}
+                                                    </div>
                                                 </div>
-                                            @endif
-                                            <div
-                                                class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                Кому выдан: {{ $cert->certdata->commonName ?? '' }}
-                                            </div>
-                                            <div
-                                                class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                Срок действия: с
-                                                {{ $cert->certvalidfrom->format('d.m.Y') ?? '' }}
-                                                по
-                                                {{ $cert->certvalidto->format('d.m.Y') ?? '' }}</div>
-                                            <div class="small text-muted">
-                                                Номер сертификата: {{ $cert->certserial ?? '' }}
-                                            </div>
-                                            <div class="small text-muted">
-                                                Издатель: {{ $cert->certdata->iss_commonName ?? '' }}
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
