@@ -875,7 +875,7 @@ html:not([dir=rtl]) .timeline .timeline-item.timeline-item-transparent .timeline
     height: 48px;
 }
 
-.icon-size-32-rfid {
+.icon-size-32-rfid:after {
     width: 32px;
     height: 32px;
     content: "\eff7";
