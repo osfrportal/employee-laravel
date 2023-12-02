@@ -18,15 +18,15 @@
                         <div class="card-body px-0">
                             <div class="list-group list-group-flush list-group-hoverable">
                                 @foreach ($rfidKeysUser as $rfidKey)
-                                    <div class="list-group-item {{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? 'bg-danger bg-opacity-50' : 'bg-success bg-opacity-50' }}">
+                                    <div class="list-group-item {{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? 'bg-danger' : 'bg-success' }} bg-opacity-25">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 @if ($rfidKey->tkeydata->CodeType === 1)
                                                     <i
-                                                        class="ti ti-key{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }}" width="24" height="24"></i>
+                                                        class="ti ti-key{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></i>
                                                 @else
                                                     <i
-                                                        class="ti ti-id-badge{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }}" width="24" height="24"></i>
+                                                        class="ti ti-id-badge{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></i>
                                                 @endif
                                             </div>
                                             <div class="col text-truncate">
