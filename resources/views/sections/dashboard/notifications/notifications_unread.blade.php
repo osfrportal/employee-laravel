@@ -5,11 +5,11 @@
     <div class="card-body">
         <div class="list-group list-group-flush list-group-hoverable">
             @foreach ($unreadNotifications as $notificationDetail)
-                <div class="list-group-item text-muted notifblock">
+                <div class="list-group-item notifblock">
                     <div class="row align-items-center">
                         <div class="col text-truncate">
-                            <small class="text-reset d-block">{{ $notificationDetail['updated_at'] }}</small>
-                            <div class="d-block text-secondary text-truncate mt-n1">
+                            <small class="text-muted d-block">{{ $notificationDetail['updated_at'] }}</small>
+                            <div class="d-block text-truncate">
                                 {{ $notificationDetail['data']['message'] ?? '' }}</div>
                         </div>
                         <div class="col-auto">
