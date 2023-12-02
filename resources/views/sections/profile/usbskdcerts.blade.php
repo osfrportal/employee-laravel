@@ -16,7 +16,7 @@
                             Карты доступа СКУД
                         </div>
                         <div class="card-body px-0">
-                            <div class="list-group list-group-flush list-group-hoverable">
+                            <div class="list-group list-group-flush">
                                 @foreach ($rfidKeysUser as $rfidKey)
                                     <div
                                         class="list-group-item list-group-item-{{ $rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true ? 'danger' : 'success' }} bg-opacity-25">
@@ -122,7 +122,7 @@
                             Электронная подпись
                         </div>
                         <div class="card-body px-0">
-                            <div class="list-group list-group-flush list-group-hoverable">
+                            <div class="list-group list-group-flush">
                                 @foreach ($certsUser as $cert)
                                     <div
                                         class="list-group-item list-group-item-@if ($cert->revoked) {{ 'danger' }} @else {{ $cert->certvalidto->isPast() ? 'dark' : 'success' }} @endif bg-opacity-25">
