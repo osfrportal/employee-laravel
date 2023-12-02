@@ -1,4 +1,4 @@
-<div class="card bg-body rounded shadow-sm text-center">
+<div class="card bg-body rounded shadow-sm">
     <div class="card-header">
         <h3 class="card-title">Уведомления</h3>
     </div>
