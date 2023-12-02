@@ -22,11 +22,11 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 @if ($rfidKey->tkeydata->CodeType === 1)
-                                                    <i
-                                                        class="ti ti-key{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></i>
+                                                    <div
+                                                        class="ti ti-key{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></div>
                                                 @else
-                                                    <i
-                                                        class="ti ti-id-badge{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></i>
+                                                    <div
+                                                        class="ti ti-id-badge{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></div>
                                                 @endif
                                             </div>
                                             <div class="col text-truncate">
@@ -47,87 +47,6 @@
                                     </div>
                                 @endforeach
                             </div>
-                            @foreach ($rfidKeysUser as $rfidKey)
-                                <div
-                                    class="d-flex align-items-center justify-content-between px-4 @if ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) {{ 'alert alert-danger' }} @else {{ 'alert alert-success' }} @endif">
-                                    <div class="d-flex align-items-center">
-                                        @if ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true)
-                                            @if ($rfidKey->tkeydata->CodeType === 1)
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-key-off" width="24"
-                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M10.17 6.159l2.316 -2.316a2.877 2.877 0 0 1 4.069 0l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.33 2.33" />
-                                                    <path
-                                                        d="M14.931 14.948a2.863 2.863 0 0 1 -1.486 -.79l-.301 -.302l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.863 2.863 0 0 1 -.794 -1.504" />
-                                                    <path d="M15 9h.01" />
-                                                    <path d="M3 3l18 18" />
-                                                </svg>
-                                            @else
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-id-badge-off" width="24"
-                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M7.141 3.125a3 3 0 0 1 .859 -.125h8a3 3 0 0 1 3 3v9m-.13 3.874a3 3 0 0 1 -2.87 2.126h-8a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 .128 -.869" />
-                                                    <path d="M11.179 11.176a2 2 0 1 0 2.635 2.667" />
-                                                    <path d="M10 6h4" />
-                                                    <path d="M9 18h6" />
-                                                    <path d="M3 3l18 18" />
-                                                </svg>
-                                            @endif
-                                        @else
-                                            @if ($rfidKey->tkeydata->CodeType === 1)
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-key" width="24" height="24"
-                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z" />
-                                                    <path d="M15 9h.01" />
-                                                </svg>
-                                            @else
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-id-badge" width="24"
-                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M5 3m0 3a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-8a3 3 0 0 1 -3 -3z" />
-                                                    <path d="M12 13m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                                    <path d="M10 6h4" />
-                                                    <path d="M9 18h6" />
-                                                </svg>
-                                            @endif
-                                        @endif
-                                        <div class="ms-4">
-                                            <div class="text-xs text-muted">
-                                                @switch($rfidKey->tkeydata->CodeType)
-                                                    @case(1)
-                                                        Пароль ОрионПРО
-                                                    @break
-
-                                                    @default
-                                                        Карта СКУД
-                                                @endswitch
-                                            </div>
-                                            <div class="small">Статус:
-                                                {{ $rfidKey->tkeydata->IsBlocked === true ? 'заблокирована' : 'активна' }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ms-4 small">
-                                        <a href="#{{ $rfidKey->keyid }}">Подробнее</a>
-                                    </div>
-                                </div>
-                            @endforeach
                         </div>
                     </div>
                 </div>
