@@ -125,7 +125,7 @@
                             <div class="list-group list-group-flush">
                                 @foreach ($certsUser as $cert)
                                     <div
-                                        class="list-group-item list-group-item-@if ($cert->revoked) {{ 'danger' }} @else {{ $cert->certvalidto->isPast() ? 'dark' : 'success' }} @endif bg-opacity-25">
+                                        class="list-group-item @if ($cert->revoked) {{ 'list-group-item-danger' }} @else {{ $cert->certvalidto->isPast() ? 'list-group-item-dark' : 'list-group-item-success' }} @endif bg-opacity-25">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <div
