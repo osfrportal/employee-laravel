@@ -23,10 +23,10 @@
                                             <div class="col-auto">
                                                 @if ($rfidKey->tkeydata->CodeType === 1)
                                                     <i
-                                                        class="ti ti-key{{ $rfidKey->tkeydata->IsBlocked === true ? '-off' : '' }}"></i>
+                                                        class="ti ti-key{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }}" width="24" height="24"></i>
                                                 @else
                                                     <i
-                                                        class="ti ti-id-badge{{ $rfidKey->tkeydata->IsBlocked === true ? '-off' : '' }}"></i>
+                                                        class="ti ti-id-badge{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }}" width="24" height="24"></i>
                                                 @endif
                                             </div>
                                             <div class="col text-truncate">
