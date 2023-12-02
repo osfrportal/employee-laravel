@@ -8,7 +8,7 @@
                 <div class="list-group-item text-muted notifblock">
                     <div class="row align-items-center">
                         <div class="col text-truncate">
-                            <span class="text-reset d-block">{{ $notificationDetail['updated_at'] }}</span>
+                            <small class="text-reset d-block">{{ $notificationDetail['updated_at'] }}</small>
                             <div class="d-block text-secondary text-truncate mt-n1">
                                 {{ $notificationDetail['data']['message'] ?? '' }}</div>
                         </div>
@@ -22,8 +22,6 @@
         </div>
     </div>
     <div class="card-footer text-body-secondary">
-        <small class="d-block text-start mt-3">
             <a href="#">Все уведомления</a>
-        </small>
     </div>
 </div>
