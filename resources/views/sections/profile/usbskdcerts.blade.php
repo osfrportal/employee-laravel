@@ -26,7 +26,7 @@
                                                         class="ti ti-key{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></i>
                                                 @else
                                                     <i
-                                                        class="ti ti-id-badge{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }} icon-size-32"></i>
+                                                        class="icon-size-32-rfid{{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? '-off' : '' }}"></i>
                                                 @endif
                                             </div>
                                             <div class="col text-truncate">
