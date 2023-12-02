@@ -7,14 +7,14 @@
             @foreach ($unreadNotifications as $notificationDetail)
                 <div class="list-group-item notifblock">
                     <div class="row align-items-center">
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-link btn-sm mark-as-read bi bi-check-lg"
+                                data-id="{{ $notificationDetail['id'] }}" title="Пометить прочитанным"></button>
+                        </div>
                         <div class="col text-truncate">
                             <small class="text-muted d-block">{{ \Carbon\Carbon::parse($notificationDetail['updated_at'])->tz('Europe/Moscow')->format('d.m.Y H:i:s') }}</small>
                             <div class="d-block text-truncate">
                                 {{ $notificationDetail['data']['message'] ?? '' }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <button type="button" class="btn btn-link btn-sm mark-as-read bi bi-check-lg"
-                                data-id="{{ $notificationDetail['id'] }}"></button>
                         </div>
                     </div>
                 </div>

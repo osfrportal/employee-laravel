@@ -16,9 +16,11 @@
             @include('osfrportal::sections.docs.informers.unsigned_docs')
         </div>
     </div>
-    <div class="row">
-        @include('osfrportal::sections.dashboard.notifications.notifications_unread')
-    </div>
+    @if ($unreadNotifications->count() > 0)
+        <div class="row">
+            @include('osfrportal::sections.dashboard.notifications.notifications_unread')
+        </div>
+    @endif
 @endsection
 @push('footer-scripts')
     <script type="module">
