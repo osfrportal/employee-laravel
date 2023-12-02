@@ -18,7 +18,7 @@
                         <div class="card-body px-0">
                             <div class="list-group list-group-flush list-group-hoverable">
                                 @foreach ($rfidKeysUser as $rfidKey)
-                                    <div class="list-group-item {{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? 'alert alert-danger' : 'alert alert-success' }}">
+                                    <div class="list-group-item {{ ($rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true) ? 'bg-danger bg-opacity-50' : 'bg-success bg-opacity-50' }}">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 @if ($rfidKey->tkeydata->CodeType === 1)
