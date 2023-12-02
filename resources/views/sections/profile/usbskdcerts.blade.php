@@ -19,7 +19,7 @@
                             <div class="list-group list-group-flush list-group-hoverable">
                                 @foreach ($rfidKeysUser as $rfidKey)
                                     <div
-                                        class="list-group-item {{ $rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true ? 'bg-danger' : 'bg-success' }} bg-opacity-25">
+                                        class="list-group-item list-group-item-{{ $rfidKey->tkeydata->IsInStopList === true || $rfidKey->tkeydata->IsBlocked === true ? 'danger' : 'success' }} bg-opacity-25">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 @if ($rfidKey->tkeydata->CodeType === 1)
@@ -125,7 +125,7 @@
                             <div class="list-group list-group-flush list-group-hoverable">
                                 @foreach ($certsUser as $cert)
                                     <div
-                                        class="list-group-item @if ($cert->revoked) {{ 'bg-danger' }} @else {{ $cert->certvalidto->isPast() ? 'bg-dark' : 'bg-success' }} @endif bg-opacity-25">
+                                        class="list-group-item list-group-item-@if ($cert->revoked) {{ 'danger' }} @else {{ $cert->certvalidto->isPast() ? 'dark' : 'success' }} @endif bg-opacity-25">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <div
