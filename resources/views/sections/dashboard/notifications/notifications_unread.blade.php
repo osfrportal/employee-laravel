@@ -1,4 +1,4 @@
-<div class="card bg-body rounded w-50" id="SFRnotificationsList">
+<div class="card bg-body rounded" id="SFRnotificationsList">
     <div class="card-header bg-body">
         <h6 class="card-title">Уведомления</h6>
     </div>
