@@ -16,7 +16,9 @@
             @include('osfrportal::sections.docs.informers.unsigned_docs')
         </div>
     </div>
-    @include('osfrportal::sections.dashboard.notifications.notifications_unread')
+    <div class="row">
+        @include('osfrportal::sections.dashboard.notifications.notifications_unread')
+    </div>
 @endsection
 @push('footer-scripts')
     <script type="module">
