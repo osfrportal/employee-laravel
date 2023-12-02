@@ -1,12 +1,10 @@
 <div class="col">
     <div class="card bg-body rounded shadow-sm text-center">
         <div class="card-header">Заявки ОЗИ за период 30 дней</div>
-        <div class="card-body text-primary">
-
+        <div class="card-body text-primary otrs-chart">
                 <canvas id="OtrsOZICreatedTicketsChart">
                     <p>Заявки ОЗИ за период 30 дней</p>
                 </canvas>
-
         </div>
     </div>
 </div>
@@ -14,7 +12,7 @@
     <!-- div class="my-3 p-3 bg-body rounded shadow-sm text-center otrs-chart" -->
     <div class="card bg-body rounded shadow-sm text-center">
         <div class="card-header">Заявки ИТ за период 30 дней</div>
-        <div class="card-body text-primary">
+        <div class="card-body text-primary otrs-chart">
                 <canvas id="OtrsITCreatedTicketsChart">
                     <p>Заявки ИТ за период 30 дней</p>
                 </canvas>
