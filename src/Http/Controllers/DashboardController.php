@@ -22,7 +22,7 @@ class DashboardController extends Controller
     {
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
-        $unreadNotifications = Auth::user()->unreadNotifications()->limit(10)->get()->toArray();
+        $unreadNotifications = Auth::user()->unreadNotifications()->get()->toArray();
         return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount]);
     }
     public function dashboardIndex2()
