@@ -1,13 +1,13 @@
-<div class="card bg-body rounded shadow-sm">
+<div class="card bg-body rounded shadow-sm" id="SFRnotificationsList">
     <div class="card-header">
-        <h3 class="card-title">Уведомления</h3>
+        <h6 class="card-title">Уведомления</h6>
     </div>
     <div class="list-group list-group-flush list-group-hoverable">
         @foreach ($unreadNotifications as $notificationDetail)
-            <div class="list-group-item">
+            <div class="list-group-item d-flex text-muted notifblock">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <span class="badge bg-danger"></span>
+                        <span class="badge bg-danger rounded-circle"></span>
                     </div>
                     <div class="col text-truncate">
                         <a href="#" class="text-reset d-block">{{ $notificationDetail['updated_at'] }}</a>
@@ -25,6 +25,8 @@
                                 </path>
                             </svg>
                         </a>
+                        <button type="button" class="btn btn-link btn-sm mark-as-read"
+                        data-id="{{ $notificationDetail['id'] }}">Отметить прочитанным</button>
                     </div>
                 </div>
             </div>
@@ -37,7 +39,7 @@
 
 
 
-<div class="my-3 p-3 bg-body rounded shadow-sm" id="SFRnotificationsList">
+<div class="my-3 p-3 bg-body rounded shadow-sm" id="SFRnotificationsList2">
     <h6 class="border-bottom pb-2 mb-0">Уведомления</h6>
 
     @foreach ($unreadNotifications as $notificationDetail)
