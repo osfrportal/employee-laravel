@@ -6,6 +6,9 @@
         @foreach ($unreadNotifications as $notificationDetail)
             <div class="list-group-item">
                 <div class="row align-items-center">
+                    <div class="col-auto">
+                        <span class="badge bg-danger"></span>
+                    </div>
                     <div class="col text-truncate">
                         <a href="#" class="text-reset d-block">{{ $notificationDetail['updated_at'] }}</a>
                         <div class="d-block text-secondary text-truncate mt-n1">{{ $notificationDetail['data']['message'] ?? '' }}</div>
