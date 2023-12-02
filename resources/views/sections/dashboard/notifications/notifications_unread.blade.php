@@ -8,7 +8,7 @@
                 <div class="list-group-item notifblock">
                     <div class="row align-items-center">
                         <div class="col text-truncate">
-                            <small class="text-muted d-block">{{ $notificationDetail['updated_at'] }}</small>
+                            <small class="text-muted d-block">{{ \Carbon\Carbon::parse($notificationDetail['updated_at'])->format('d.m.Y h:i:S') }}</small>
                             <div class="d-block text-truncate">
                                 {{ $notificationDetail['data']['message'] ?? '' }}</div>
                         </div>
