@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div wire:poll.60s>
     @if ($unreadNotificationsCount > 0)
         <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
             {{ $unreadNotificationsCount }}
