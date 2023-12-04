@@ -17,7 +17,7 @@ class DocsNotSigned extends Component
 
         $this->docsNotSignedCount = $docsUnsignedCount;
 
-        $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
+        $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами.\r\nКол-во документов: %s', $this->docsNotSignedCount);
 
         sweetalert()
             ->position('center')
@@ -25,7 +25,7 @@ class DocsNotSigned extends Component
             ->confirmButtonText('Перейти')
             ->showCancelButton()
             ->cancelButtonText('Отмена')
-            ->addInfo($text_to);
+            ->addWarning($text_to);
 
         return view('osfrportal::livewire.docsnotsigned-count', ['docsNotSignedCount' => $this->docsNotSignedCount]);
     }
