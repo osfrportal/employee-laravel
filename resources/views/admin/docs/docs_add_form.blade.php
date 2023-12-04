@@ -41,7 +41,7 @@
             <label for="docType" class="form-label">Тип документа</label>
             <select class="form-select form-select-sm @error('docType') is-invalid @enderror" id="docType" name="docType"
                 data-ajax--delay="500" data-placeholder="Выберите тип документа" data-allow-clear="true" data-language="ru"
-                data-selection-css-class="select2--small" data-dropdown-css-class="select2--small">
+                data-selection-css-class="select2--small" data-dropdown-css-class="select2--small" data-minimum-input-length="0">
             </select>
             @error('docType')
                 <div id="docTypeFeedback" class="invalid-feedback">
@@ -53,7 +53,7 @@
             <label for="docGroup" class="form-label">Раздел (группа) документа</label>
             <select class="form-select form-select-sm @error('docGroup') is-invalid @enderror" id="docGroup"
                 name="docGroup" data-ajax--delay="500" data-placeholder="Выберите группу документа" data-allow-clear="true"
-                data-language="ru" data-selection-css-class="select2--small" data-dropdown-css-class="select2--small">
+                data-language="ru" data-selection-css-class="select2--small" data-dropdown-css-class="select2--small" data-minimum-input-length="0">
             </select>
             @error('docGroup')
                 <div id="docGroupFeedback" class="invalid-feedback">{{ $message }}</div>

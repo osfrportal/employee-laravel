@@ -8,8 +8,7 @@
                 <div class="list-group-item notifblock">
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
-                                data-bs-trigger="hover focus" data-bs-content="Пометить прочитанным">
+                            <span class="d-inline-block" tabindex="0" title="Пометить прочитанным">
                                 <button type="button" class="btn btn-link btn-sm mark-as-read bi bi-check-lg"
                                     data-id="{{ $notificationDetail['id'] }}"></button>
                             </span>
