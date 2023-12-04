@@ -8,29 +8,10 @@ use Osfrportal\OsfrportalLaravel\Actions\Docs\CountUnsignedDocsByUserAction;
 
 class DocsNotSigned extends Component
 {
-    protected $listeners = [
-        'isConfirmed',
-    ];
-
     public $docsNotSignedCount;
-    public $flasher_interface;
-
-    public function isConfirmed(array $payload)
-    {
-        $this->redirectRoute('osfrportal.docs.index');
-    }
 
     public function render()
     {
-        $this->flasher_interface = flash()
-            ->options([
-                'timeout' => '10000',
-                'layout' => 'topCenter',
-                'modal' => true,
-                'closeWith' => ['click', 'button'],
-                'theme' => 'bootstrap-v5'
-            ]);
-
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $this->docsNotSignedCount = $docsUnsignedCount;
