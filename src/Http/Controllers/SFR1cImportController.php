@@ -45,12 +45,12 @@ class SFR1cImportController extends Controller
         parent::__construct();
         $this->now_date_for_import = Carbon::now(config('app.timezone', 'Europe/Moscow'))->format('Y-m-d');
         //$this->now_date_for_import = '2023-08-23';
-        $this->absence_file_name = sprintf('otsutstvie_058 (TXT) %s.txt', $this->now_date_for_import);
-        $this->vacation_file_name = sprintf('vacation_058 (TXT) %s.txt', $this->now_date_for_import);
-        $this->dekret_file_name = sprintf('dekret_058 (TXT) %s.txt', $this->now_date_for_import);
-        $this->otdel_file_name = sprintf('otdel_058 (TXT) %s.txt', $this->now_date_for_import);
-        $this->pd_file_name = sprintf('pd_058 (TXT) %s.txt', $this->now_date_for_import);
-        $this->movements_file_name = sprintf('kadry_058 (TXT) %s.txt', $this->now_date_for_import);
+        $this->absence_file_name = sprintf('otsutstvie_058 %s.txt', $this->now_date_for_import);
+        $this->vacation_file_name = sprintf('vacation_058 %s.txt', $this->now_date_for_import);
+        $this->dekret_file_name = sprintf('dekret_058 %s.txt', $this->now_date_for_import);
+        $this->otdel_file_name = sprintf('otdel_058 %s.txt', $this->now_date_for_import);
+        $this->pd_file_name = sprintf('pd_058  %s.txt', $this->now_date_for_import);
+        $this->movements_file_name = sprintf('kadry_058 %s.txt', $this->now_date_for_import);
 
         $this->usersToNotify = SfrUser::permission('system-notifications')->get();
     }
