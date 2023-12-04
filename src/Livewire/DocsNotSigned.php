@@ -13,6 +13,7 @@ class DocsNotSigned extends Component
     ];
 
     public $docsNotSignedCount;
+    public $flasher_interface;
 
     public function isConfirmed(array $payload)
     {
@@ -21,12 +22,22 @@ class DocsNotSigned extends Component
 
     public function render()
     {
+        $this->flasher_interface = flash()
+            ->options([
+                'timeout' => '10000',
+                'layout' => 'topCenter',
+                'modal' => true,
+                'closeWith' => ['click', 'button'],
+                'theme' => 'bootstrap-v5'
+            ]);
+
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $this->docsNotSignedCount = $docsUnsignedCount;
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
-
+        $this->flasher_interface->addWarning($text_to);
+/*
         sweetalert()
             ->timer(0)
             ->backdrop(false)
@@ -35,7 +46,7 @@ class DocsNotSigned extends Component
             ->confirmButtonText('ОК')
             ->showCloseButton(false)
             ->addWarning($text_to);
-
+*/
         return view('osfrportal::livewire.docsnotsigned-count', ['docsNotSignedCount' => $this->docsNotSignedCount]);
     }
 
