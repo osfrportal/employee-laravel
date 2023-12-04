@@ -3,6 +3,7 @@
 namespace Osfrportal\OsfrportalLaravel\Livewire;
 
 use Livewire\Component;
+use Osfrportal\OsfrportalLaravel\Actions\Docs\CountUnsignedDocsByUserAction;
 
 class DocsNotSigned extends Component
 {
@@ -10,7 +11,9 @@ class DocsNotSigned extends Component
 
     public function render()
     {
-        $this->docsNotSignedCount = 10;
+        $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
+
+        $this->docsNotSignedCount = $docsUnsignedCount;
 
 
         return view('osfrportal::livewire.docsnotsigned-count', ['docsNotSignedCount' => $this->docsNotSignedCount]);
