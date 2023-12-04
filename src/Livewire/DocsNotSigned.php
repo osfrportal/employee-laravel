@@ -17,7 +17,7 @@ class DocsNotSigned extends Component
 
         $this->docsNotSignedCount = $docsUnsignedCount;
 
-        $this->alertConfirm();
+        //$this->alertConfirm();
 
         return view('osfrportal::livewire.docsnotsigned-count', ['docsNotSignedCount' => $this->docsNotSignedCount]);
     }
