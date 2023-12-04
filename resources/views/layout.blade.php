@@ -60,5 +60,4 @@
     @include('osfrportal::layout.main')
     @include('osfrportal::layout.footer')
 </body>
-
 </html>

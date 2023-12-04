@@ -50,6 +50,22 @@
             defaultLocale: "ru",
         }
     });
+
+
+    window.addEventListener('swal:confirm', event => {
+        swal({
+                title: event.detail.message,
+                text: event.detail.text,
+                icon: event.detail.type,
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.livewire.emit(event.detail.action);
+                }
+            });
+    });
 </script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/btn-back-to-top.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/inputmask.binding.js') }}"></script>
