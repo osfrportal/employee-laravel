@@ -25,7 +25,9 @@
         @auth
             <!-- Icons -->
             <div class="px-3">
+                <a class="nav-link position-relative" href="{{ route('osfrportal.dashboard') }}" alt="Документы для ознакомления">
                     @livewire('osfrportal::docsnotsigned-count')
+                </a>
             </div>
             <div class="px-3">
                 <a class="nav-link position-relative" href="{{ route('osfrportal.dashboard') }}" alt="Уведомления"
