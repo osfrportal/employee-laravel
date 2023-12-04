@@ -33,9 +33,7 @@ class DocsNotSigned extends Component
             ->backdrop(false)
             ->position('center')
             ->showConfirmButton()
-            ->confirmButtonText('Перейти')
-            ->showCancelButton()
-            ->cancelButtonText('Отмена')
+            ->confirmButtonText('ОК')
             ->showCloseButton(false)
             ->addWarning($text_to);
 
