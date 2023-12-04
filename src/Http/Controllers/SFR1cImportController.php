@@ -78,46 +78,45 @@ class SFR1cImportController extends Controller
     public function SFRAbsenceImportFromCSV($command_load = false)
     {
         $save_file_name = 'tmp_absence.txt';
-        $import_file_size = Storage::disk('ftp1c')->size($this->absence_file_name);
-        /*
-        Log::withContext([
-            'action' => LogActionsEnum::LOG_IMPORT_ABSENCE(),
-            'file_name' => $this->absence_file_name,
-        ]);
-        Log::info('Старт импорта отсутствий', ['import_file_size' => $import_file_size]);
-        */
-        $logContext = [
-            'file_name' => $this->absence_file_name,
-            'import_file_size' => $import_file_size,
-        ];
-        LogAddAction::run(LogActionsEnum::LOG_IMPORT_ABSENCE(), 'Старт импорта файла отсутствий ({file_name}, размер: {import_file_size})', $logContext);
 
-        if ((Storage::disk('ftp1c')->exists($this->absence_file_name)) && ($import_file_size > 0)) {
-            Storage::put($save_file_name, $this->SFRFileMergeFirstTwoLinesToOne($this->absence_file_name));
-            $import = new SFRAbsencesImport();
-            $import->import($save_file_name);
-            foreach ($import->failures() as $failure) {
-                $fval = $failure->values(); // The values of the row that has failed.
-                $log_context = [
-                    'failure_errors' => $failure->errors(),
-                    'failure_attribute' => $failure->attribute(),
-                    'failure_row' => $failure->row(),
-                    'failure_inn' => $fval['sotrudnikfiziceskoe_licoinn'],
-                ];
-                Log::warning('Ошибка обработки строки в файле импорта', $log_context);
-            }
-            Storage::delete($save_file_name);
-        } else {
-            if ($import_file_size == 0) {
-                Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+        if (Storage::disk('ftp1c')->exists($this->absence_file_name)) {
+            $import_file_size = Storage::disk('ftp1c')->size($this->absence_file_name);
+            $logContext = [
+                'file_name' => $this->absence_file_name,
+                'import_file_size' => $import_file_size,
+            ];
+            LogAddAction::run(LogActionsEnum::LOG_IMPORT_ABSENCE(), 'Старт импорта файла отсутствий ({file_name}, размер: {import_file_size})', $logContext);
+
+            if ((Storage::disk('ftp1c')->exists($this->absence_file_name)) && ($import_file_size > 0)) {
+                Storage::put($save_file_name, $this->SFRFileMergeFirstTwoLinesToOne($this->absence_file_name));
+                $import = new SFRAbsencesImport();
+                $import->import($save_file_name);
+                foreach ($import->failures() as $failure) {
+                    $fval = $failure->values(); // The values of the row that has failed.
+                    $log_context = [
+                        'failure_errors' => $failure->errors(),
+                        'failure_attribute' => $failure->attribute(),
+                        'failure_row' => $failure->row(),
+                        'failure_inn' => $fval['sotrudnikfiziceskoe_licoinn'],
+                    ];
+                    Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                }
+                Storage::delete($save_file_name);
             } else {
-                Log::error('Не найден файл импорта');
+                if ($import_file_size == 0) {
+                    Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+                } else {
+                    Log::error('Не найден файл импорта');
+                }
             }
+            LogAddAction::run(LogActionsEnum::LOG_IMPORT_ABSENCE(), 'Конец импорта файла отсутствий ({file_name}, размер: {import_file_size})', $logContext);
+
+            //Log::info('Конец импорта отсутствий', ['import_file_size' => $import_file_size]);
+            Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла отсутствий завершен'));
+        } else {
+            Log::error('Не найден файл импорта отсутствий');
+            Notification::send($this->usersToNotify, new SFR1cSync('ОШИБКА! Не найден файл импорта отсутствий'));
         }
-        LogAddAction::run(LogActionsEnum::LOG_IMPORT_ABSENCE(), 'Конец импорта файла отсутствий ({file_name}, размер: {import_file_size})', $logContext);
-        
-        //Log::info('Конец импорта отсутствий', ['import_file_size' => $import_file_size]);
-        Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла отсутствий завершен'));
     }
 
     /**
@@ -128,36 +127,42 @@ class SFR1cImportController extends Controller
     public function SFRVacationsImportFromCSV($command_load = false)
     {
         $save_file_name = 'tmp_vacation.txt';
-        $import_file_size = Storage::disk('ftp1c')->size($this->vacation_file_name);
+
         Log::withContext([
             'action' => LogActionsEnum::LOG_IMPORT_VACATION(),
             'file_name' => $this->vacation_file_name,
         ]);
-        Log::info('Старт импорта отпусков', ['import_file_size' => $import_file_size]);
-        if ((Storage::disk('ftp1c')->exists($this->vacation_file_name)) && ($import_file_size > 0)) {
-            Storage::put($save_file_name, Storage::disk('ftp1c')->get($this->vacation_file_name));
-            $import = new SFRVacationsImport();
-            $import->import($save_file_name);
-            foreach ($import->failures() as $failure) {
-                $fval = $failure->values(); // The values of the row that has failed.
-                $log_context = [
-                    'failure_errors' => $failure->errors(),
-                    'failure_attribute' => $failure->attribute(),
-                    'failure_row' => $failure->row(),
-                    'failure_inn' => $fval['sotrudnikfiziceskoe_licoinn'],
-                ];
-                Log::warning('Ошибка обработки строки в файле импорта', $log_context);
-            }
-            Storage::delete($save_file_name);
-        } else {
-            if ($import_file_size == 0) {
-                Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+        if (Storage::disk('ftp1c')->exists($this->vacation_file_name)) {
+            $import_file_size = Storage::disk('ftp1c')->size($this->vacation_file_name);
+            Log::info('Старт импорта отпусков', ['import_file_size' => $import_file_size]);
+            if ((Storage::disk('ftp1c')->exists($this->vacation_file_name)) && ($import_file_size > 0)) {
+                Storage::put($save_file_name, Storage::disk('ftp1c')->get($this->vacation_file_name));
+                $import = new SFRVacationsImport();
+                $import->import($save_file_name);
+                foreach ($import->failures() as $failure) {
+                    $fval = $failure->values(); // The values of the row that has failed.
+                    $log_context = [
+                        'failure_errors' => $failure->errors(),
+                        'failure_attribute' => $failure->attribute(),
+                        'failure_row' => $failure->row(),
+                        'failure_inn' => $fval['sotrudnikfiziceskoe_licoinn'],
+                    ];
+                    Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                }
+                Storage::delete($save_file_name);
             } else {
-                Log::error('Не найден файл импорта');
+                if ($import_file_size == 0) {
+                    Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+                } else {
+                    Log::error('Не найден файл импорта');
+                }
             }
+            Log::info('Конец импорта отпусков', ['import_file_size' => $import_file_size]);
+            Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла отпусков завершен'));
+        } else {
+            Log::error('Не найден файл импорта отпусков');
+            Notification::send($this->usersToNotify, new SFR1cSync('ОШИБКА! Не найден файл импорта отпусков'));
         }
-        Log::info('Конец импорта отпусков', ['import_file_size' => $import_file_size]);
-        Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла отпусков завершен'));
     }
 
     /**
@@ -168,36 +173,43 @@ class SFR1cImportController extends Controller
     public function SFRDekretImportFromCSV($command_load = false)
     {
         $save_file_name = 'tmp_dekret.txt';
-        $import_file_size = Storage::disk('ftp1c')->size($this->dekret_file_name);
+
         Log::withContext([
             'action' => LogActionsEnum::LOG_IMPORT_ABSENCE(),
             'file_name' => $this->dekret_file_name,
         ]);
-        Log::info('Старт импорта декретных отпусков', ['import_file_size' => $import_file_size]);
-        if ((Storage::disk('ftp1c')->exists($this->dekret_file_name)) && ($import_file_size > 0)) {
-            Storage::put($save_file_name, $this->SFRFileMergeFirstTwoLinesToOne($this->dekret_file_name));
-            $import = new SFRDekretsImport();
-            $import->import($save_file_name);
-            foreach ($import->failures() as $failure) {
-                $fval = $failure->values(); // The values of the row that has failed.
-                $log_context = [
-                    'failure_errors' => $failure->errors(),
-                    'failure_attribute' => $failure->attribute(),
-                    'failure_row' => $failure->row(),
-                    'failure_inn' => $fval['sotrudnikfiziceskoe_licoinn'],
-                ];
-                Log::warning('Ошибка обработки строки в файле импорта', $log_context);
-            }
-            Storage::delete($save_file_name);
-        } else {
-            if ($import_file_size == 0) {
-                Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+        if (Storage::disk('ftp1c')->exists($this->dekret_file_name)) {
+            $import_file_size = Storage::disk('ftp1c')->size($this->dekret_file_name);
+            Log::info('Старт импорта декретных отпусков', ['import_file_size' => $import_file_size]);
+            if ((Storage::disk('ftp1c')->exists($this->dekret_file_name)) && ($import_file_size > 0)) {
+                Storage::put($save_file_name, $this->SFRFileMergeFirstTwoLinesToOne($this->dekret_file_name));
+                $import = new SFRDekretsImport();
+                $import->import($save_file_name);
+                foreach ($import->failures() as $failure) {
+                    $fval = $failure->values(); // The values of the row that has failed.
+                    $log_context = [
+                        'failure_errors' => $failure->errors(),
+                        'failure_attribute' => $failure->attribute(),
+                        'failure_row' => $failure->row(),
+                        'failure_inn' => $fval['sotrudnikfiziceskoe_licoinn'],
+                    ];
+                    Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                }
+                Storage::delete($save_file_name);
             } else {
-                Log::error('Не найден файл импорта');
+                if ($import_file_size == 0) {
+                    Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+                } else {
+                    Log::error('Не найден файл импорта');
+                }
             }
+            Log::info('Конец импорта декретных отпусков', ['import_file_size' => $import_file_size]);
+            Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла декретных отпусков завершен'));
+        } else {
+            Log::error('Не найден файл импорта декретных отпусков');
+            Notification::send($this->usersToNotify, new SFR1cSync('ОШИБКА! Не найден файл импорта декретных отпусков'));
+
         }
-        Log::info('Конец импорта декретных отпусков', ['import_file_size' => $import_file_size]);
-        Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла декретных отпусков завершен'));
 
     }
     /**
@@ -208,42 +220,48 @@ class SFR1cImportController extends Controller
     public function SFRDepatmentsImportFromCSV($command_load = false)
     {
         $save_file_name = 'tmp_otdel.txt';
-        $import_file_size = Storage::disk('ftp1c')->size($this->otdel_file_name);
+
         Log::withContext([
             'action' => LogActionsEnum::LOG_IMPORT_DEPARTMENTS(),
             'file_name' => $this->otdel_file_name,
         ]);
-        Log::info('Старт импорта подразделений', ['import_file_size' => $import_file_size]);
-        if ((Storage::disk('ftp1c')->exists($this->otdel_file_name)) && ($import_file_size > 0)) {
-            Storage::put($save_file_name, Storage::disk('ftp1c')->get($this->otdel_file_name));
-            if (Storage::exists($save_file_name)) {
+        if (Storage::disk('ftp1c')->exists($this->otdel_file_name)) {
+            $import_file_size = Storage::disk('ftp1c')->size($this->otdel_file_name);
+            Log::info('Старт импорта подразделений', ['import_file_size' => $import_file_size]);
+            if ((Storage::disk('ftp1c')->exists($this->otdel_file_name)) && ($import_file_size > 0)) {
+                Storage::put($save_file_name, Storage::disk('ftp1c')->get($this->otdel_file_name));
+                if (Storage::exists($save_file_name)) {
 
-                $import = new SFRDepartmentsImport();
-                $import->import($save_file_name);
-                foreach ($import->failures() as $failure) {
-                    $fval = $failure->values(); // The values of the row that has failed.
-                    $log_context = [
-                        'failure_errors' => $failure->errors(),
-                        'failure_attribute' => $failure->attribute(),
-                        'failure_row' => $failure->row(),
-                        'failure_person' => $fval['sotrudnikfiziceskoe_lico'],
-                    ];
-                    Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                    $import = new SFRDepartmentsImport();
+                    $import->import($save_file_name);
+                    foreach ($import->failures() as $failure) {
+                        $fval = $failure->values(); // The values of the row that has failed.
+                        $log_context = [
+                            'failure_errors' => $failure->errors(),
+                            'failure_attribute' => $failure->attribute(),
+                            'failure_row' => $failure->row(),
+                            'failure_person' => $fval['sotrudnikfiziceskoe_lico'],
+                        ];
+                        Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                    }
+
+                    Storage::delete($save_file_name);
+                } else {
+                    Log::error('Ошибка записи временного файла импорта');
                 }
-
-                Storage::delete($save_file_name);
             } else {
-                Log::error('Ошибка записи временного файла импорта');
+                if ($import_file_size == 0) {
+                    Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+                } else {
+                    Log::error('Не найден файл импорта');
+                }
             }
+            Log::info('Конец импорта подразделений', ['import_file_size' => $import_file_size]);
+            Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла подразделений завершен'));
         } else {
-            if ($import_file_size == 0) {
-                Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
-            } else {
-                Log::error('Не найден файл импорта');
-            }
+            Log::error('Не найден файл импорта подразделений');
+            Notification::send($this->usersToNotify, new SFR1cSync('ОШИБКА! Не найден файл импорта подразделений'));
         }
-        Log::info('Конец импорта подразделений', ['import_file_size' => $import_file_size]);
-        Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла подразделений завершен'));
     }
 
     /**
@@ -254,41 +272,47 @@ class SFR1cImportController extends Controller
     public function SFRPersonsImportFromCSV($command_load = false)
     {
         $save_file_name = 'tmp_pd.txt';
-        $import_file_size = Storage::disk('ftp1c')->size($this->pd_file_name);
+
         Log::withContext([
             'action' => LogActionsEnum::LOG_IMPORT_PD(),
             'file_name' => $this->pd_file_name,
         ]);
-        Log::info('Старт импорта физических лиц', ['import_file_size' => $import_file_size]);
-        if ((Storage::disk('ftp1c')->exists($this->pd_file_name)) && ($import_file_size > 0)) {
-            Storage::put($save_file_name, $this->SFRFileMergeFirstTwoLinesToOne($this->pd_file_name));
-            if (Storage::exists($save_file_name)) {
-                $import = new SFRPersonsImport();
-                $import->import($save_file_name);
-                foreach ($import->failures() as $failure) {
-                    $fval = $failure->values(); // The values of the row that has failed.
-                    $log_context = [
-                        'failure_errors' => $failure->errors(),
-                        'failure_attribute' => $failure->attribute(),
-                        'failure_row' => $failure->row(),
-                        'failure_person' => $fval['sotrudnikfiziceskoe_lico'],
-                    ];
-                    Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+        if ((Storage::disk('ftp1c')->exists($this->pd_file_name))) {
+            $import_file_size = Storage::disk('ftp1c')->size($this->pd_file_name);
+            Log::info('Старт импорта физических лиц', ['import_file_size' => $import_file_size]);
+            if ((Storage::disk('ftp1c')->exists($this->pd_file_name)) && ($import_file_size > 0)) {
+                Storage::put($save_file_name, $this->SFRFileMergeFirstTwoLinesToOne($this->pd_file_name));
+                if (Storage::exists($save_file_name)) {
+                    $import = new SFRPersonsImport();
+                    $import->import($save_file_name);
+                    foreach ($import->failures() as $failure) {
+                        $fval = $failure->values(); // The values of the row that has failed.
+                        $log_context = [
+                            'failure_errors' => $failure->errors(),
+                            'failure_attribute' => $failure->attribute(),
+                            'failure_row' => $failure->row(),
+                            'failure_person' => $fval['sotrudnikfiziceskoe_lico'],
+                        ];
+                        Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                    }
+                    $this->SFREmployeeCheckFiredCSV($save_file_name);
+                    Storage::delete($save_file_name);
+                } else {
+                    Log::error('Ошибка записи временного файла импорта');
                 }
-                $this->SFREmployeeCheckFiredCSV($save_file_name);
-                Storage::delete($save_file_name);
             } else {
-                Log::error('Ошибка записи временного файла импорта');
+                if ($import_file_size == 0) {
+                    Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+                } else {
+                    Log::error('Не найден файл импорта');
+                }
             }
+            Log::info('Конец импорта физических лиц', ['import_file_size' => $import_file_size]);
+            Notification::send($this->usersToNotify, new SFR1cSync('Конец импорта физических лиц'));
         } else {
-            if ($import_file_size == 0) {
-                Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
-            } else {
-                Log::error('Не найден файл импорта');
-            }
+            Log::error('Не найден файл импорта физических лиц');
+            Notification::send($this->usersToNotify, new SFR1cSync('ОШИБКА! Не найден файл импорта физических лиц'));
         }
-        Log::info('Конец импорта физических лиц', ['import_file_size' => $import_file_size]);
-        Notification::send($this->usersToNotify, new SFR1cSync('Конец импорта физических лиц'));
 
     }
     /**
@@ -341,35 +365,41 @@ class SFR1cImportController extends Controller
     public function SFRPersonsMovementsImportFromCSV($command_load = false)
     {
         $save_file_name = 'tmp_kadry.txt';
-        $import_file_size = Storage::disk('ftp1c')->size($this->movements_file_name);
+
         Log::withContext([
             'action' => LogActionsEnum::LOG_IMPORT_KADRY(),
             'file_name' => $this->movements_file_name,
         ]);
-        Log::info('Старт импорта кадровых перемещений', ['import_file_size' => $import_file_size]);
-        if ((Storage::disk('ftp1c')->exists($this->movements_file_name)) && ($import_file_size > 0)) {
-            Storage::put($save_file_name, Storage::disk('ftp1c')->get($this->movements_file_name));
-            $import = new SFRPersonsMovementsImport();
-            $import->import($save_file_name);
-            foreach ($import->failures() as $failure) {
-                $fval = $failure->values(); // The values of the row that has failed.
-                $log_context = [
-                    'failure_errors' => $failure->errors(),
-                    'failure_attribute' => $failure->attribute(),
-                    'failure_row' => $failure->row(),
-                    'failure_inn' => $fval['sotrudnikfiziceskoe_lico_snils'],
-                ];
-                Log::warning('Ошибка обработки строки в файле импорта', $log_context);
-            }
-            Storage::delete($save_file_name);
-        } else {
-            if ($import_file_size == 0) {
-                Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+        if (Storage::disk('ftp1c')->exists($this->movements_file_name)) {
+            $import_file_size = Storage::disk('ftp1c')->size($this->movements_file_name);
+            Log::info('Старт импорта кадровых перемещений', ['import_file_size' => $import_file_size]);
+            if ((Storage::disk('ftp1c')->exists($this->movements_file_name)) && ($import_file_size > 0)) {
+                Storage::put($save_file_name, Storage::disk('ftp1c')->get($this->movements_file_name));
+                $import = new SFRPersonsMovementsImport();
+                $import->import($save_file_name);
+                foreach ($import->failures() as $failure) {
+                    $fval = $failure->values(); // The values of the row that has failed.
+                    $log_context = [
+                        'failure_errors' => $failure->errors(),
+                        'failure_attribute' => $failure->attribute(),
+                        'failure_row' => $failure->row(),
+                        'failure_inn' => $fval['sotrudnikfiziceskoe_lico_snils'],
+                    ];
+                    Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                }
+                Storage::delete($save_file_name);
             } else {
-                Log::error('Не найден файл импорта');
+                if ($import_file_size == 0) {
+                    Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+                } else {
+                    Log::error('Не найден файл импорта');
+                }
             }
+            Log::info('Конец импорта кадровых перемещений', ['import_file_size' => $import_file_size]);
+            Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла кадровых перемещений завершен'));
+        } else {
+            Log::error('Не найден файл импорта кадровых перемещений');
+            Notification::send($this->usersToNotify, new SFR1cSync('ОШИБКА! Не найден файл импорта кадровых перемещений'));
         }
-        Log::info('Конец импорта кадровых перемещений', ['import_file_size' => $import_file_size]);
-        Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла кадровых перемещений завершен'));
     }
 }
