@@ -46,7 +46,7 @@ class SFRPersonsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
             $fio = explode(" ", preg_replace('/\s+/', ' ', $item['sotrudnikfiziceskoe_lico']));
             $data_rozdeniia = Carbon::parse($item['data_rozdeniia'])->format('Y-m-d');
             $snils = preg_replace('/[-\s]/', '', $item['snils']);
-            printf('%s %s %s %s', $item['sotrudnikfiziceskoe_lico'], $item['inn'], $snils, $data_rozdeniia);
+            //printf('%s %s %s %s', $item['sotrudnikfiziceskoe_lico'], $item['inn'], $snils, $data_rozdeniia);
             $sfrperson = SfrPerson::where('pinn', $item['inn'])->orWhere('psnils', $snils)->first();
 
             if (!is_null($sfrperson)) {
