@@ -6,6 +6,9 @@
             <div class="col-sm-2">
                 @livewire('osfrportal::liveusers-count')
             </div>
+            <div class="col-sm-2">
+                @livewire('osfrportal::docsnotsigned-count')
+            </div>
         </div>
         <div class="row">
             @include('osfrportal::admin.extsystems.graphs')
