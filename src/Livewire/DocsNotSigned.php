@@ -17,7 +17,7 @@ class DocsNotSigned extends Component
         $this->docsNotSignedCount = $docsUnsignedCount;
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
-        flash()->addWarning($text_to);
+        $this->flash()->addWarning($text_to);
 /*
         sweetalert()
             ->timer(0)
