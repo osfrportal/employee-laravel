@@ -7,7 +7,7 @@ use Osfrportal\OsfrportalLaravel\Actions\Docs\CountUnsignedDocsByUserAction;
 
 class DocsNotSigned extends Component
 {
-    protected $listeners = ['movetodocs'];
+    protected $listeners = ['sweetalertConfirmed'];
 
     public $docsNotSignedCount;
 
@@ -16,6 +16,7 @@ class DocsNotSigned extends Component
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $this->docsNotSignedCount = $docsUnsignedCount;
+
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
 
         sweetalert()
@@ -24,7 +25,7 @@ class DocsNotSigned extends Component
             ->confirmButtonText('Перейти')
             ->showCancelButton()
             ->cancelButtonText('Отмена')
-            ->addWarning($text_to);
+            ->addInfo($text_to);
 
         return view('osfrportal::livewire.docsnotsigned-count', ['docsNotSignedCount' => $this->docsNotSignedCount]);
     }
