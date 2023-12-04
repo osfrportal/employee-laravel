@@ -6,7 +6,7 @@
             <div class="col-sm-2">
                 @livewire('osfrportal::liveusers-count')
             </div>
-            <div class="col-sm-2">
+            <div class="col">
                 @livewire('osfrportal::docsnotsigned-count')
             </div>
         </div>
