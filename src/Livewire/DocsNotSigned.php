@@ -9,13 +9,12 @@ use Osfrportal\OsfrportalLaravel\Actions\Docs\CountUnsignedDocsByUserAction;
 class DocsNotSigned extends Component
 {
     protected $listeners = [
-        'sweetalertConfirmed',
-        'sweetalertDenied',
+        'isConfirmed',
     ];
 
     public $docsNotSignedCount;
 
-    public function sweetalertConfirmed(array $payload)
+    public function isConfirmed(array $payload)
     {
         $this->redirectRoute('osfrportal.docs.index');
     }
