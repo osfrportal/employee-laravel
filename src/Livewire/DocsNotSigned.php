@@ -16,24 +16,20 @@ class DocsNotSigned extends Component
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $this->docsNotSignedCount = $docsUnsignedCount;
+        $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
 
-        //$this->alertConfirm();
+        sweetalert()
+            ->position('center')
+            ->showConfirmButton()
+            ->confirmButtonText('Перейти')
+            ->showCancelButton()
+            ->cancelButtonText('Отмена')
+            ->addWarning($text_to);
 
         return view('osfrportal::livewire.docsnotsigned-count', ['docsNotSignedCount' => $this->docsNotSignedCount]);
     }
 
-    public function alertConfirm()
-    {
-        $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
-        $this->dispatchBrowserEvent('swal:confirm', [
-                'type' => 'warning',
-                'message' => 'Необходимо ознакомление с документами',
-                'text' => $text_to,
-                'action' => 'movetodocs'
-            ]);
-    }
-
-    public function movetodocs()
+    public function sweetalertConfirmed(array $payload)
     {
         return redirect()->route('osfrportal.docs.index');
     }
