@@ -21,7 +21,7 @@
     <link href="{{ asset('osfrportal/css/multiform.css') }}" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/flasher/flasher-noty.css') }}" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/flasher_noty_bootstrap5_theme.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('osfrportal/css/flasher/flasher-sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('osfrportal/css/firefox-fix.css') }}" rel="stylesheet">
 
     <link href="{{ asset('osfrportal/css/apexcharts/apexcharts.css') }}" rel="stylesheet">
