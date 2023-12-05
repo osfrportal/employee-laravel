@@ -35,7 +35,7 @@
                                                             Карта СКУД
                                                     @endswitch
                                                 </div>
-                                                @if ($rfidKey->tkeydata->CodeType === 1)
+                                                @if ($rfidKey->tkeydata->CodeType != 1)
                                                     <small class="text-muted d-block">Номер:
                                                         {{ $rfidKey->tkeydata->Code ?? '' }}</small>
                                                 @endif
