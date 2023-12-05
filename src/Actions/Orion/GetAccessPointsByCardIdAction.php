@@ -7,6 +7,7 @@ use Osfrportal\OsfrportalLaravel\Data\Orion\TKeyData;
 use Osfrportal\OsfrportalLaravel\Data\Orion\TAccessLevelData;
 use Osfrportal\OsfrportalLaravel\Data\Orion\TAccessLevelItemData;
 use Osfrportal\OsfrportalLaravel\Models\SfrOrionCards;
+use Osfrportal\OsfrportalLaravel\Models\SfrOrionEntryPoints;
 use Illuminate\Database\Eloquent\ModelNotFoundException; 
 
 class GetAccessPointsByCardIdAction
@@ -18,7 +19,11 @@ class GetAccessPointsByCardIdAction
             $cardData = SfrOrionCards::where('keyid', $cardId)->firstOrFail();
             foreach ($cardData->OrionAccessLevel->taccessleveldata->Items as $accessLevelItem)
             {
-                dump($accessLevelItem);
+                if ($accessLevelItem->ItemType == 'ACCESSPOINT')
+                {
+                    $entryPointData = SfrOrionEntryPoints::where('entrypointid', $accessLevelItem->ItemId)->firstOrFail();
+                    dump($entryPointData->Name);
+                }
             }
         } catch (ModelNotFoundException $e) {
             return $e->getMessage();
