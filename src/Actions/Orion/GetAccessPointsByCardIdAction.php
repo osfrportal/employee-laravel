@@ -21,9 +21,9 @@ class GetAccessPointsByCardIdAction
             {
                 if ($accessLevelItem->ItemType == 'ACCESSPOINT')
                 {
-                    dump($accessLevelItem);
+                    //dump($accessLevelItem);
                     $entryPointData = SfrOrionEntryPoints::where('entrypointid', $accessLevelItem->ItemId)->firstOrFail();
-                    dump($entryPointData);
+                    dump($entryPointData->tentrypointdata->Name);
                 }
             }
         } catch (ModelNotFoundException $e) {
