@@ -19,11 +19,11 @@ class GetAccessPointsByCardIdAction
             $cardData = SfrOrionCards::where('keyid', $cardId)->firstOrFail();
             foreach ($cardData->OrionAccessLevel->taccessleveldata->Items as $accessLevelItem)
             {
-                if (($accessLevelItem->ItemType == 'ACCESSPOINT') && ($accessLevelItem->ItemId !== 2))
+                if (($accessLevelItem->ItemType == 'ACCESSPOINT'))
                 {
-                    //dump($accessLevelItem);
-                    $entryPointData = SfrOrionEntryPoints::where('entrypointid', $accessLevelItem->ItemId)->firstOrFail();
-                    dump($entryPointData->tentrypointdata->Name);
+                    dump($accessLevelItem);
+                    //$entryPointData = SfrOrionEntryPoints::where('entrypointid', $accessLevelItem->ItemId)->firstOrFail();
+                    //dump($entryPointData->tentrypointdata->Name);
                 }
             }
         } catch (ModelNotFoundException $e) {
