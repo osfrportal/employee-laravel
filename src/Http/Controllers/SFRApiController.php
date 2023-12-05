@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Log;
 
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2UnitsAllAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocsAllGroupedAction;
+use Osfrportal\OsfrportalLaravel\Actions\Orion\GetAccessPointsByCardIdAction;
 
 class SFRApiController extends Controller
 {
@@ -43,6 +44,12 @@ class SFRApiController extends Controller
     public function apiSelect2DocsGroupedAll(Request $request)
     {
         $data = Select2DocsAllGroupedAction::run();
+        return $data;
+    }
+
+    public function apiGetAccessPointsByCardId(Request $request)
+    {
+        $data = GetAccessPointsByCardIdAction::run(56);
         return $data;
     }
 }
