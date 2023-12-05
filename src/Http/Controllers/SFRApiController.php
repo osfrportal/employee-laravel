@@ -49,7 +49,7 @@ class SFRApiController extends Controller
 
     public function apiGetAccessPointsByCardId(Request $request)
     {
-        $cardId = $request->input('cardid');
+        $cardId = $request->get('cardid');
         $data = GetAccessPointsByCardIdAction::run($cardId);
         return $data;
     }
