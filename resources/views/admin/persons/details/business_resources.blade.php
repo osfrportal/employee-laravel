@@ -35,8 +35,10 @@
                                                             Карта СКУД
                                                     @endswitch
                                                 </div>
-                                                <small class="text-muted d-block">Номер:
-                                                    {{ $rfidKey->tkeydata->Code ?? '' }}</small>
+                                                @if ($rfidKey->tkeydata->CodeType === 1)
+                                                    <small class="text-muted d-block">Номер:
+                                                        {{ $rfidKey->tkeydata->Code ?? '' }}</small>
+                                                @endif
                                                 <small class="text-muted d-block">Статус:
                                                     {{ $rfidKey->tkeydata->IsBlocked === true ? 'заблокирована' : 'активна' }}</small>
                                                 <small class="text-muted d-block">Комментарий:
