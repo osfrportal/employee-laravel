@@ -16,9 +16,9 @@ class GetAccessPointsByCardIdAction
     public function handle(int $cardId) {
         try {
             $cardData = SfrOrionCards::where('keyid', $cardId)->firstOrFail();
-            foreach ($cardData->OrionAccessLevel->taccessleveldata as $accessLevel)
+            foreach ($cardData->OrionAccessLevel->taccessleveldata->Items as $accessLevelItem)
             {
-                dump($accessLevel->toArray());
+                dump($accessLevelItem);
             }
         } catch (ModelNotFoundException $e) {
             return $e->getMessage();
