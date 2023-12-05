@@ -13,7 +13,7 @@ class GetAccessPointsByCardIdAction
 
     public function handle(int $cardId) {
         $cardData = SfrOrionCards::findOrFail($cardId);
-        dump($cardData);
+        dump($cardData->OrionAccessLevel);
     }
 
 }
