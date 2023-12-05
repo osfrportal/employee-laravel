@@ -38,10 +38,10 @@
                                                 <small class="text-muted d-block">Статус:
                                                     {{ $rfidKey->tkeydata->IsBlocked === true ? 'заблокирована' : 'активна' }}</small>
                                             </div>
-                                        </div>
-                                        <div class="col ms-4 small">
-                                            <a data-id="{{ $rfidKey->keyid }}" class="btn btn-sm btn-link" type="button"
-                                                data-bs-toggle="modal" data-bs-target="#rfidDataModal">Подробнее</a>
+                                            <div class="col ms-4 small">
+                                                <a data-id="{{ $rfidKey->keyid }}" class="btn btn-sm btn-link" type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#rfidDataModal">Подробнее</a>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
