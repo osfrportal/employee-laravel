@@ -71,7 +71,7 @@ class SFROrionController extends Controller
         if ($orionEntryPointsCount->Success && is_null($orionEntryPointsCount->ServiceError)) {
             $orionEntryPointsCountResult = $orionEntryPointsCount->OperationResult;
             $offset = 0;
-            $count = 50;
+            $count = 25;
             $jobsBatch = [];
             do {
                 $orionEntryPoints = $this->soapWrapper->call('IOrionPro.GetEntryPoints', ['offset' => $offset, 'count' => $count]);
@@ -104,7 +104,7 @@ class SFROrionController extends Controller
             $orionAccessLevelsCountResult = $orionAccessLevelsCount->OperationResult;
 
             $offset = 0;
-            $count = 50;
+            $count = 20;
             $jobsBatch = [];
             do {
                 $orionAccessLevels = $this->soapWrapper->call('IOrionPro.GetAccessLevels', ['offset' => $offset, 'count' => $count]);

@@ -12,7 +12,7 @@ class GetAccessPointsByCardIdAction
     use AsAction;
 
     public function handle(int $cardId) {
-        $cardData = SfrOrionCards::findOrFail($cardId);
+        $cardData = SfrOrionCards::where('keyid',$cardId)->firstOrFail;
         dump($cardData->OrionAccessLevel->taccessleveldata);
     }
 
