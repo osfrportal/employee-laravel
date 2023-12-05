@@ -15,7 +15,7 @@ class GetAccessPointsByCardIdAction
 
     public function handle(int $cardId) {
         try {
-            $cardData = SfrOrionCards::where('keyid', $cardId)->firstOrFail;
+            $cardData = SfrOrionCards::where('keyid', $cardId)->firstOrFail();
         } catch (ModelNotFoundException $e) {
             dump($e);
         }
