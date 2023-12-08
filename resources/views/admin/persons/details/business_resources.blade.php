@@ -266,12 +266,12 @@
             //
             // Update the modal's content.
             //const modalTitle = rfidDataModal.querySelector('.modal-title')
-            //const modalBodyInput = rfidDataModal.querySelector('.modal-body input')
+            const modalBodyText = rfidDataModal.querySelector('.modal-body')
             $.ajax({
                 url: urlroute, // адрес, на который будет отправлен запрос
-                context: $(".modal-body"), // новый контекст исполнения функции
                 success: function(data) { // если запрос успешен вызываем функцию
-                    $(this).html(data); // добавляем текст в элемент с классом .myClass
+                    modalBodyText.innerHTML = data['results']
+                    //$(this).html(data); // добавляем текст в элемент с классом .myClass
                 }
             });
             //modalTitle.textContent = `New message to ${rfidID}`
