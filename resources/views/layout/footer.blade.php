@@ -62,7 +62,6 @@
         Livewire.on('docsnotsigned-message', (message) => {
             console.log(message);
             swal({
-                title: "Are you sure?",
                 text: message,
                 icon: "warning",
             }).then((result) => {
