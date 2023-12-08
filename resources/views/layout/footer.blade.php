@@ -60,6 +60,6 @@
 @livewireScripts
 <script type="text/javascript">
      Livewire.on('LWmessage', message => {
-        alert(message); //put sweet alert here :)
+        console.log(message);
     })
 </script>
