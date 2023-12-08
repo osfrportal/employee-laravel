@@ -29,6 +29,14 @@
             }
         };
 
+        function returnVipNetAddr(data) {
+            if ((data === null) || (data == '----') || (data == '-----')) {
+                return ' ';
+            } else {
+                return '<br> VipNet: '+ data;
+            }
+        };
+
         function returnEmailLink(data) {
             if ((data === null) || (data == '----') || (data == '-----')) {
                 return ' ';
@@ -146,7 +154,7 @@
                                 .contactdata_person.persondata_dekret_end + ')</em></strong>';
                         } else {
                             return checkEmptyOrNull(data) + '<br>' + returnEmailLink(row
-                                .contactdata_phone_data.email_ext) + '<br> VipNet: ' + row.contactdata_phone_data.vipnetapname;
+                                .contactdata_phone_data.email_ext) + returnVipNetAddr(row.contactdata_phone_data.vipnetapname);
                         }
                     },
                     name: 'contactdata_address',
