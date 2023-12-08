@@ -61,7 +61,7 @@
     document.addEventListener('livewire:init', () => {
         Livewire.on('docsnotsigned-message', (message) => {
             console.log(message);
-            swal.fire({
+            swal({
                 title: "Are you sure?",
                 text: message,
                 icon: "warning",
@@ -71,7 +71,7 @@
                 confirmButtonText: "Ознакомиться"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
+                    swal({
                         title: "Deleted!",
                         text: "Your file has been deleted.",
                         icon: "success"
