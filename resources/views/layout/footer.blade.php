@@ -65,7 +65,7 @@
             swal({
                 closeOnClickOutside: false,
                 closeOnEsc: false,
-                text: event[0],
+                content: event[0],
                 icon: "warning",
                 buttons: {
                     confirm: {
