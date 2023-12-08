@@ -11,14 +11,14 @@ class DocsNotSigned extends Component
 {
     public $docsNotSignedCount;
 
-    public $currentRoute;
+    //public $currentRoute;
 
     public function render()
     {
 
         $user = Auth::user();
 
-        $this->currentRoute = Route::getCurrentRoute();
+        //$this->currentRoute = Route::getCurrentRoute();
 
         $this->docsNotSignedCount = CountUnsignedDocsByUserAction::run();
 
