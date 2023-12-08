@@ -12,7 +12,7 @@
                     <th>Телефон (ВТС)</th>
                     <th>Телефон (городской)</th>
                     <th>Кабинет</th>
-                    <th>Адреса (почтовый/электронный)</th>
+                    <th>Адреса (почтовый/электронный/VipNet)</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
@@ -146,7 +146,7 @@
                                 .contactdata_person.persondata_dekret_end + ')</em></strong>';
                         } else {
                             return checkEmptyOrNull(data) + '<br>' + returnEmailLink(row
-                                .contactdata_phone_data.email_ext);
+                                .contactdata_phone_data.email_ext) + '<br> VipNet: ' + row.contactdata_phone_data.vipnetapname;
                         }
                     },
                     name: 'contactdata_address',
