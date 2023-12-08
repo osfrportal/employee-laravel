@@ -60,8 +60,9 @@
 <script type="text/javascript">
     document.addEventListener('livewire:init', () => {
         Livewire.on('docsnotsigned-message', (event) => {
+            let currentRouteString = '{{ Route::currentRouteName() }}';
             console.log(event);
-            console.log('{{ Route::currentRouteName() }}');
+            console.log(currentRouteString.includes('osfrportal.docs'));
             swal({
                 closeOnClickOutside: false,
                 closeOnEsc: false,
