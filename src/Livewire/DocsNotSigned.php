@@ -10,34 +10,21 @@ use Illuminate\Support\Facades\Route;
 class DocsNotSigned extends Component
 {
     public $docsNotSignedCount;
-
-    //public $currentRoute;
-
     public function render()
     {
 
         $user = Auth::user();
 
-        //$this->currentRoute = Route::getCurrentRoute();
+        $currentRoute = Route::getCurrentRoute();
 
         $this->docsNotSignedCount = CountUnsignedDocsByUserAction::run();
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
 
-        if($user->can('users-manage')) {
+        if($user->can('users-manage') && ($currentRoute !== '')) {
             $this->dispatch('docsnotsigned-message', $text_to);
         }
-        //flash()->addWarning($text_to);
-/*
-        sweetalert()
-            ->timer(0)
-            ->backdrop(false)
-            ->position('center')
-            ->showConfirmButton()
-            ->confirmButtonText('ОК')
-            ->showCloseButton(false)
-            ->addWarning($text_to);
-*/
+
         return view('osfrportal::livewire.docsnotsigned-count', ['docsNotSignedCount' => $this->docsNotSignedCount]);
     }
 
