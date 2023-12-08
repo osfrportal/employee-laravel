@@ -62,7 +62,7 @@
         Livewire.on('docsnotsigned-message', (messagetoshow) => {
             console.log(messagetoshow);
             swal({
-                text: messagetoshow,
+                text: messagetoshow[0],
                 icon: "warning",
             }).then((result) => {
                 if (result.isConfirmed) {
