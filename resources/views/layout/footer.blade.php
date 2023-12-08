@@ -67,13 +67,6 @@
                 text: event[0],
                 icon: "warning",
                 buttons: {
-                    cancel: {
-                        text: "Закрыть",
-                        value: null,
-                        visible: true,
-                        className: "btn btn-primary",
-                        closeModal: true,
-                    },
                     confirm: {
                         text: "Перейти",
                         value: true,
