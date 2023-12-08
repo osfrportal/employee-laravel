@@ -871,3 +871,7 @@ html:not([dir=rtl]) .timeline .timeline-item.timeline-item-transparent .timeline
     font-size: 32px;
 }
 
+.icon-size-24 {
+    font-size: 24px;
+}
+
