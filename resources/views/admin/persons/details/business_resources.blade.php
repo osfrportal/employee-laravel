@@ -270,8 +270,10 @@
             $.ajax({
                 url: urlroute, // адрес, на который будет отправлен запрос
                 success: function(data) { // если запрос успешен вызываем функцию
-                    modalBodyText.innerHTML = data['results']
-                    //$(this).html(data); // добавляем текст в элемент с классом .myClass
+                    for (let accesspoint of data['results']) {
+                        console.log(accesspoint['entrypointname']);
+                    }
+                    modalBodyText.innerHTML = data['results'];
                 }
             });
             //modalTitle.textContent = `New message to ${rfidID}`
