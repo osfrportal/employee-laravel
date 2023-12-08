@@ -38,6 +38,7 @@ class SFRLogsAdminController extends Controller
             'phone_external' => 'Телефон (городской)',
             'phone_mobile' => 'Телефон (мобильный)',
             'areacode' => 'Код города',
+            'vipnetapname' => 'Наименование АП VipNet Деловая почта',
         ];
 
         $this->phoneLogs = collect();
