@@ -259,13 +259,21 @@
             const button = event.relatedTarget
             // Extract info from data-bs-* attributes
             const rfidID = button.getAttribute('data-id')
+            var urlroute = '{{ route('osfrapi.osfrportal.admin.orion.card.accesspoints', ':slug') }}';
+            urlroute = urlroute.replace(':slug', rfidID);
             // If necessary, you could initiate an AJAX request here
             // and then do the updating in a callback.
             //
             // Update the modal's content.
             //const modalTitle = rfidDataModal.querySelector('.modal-title')
             //const modalBodyInput = rfidDataModal.querySelector('.modal-body input')
-
+            $.ajax({
+                url: urlroute, // адрес, на который будет отправлен запрос
+                context: $(".modal-body"), // новый контекст исполнения функции
+                success: function(data) { // если запрос успешен вызываем функцию
+                    $(this).html(data); // добавляем текст в элемент с классом .myClass
+                }
+            });
             //modalTitle.textContent = `New message to ${rfidID}`
             //modalBodyInput.value = rfidID
         })
