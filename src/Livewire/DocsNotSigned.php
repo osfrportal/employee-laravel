@@ -19,7 +19,7 @@ class DocsNotSigned extends Component
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
 
-        if($user->can('users-manage') && !Route::is('osfrportal.docs.')) {
+        if($user->can('users-manage') && !Route::is('osfrportal.docs.*')) {
             $this->dispatch('docsnotsigned-message', $text_to);
         }
 
