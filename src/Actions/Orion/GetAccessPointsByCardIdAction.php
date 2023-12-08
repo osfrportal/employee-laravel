@@ -35,7 +35,7 @@ class GetAccessPointsByCardIdAction
                 }
             }
 
-            return new OrionAccessPointsByCardIdCollection($accessPointsCollection->sortBy(['entrypointname'])->values()->all(););
+            return new OrionAccessPointsByCardIdCollection($accessPointsCollection->sortBy(['entrypointname'])->values()->all());
         } catch (ModelNotFoundException $e) {
             return $e->getMessage();
         }
