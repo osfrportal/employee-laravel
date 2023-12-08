@@ -62,7 +62,7 @@
         Livewire.on('docsnotsigned-message', (message) => {
             console.log(message);
             swal({
-                text: message,
+                text: "12345",
                 icon: "warning",
             }).then((result) => {
                 if (result.isConfirmed) {
