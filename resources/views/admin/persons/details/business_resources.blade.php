@@ -243,8 +243,9 @@
                 <h1 class="modal-title fs-5" id="rfidDataModalLabel">Информация о карте доступа СКУД</h1>
             </div>
             <div class="modal-body">
-                <ol id="modal-accesspoints-list">
-                </ol>
+                Точки доступа, через которые разрешен проход:
+                <ul id="modal-accesspoints-list">
+                </ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Закрыть</button>
