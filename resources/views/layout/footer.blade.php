@@ -61,7 +61,7 @@
     document.addEventListener('livewire:init', () => {
         Livewire.on('docsnotsigned-message', (message) => {
             console.log(message);
-            Swal.fire({
+            swal.fire({
                 title: "Are you sure?",
                 text: message,
                 icon: "warning",
