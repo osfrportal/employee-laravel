@@ -78,7 +78,7 @@
                 },
             }).then((result) => {
                 if (result) {
-                    Livewire.navigate("{{ route('osfrportal.docs.index') }}");
+                    $(location).prop('href', "{{ route('osfrportal.docs.index') }}");
                 }
             });
         });
