@@ -11,20 +11,20 @@ class DocsNotSigned extends Component
 {
     public $docsNotSignedCount;
 
-    public $currentRoute;
+    //public $currentRoute;
 
     public function render()
     {
 
         $user = Auth::user();
 
-        $this->currentRoute = Route::getCurrentRoute();
+        //$this->currentRoute = Route::getCurrentRoute();
 
         $this->docsNotSignedCount = CountUnsignedDocsByUserAction::run();
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
         if($user->can('users-manage')) {
-            $this->dispatch('docsnotsigned-message',$text_to);
+            $this->dispatch('docsnotsigned-message', $text_to);
         }
         //flash()->addWarning($text_to);
 /*
