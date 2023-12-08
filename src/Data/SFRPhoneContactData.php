@@ -17,12 +17,14 @@ class SFRPhoneContactData extends Data
         public ?string $phone_internal = null,
         public ?string $phone_mobile = null,
         public ?string $areacode = null,
+        public ?string $vipnetapname = null,
     ) {
     }
 
     public static function defValues(): SFRPhoneContactData
     {
         return new self(
+            null,
             null,
             null,
             null,

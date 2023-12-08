@@ -100,6 +100,7 @@ class PhoneController extends Controller
             'inputPhoneExt' => 'required|digits_between:5,6',
             'inputRoom' => 'required|alpha_dash|max:30',
             'inputPhoneMobile' => 'nullable|numeric|digits:10',
+            'inputVipnetApName' => 'nullable',
             'personid' => 'required|uuid',
         ];
         $validation_messages = [
@@ -128,13 +129,14 @@ class PhoneController extends Controller
         $person_contactdata_DTO = new SfrPhoneContactData();
         $person_contactdata_DTO->room = $validatedData['inputRoom'];
         $person_contactdata_DTO->address = $this->addressByInternalNumber($validatedData['inputPhoneInt']);
-        ;
+
         $person_contactdata_DTO->email_ext = Str::lower($validatedData['inputEmailAddress']);
         $person_contactdata_DTO->phone_external = $validatedData['inputPhoneExt'];
         $person_contactdata_DTO->phone_internal = $validatedData['inputPhoneInt'];
         $person_contactdata_DTO->phone_mobile = $validatedData['inputPhoneMobile'];
         $person_contactdata_DTO->areacode = $this->areacodeByInternalNumber($validatedData['inputPhoneInt']);
-        ;
+        $person_contactdata_DTO->vipnetapname = $validatedData['inputVipnetApName'];
+
         $contactdata_collection_json = $person_contactdata_DTO->toJson(JSON_UNESCAPED_UNICODE);
 
 
