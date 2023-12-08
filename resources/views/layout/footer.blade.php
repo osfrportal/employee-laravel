@@ -60,7 +60,7 @@
 <script type="text/javascript">
     document.addEventListener('livewire:init', () => {
         Livewire.on('docsnotsigned-message', (event) => {
-            console.log({{ Route::getCurrentRoute() }})
+            console.log(event)
             swal({
                 closeOnClickOutside: false,
                 closeOnEsc: false,
