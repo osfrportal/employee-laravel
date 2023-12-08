@@ -21,7 +21,7 @@ class DocsNotSigned extends Component
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
 
-        if($user->can('users-manage') && ($currentRoute !== '')) {
+        if($user->can('users-manage')) {
             $this->dispatch('docsnotsigned-message', $text_to);
         }
 
