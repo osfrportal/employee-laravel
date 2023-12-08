@@ -61,27 +61,29 @@
     document.addEventListener('livewire:init', () => {
         Livewire.on('docsnotsigned-message', (event) => {
             let currentRouteString = '{{ Route::currentRouteName() }}';
-            console.log(event);
-            console.log(currentRouteString.includes('osfrportal.docs'));
-            swal({
-                closeOnClickOutside: false,
-                closeOnEsc: false,
-                text: event[0],
-                icon: "warning",
-                buttons: {
-                    confirm: {
-                        text: "Перейти",
-                        value: true,
-                        visible: true,
-                        className: "btn btn-success",
-                        closeModal: true
+            let alertStatus = currentRouteString.includes('osfrportal.docs');
+            //console.log(event);
+            if (!alertStatus) {
+                swal({
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    text: event[0],
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: "Перейти",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-success",
+                            closeModal: true
+                        },
                     },
-                },
-            }).then((result) => {
-                if (result) {
-                    $(location).prop('href', "{{ route('osfrportal.docs.index') }}");
-                }
-            });
+                }).then((result) => {
+                    if (result) {
+                        $(location).prop('href', "{{ route('osfrportal.docs.index') }}");
+                    }
+                });
+            };
         });
     });
 </script>
