@@ -59,10 +59,10 @@
 @livewireScripts
 <script type="text/javascript">
     document.addEventListener('livewire:init', () => {
-        Livewire.on('docsnotsigned-message', (message) => {
-            console.log(message);
+        Livewire.on('docsnotsigned-message', (messagetoshow) => {
+            console.log(messagetoshow);
             swal({
-                text: "12345",
+                text: messagetoshow,
                 icon: "warning",
             }).then((result) => {
                 if (result.isConfirmed) {
