@@ -243,7 +243,8 @@
                 <h1 class="modal-title fs-5" id="rfidDataModalLabel">Информация о карте доступа СКУД</h1>
             </div>
             <div class="modal-body">
-                В разработке
+                <ol id="modal-accesspoints-list">
+                </ol>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Закрыть</button>
@@ -266,14 +267,15 @@
             //
             // Update the modal's content.
             //const modalTitle = rfidDataModal.querySelector('.modal-title')
-            const modalBodyText = rfidDataModal.querySelector('.modal-body')
+            const modalBodyText = rfidDataModal.querySelector('#modal-accesspoints-list')
             $.ajax({
                 url: urlroute, // адрес, на который будет отправлен запрос
                 success: function(data) { // если запрос успешен вызываем функцию
                     for (let accesspoint of data['results']) {
-                        console.log(accesspoint['entrypointname']);
+                        const $newLi = document.createElement('li');
+                        $newLi.textContent = accesspoint['entrypointname'];
+                        modalBodyText.appendChild($newLi);
                     }
-                    modalBodyText.innerHTML = data['results'];
                 }
             });
             //modalTitle.textContent = `New message to ${rfidID}`
