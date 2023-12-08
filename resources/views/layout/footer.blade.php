@@ -58,3 +58,8 @@
 @stack('footer-scripts')
 @stack('scripts')
 @livewireScripts
+<script type="text/javascript">
+     Livewire.on('LWmessage', message => {
+        alert(message); //put sweet alert here :)
+    })
+</script>
