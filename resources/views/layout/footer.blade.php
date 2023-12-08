@@ -59,9 +59,9 @@
 @livewireScripts
 <script type="text/javascript">
     document.addEventListener('livewire:init', () => {
-        Livewire.on('docsnotsigned-message', (messagetoshow) => {
-            console.log('{{ Route::currentRouteName() }}')
-            console.log(messagetoshow);
+        Livewire.on('docsnotsigned-message', (event) => {
+            console.log(event.detail.currentroute)
+            console.log(event.detail.messagetoshow);
             swal({
                 closeOnClickOutside: false,
                 closeOnEsc: false,
