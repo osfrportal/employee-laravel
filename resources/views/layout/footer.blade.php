@@ -60,12 +60,12 @@
 <script type="text/javascript">
     document.addEventListener('livewire:init', () => {
         Livewire.on('docsnotsigned-message', (event) => {
-            console.log(event.detail.currentroute)
-            console.log(event.detail.messagetoshow);
+            console.log(event)
+            console.log({{ $currentRoute ?? ''}});
             swal({
                 closeOnClickOutside: false,
                 closeOnEsc: false,
-                text: messagetoshow[0],
+                text: event[0],
                 icon: "warning",
                 buttons: {
                     cancel: {
