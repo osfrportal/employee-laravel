@@ -64,6 +64,22 @@
             swal({
                 text: messagetoshow[0],
                 icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "Закрыть",
+                        value: null,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "Перейти",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-success",
+                        closeModal: true
+                    },
+                },
             }).then((result) => {
                 if (result.isConfirmed) {
                     swal({
