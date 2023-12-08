@@ -78,11 +78,7 @@
                 },
             }).then((result) => {
                 if (result) {
-                    swal({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
+                    $wire.gotoDocs();
                 }
             });
         });
