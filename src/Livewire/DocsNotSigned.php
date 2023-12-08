@@ -15,8 +15,6 @@ class DocsNotSigned extends Component
 
         $user = Auth::user();
 
-        $currentRoute = Route::getCurrentRoute();
-
         $this->docsNotSignedCount = CountUnsignedDocsByUserAction::run();
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
