@@ -50,7 +50,6 @@
             defaultLocale: "ru",
         }
     });
-
 </script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/btn-back-to-top.js') }}"></script>
 <script type="text/javascript" src="{{ asset('osfrportal/js/inputmask.binding.js') }}"></script>
@@ -59,7 +58,9 @@
 @stack('scripts')
 @livewireScripts
 <script type="text/javascript">
-     Livewire.on('LWmessage', message => {
-        console.log(message);
-    })
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('docsnotsigned-message', (message) => {
+            console.log(message);
+        });
+    });
 </script>
