@@ -4,6 +4,7 @@ namespace Osfrportal\OsfrportalLaravel\Livewire;
 
 use Livewire\Component;
 use Osfrportal\OsfrportalLaravel\Actions\Docs\CountUnsignedDocsByUserAction;
+use Illuminate\Support\Facades\Auth;
 
 
 class DocsNotSigned extends Component
@@ -12,12 +13,16 @@ class DocsNotSigned extends Component
 
     public function render()
     {
+        $user = Auth::user();
+
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $this->docsNotSignedCount = $docsUnsignedCount;
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
-        $this->dispatch('docsnotsigned-message', $text_to);
+        if($user->can('users-manage')) {
+            $this->dispatch('docsnotsigned-message', $text_to);
+        }
         //flash()->addWarning($text_to);
 /*
         sweetalert()
