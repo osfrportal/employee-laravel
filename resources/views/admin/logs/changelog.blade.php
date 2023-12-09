@@ -25,15 +25,15 @@
                 <span class="d-block  mb-2">08-12-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлено всплывающее уведомление
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлено всплывающее уведомление
                         работникам о необходимости ознакомления с документами
                     </li>
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i>В контактные данные работника добавлено
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i>В контактные данные работника добавлено
                         поле "Адрес VipNet" с отображением в телефонном справочнике
                     </li>
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлено отображение списка точек доступа при просмотре подробной информации по карте СКУД в административном интерфейсе
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлено отображение списка точек доступа при просмотре подробной информации по карте СКУД в административном интерфейсе
                     </li>
                 </ul>
             </div>
@@ -50,7 +50,7 @@
                 <span class="d-block  mb-2">28-11-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлен отчет "Ведомость ознакомления
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлен отчет "Ведомость ознакомления
                         работников с нормативными документами"
                     </li>
                 </ul>
@@ -68,10 +68,10 @@
                 <span class="d-block  mb-2">21-11-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-asterix icon-size-24" title="[FIX]"></i> Исправлено отображение шрифта Montserrat в браузере Firefox (проверено на win10 firefox 120)
+                        <i class="ti ti-code-asterix icon-size-16" title="[FIX]"></i> Исправлено отображение шрифта Montserrat в браузере Firefox (проверено на win10 firefox 120)
                     </li>
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> При просмотре списка работников и
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> При просмотре списка работников и
                         профиля работника добавлено поле последняя активность на портале
                     </li>
                 </ul>
@@ -89,10 +89,10 @@
                 <span class="d-block  mb-2">20-11-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-asterix icon-size-24" title="[FIX]"></i> Портал переведен на использование корпоративного шрифта Montserrat
+                        <i class="ti ti-code-asterix icon-size-16" title="[FIX]"></i> Портал переведен на использование корпоративного шрифта Montserrat
                     </li>
                     <li class="list-group-item">
-                        <i class="ti ti-code-asterix icon-size-24" title="[FIX]"></i> Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки
+                        <i class="ti ti-code-asterix icon-size-16" title="[FIX]"></i> Скрипты и стили перенесены на внутренний ресурс для ускорения загрузки
                     </li>
                 </ul>
             </div>
@@ -109,7 +109,7 @@
                 <span class="d-block  mb-2">15-11-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Логи / Журнал обновления телефонного
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Логи / Журнал обновления телефонного
                         справочника
                     </li>
                 </ul>
@@ -127,12 +127,12 @@
                 <span class="d-block  mb-2">11-11-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлен столбец Группа документов в
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлен столбец Группа документов в
                         управление документами
                     </li>
 
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлено журналирование в БД
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлено журналирование в БД
                     </li>
                 </ul>
             </div>
@@ -149,19 +149,19 @@
                 <span class="d-block  mb-2">08-11-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> В личном кабинете добавлено
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> В личном кабинете добавлено
                         отображение количества документов, с которыми работник еще не ознакомился.
                     </li>
                     <li class="list-group-item">
-                        <i class="ti ti-code-asterix icon-size-24" title="[FIX]"></i> Исправлено отображение ведомости ознакомления и профиля работника в
+                        <i class="ti ti-code-asterix icon-size-16" title="[FIX]"></i> Исправлено отображение ведомости ознакомления и профиля работника в
                         интерфейсе администратора. (ошибка в случае ознакомления рабоника УНЭПом)
                     </li>
                     <li class="list-group-item">
-                        <i class="ti ti-code-dots icon-size-24" title="[TEST]"></i> Добавлены уведомления о синхронизации. (уведомления пользователям
+                        <i class="ti ti-code-dots icon-size-16" title="[TEST]"></i> Добавлены уведомления о синхронизации. (уведомления пользователям
                         группы system-notifications)
                     </li>
                     <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлено отображение списка
+                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлено отображение списка
                         сертификатов в базе.
                     </li>
                 </ul>
