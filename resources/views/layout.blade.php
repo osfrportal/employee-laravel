@@ -28,10 +28,7 @@
                 @livewire('osfrportal::docsnotsigned-count')
             </div>
             <div class="px-3">
-                <a class="nav-link position-relative" href="{{ route('osfrportal.dashboard') }}" alt="Уведомления"
-                    id="dropdownNotifications">
-                    @livewire('osfrportal::notifications-count')
-                </a>
+                @livewire('osfrportal::notifications-count')
             </div>
             <div class="dropdown px-3">
                 <a href="#" class="d-block text-white text-decoration-none dropdown-toggle text-nowrap"
