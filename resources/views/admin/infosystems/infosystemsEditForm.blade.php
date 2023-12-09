@@ -28,7 +28,7 @@
             <label for="parent_isysid" class="col-sm-2 col-form-label">Родительская ИС</label>
             <div class="col-sm-10">
                  <select class="form-select @error('parent_isysid') is-invalid @enderror" id="parent_isysid" name="parent_isysid">
-                                <option value="null">-</option>
+                                <option>-</option>
                                 @foreach ($infoSystemsRoot as $rootInfosystem)
                                     @if ($rootInfosystem->isysid != $infoSystemData->isysid)
                                         <option value="{{ $rootInfosystem->isysid }}" @if ($rootInfosystem->isysid == $infoSystemData->parent_isysid) selected @endif>{{ $rootInfosystem->isys_name }}

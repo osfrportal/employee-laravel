@@ -32,6 +32,7 @@ class SFRInfoSystemsController extends Controller
         ]);
     }
     public function saveInfoSystem(SaveInfosystemPostRequest $saveRequest) {
+
         $validated = $saveRequest->validated();
 
         $infoSystemModel = SfrInfoSystems::updateOrCreate(
@@ -40,7 +41,7 @@ class SFRInfoSystemsController extends Controller
             ],
             [
                 'isys_name' => Arr::get($validated, 'isys_name'),
-                'parent_isysid' => Arr::get($validated, 'parent_isysid'),
+                'parent_isysid' => Arr::get($validated, 'parent_isysid', null),
             ]
         );
 
