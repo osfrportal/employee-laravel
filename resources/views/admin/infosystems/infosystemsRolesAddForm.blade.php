@@ -61,11 +61,11 @@
                             dataType: 'json',
                             url: urlDetailed
                         }).then(function(data) {
-                            console.log(data);
-                            console.log(data.results.text);
-                            console.log(data.results.id);
+                            console.log(data.results);
+                            console.log(data.results[0].text);
+                            console.log(data.results[0].id);
                             // create the option and append to Select2
-                            var option = new Option(data.results.text, data.results.id, true,
+                            var option = new Option(data.results[0].text, data.results[0].id, true,
                                 true);
                             isysidSelect.append(option).trigger('change');
 
