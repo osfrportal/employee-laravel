@@ -4,6 +4,7 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystems;
 use Osfrportal\OsfrportalLaravel\Http\Requests\SaveInfosystemPostRequest;
+use Osfrportal\OsfrportalLaravel\Http\Requests\SaveInfosystemRoleRequest;
 
 
 use Illuminate\Support\Arr;
@@ -57,7 +58,11 @@ class SFRInfoSystemsController extends Controller
         return view('osfrportal::admin.infosystems.infosystemsRolesAddForm');
     }
 
-    public function saveInfoSystemRoles() {
+    public function saveInfoSystemRoles(SaveInfosystemRoleRequest $saveRequest) {
+        $validated = $saveRequest->validated();
 
+        $this->flasher_interface->addSuccess('Данные успешно сохранены');
+
+        return redirect()->route('osfrportal.admin.infosystems.index');
     }
 }
