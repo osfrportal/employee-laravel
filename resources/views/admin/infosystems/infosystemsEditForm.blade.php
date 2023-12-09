@@ -13,12 +13,12 @@
 @endsection
 @section('content')
     <form method="POST" action="{{ route('osfrportal.admin.infosystems.save') }}">
-        <input type="hidden" id="isysid" name="isysid" value="{{ old('isysid', !empty($infoSystemData) ? $infoSystemData->isysid : Str::uuid()) }}">
+        <input type="hidden" id="isysid" name="isysid" value="{{ old('isysid', !is_null($infoSystemData) ? $infoSystemData->isysid : Str::uuid()) }}">
         <div class="mb-3 row">
             <label for="isys_name" class="col-sm-2 col-form-label">Название</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control @error('isys_name') is-invalid @enderror" id="isys_name"
-                    name="isys_name" value="{{ old('isys_name', !empty($infoSystemData) ? $infoSystemData->isys_name : '') }}">
+                    name="isys_name" value="{{ old('isys_name', !is_null($infoSystemData) ? $infoSystemData->isys_name : '') }}">
                 @error('isys_name')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
