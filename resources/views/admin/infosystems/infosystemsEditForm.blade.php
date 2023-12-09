@@ -30,10 +30,10 @@
                  <select class="form-select @error('parent_isysid') is-invalid @enderror" id="parent_isysid" name="parent_isysid">
                                 <option>-</option>
                                 @foreach ($infoSystemsRoot as $rootInfosystem)
-                                    @if ($rootInfosystem->isysid != $infoSystemData->isysid)
-                                        <option value="{{ $rootInfosystem->isysid }}" @if ($rootInfosystem->isysid == $infoSystemData->parent_isysid) selected @else @selected(old('parent_isysid') == $rootInfosystem->isysid) @endif>{{ $rootInfosystem->isys_name }}
+
+                                        <option value="{{ $rootInfosystem->isysid }}" @selected(old('parent_isysid') == $rootInfosystem->isysid)>{{ $rootInfosystem->isys_name }}
                                         </option>
-                                    @endif
+
                                 @endforeach
                             </select>
                 @error('parent_isysid')
