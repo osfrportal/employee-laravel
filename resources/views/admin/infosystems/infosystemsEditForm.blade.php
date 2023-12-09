@@ -24,7 +24,7 @@
                 @enderror
             </div>
         </div>
-        <a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.all') }}" role="button">Назад</a>
+        <a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.index') }}" role="button">Назад</a>
         <input class="btn btn-primary" type="submit" value="Сохранить">
     </form>
 @endsection
