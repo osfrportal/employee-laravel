@@ -18,7 +18,7 @@ class Select2InfosystemsAllGroupedAction
         $this->sfrInfosystemsGroupedSelect2Collection = new Collection();
 
         SfrInfoSystems::with(['children'])->get()->each(function ($item, $key) {
-            if ($item->children_count > 0) {
+            if ($item->children->count() > 0) {
                 $this->sfrInfosystemsSelect2Collection = new Collection();
                 foreach ($item->children as $children) {
                     $tmp_arr = [];
