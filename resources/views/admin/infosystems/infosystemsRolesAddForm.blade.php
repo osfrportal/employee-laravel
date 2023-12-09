@@ -43,7 +43,7 @@
 @push('footer-scripts')
     <script type="module">
         $(document).ready(function() {
-            var urlDetailed = '{{ route('osfrportal.admin.infosystems.detail.byid', ':slug') }}';
+            var urlDetailed = '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
             urlDetailed = urlDetailed.replace(':slug', {{ old('isysid', '') }});
             console.log(urlDetailed);
             $.ajax({
