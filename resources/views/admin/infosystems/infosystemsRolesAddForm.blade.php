@@ -27,8 +27,10 @@
         <div class="mb-3 row">
             <label for="isysid" class="col-sm-2 col-form-label">Информационная система</label>
             <div class="col-sm-10">
-                <select class="form-select @error('isysid') is-invalid @enderror" id="isysid" name="isysid">
-                </select>
+                <select class="form-select form-select-sm mb-3  @error('isysid') is-invalid @enderror"
+                    id="js-all-isysid-ajax" name="isysid" data-placeholder="Информационная система"
+                    data-minimum-input-length="0" data-selection-css-class="select2--small"
+                    data-dropdown-css-class="select2--small"></select>
                 @error('isysid')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -38,3 +40,18 @@
         <input class="btn btn-primary" type="submit" value="Сохранить">
     </form>
 @endsection
+@push('footer-scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ route('osfrapi.osfrportal.admin.select2.infosystems.allgrouped') }}",
+                dataType: 'json',
+                success: function(json) {
+                    $('#js-all-isysid-ajax').select2({
+                        data: json.results,
+                    });
+                }
+            });
+        });
+    </script>
+@endpush
