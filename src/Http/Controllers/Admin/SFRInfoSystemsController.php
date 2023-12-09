@@ -52,4 +52,12 @@ class SFRInfoSystemsController extends Controller
 
         return redirect()->route('osfrportal.admin.infosystems.index');
     }
+
+    public function showRolesAddForm() {
+        return view('osfrportal::admin.infosystems.infosystemsRolesAddForm');
+    }
+
+    public function saveInfoSystemRoles() {
+
+    }
 }

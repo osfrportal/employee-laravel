@@ -34,6 +34,8 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
     Route::controller(SFRInfoSystemsController::class)->name('infosystems.')->prefix('infosystems')->group(function () {
         Route::post('/save', 'saveInfoSystem')->name('save');
         Route::get('/add', 'showAddForm')->name('add');
+        Route::get('/roles/add', 'showRolesAddForm')->name('roles.add');
+        Route::post('/roles/save', 'saveInfoSystemRoles')->name('roles.save');
         Route::get('/', 'listInfoSystemsAll')->name('index');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 

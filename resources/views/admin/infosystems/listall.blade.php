@@ -11,7 +11,8 @@
     </div>
 @endsection
 @section('content')
-<a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.add') }}" role="button">Добавить</a>
+<a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.add') }}" role="button">Добавить ИС</a>
+<a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.roles.add') }}" role="button">Добавить полномочия (роли) ИС</a>
     <hr>
     <table class="table table-striped table-hover">
         <thead class="align-middle text-center">
