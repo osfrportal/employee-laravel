@@ -23,7 +23,7 @@ class SaveInfosystemPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'isysid' => 'nullable',
+            'isysid' => 'required',
             'isys_name' => 'required',
             'parent_isysid' => 'nullable',
         ];
