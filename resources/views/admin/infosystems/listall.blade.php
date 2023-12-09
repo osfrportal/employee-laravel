@@ -28,7 +28,7 @@
         <tbody class="align-middle text-center">
             @foreach ($infosystems as $infosystem)
                 <tr>
-                    <td></td>
+                    <td><i class="ti ti-edit"></i></td>
                     <td>{{ $infosystem->isys_name }}</td>
                     <td>{{ $infosystem->isys_data }}</td>
                     <td>{{ $infosystem->parent()->first() ? $infosystem->parent()->first()->isys_name : '-' }}</td>
