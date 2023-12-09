@@ -16,6 +16,9 @@ class SFRInfoSystemsController extends Controller
 {
     private $permissionManage = 'infosystem-manage';
 
+    public function __construct() {
+        $this->flasher_interface->option('timeout', false);
+    }
     public function listInfoSystemsAll() {
         $this->authorize($this->permissionManage);
         $infosystems = SfrInfoSystems::with('roles')->orderBy('isys_name','ASC')->get();
@@ -79,7 +82,7 @@ class SFRInfoSystemsController extends Controller
 
         $rolesCount = $infoSystemModel->roles->count();
         $message = sprintf('<b>Данные успешно сохранены</b><br>Количество ролей у ресурса "%s"- %s', $infoSystemModel->isys_name, $rolesCount);
-        $this->flasher_interface->option('timeout', false)->addSuccess($message);
+        $this->flasher_interface->addSuccess($message);
 
         return redirect()->route('osfrportal.admin.infosystems.roles.add');
     }
