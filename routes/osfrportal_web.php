@@ -32,7 +32,7 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->name('admin.')->group(function () {
 
     Route::controller(SFRInfoSystemsController::class)->name('infosystems.')->prefix('infosystems')->group(function () {
-        Route::get('/', 'logsPhoneUpdates')->name('index');
+        Route::get('/', 'listInfoSystemsAll')->name('index');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFROtrsAdminController::class)->name('otrs.')->prefix('otrs')->group(function () {
