@@ -43,9 +43,7 @@
 @push('footer-scripts')
     <script type="module">
         $(document).ready(function() {
-            var urlDetailed = '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
-            urlDetailed = urlDetailed.replace(':slug', '{{ old('isysid', '') }}');
-            console.log(urlDetailed);
+
             $.ajax({
                 url: "{{ route('osfrapi.osfrportal.admin.select2.infosystems.allgrouped') }}",
                 dataType: 'json',
@@ -55,6 +53,12 @@
                     });
                 }
             });
+            @if (!empty(old('isysid')))
+                var urlDetailed =
+                '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
+                urlDetailed = urlDetailed.replace(':slug', '{{ old('isysid', '') }}');
+                console.log(urlDetailed);
+            @endif
         });
     </script>
 @endpush
