@@ -21,6 +21,8 @@ class SfrInfoSystems extends Model
         'isys_data',
         'roles'
     ];
+    protected $withCount = ['children'];
+
     public function children()
     {
         return $this->hasMany(SfrInfoSystems::class, 'parent_isysid')->orderBy('isys_name', 'ASC');
