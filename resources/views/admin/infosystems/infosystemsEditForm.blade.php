@@ -31,7 +31,7 @@
                                 <option value="null">-</option>
                                 @foreach ($infoSystemsRoot as $rootInfosystem)
                                     @if ($rootInfosystem->isysid != $infoSystemData->isysid)
-                                        <option value="{{ $rootInfosystem->isysid }}">{{ $rootInfosystem->isys_name }}
+                                        <option value="{{ $rootInfosystem->isysid }}" @if ($rootInfosystem->isysid == $infoSystemData->parent_isysid) selected @endif>{{ $rootInfosystem->isys_name }}
                                         </option>
                                     @endif
                                 @endforeach
