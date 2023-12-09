@@ -27,7 +27,7 @@
         <tbody class="align-middle text-center">
             @foreach ($infosystems as $infosystem)
                 <tr>
-                    <td><a href="#" class="icon-link"><span class="ti ti-edit icon-size-24"></span></a></td>
+                    <td><a href="#" class="icon-link link-underline-opacity-0"><span class="ti ti-edit icon-size-24"></span></a></td>
                     <td colspan="3">{{ $infosystem->isys_name }}</td>
                 </tr>
                 @if ($infosystem->children->count() > 0)
