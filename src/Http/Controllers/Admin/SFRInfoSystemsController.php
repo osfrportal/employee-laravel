@@ -19,6 +19,12 @@ class SFRInfoSystemsController extends Controller
     public function __construct() {
         parent::__construct();
         $this->flasher_interface->option('timeout', false);
+        $buttons = [
+            "Noty.button('Close', 'btn btn-error', function () {
+                Noty.closeAll();
+            }),"
+        ];
+        $this->flasher_interface->option('buttons', $buttons);
     }
     public function listInfoSystemsAll() {
         $this->authorize($this->permissionManage);
