@@ -9,6 +9,7 @@ use Osfrportal\OsfrportalLaravel\Http\Requests\SaveInfosystemRoleRequest;
 
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -59,6 +60,10 @@ class SFRInfoSystemsController extends Controller
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
 
         return redirect()->route('osfrportal.admin.infosystems.index');
+    }
+
+    public function showDetailedInfo($isysid) {
+        $isUuid = Str::isUuid($isysid);
     }
 
     public function showRolesAddForm() {

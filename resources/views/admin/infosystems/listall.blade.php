@@ -27,13 +27,13 @@
         <tbody class="align-middle text-center">
             @foreach ($infosystems as $infosystem)
                 <tr class="table-info">
-                    <td><a href="#" class="icon-link link-underline-opacity-0"><span class="ti ti-edit icon-size-24"></span></a></td>
+                    <td><a href="#" class="icon-link link-underline-opacity-0" title="Подробная информация/редактирование"><span class="ti ti-edit icon-size-24"></span></a></td>
                     <td colspan="3">{{ $infosystem->isys_name }}</td>
                 </tr>
                 @if ($infosystem->children->count() > 0)
                     @foreach ($infosystem->children as $infosystemChild)
                         <tr>
-                            <td><a href="#"><i class="ti ti-edit icon-size-24"></i></a></td>
+                            <td><a href="{{ route('osfrportal.admin.infosystems.view.child', $infosystemChild->isysid) }}" title="Подробная информация/редактирование"><i class="ti ti-edit icon-size-24"></i></a></td>
                             <td>{{ $infosystemChild->isys_name }}</td>
                             <td>{{ $infosystemChild->roles()->exists() ? $infosystemChild->roles()->count() : '-' }}</td>
                             <td>{{ $infosystemChild->persons()->count() }}</td>
