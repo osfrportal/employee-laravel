@@ -2,8 +2,6 @@
 namespace Osfrportal\OsfrportalLaravel\Actions\Api;
 
 use Lorisleiva\Actions\Concerns\AsAction;
-
-use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
 use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystems;
 use Osfrportal\OsfrportalLaravel\Http\Resources\SFRSelect2InfosystemsAllGroupedCollection;
 use Illuminate\Support\Collection;
