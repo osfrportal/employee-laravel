@@ -26,7 +26,7 @@
         </thead>
         <tbody class="align-middle text-center">
             @foreach ($infosystems as $infosystem)
-                <tr>
+                <tr class="table-info">
                     <td><a href="#" class="icon-link link-underline-opacity-0"><span class="ti ti-edit icon-size-24"></span></a></td>
                     <td colspan="3">{{ $infosystem->isys_name }}</td>
                 </tr>
