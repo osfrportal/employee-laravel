@@ -17,7 +17,7 @@ class SFRInfoSystemsController extends Controller
 
     public function listInfoSystemsAll() {
         $this->authorize($this->permissionManage);
-        $infosystems = SfrInfoSystems::orderBy('isys_name','ASC')->get();
+        $infosystems = SfrInfoSystems::with('roles')->orderBy('isys_name','ASC')->get();
 
         return view('osfrportal::admin.infosystems.listall', [
             'infosystems' => $infosystems,
@@ -63,6 +63,6 @@ class SFRInfoSystemsController extends Controller
 
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
 
-        return redirect()->route('osfrportal.admin.infosystems.index');
+        return redirect()->route('osfrportal.admin.infosystems.roles.add');
     }
 }
