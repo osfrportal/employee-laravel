@@ -24,7 +24,7 @@ class SaveInfosystemPostRequest extends FormRequest
     {
         return [
             'linkid' => 'nullable',
-            'linkname' => 'required',
+            'isys_name' => 'required',
             'linkurl' => 'required|url:http,https',
             'linksortorder' => 'required|integer|digits_between:1,4',
             'linkshowinleftmenu' => 'required|boolean',
