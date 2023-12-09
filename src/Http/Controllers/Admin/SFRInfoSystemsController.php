@@ -3,6 +3,7 @@
 namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystems;
+use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystemsRoles;
 use Osfrportal\OsfrportalLaravel\Http\Requests\SaveInfosystemPostRequest;
 use Osfrportal\OsfrportalLaravel\Http\Requests\SaveInfosystemRoleRequest;
 
@@ -60,8 +61,25 @@ class SFRInfoSystemsController extends Controller
 
     public function saveInfoSystemRoles(SaveInfosystemRoleRequest $saveRequest) {
         $validated = $saveRequest->validated();
+        
+        $isysid = Arr::get($validated, 'isysid');
+        $infoSystemModel = SfrInfoSystems::with(['roles'])->find($isysid);
 
-        $this->flasher_interface->addSuccess('Данные успешно сохранены');
+        $role = SfrInfoSystemsRoles::updateOrCreate(
+            [
+                'iroleid' => Arr::get($validated, 'iroleid'),
+            ],
+            [
+                'irole_name' => Arr::get($validated, 'irole_name'),
+            ]
+        );
+
+        $infoSystemModel->roles()->syncWithoutDetaching($role);
+        $infoSystemModel->refresh();
+
+        $rolesCount = $infoSystemModel->roles->count();
+        $message = sprintf('Данные успешно сохранены\r\n Количество ролей у ресурса "%s"- %s', $infoSystemModel->isys_name, $rolesCount);
+        $this->flasher_interface->addSuccess($message);
 
         return redirect()->route('osfrportal.admin.infosystems.roles.add');
     }

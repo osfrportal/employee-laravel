@@ -23,9 +23,9 @@ class SaveInfosystemRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'iroleid' => 'required',
+            'iroleid' => 'required|uuid',
             'irole_name' => 'required',
-            'isysid' => 'required',
+            'isysid' => 'required|uuid',
         ];
     }
     /**
@@ -40,6 +40,7 @@ class SaveInfosystemRoleRequest extends FormRequest
             '*.url' => 'Поле должно иметь формат URL',
             '*.integer' => 'Поле должно содержать только цифры',
             '*.digits_between' => 'Не меньше :min цифры, не более :max.',
+            '*.uuid' => 'Некорректный формат идентификатора',
         ];
     }
 }

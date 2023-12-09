@@ -23,9 +23,9 @@ class SaveInfosystemPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'isysid' => 'required',
+            'isysid' => 'required|uuid',
             'isys_name' => 'required',
-            'parent_isysid' => 'nullable',
+            'parent_isysid' => 'nullable|uuid',
         ];
     }
     /**
@@ -40,6 +40,7 @@ class SaveInfosystemPostRequest extends FormRequest
             '*.url' => 'Поле должно иметь формат URL',
             '*.integer' => 'Поле должно содержать только цифры',
             '*.digits_between' => 'Не меньше :min цифры, не более :max.',
+            '*.uuid' => 'Некорректный формат идентификатора',
         ];
     }
 }
