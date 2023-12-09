@@ -48,7 +48,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/allgrouped', 'apiSelect2DocsGroupedAll')->name('allgrouped');
         });
         Route::prefix('infosystems')->name('infosystems.')->controller(SFRApiController::class)->group(function () {
+            Route::get('/detail/{isysid}', 'apiSelect2InfosystemByID')->name('detail.byid');
             Route::get('/allgrouped', 'apiSelect2InfosystemsGroupedAll')->name('allgrouped');
+
         });
     });
 

@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Log;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2UnitsAllAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocsAllGroupedAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2InfosystemsAllGroupedAction;
+use Osfrportal\OsfrportalLaravel\Actions\Api\Select2InfosystemByIDAction;
 use Osfrportal\OsfrportalLaravel\Actions\Orion\GetAccessPointsByCardIdAction;
 
 class SFRApiController extends Controller
@@ -57,6 +58,11 @@ class SFRApiController extends Controller
     public function apiSelect2InfosystemsGroupedAll(Request $request)
     {
         $data = Select2InfosystemsAllGroupedAction::run();
+        return $data;
+    }
+    public function apiSelect2InfosystemByID($isysid)
+    {
+        $data = Select2InfosystemByIDAction::run($isysid);
         return $data;
     }
 }
