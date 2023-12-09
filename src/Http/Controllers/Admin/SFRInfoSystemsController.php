@@ -31,7 +31,21 @@ class SFRInfoSystemsController extends Controller
             'infoSystemsRoot' => $infoSystemsRoot,
         ]);
     }
-    public function saveInfoSystem(SaveInfosystemPostRequest $request) {
+    public function saveInfoSystem(SaveInfosystemPostRequest $saveRequest) {
+        $validated = $saveRequest->validated();
 
+        $infoSystemModel = SfrInfoSystems::updateOrCreate(
+            [
+                'isysid' => Arr::get($validated, 'isysid'),
+            ],
+            [
+                'isys_name' => Arr::get($validated, 'isys_name'),
+                'parent_isysid' => Arr::get($validated, 'parent_isysid'),
+            ]
+        );
+
+        $this->flasher_interface->addSuccess('Данные успешно сохранены');
+
+        return redirect()->route('osfrportal.admin.infosystems.index');
     }
 }
