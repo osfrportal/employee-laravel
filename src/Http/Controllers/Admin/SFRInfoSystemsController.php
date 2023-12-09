@@ -3,6 +3,12 @@
 namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystems;
+use Osfrportal\OsfrportalLaravel\Http\Requests\SaveInfosystemPostRequest;
+
+
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class SFRInfoSystemsController extends Controller
 {
@@ -15,5 +21,14 @@ class SFRInfoSystemsController extends Controller
         return view('osfrportal::admin.infosystems.listall', [
             'infosystems' => $infosystems,
         ]);
+    }
+
+    public function showAddForm() {
+        return view('osfrportal::admin.infosystems.infosystemsEditForm', [
+            'infoSystemData' => 0,
+        ]);
+    }
+    public function saveInfoSystem(SaveInfosystemPostRequest $request) {
+
     }
 }
