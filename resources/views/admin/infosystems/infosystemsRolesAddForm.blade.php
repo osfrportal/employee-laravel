@@ -44,7 +44,7 @@
     <script type="module">
         $(document).ready(function() {
             var urlDetailed = '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
-            urlDetailed = urlDetailed.replace(':slug', {{ old('isysid', '') }});
+            urlDetailed = urlDetailed.replace(':slug', '{{ old('isysid', '') }}');
             console.log(urlDetailed);
             $.ajax({
                 url: "{{ route('osfrapi.osfrportal.admin.select2.infosystems.allgrouped') }}",
