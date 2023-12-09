@@ -1,4 +1,4 @@
-<div wire:poll.60s>
+<div wire:poll.120s>
     @if ($docsNotSignedCount > 0)
         <a class="nav-link position-relative" href="{{ route('osfrportal.docs.index') }}" alt="Документы для ознакомления">
             <span
