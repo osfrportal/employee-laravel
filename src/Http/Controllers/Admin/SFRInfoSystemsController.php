@@ -17,6 +17,7 @@ class SFRInfoSystemsController extends Controller
     private $permissionManage = 'infosystem-manage';
 
     public function __construct() {
+        parent::__construct();
         $this->flasher_interface->option('timeout', false);
     }
     public function listInfoSystemsAll() {
