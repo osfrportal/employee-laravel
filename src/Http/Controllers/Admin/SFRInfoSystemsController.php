@@ -78,8 +78,8 @@ class SFRInfoSystemsController extends Controller
         $infoSystemModel->refresh();
 
         $rolesCount = $infoSystemModel->roles->count();
-        $message = sprintf('Количество ролей у ресурса "%s"- %s', $infoSystemModel->isys_name, $rolesCount);
-        $this->flasher_interface->option('timeout', false)->addFlash(type: 'success', message: $message, title: 'Данные успешно сохранены');
+        $message = sprintf('<b>Данные успешно сохранены</b><br>Количество ролей у ресурса "%s"- %s', $infoSystemModel->isys_name, $rolesCount);
+        $this->flasher_interface->option('timeout', false)->addSuccess($message);
 
         return redirect()->route('osfrportal.admin.infosystems.roles.add');
     }
