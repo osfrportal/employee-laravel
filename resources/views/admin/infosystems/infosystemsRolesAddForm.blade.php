@@ -55,9 +55,26 @@
             });
             @if (!empty(old('isysid')))
                 var urlDetailed =
-                '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
+                    '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
                 urlDetailed = urlDetailed.replace(':slug', '{{ old('isysid', '') }}');
-                console.log(urlDetailed);
+                // Fetch the preselected item, and add to the control
+                var isysidSelect = $('#js-all-isysid-ajax');
+                $.ajax({
+                    type: 'GET',
+                    url: urlDetailed
+                }).then(function(data) {
+                    // create the option and append to Select2
+                    var option = new Option(data.full_name, data.id, true, true);
+                    isysidSelect.append(option).trigger('change');
+
+                    // manually trigger the `select2:select` event
+                    isysidSelect.trigger({
+                        type: 'select2:select',
+                        params: {
+                            data: data
+                        }
+                    });
+                });
             @endif
         });
     </script>
