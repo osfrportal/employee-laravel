@@ -258,9 +258,9 @@
         const rfidDataModal = document.getElementById('rfidDataModal')
         rfidDataModal.addEventListener('show.bs.modal', event => {
             // Button that triggered the modal
-            const button = event.relatedTarget
+            const button = event.relatedTarget;
             // Extract info from data-bs-* attributes
-            const rfidID = button.getAttribute('data-id')
+            const rfidID = button.getAttribute('data-id');
             var urlroute = '{{ route('osfrapi.osfrportal.admin.orion.card.accesspoints', ':slug') }}';
             urlroute = urlroute.replace(':slug', rfidID);
             // If necessary, you could initiate an AJAX request here
@@ -268,14 +268,16 @@
             //
             // Update the modal's content.
             //const modalTitle = rfidDataModal.querySelector('.modal-title')
-            const modalBodyText = rfidDataModal.querySelector('#modal-accesspoints-list')
+            const modalBodyListAccessPoints = rfidDataModal.querySelector('#modal-accesspoints-list');
+            modalBodyListAccessPoints.forEach(elem => elem.remove());
+
             $.ajax({
                 url: urlroute, // адрес, на который будет отправлен запрос
                 success: function(data) { // если запрос успешен вызываем функцию
                     for (let accesspoint of data['results']) {
                         const $newLi = document.createElement('li');
                         $newLi.textContent = accesspoint['entrypointname'];
-                        modalBodyText.appendChild($newLi);
+                        modalBodyListAccessPoints.appendChild($newLi);
                     }
                 }
             });
