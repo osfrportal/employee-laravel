@@ -9,7 +9,7 @@ class SFRInfoSystemsController extends Controller
     public function listInfoSystemsAll() {
         $this->authorize($this->permissionManage);
 
-        return view('osfrportal::admin.links.linksGroupsEdit', [
+        return view('osfrportal::admin.infosystems.listall', [
             'linkGroupID' => 0,
         ]);
     }
