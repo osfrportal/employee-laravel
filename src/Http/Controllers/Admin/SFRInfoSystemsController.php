@@ -62,7 +62,11 @@ class SFRInfoSystemsController extends Controller
         return redirect()->route('osfrportal.admin.infosystems.index');
     }
 
-    public function showDetailedInfo($isysid) {
+    public function showDetailedInfoChild($isysid) {
+        $isUuid = Str::isUuid($isysid);
+    }
+
+    public function showDetailedInfoParent($isysid) {
         $isUuid = Str::isUuid($isysid);
     }
 
