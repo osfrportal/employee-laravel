@@ -21,7 +21,7 @@ class SfrInfoSystems extends Model
         'isys_data',
         'roles'
     ];
-    protected $withCount = ['children'];
+    //protected $withCount = ['children'];
 
     public function children()
     {
