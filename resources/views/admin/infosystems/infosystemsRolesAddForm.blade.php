@@ -64,14 +64,14 @@
                     url: urlDetailed
                 }).then(function(data) {
                     // create the option and append to Select2
-                    var option = new Option(data.full_name, data.id, true, true);
+                    var option = new Option(data.results.text, data.results.id, true, true);
                     isysidSelect.append(option).trigger('change');
 
                     // manually trigger the `select2:select` event
                     isysidSelect.trigger({
                         type: 'select2:select',
                         params: {
-                            data: data
+                            data: data.results
                         }
                     });
                 });
