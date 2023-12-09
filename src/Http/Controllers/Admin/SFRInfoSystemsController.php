@@ -24,8 +24,11 @@ class SFRInfoSystemsController extends Controller
     }
 
     public function showAddForm() {
+        $infoSystemsRoot = SfrInfoSystems::doesntHave('parent')->doesntHave('persons')->doesntHave('roles')->orderBy('isys_name','ASC')->get();
+
         return view('osfrportal::admin.infosystems.infosystemsEditForm', [
             'infoSystemData' => 0,
+            'infoSystemsRoot' => $infoSystemsRoot,
         ]);
     }
     public function saveInfoSystem(SaveInfosystemPostRequest $request) {

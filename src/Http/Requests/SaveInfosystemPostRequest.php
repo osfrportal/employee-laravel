@@ -23,12 +23,9 @@ class SaveInfosystemPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'linkid' => 'nullable',
+            'isysid' => 'nullable',
             'isys_name' => 'required',
-            'linkurl' => 'required|url:http,https',
-            'linksortorder' => 'required|integer|digits_between:1,4',
-            'linkshowinleftmenu' => 'required|boolean',
-            'linksgroup' => 'required|array',
+            'parent_isysid' => 'nullable',
         ];
     }
     /**
