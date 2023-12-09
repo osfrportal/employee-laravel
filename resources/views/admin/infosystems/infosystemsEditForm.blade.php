@@ -19,7 +19,7 @@
             <div class="col-sm-10">
                 <input type="text" class="form-control @error('isys_name') is-invalid @enderror" id="inputIsysName"
                     name="isys_name" value="{{ old('isys_name', $infoSystemData->isys_name ?? '') }}">
-                @error('linkname')
+                @error('isys_name')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
