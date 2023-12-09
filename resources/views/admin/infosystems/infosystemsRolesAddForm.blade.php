@@ -51,31 +51,35 @@
                     $('#js-all-isysid-ajax').select2({
                         data: json.results,
                     });
+                    @if (!empty(old('isysid')))
+                        var urlDetailed =
+                            '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
+                        urlDetailed = urlDetailed.replace(':slug', '{{ old('isysid', '') }}');
+                        // Fetch the preselected item, and add to the control
+                        var isysidSelect = $('#js-all-isysid-ajax');
+                        $.ajax({
+                            dataType: 'json',
+                            url: urlDetailed
+                        }).then(function(data) {
+                            console.log(data);
+                            console.log(data.results.text);
+                            console.log(data.results.id);
+                            // create the option and append to Select2
+                            var option = new Option(data.results.text, data.results.id, true,
+                                true);
+                            isysidSelect.append(option).trigger('change');
+
+                            // manually trigger the `select2:select` event
+                            isysidSelect.trigger({
+                                type: 'select2:select',
+                                params: {
+                                    data: data.results
+                                }
+                            });
+                        });
+                    @endif
                 }
             });
-            @if (!empty(old('isysid')))
-                var urlDetailed =
-                    '{{ route('osfrapi.osfrportal.admin.select2.infosystems.detail.byid', ':slug') }}';
-                urlDetailed = urlDetailed.replace(':slug', '{{ old('isysid', '') }}');
-                // Fetch the preselected item, and add to the control
-                var isysidSelect = $('#js-all-isysid-ajax');
-                $.ajax({
-                    type: 'GET',
-                    url: urlDetailed
-                }).then(function(data) {
-                    // create the option and append to Select2
-                    var option = new Option(data.results.text, data.results.id, true, true);
-                    isysidSelect.append(option).trigger('change');
-
-                    // manually trigger the `select2:select` event
-                    isysidSelect.trigger({
-                        type: 'select2:select',
-                        params: {
-                            data: data.results
-                        }
-                    });
-                });
-            @endif
         });
     </script>
 @endpush
