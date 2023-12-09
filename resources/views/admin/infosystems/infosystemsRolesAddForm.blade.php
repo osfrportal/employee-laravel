@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="isysid" class="col-sm-2 col-form-label">Информационная система</label>
+            <label for="js-all-isysid-ajax" class="col-sm-2 col-form-label">Информационная система</label>
             <div class="col-sm-10">
                 <select class="form-select form-select-sm mb-3  @error('isysid') is-invalid @enderror"
                     id="js-all-isysid-ajax" name="isysid" data-placeholder="Информационная система"
