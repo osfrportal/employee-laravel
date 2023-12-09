@@ -22,7 +22,9 @@ class SFRInfoSystemsController extends Controller
     }
     public function listInfoSystemsAll() {
         $this->authorize($this->permissionManage);
-        $infosystems = SfrInfoSystems::with('roles')->orderBy('isys_name','ASC')->get();
+
+        //$infosystems = SfrInfoSystems::with('roles')->orderBy('isys_name','ASC')->get();
+        $infosystems = SfrInfoSystems::doesntHave('parent')->with(['roles', 'children'])->orderBy('isys_name','ASC')->get();
 
         return view('osfrportal::admin.infosystems.listall', [
             'infosystems' => $infosystems,

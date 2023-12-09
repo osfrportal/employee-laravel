@@ -11,16 +11,15 @@
     </div>
 @endsection
 @section('content')
-<a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.add') }}" role="button">Добавить ИС</a>
-<a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.roles.add') }}" role="button">Добавить полномочия (роли) ИС</a>
+    <a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.add') }}" role="button">Добавить ИС</a>
+    <a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.roles.add') }}" role="button">Добавить
+        полномочия (роли) ИС</a>
     <hr>
     <table class="table table-striped table-hover">
         <thead class="align-middle text-center">
             <tr>
                 <th scope="col">&nbsp;</th>
                 <th scope="col">Информационная система</th>
-                <th scope="col">ИС data</th>
-                <th scope="col">Родительская информационная система</th>
                 <th scope="col">Количество полномочий (ролей)</th>
                 <th scope="col">Количество работников</th>
             </tr>
@@ -28,13 +27,19 @@
         <tbody class="align-middle text-center">
             @foreach ($infosystems as $infosystem)
                 <tr>
-                    <td><i class="ti ti-edit"></i></td>
-                    <td>{{ $infosystem->isys_name }}</td>
-                    <td>{{ $infosystem->isys_data }}</td>
-                    <td>{{ $infosystem->parent()->first() ? $infosystem->parent()->first()->isys_name : '-' }}</td>
-                    <td>{{ $infosystem->roles()->exists() ? $infosystem->roles()->count() : '-' }}</td>
-                    <td>{{ $infosystem->persons()->count() }}</td>
+                    <td><a href="#"><i class="ti ti-edit icon-size-24"></i></a></td>
+                    <td colspan="3">{{ $infosystem->isys_name }}</td>
                 </tr>
+                @if ($infosystem->children->count() > 0)
+                    @foreach ($infosystem->children as $infosystemChild)
+                        <tr>
+                            <td><a href="#"><i class="ti ti-edit icon-size-24"></i></a></td>
+                            <td>{{ $infosystemChild->isys_name }}</td>
+                            <td>{{ $infosystemChild->roles()->exists() ? $infosystemChild->roles()->count() : '-' }}</td>
+                            <td>{{ $infosystemChild->persons()->count() }}</td>
+                        </tr>
+                    @endforeach
+                @endif
             @endforeach
         </tbody>
     </table>
