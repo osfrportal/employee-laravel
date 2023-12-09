@@ -269,7 +269,7 @@
             // Update the modal's content.
             //const modalTitle = rfidDataModal.querySelector('.modal-title')
             const modalBodyListAccessPoints = rfidDataModal.querySelector('#modal-accesspoints-list');
-            modalBodyListAccessPoints..innerHTML = '';
+            modalBodyListAccessPoints.innerHTML = '';
 
             $.ajax({
                 url: urlroute, // адрес, на который будет отправлен запрос
