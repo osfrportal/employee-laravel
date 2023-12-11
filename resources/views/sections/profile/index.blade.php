@@ -3,7 +3,6 @@
     <link href="{{ asset('osfrportal/css/profile.css') }}" rel="stylesheet">
 @endpush
 @section('content')
-@include('osfrportal::sections.profile.profilemenu')
     <div class="container-fluid px-4 mt-4">
         <div class="row">
             <div class="col-xl-6">

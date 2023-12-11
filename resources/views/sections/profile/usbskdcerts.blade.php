@@ -2,9 +2,6 @@
 @push('header-css')
     <link href="{{ asset('osfrportal/css/profile.css') }}" rel="stylesheet">
 @endpush
-@section('title2')
-    @include('osfrportal::sections.profile.profilemenu')
-@endsection
 @section('content')
     <div class="container-fluid px-4 mt-4">
         <div class="row">
