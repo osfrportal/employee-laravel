@@ -2,6 +2,9 @@
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
+//https://github.com/diglactic/laravel-breadcrumbs
+
+
 Breadcrumbs::for('osfrportal.mainpage', function (BreadcrumbTrail $trail): void {
     $trail->push('Главная страница', route('osfrportal.mainpage'));
 });
@@ -90,7 +93,6 @@ Breadcrumbs::for('osfrportal.phone.index', function (BreadcrumbTrail $trail): vo
 
 Breadcrumbs::for('osfrportal.phone.editform', function (BreadcrumbTrail $trail, $personname): void {
     $trail->parent('osfrportal.phone.index');
-    //$trail->push('Редактирование контактной информации', route('osfrportal.phone.editform', $personid));
     $trail->push($personname);
     $trail->push('Редактирование контактной информации');
 });
