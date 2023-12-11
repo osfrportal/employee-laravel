@@ -1,5 +1,4 @@
 @extends('osfrportal::layout')
-@section('dashboardTitle', 'Телефонный справочник')
 @section('title', 'Телефонный справочник')
 @section('content')
     <div class="table-responsive">

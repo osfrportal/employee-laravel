@@ -56,6 +56,16 @@ Breadcrumbs::for('osfrportal.admin.infosystems.roles.add', function (BreadcrumbT
 /**
  * Пользовательский раздел
  */
+Breadcrumbs::for('osfrportal.phone.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.mainpage');
+    $trail->push('Телефонный справочник', route('osfrportal.phone.index'));
+});
+
+Breadcrumbs::for('osfrportal.phone.editform', function (BreadcrumbTrail $trail, $personid): void {
+    $trail->parent('osfrportal.phone.index');
+    $trail->push('Редактирование контактной информации', route('osfrportal.phone.editform', $personid));
+});
+
 
 Breadcrumbs::for('osfrportal.dashboard', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.mainpage');

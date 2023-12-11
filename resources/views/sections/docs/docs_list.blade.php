@@ -1,5 +1,4 @@
 @extends('osfrportal::layout')
-@section('dashboardTitle', 'Документы для ознакомления')
 @section('content')
     <p class="text-muted">
         Для ознакомления с документами используется электронная подпись (Усиленная квалифицированная - УКЭП или Усиленная
