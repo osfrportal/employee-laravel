@@ -15,6 +15,7 @@ use Osfrportal\OsfrportalLaravel\Imports\SFRDekretsImport;
 use Osfrportal\OsfrportalLaravel\Imports\SFRDepartmentsImport;
 use Osfrportal\OsfrportalLaravel\Imports\SFRPersonsImport;
 use Osfrportal\OsfrportalLaravel\Imports\SFRPersonsMovementsImport;
+use Osfrportal\OsfrportalLaravel\Imports\SFRWorkstartdateImport;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
@@ -35,6 +36,7 @@ class SFR1cImportController extends Controller
     private $otdel_file_name;
     private $pd_file_name;
     private $movements_file_name;
+    private $workstartdates_file_name;
 
     private $persons_from_csv;
 
@@ -51,6 +53,7 @@ class SFR1cImportController extends Controller
         $this->otdel_file_name = sprintf('otdel_058 %s.txt', $this->now_date_for_import);
         $this->pd_file_name = sprintf('pd_058 %s.txt', $this->now_date_for_import);
         $this->movements_file_name = sprintf('kadry_058 %s.txt', $this->now_date_for_import);
+        $this->workstartdates_file_name = sprintf('work_058 %s.txt', $this->now_date_for_import);
 
         $this->usersToNotify = SfrUser::permission('system-notifications')->get();
     }
@@ -70,6 +73,55 @@ class SFR1cImportController extends Controller
             return '';
         }
     }
+ /**
+     * Импорт файла начала работы
+     * @param mixed $command_load
+     * @return void
+     */
+    public function SFRWorkDatesImportFromCSV($command_load = false)
+    {
+        $save_file_name = 'tmp_workdates.txt';
+
+        if (Storage::disk('ftp1c')->exists($this->workstartdates_file_name)) {
+            $import_file_size = Storage::disk('ftp1c')->size($this->workstartdates_file_name);
+            $logContext = [
+                'file_name' => $this->workstartdates_file_name,
+                'import_file_size' => $import_file_size,
+            ];
+            LogAddAction::run(LogActionsEnum::LOG_IMPORT_PERSONWORKSTART(), 'Старт импорта файла дат начала работы ({file_name}, размер: {import_file_size})', $logContext);
+
+            if ((Storage::disk('ftp1c')->exists($this->workstartdates_file_name)) && ($import_file_size > 0)) {
+                Storage::put($save_file_name, Storage::disk('ftp1c')->get($this->workstartdates_file_name));
+
+                $import = new SFRWorkstartdateImport();
+                $import->import($save_file_name);
+                foreach ($import->failures() as $failure) {
+                    $fval = $failure->values(); // The values of the row that has failed.
+                    $log_context = [
+                        'failure_errors' => $failure->errors(),
+                        'failure_attribute' => $failure->attribute(),
+                        'failure_row' => $failure->row(),
+                        'failure_snils' => $fval['snils'],
+                    ];
+                    Log::warning('Ошибка обработки строки в файле импорта', $log_context);
+                }
+                Storage::delete($save_file_name);
+            } else {
+                if ($import_file_size == 0) {
+                    Log::error('Размер файла импорта равен нулю!', ['import_file_size' => $import_file_size]);
+                } else {
+                    Log::error('Не найден файл импорта');
+                }
+            }
+            LogAddAction::run(LogActionsEnum::LOG_IMPORT_PERSONWORKSTART(), 'Конец импорта файла дат начала работы  ({file_name}, размер: {import_file_size})', $logContext);
+
+            Notification::send($this->usersToNotify, new SFR1cSync('Импорт файла дат начала работы  завершен'));
+        } else {
+            Log::error('Не найден файл импорта дат начала работы ');
+            Notification::send($this->usersToNotify, new SFR1cSync('ОШИБКА! Не найден файл импорта дат начала работы'));
+        }
+    }
+
     /**
      * Импорт файла отсутствий
      * @param mixed $command_load

@@ -220,6 +220,20 @@ class SfrPerson extends Model
      *
      * @return string
      */
+    public function getWorkStartDate()
+    {
+        if (!is_null($this->pworkstart)) {
+            $workstartdate = Carbon::parse($this->pworkstart)->format('d.m.Y');
+        } else {
+            $workstartdate = null;
+        }
+        return $workstartdate;
+    }
+
+    /**
+     *
+     * @return string
+     */
     public function getINN()
     {
         return $this->pinn;

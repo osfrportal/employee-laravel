@@ -66,5 +66,12 @@ class SFR1cImportCommand extends Command
         $this->output->info('Starting absence import');
         $Sfr1cImportController->SFRAbsenceImportFromCSV(true);
         $this->output->success('Import absence successful');
+
+        /**
+         * Import workdates
+         */
+        $this->output->info('Starting work dates import');
+        $Sfr1cImportController->SFRWorkDatesImportFromCSV(true);
+        $this->output->success('Import work dates successful');
     }
 }

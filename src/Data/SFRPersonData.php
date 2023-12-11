@@ -27,6 +27,7 @@ class SFRPersonData extends Data
         public ?string $persondata_inn = null,
         public ?string $persondata_snils = null,
         public ?string $persondata_lastactivity = null,
+        public ?string $persondata_workstartdate = null,
         //public ?string $persondata_= null,
     ) {
     }
@@ -34,6 +35,7 @@ class SFRPersonData extends Data
     public static function defValues(): SFRPersonData
     {
         return new self(
+            null,
             null,
             null,
             null,
@@ -108,6 +110,7 @@ class SFRPersonData extends Data
             persondata_birthday: $person->getBirthDate(),
             persondata_fullname: $person->getFullName(),
             persondata_lastactivity: $personLastActivity,
+            persondata_workstartdate: $person->getWorkStartDate(),
         );
     }
 }
