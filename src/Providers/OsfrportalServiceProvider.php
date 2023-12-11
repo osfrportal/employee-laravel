@@ -215,7 +215,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             'missing-route-bound-breadcrumb-exception' => false,
             'invalid-named-breadcrumb-exception' => false,
             'files' => __DIR__ . '/../../routes/osfrportal_breadcrumbs.php',
-            'view' => 'breadcrumbs::bootstrap5',
+            'view' => 'osfrportal::layout.breadcrumbs.breadcrumbs',
         ];
         config([
             'breadcrumbs' => array_merge($breadcrumbsConfig, config('breadcrumbs', [])),
