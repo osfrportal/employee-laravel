@@ -36,6 +36,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#table-persons').DataTable({
+                fixedHeader: true,
                 ajax: '{{ $route_api_persons_all }}',
                 ordering: true,
                 order: [
