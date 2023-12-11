@@ -58,7 +58,7 @@ Breadcrumbs::for('osfrportal.admin.infosystems.roles.add', function (BreadcrumbT
  */
 Breadcrumbs::for('osfrportal.phone.index', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.mainpage');
-    $trail->push('Телефонный справочник', route('osfrportal.phone.index'));
+    $trail->push('Телефонный справочник', route('osfrportal.phone.index'), ['iconclass' => 'bi bi-telephone']);
 });
 
 Breadcrumbs::for('osfrportal.phone.editform', function (BreadcrumbTrail $trail, $personid): void {
