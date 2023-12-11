@@ -28,15 +28,16 @@ class SFRSyncToADOCController extends Controller
                 $aname = $item->getAppointment();
                 $etabnumber = $item->getTabNum();
                 $fullname = $item->getFullName();
+                $dateStartWork = $item->getWorkStartDate();
 
                 $snils = $item->getSNILS();
                 if (!is_null($snils)) {
-                    $update_pid_adoc_query = "UPDATE [ADOC].[dbo].[tblSsotr] SET [id_2] = ?, [id_1] = ?, [fam] = ?, [im] = ?, [ot] = ?, [Field10] = ?, [otd] = ?, [pos] = ? WHERE [pid] = ?";
+                    $update_pid_adoc_query = "UPDATE [ADOC].[dbo].[tblSsotr] SET [id_2] = ?, [id_1] = ?, [fam] = ?, [im] = ?, [ot] = ?, [Field10] = ?, [otd] = ?, [pos] = ?, [pr] = ? WHERE [pid] = ?";
 
-                    $updated_count = $this->adoc_connection->update($update_pid_adoc_query, [$etabnumber, $snils, $item->psurname, $item->pname, $item->pmiddlename, $fullname, $unitname, $aname, $item->pid]);
+                    $updated_count = $this->adoc_connection->update($update_pid_adoc_query, [$etabnumber, $snils, $item->psurname, $item->pname, $item->pmiddlename, $fullname, $unitname, $aname, $dateStartWork, $item->pid]);
                     if ($updated_count < 1) {
-                        $insert_adoc_query = "INSERT INTO [dbo].[tblSsotr] ([id_2], [id_1], [Field10], [fam], [im], [ot], [pid], [otd], [pos]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                        $values_insert = [$etabnumber, $snils, $fullname, $item->psurname, $item->pname, $item->pmiddlename, $item->pid, $unitname, $aname];
+                        $insert_adoc_query = "INSERT INTO [dbo].[tblSsotr] ([id_2], [id_1], [Field10], [fam], [im], [ot], [pid], [otd], [pos], [pr]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        $values_insert = [$etabnumber, $snils, $fullname, $item->psurname, $item->pname, $item->pmiddlename, $item->pid, $unitname, $aname, $dateStartWork];
                         $this->adoc_connection->insert($insert_adoc_query, $values_insert);
                     }
                     if ($item->SfrPersonContacts()->count() > 0) {
