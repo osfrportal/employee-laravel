@@ -370,7 +370,7 @@ class SFR1cImportController extends Controller
     /**
      * Проверка увольнения работника.
      * Выбрать всех работников из БД и проверить на соответствие файлу pd
-     * Если не найден в файле - удалить запись о занимаемой должности и подразделении.
+     * Если не найден в файле - удалить запись о занимаемой должности, подразделении и дате начала работы
      * @param mixed $pd_file
      * @return void
      */
@@ -393,6 +393,7 @@ class SFR1cImportController extends Controller
                 $item->SfrPersonDekret()->delete();
                 $item->SfrPersonAbsence()->delete();
                 $item->SfrPersonTabNum()->delete();
+                $item->pworkstart = null;
                 //$item->SfrPersonCerts()->delete();
                 $item->save();
                 /**
