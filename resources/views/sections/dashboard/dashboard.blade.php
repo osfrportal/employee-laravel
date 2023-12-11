@@ -1,5 +1,4 @@
 @extends('osfrportal::layout')
-@section('dashboardTitle', 'Личный кабинет')
 @section('content')
     @can('admin-menu-show')
         <div class="row">

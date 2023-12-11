@@ -1,5 +1,4 @@
 @extends('osfrportal::layout')
-@section('dashboardTitle', 'Профиль пользователя')
 @push('header-css')
     <link href="{{ asset('osfrportal/css/profile.css') }}" rel="stylesheet">
 @endpush
