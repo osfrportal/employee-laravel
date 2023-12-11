@@ -46,6 +46,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->registerConfigFromDB();
             $this->registerStorageConfig();
             $this->registerMSSQLDatabases();
+            $this->registerBreadCrumbsConfig();
 
         }
         Gate::after(function ($user, $ability) {
@@ -208,7 +209,19 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->loadRoutesFrom(__DIR__ . '/../../routes/osfrportal_web.php');
         })->middleware('web');
     }
-
+    protected function registerBreadCrumbsConfig()
+    {
+        $breadcrumbsConfig = [
+            'unnamed-route-exception' => false,
+            'missing-route-bound-breadcrumb-exception' => false,
+            'invalid-named-breadcrumb-exception' => false,
+            'files' => __DIR__ . '/../../routes/osfrportal_breadcrumbs.php',
+            'view' => 'breadcrumbs::bootstrap5',
+        ];
+        config([
+            'breadcrumbs' => array_merge($breadcrumbsConfig, config('breadcrumbs', [])),
+        ]);
+    }
     protected function registerStorageConfig()
     {
         $filesystemsDisksConfig = [

@@ -1,6 +1,7 @@
 @extends('osfrportal::layout')
 @section('title2')
     <div class="pt-0">
+        {{ Breadcrumbs::render() }}
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Администрирование</a></li>
