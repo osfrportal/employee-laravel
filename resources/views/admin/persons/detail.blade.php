@@ -13,9 +13,7 @@
     </script>
 @endpush
 @section('breadcrumb')
-<div class="pt-0">
-    <span>{{ $SFRPersonData->persondata_fullname ?? '' }}</span>
-</div>
+    {{ Breadcrumbs::render('osfrportal.admin.persons.detail', $SFRPersonData->persondata_fullname) }}
 @endsection
 @section('title2')
     <div class="pt-0">
