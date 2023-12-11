@@ -33,3 +33,13 @@ Breadcrumbs::for('osfrportal.admin.infosystems.index', function (BreadcrumbTrail
     $trail->parent('osfrportal.admin.infosystems');
     $trail->push('Управление', route('osfrportal.admin.infosystems.index'));
 });
+
+Breadcrumbs::for('osfrportal.admin.infosystems.add', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.infosystems.index');
+    $trail->push('Добавление ИС', route('osfrportal.admin.infosystems.add'));
+});
+
+Breadcrumbs::for('osfrportal.admin.infosystems.roles.add', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.infosystems.index');
+    $trail->push('Добавление ролей для ИС', route('osfrportal.admin.infosystems.roles.add'));
+});

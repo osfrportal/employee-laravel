@@ -1,16 +1,4 @@
 @extends('osfrportal::layout')
-@section('title2')
-    <div class="pt-0">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Администрирование</a></li>
-                <li class="breadcrumb-item"><a href="#">ИС и полномочия</a></li>
-                <li class="breadcrumb-item"><a href="#">Управление</a></li>
-                <li class="breadcrumb-item active">Добавление/Редактирование</li>
-            </ol>
-        </nav>
-    </div>
-@endsection
 @section('content')
     <form method="POST" action="{{ route('osfrportal.admin.infosystems.save') }}">
         <input type="hidden" id="isysid" name="isysid" value="{{ old('isysid', !is_null($infoSystemData) ? $infoSystemData->isysid : Str::uuid()) }}">
