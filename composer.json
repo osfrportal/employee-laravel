@@ -36,6 +36,7 @@
         "spatie/laravel-responsecache": "^7.4",
         "barryvdh/laravel-ide-helper": "^2.13",
         "barryvdh/laravel-dompdf": "^2.0",
+        "diglactic/laravel-breadcrumbs": "^8.1",
         "lorisleiva/laravel-actions": "^2.7"
     },
     "license": "MIT",
