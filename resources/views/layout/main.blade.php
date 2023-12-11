@@ -9,7 +9,7 @@
                 @if (isset($title2))
                     {{ $title2 }}
                 @endif
-                {{-- <span class="h5"> @yield('dashboardTitle', '') </span> --}}
+                @yield('breadcrumb', Breadcrumbs::render())
             </div>
 
             @yield('content', '')

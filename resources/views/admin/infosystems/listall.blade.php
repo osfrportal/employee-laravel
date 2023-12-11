@@ -1,9 +1,4 @@
 @extends('osfrportal::layout')
-@section('dashboardTitle')
-    <div class="pt-0">
-        {{ Breadcrumbs::render() }}
-    </div>
-@endsection
 @section('content')
     <a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.add') }}" role="button">Добавить ИС</a>
     <a class="btn btn-primary" href="{{ route('osfrportal.admin.infosystems.roles.add') }}" role="button">Добавить
