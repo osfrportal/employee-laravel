@@ -37,20 +37,22 @@ class SFRPhoneContactData extends Data
 
     public static function fromModel(SfrPerson $person): self
     {
-        $contactdata = json_decode($person->getPersonContactData());
-        if (!is_null($contactdata)) {
-            return new self(
-                room: $contactdata->room,
-                address: $contactdata->address,
-                email_ext: $contactdata->email_ext,
-                phone_external: $contactdata->phone_external,
-                phone_internal: $contactdata->phone_internal,
-                phone_mobile: $contactdata->phone_mobile,
-                areacode: $contactdata->areacode,
-            );
+        $contdata = $person->getPersonContactData();
+        if (!is_null($contdata)) {
+            $contactdata = json_decode($contdata);
+            if (!is_null($contactdata)) {
+                return new self(
+                    room: $contactdata->room,
+                    address: $contactdata->address,
+                    email_ext: $contactdata->email_ext,
+                    phone_external: $contactdata->phone_external,
+                    phone_internal: $contactdata->phone_internal,
+                    phone_mobile: $contactdata->phone_mobile,
+                    areacode: $contactdata->areacode,
+                );
+            }
         } else {
             return new self;
         }
-
     }
 }
