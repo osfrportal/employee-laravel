@@ -37,8 +37,7 @@
                         class="bi bi-layout-text-window"> Ознакомление</span></a>
                 <a class="nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab"><span
                         class="bi bi-display"> ActiveDirectory</span></a>
-                <a class="nav-link" id="nav-activity-tab" data-toggle="tab" href="#nav-activity" role="tab"><span
-                        class="ti ti-activity"> Активность на портале</span></a>
+                <a class="nav-link" id="nav-activity-tab" data-toggle="tab" href="#nav-activity" role="tab"><i class="ti ti-activity"></i> Активность на портале</a>
 
         </nav>
         <div class="tab-content" id="person-tabContent">
