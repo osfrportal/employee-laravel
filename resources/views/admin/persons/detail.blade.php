@@ -31,8 +31,7 @@
             <div class="nav nav-tabs" id="person-tab" role="tablist">
                 <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"><span
                         class="bi bi-file-earmark-person"> Основные данные</span></a>
-                <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-businessresources" role="tab"><span
-                        class="bi bi-collection"> Бизнес-ресурсы</span></a>
+                <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-businessresources" role="tab"><i class="ti ti-apps"></i> Бизнес-ресурсы</a>
                 <a class="nav-link" id="nav-docs-tab" data-toggle="tab" href="#nav-docs" role="tab"><span
                         class="bi bi-layout-text-window"> Ознакомление</span></a>
                 <a class="nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab"><span

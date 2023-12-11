@@ -14,7 +14,7 @@
         <li class="nav-item">
             <a class="nav-link {{ active_link('osfrportal.profile.usbskdcerts') }}"
                 href="{{ route('osfrportal.profile.usbskdcerts') }}">
-                <span class="bi bi-passport"> Бизнес-ресурсы</span>
+                <i class="ti ti-apps"></i> Бизнес-ресурсы
             </a>
         </li>
         <li class="nav-item">
