@@ -31,7 +31,7 @@
         </div>
         <div class="row">
             <div class="col">Дата начала работы</div>
-            <div class="col">{{ $SFRPersonData->$persondata_workstartdate ?? '' }}</div>
+            <div class="col">{{ $SFRPersonData->persondata_workstartdate ?? '' }}</div>
         </div>
     </div>
 </div>
