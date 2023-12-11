@@ -19,7 +19,7 @@ Breadcrumbs::for('osfrportal.admin.logs.changelog', function (BreadcrumbTrail $t
 
 Breadcrumbs::for('osfrportal.admin.logs.logsphoneupdates', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin.logs');
-    $trail->push('Обновление телефонного справочника');
+    $trail->push('Журнал обновления телефонного справочника');
 });
 
 

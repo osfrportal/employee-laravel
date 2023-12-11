@@ -1,16 +1,4 @@
 @extends('osfrportal::layout')
-@section('title2')
-    <div class="pt-0">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Администрирование</a></li>
-                <li class="breadcrumb-item"><a href="#">Логи</a></li>
-                <li class="breadcrumb-item active">ChangeLog</li>
-            </ol>
-        </nav>
-    </div>
-@endsection
-
 @section('content')
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="d-flex text-muted pt-3 notifblock">
