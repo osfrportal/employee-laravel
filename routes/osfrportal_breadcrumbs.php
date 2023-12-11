@@ -14,8 +14,24 @@ Breadcrumbs::for('osfrportal.admin', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.mainpage');
     $trail->push('Администрирование');
 });
+/**
+ * Администрирование
+ * Работники
+ */
+Breadcrumbs::for('osfrportal.admin.persons', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin');
+    $trail->push('Работники');
+});
 
+Breadcrumbs::for('osfrportal.admin.persons.all', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.persons');
+    $trail->push('Просмотр, управление', route('osfrportal.admin.persons.all'));
+});
 
+/**
+ * Администрирование
+ * Логи
+ */
 Breadcrumbs::for('osfrportal.admin.logs', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin');
     $trail->push('Логи');
@@ -32,6 +48,10 @@ Breadcrumbs::for('osfrportal.admin.logs.logsphoneupdates', function (BreadcrumbT
 });
 
 
+/**
+ * Администрирование
+ * Информационные системы
+ */
 
 Breadcrumbs::for('osfrportal.admin.infosystems', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin');
@@ -52,6 +72,8 @@ Breadcrumbs::for('osfrportal.admin.infosystems.roles.add', function (BreadcrumbT
     $trail->parent('osfrportal.admin.infosystems.index');
     $trail->push('Добавление ролей для ИС', route('osfrportal.admin.infosystems.roles.add'));
 });
+
+
 
 /**
  * Пользовательский раздел
