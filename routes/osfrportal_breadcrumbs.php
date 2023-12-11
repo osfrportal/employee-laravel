@@ -71,3 +71,8 @@ Breadcrumbs::for('osfrportal.profile.usbskdcerts', function (BreadcrumbTrail $tr
     $trail->parent('osfrportal.dashboard');
     $trail->push('Бизнес-ресурсы', route('osfrportal.profile.usbskdcerts'));
 });
+
+Breadcrumbs::for('osfrportal.docs.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.dashboard');
+    $trail->push('Документы для ознакомления', route('osfrportal.docs.index'));
+});
