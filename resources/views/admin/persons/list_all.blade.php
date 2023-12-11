@@ -23,6 +23,7 @@
                     <th>Поразделение</th>
                     <th>Активность на портале</th>
                     <th>Отпуск</th>
+                    <th>Дата начала работы</th>
                 </tr>
             </thead>
         </table>
@@ -67,6 +68,9 @@
                     },
                     {
                         data: 'persondata_vacation'
+                    },
+                    {
+                        data: 'persondata_workstartdate'
                     },
                 ],
                 columnDefs: [{
@@ -129,6 +133,12 @@
                     },
                     {
                         targets: 8,
+                        orderable: false,
+                        searchable: false,
+                        className: 'dt-left',
+                    },
+                    {
+                        targets: 9,
                         orderable: false,
                         searchable: false,
                         className: 'dt-left',
