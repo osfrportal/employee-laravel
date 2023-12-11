@@ -6,6 +6,24 @@ Breadcrumbs::for('osfrportal.admin', function (BreadcrumbTrail $trail): void {
     $trail->push('Администрирование');
 });
 
+
+Breadcrumbs::for('osfrportal.admin.logs', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin');
+    $trail->push('Логи');
+});
+
+Breadcrumbs::for('osfrportal.admin.logs.changelog', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.logs');
+    $trail->push('Changelog');
+});
+
+Breadcrumbs::for('osfrportal.admin.logs.logsphoneupdates', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.logs');
+    $trail->push('Обновление телефонного справочника');
+});
+
+
+
 Breadcrumbs::for('osfrportal.admin.infosystems', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin');
     $trail->push('ИС и полномочия');
