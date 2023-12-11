@@ -58,12 +58,12 @@ Breadcrumbs::for('osfrportal.admin.infosystems.roles.add', function (BreadcrumbT
  */
 Breadcrumbs::for('osfrportal.phone.index', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.mainpage');
-    $trail->push('Телефонный справочник', route('osfrportal.phone.index'), ['iconclass' => 'bi bi-telephone']);
+    $trail->push('Телефонный справочник', route('osfrportal.phone.index'));
 });
 
-Breadcrumbs::for('osfrportal.phone.editform', function (BreadcrumbTrail $trail, $personid): void {
+Breadcrumbs::for('osfrportal.phone.editform', function (BreadcrumbTrail $trail, $personid, $SFRPersonData): void {
     $trail->parent('osfrportal.phone.index');
-    $trail->push('Редактирование контактной информации', route('osfrportal.phone.editform', $personid));
+    $trail->push('Редактирование контактной информации '.$SFRPersonData->persondata_fullname, route('osfrportal.phone.editform', $personid));
 });
 
 
