@@ -88,9 +88,11 @@ Breadcrumbs::for('osfrportal.phone.index', function (BreadcrumbTrail $trail): vo
     $trail->push('Телефонный справочник', route('osfrportal.phone.index'));
 });
 
-Breadcrumbs::for('osfrportal.phone.editform', function (BreadcrumbTrail $trail, $personid): void {
+Breadcrumbs::for('osfrportal.phone.editform', function (BreadcrumbTrail $trail, $personname): void {
     $trail->parent('osfrportal.phone.index');
-    $trail->push('Редактирование контактной информации', route('osfrportal.phone.editform', $personid));
+    //$trail->push('Редактирование контактной информации', route('osfrportal.phone.editform', $personid));
+    $trail->push($personid);
+    $trail->push('Редактирование контактной информации');
 });
 
 
