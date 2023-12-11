@@ -37,6 +37,8 @@
                         class="bi bi-layout-text-window"> Ознакомление</span></a>
                 <a class="nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab"><span
                         class="bi bi-display"> ActiveDirectory</span></a>
+                <a class="nav-link" id="nav-activity-tab" data-toggle="tab" href="#nav-activity" role="tab"><span
+                        class="ti ti-activity"> Активность на портале</span></a>
 
         </nav>
         <div class="tab-content" id="person-tabContent">
@@ -63,6 +65,9 @@
                         target="_blank" class="btn btn-primary" role="button">Печать</a>
                 </div>
                 @include('osfrportal::admin.persons.details.docssigns')
+            </div>
+            <div class="tab-pane" id="nav-activity" role="tabpanel">
+                @include('osfrportal::admin.persons.details.activity_timeline')
             </div>
 
         </div>
