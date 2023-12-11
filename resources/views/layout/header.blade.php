@@ -1,4 +1,4 @@
-    <title>{{ Breadcrumbs::exists(Breadcrumbs::current()) ? Breadcrumbs::current()->title : Config::get('osfrportal.name') }}</title>
+    <title>{{ ($breadcrumb = Breadcrumbs::current()) ? $breadcrumb->title : Config::get('osfrportal.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
