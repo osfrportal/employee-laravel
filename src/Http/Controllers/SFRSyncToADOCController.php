@@ -28,7 +28,8 @@ class SFRSyncToADOCController extends Controller
                 $aname = $item->getAppointment();
                 $etabnumber = $item->getTabNum();
                 $fullname = $item->getFullName();
-                $dateStartWork = $item->getWorkStartDate();
+                //$dateStartWork = $item->getWorkStartDate();
+                $dateStartWork = $item->pworkstart;
 
                 $snils = $item->getSNILS();
                 if (!is_null($snils)) {
