@@ -6,7 +6,12 @@ Breadcrumbs::for('osfrportal.admin', function (BreadcrumbTrail $trail): void {
     $trail->push('Администрирование');
 });
 
-Breadcrumbs::for('osfrportal.admin.infosystems.index', function (BreadcrumbTrail $trail): void {
+Breadcrumbs::for('osfrportal.admin.infosystems', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin');
-    $trail->push('Информационные системы', route('osfrportal.admin.infosystems.index'));
+    $trail->push('ИС и полномочия');
+});
+
+Breadcrumbs::for('osfrportal.admin.infosystems.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.infosystems');
+    $trail->push('Управление', route('osfrportal.admin.infosystems.index'));
 });
