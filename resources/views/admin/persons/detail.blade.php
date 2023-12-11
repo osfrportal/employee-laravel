@@ -13,18 +13,13 @@
     </script>
 @endpush
 @section('breadcrumb')
-{{ Breadcrumbs::render('osfrportal.admin.persons.detail', $SFRPersonData->persondata_pid, $SFRPersonData) }}
+<div class="pt-0">
+    <span>{{ $SFRPersonData->persondata_fullname ?? '' }}</span>
+</div>
 @endsection
 @section('title2')
     <div class="pt-0">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Администрирование</a></li>
-                <li class="breadcrumb-item">Управление работниками</li>
-                <li class="breadcrumb-item">Детальная информация</li>
-                <li class="breadcrumb-item active">{{ $SFRPersonData->persondata_fullname ?? '' }}</li>
-            </ol>
-        </nav>
+        <span>{{ $SFRPersonData->persondata_fullname ?? '' }}</span>
     </div>
 @endsection
 @section('content')
