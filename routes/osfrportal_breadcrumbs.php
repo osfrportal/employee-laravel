@@ -24,8 +24,14 @@ Breadcrumbs::for('osfrportal.admin.persons', function (BreadcrumbTrail $trail): 
 });
 
 Breadcrumbs::for('osfrportal.admin.persons.all', function (BreadcrumbTrail $trail): void {
-    $trail->parent('osfrportal.persons');
+    $trail->parent('osfrportal.admin.persons');
     $trail->push('Просмотр, управление', route('osfrportal.admin.persons.all'));
+});
+
+Breadcrumbs::for('osfrportal.admin.persons.detail', function (BreadcrumbTrail $trail, $personid, $SFRPersonData): void {
+    $trail->parent('osfrportal.admin.persons.all');
+    $trail->push('Просмотр, управление', route('osfrportal.admin.persons.detail', $personid));
+    $trail->push($SFRPersonData->persondata_fullname);
 });
 
 /**

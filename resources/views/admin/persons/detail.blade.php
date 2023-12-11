@@ -12,7 +12,9 @@
         });
     </script>
 @endpush
-
+@section('breadcrumb')
+{{ Breadcrumbs::render('osfrportal.admin.persons.detail', $SFRPersonData->persondata_pid, $SFRPersonData) }}
+@endsection
 @section('title2')
     <div class="pt-0">
         <nav aria-label="breadcrumb">
