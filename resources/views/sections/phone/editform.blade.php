@@ -1,6 +1,6 @@
 @extends('osfrportal::layout')
 @section('breadcrumb')
-    {{ Breadcrumbs::render('osfrportal.admin.persons.detail', $SFRPersonData->persondata_fullname ? $SFRPersonData->persondata_fullname : '') }}
+    {{ Breadcrumbs::render('osfrportal.phone.editform', $SFRPersonData->persondata_fullname ? $SFRPersonData->persondata_fullname : '') }}
 @endsection
 @section('content')
     <div class="container-fluid">
