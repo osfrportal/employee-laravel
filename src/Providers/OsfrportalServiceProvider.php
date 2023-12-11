@@ -46,8 +46,6 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->registerConfigFromDB();
             $this->registerStorageConfig();
             $this->registerMSSQLDatabases();
-            $this->registerBreadCrumbsConfig();
-
         }
         Gate::after(function ($user, $ability) {
             return $user->hasRole('SuperAdmin'); // note this returns boolean
@@ -146,6 +144,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             ], config('auth.providers', [])),
         ]);
         $this->registerLogToDBoptions();
+        $this->registerBreadCrumbsConfig();
     }
 
     protected function registerBladeDirectives()
