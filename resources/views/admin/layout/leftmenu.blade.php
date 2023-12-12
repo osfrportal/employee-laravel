@@ -1,7 +1,7 @@
 @can('admin-menu-show')
     <hr />
     <ul class="nav flex-column">
-        <li class="nav-link">Административный раздел</li>
+        <li class="nav-link"><a href="{{ route('osfrportal.admin.dashboard') }}">Административный раздел</a></li>
         @canany(['person-view', 'person-manage'])
             <ul class="nav flex-column px-3">
                 <div class="dropend">

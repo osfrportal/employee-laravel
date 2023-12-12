@@ -15,7 +15,7 @@ Breadcrumbs::for('osfrportal.mainpage', function (BreadcrumbTrail $trail): void 
  */
 Breadcrumbs::for('osfrportal.admin', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.mainpage');
-    $trail->push('Администрирование');
+    $trail->push('Администрирование', route('osfrportal.admin.dashboard'));
 });
 /**
  * Администрирование

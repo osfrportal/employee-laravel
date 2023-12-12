@@ -23,6 +23,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLinksAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLogsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFROtrsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRInfoSystemsController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRAdminDashboardController;
 use Illuminate\Support\Facades\Storage;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
@@ -138,6 +139,10 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::get('/permission/showusers/{permissionid}', 'ShowPermissionUsersList')->name('permissions.showpermissionusers');
         Route::post('/permission/add', 'AddPermission')->name('permissions.addpermission');
         Route::get('/permission', 'ShowPermissionsList')->name('permissions');
+    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+
+    Route::controller(SFRAdminDashboardController::class)->group(function () {
+        Route::get('/', 'showDashboard')->name('dashboard');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 });
 
