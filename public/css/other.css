@@ -71,3 +71,8 @@ div.dataTables_processing div {
     color: var(--bs-light);
     font-size: 1.5rem;
 }
+
+.card {
+    box-shadow: none;
+    border: 1px solid #d4d8dd;
+}
