@@ -48,7 +48,7 @@ class SFRVipnetCUSImportXML
                 }
                 $clientID = $client->attributes()->id;
                 $clientName = Str::squish(Str::remove('058 - ', $client->attributes()->name));
-                //$collection = Str::of($clientName)->explode(' ');
+
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
                 if (count($filtered) == 3 && $hasBusinessMail) {
@@ -66,7 +66,11 @@ class SFRVipnetCUSImportXML
                         dump($str_to_dump);
                     }
                 } else {
-                    $str_to_dump = sprintf('ОШИБКА ПАРСИНГА или отсутствует ДП id: %s name: %s', $clientID, $clientName);
+                    if (!$hasBusinessMail) {
+                        $str_to_dump = sprintf('Отсутствует ДП id: %s name: %s', $clientID, $clientName);
+                    } else {
+                        $str_to_dump = sprintf('ОШИБКА ПАРСИНГА id: %s name: %s', $clientID, $clientName);   
+                    }
                     dump($str_to_dump);
                 }
 
