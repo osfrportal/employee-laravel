@@ -2,6 +2,7 @@
 namespace Osfrportal\OsfrportalLaravel\Imports;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class SFRVipnetCUSImportXML
@@ -43,7 +44,9 @@ class SFRVipnetCUSImportXML
                 } else {
                     $businessMailMessage = 'НЕТ ДП!';
                 }
-                $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $client->attributes()->id, $client->attributes()->name);
+                $clientID = $client->attributes()->id;
+                $clientName = Str::remove('058 - ', $client->attributes()->name);
+                $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
                 dump($str_to_dump);
                 /*
                 $rolesArray = json_decode(json_encode($roles), true);
