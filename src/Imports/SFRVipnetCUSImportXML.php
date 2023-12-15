@@ -51,9 +51,12 @@ class SFRVipnetCUSImportXML
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
                 if (count($filtered) == 3 && $hasBusinessMail) {
-                $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
-                dump($str_to_dump);
+                    $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
+                    dump($str_to_dump);
                 //dump($filtered);
+                } else {
+                    $str_to_dump = sprintf('ОШИБКА ПАРСИНГА или отсутствует ДП id: %s name: %s', $clientID, $clientName);
+                    dump($str_to_dump);
                 }
 
                 /*
