@@ -37,7 +37,7 @@ class SFRVipnetCUSImportXML
                 $roles = $client->xpath('role');
                 $hasBusinessMail = false;
                 foreach ($roles as $role) {
-                    $roleID = $role->attributes()->id[0];
+                    $roleID = $role->attributes()->id;
                     $roleName = $role->attributes()->name;
                     if ($roleID == '0000') {
                         $hasBusinessMail = true;
@@ -47,7 +47,7 @@ class SFRVipnetCUSImportXML
                     //dump($str_role_to_dump);
                 }
 
-                $clientID = $client->attributes()->id;
+                $clientID = $client->attributes()->id[0];
                 $clientName = Str::squish(Str::remove('058 - ', $client->attributes()->name));
 
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
