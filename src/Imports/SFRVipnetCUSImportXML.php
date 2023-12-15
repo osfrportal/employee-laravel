@@ -53,7 +53,7 @@ class SFRVipnetCUSImportXML
                 $filtered = Arr::except($nameArray, [0]);
                 if (count($filtered) == 3 && $hasBusinessMail) {
                     $model = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->get('pid');
-                    if (Str::isUuid($model->pid)) {
+                    if (Str::isUuid($model->get('pid'))) {
                         $str_to_dump = sprintf('PID: %s, %s id: %s name: %s', $model->pid, $businessMailMessage, $clientID, $clientName);
                         dump($str_to_dump);
                     } else {
