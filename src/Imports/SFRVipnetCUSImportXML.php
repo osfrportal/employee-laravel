@@ -23,6 +23,11 @@ class SFRVipnetCUSImportXML
     }
     public function import($filename, $storage)
     {
+        $parsingErrorCollection = collect();
+        $notFoundCollection = collect();
+        $foundCollection = collect();
+        $withoutBusinessMail = collect();
+
         if (Storage::disk($storage)->exists($filename)) {
             $xmlString = Storage::disk($storage)->get($filename);
             $xmlData = simplexml_load_string($xmlString);
@@ -55,19 +60,16 @@ class SFRVipnetCUSImportXML
                         $pid = null;
                     }
                     if (Str::isUuid($pid)) {
-                        $str_to_dump = sprintf('PID: %s, ДП: id: %s name: %s', $model->pid, $clientID, $clientName);
-                        dump($str_to_dump);
+                        $foundCollection->push(['pid' => $model->pid, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
                     } else {
-                        $str_to_dump = sprintf('НЕ НАЙДЕН В БАЗЕ ДП: id: %s name: %s', $clientID, $clientName);
-                        dump($str_to_dump);
+                        $notFoundCollection->push(['pid' => null, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
                     }
                 } else {
                     if (!$hasBusinessMail) {
-                        $str_to_dump = sprintf('Отсутствует ДП id: %s name: %s', $clientID, $clientName);
+                        $withoutBusinessMail->push(['pid' => null, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
                     } else {
-                        $str_to_dump = sprintf('ОШИБКА ПАРСИНГА id: %s name: %s', $clientID, $clientName);   
+                        $parsingErrorCollection->push(['pid' => null, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
                     }
-                    dump($str_to_dump);
                 }
 
                 /*
@@ -76,6 +78,10 @@ class SFRVipnetCUSImportXML
                 */
 
             }
+            dump($foundCollection);
+            dump($notFoundCollection);
+            dump($withoutBusinessMail);
+            dump($parsingErrorCollection);
         }
     }
 
