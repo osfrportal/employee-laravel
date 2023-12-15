@@ -2,7 +2,6 @@
 namespace Osfrportal\OsfrportalLaravel\Imports;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\XML;
 use Illuminate\Support\Facades\Storage;
 
 class SFRVipnetCUSImportXML
@@ -11,9 +10,10 @@ class SFRVipnetCUSImportXML
     {
         if (Storage::disk($storage)->exists($filename)) {
             $xmlString = Storage::disk($storage)->get($filename);
-            $xmlData = XML::parse($xmlString);
+            $xmlData = simplexml_load_string($xmlString);
+            $client = $xml->xpath('//report/coordinator/client');
 
-            foreach ($xmlData['coordinator']['client'] as $element) {
+            foreach ($client as $element) {
                 dump($element);
             }
         }
