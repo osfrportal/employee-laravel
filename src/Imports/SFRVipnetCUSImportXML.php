@@ -50,7 +50,7 @@ class SFRVipnetCUSImportXML
                 //$collection = Str::of($clientName)->explode(' ');
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
-                if (count($filtered) == 3) {
+                if (count($filtered) == 3 && $hasBusinessMail) {
                 $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
                 dump($str_to_dump);
                 //dump($filtered);
