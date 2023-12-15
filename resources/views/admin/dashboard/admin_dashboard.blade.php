@@ -1,7 +1,16 @@
 @extends('osfrportal::layout')
 @section('content')
 <div class="container-fluid">
-
+    @can('admin-menu-show')
+        <div class="row">
+            <div class="col-sm-2">
+                @livewire('osfrportal::liveusers-count')
+            </div>
+        </div>
+        <div class="row">
+            @include('osfrportal::admin.extsystems.graphs')
+        </div>
+    @endcan
 <div class="card">
     <div class="card-header">
       <h5 class="card-title mb-0">Activity</h5>

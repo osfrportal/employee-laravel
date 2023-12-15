@@ -1,15 +1,5 @@
 @extends('osfrportal::layout')
 @section('content')
-    @can('admin-menu-show')
-        <div class="row">
-            <div class="col-sm-2">
-                @livewire('osfrportal::liveusers-count')
-            </div>
-        </div>
-        <div class="row">
-            @include('osfrportal::admin.extsystems.graphs')
-        </div>
-    @endcan
     <div class="row">
         <div class="col-sm-3">
             @include('osfrportal::sections.docs.informers.unsigned_docs')
