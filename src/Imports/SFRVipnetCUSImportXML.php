@@ -16,6 +16,7 @@ class SFRVipnetCUSImportXML
             foreach ($client as $element) {
                 $str_to_dump = sprintf('id: %s name: %s', $element->attributes()->id, $element->attributes()->name);
                 dump($str_to_dump);
+                dump($element->role);
             }
         }
     }
