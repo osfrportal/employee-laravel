@@ -11,7 +11,7 @@ class SFRVipnetCUSImportXML
         if (Storage::disk($storage)->exists($filename)) {
             $xmlString = Storage::disk($storage)->get($filename);
             $xmlData = simplexml_load_string($xmlString);
-            $client = $xml->xpath('//report/coordinator/client');
+            $client = $xmlData->xpath('//report/coordinator/client');
 
             foreach ($client as $element) {
                 dump($element);
