@@ -45,9 +45,11 @@ class SFRVipnetCUSImportXML
                     $businessMailMessage = 'НЕТ ДП!';
                 }
                 $clientID = $client->attributes()->id;
-                $clientName = Str::remove('058 - ', $client->attributes()->name);
+                $clientName = Str::squish(Str::remove('058 - ', $client->attributes()->name));
+                $collection = Str::of($clientName)->explode(' ');
                 $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
                 dump($str_to_dump);
+                dump($collection);
                 /*
                 $rolesArray = json_decode(json_encode($roles), true);
                 dump($rolesArray);
