@@ -37,7 +37,7 @@ class SFRVipnetCUSImportXML
                 $roles = $client->xpath('role');
                 $hasBusinessMail = false;
                 foreach ($roles as $role) {
-                    $roleID = $role->attributes()->id;
+                    $roleID = $role->attributes()->id[0];
                     $roleName = $role->attributes()->name;
                     if ($roleID == '0000') {
                         $hasBusinessMail = true;
