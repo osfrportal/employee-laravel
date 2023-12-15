@@ -52,9 +52,14 @@ class SFRVipnetCUSImportXML
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
                 if (count($filtered) == 3 && $hasBusinessMail) {
-                    $model = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->get('pid');
-                    $str_to_dump = sprintf('PID: %s, %s id: %s name: %s', $model, $businessMailMessage, $clientID, $clientName);
-                    dump($str_to_dump);
+                    $pid = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->get('pid');
+                    if (Str::isUuid($pid)) {
+                        $str_to_dump = sprintf('PID: %s, %s id: %s name: %s', $pid, $businessMailMessage, $clientID, $clientName);
+                        dump($str_to_dump);
+                    } else {
+                        $str_to_dump = sprintf('НЕ НАЙДЕН В БАЗЕ id: %s name: %s', $clientID, $clientName);
+                        dump($str_to_dump);
+                    }
                 } else {
                     $str_to_dump = sprintf('ОШИБКА ПАРСИНГА или отсутствует ДП id: %s name: %s', $clientID, $clientName);
                     dump($str_to_dump);
