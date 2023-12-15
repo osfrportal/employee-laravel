@@ -23,18 +23,32 @@ class SFRVipnetCUSImportXML
         if (Storage::disk($storage)->exists($filename)) {
             $xmlString = Storage::disk($storage)->get($filename);
             $xmlData = simplexml_load_string($xmlString);
-            $client = $xmlData->xpath('//report/coordinator/client');
+            $clients = $xmlData->xpath('//report/coordinator/client');
 
-            foreach ($client as $element) {
-                $str_to_dump = sprintf('id: %s name: %s', $element->attributes()->id, $element->attributes()->name);
-                dump($str_to_dump);
-                $roles = $element->xpath('role');
+            foreach ($clients as $client) {
+                $roles = $client->xpath('role');
+                $hasBusinessMail = false;
                 foreach ($roles as $role) {
-                    $str_role_to_dump = sprintf('id: %s name: %s', $role->attributes()->id, $role->attributes()->name);
-                    dump($str_role_to_dump);
+                    $roleID = $role->attributes()->id;
+                    $roleName = $role->attributes()->name;
+                    if ($roleID === '0000') {
+                        $hasBusinessMail = true;
+                        break;
+                    }
+                    //$str_role_to_dump = sprintf('id: %s name: %s', $roleID, $roleName);
+                    //dump($str_role_to_dump);
                 }
+                if ($hasBusinessMail) {
+                    $businessMailMessage = 'ДП:';
+                } else {
+                    $businessMailMessage = 'НЕТ ДП!';
+                }
+                $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $client->attributes()->id, $client->attributes()->name);
+                dump($str_to_dump);
+                /*
                 $rolesArray = json_decode(json_encode($roles), true);
                 dump($rolesArray);
+                */
 
             }
         }
