@@ -32,6 +32,8 @@ use Osfrportal\OsfrportalLaravel\Console\Commands\SFRCrlsLoadCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFROrionSyncCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFR1cImportCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRADOCSyncCommand;
+use Osfrportal\OsfrportalLaravel\Console\Commands\SFRVipnetImportCommand;
+
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
 //use Osfrportal\OsfrportalLaravel\Console\Commands\;
@@ -71,7 +73,7 @@ class OsfrportalServiceProvider extends ServiceProvider
                 SFROrionSyncCommand::class,
                 SFR1cImportCommand::class,
                 SFRADOCSyncCommand::class,
-                //::class,
+                SFRVipnetImportCommand::class,
                 //::class,
             ]);
 
