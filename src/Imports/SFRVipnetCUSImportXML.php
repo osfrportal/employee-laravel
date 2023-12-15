@@ -11,7 +11,7 @@ class SFRVipnetCUSImportXML
     {
         if (Storage::disk($storage)->exists($filename)) {
             $path = Storage::disk($storage)->path($filename);
-            $xml = XML::import($path)->expect('client')->as('array')->get();
+            $xml = XML::import($path)->get();
             dump($xml);
         }
     }
