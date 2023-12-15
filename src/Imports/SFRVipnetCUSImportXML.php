@@ -21,6 +21,8 @@ class SFRVipnetCUSImportXML
                     $str_role_to_dump = sprintf('id: %s name: %s', $role->attributes()->id, $role->attributes()->name);
                     dump($str_role_to_dump);
                 }
+                $rolesArray = (array)$roles;
+                dump($rolesArray);
 
             }
         }
