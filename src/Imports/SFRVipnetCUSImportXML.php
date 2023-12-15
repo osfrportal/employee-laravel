@@ -52,8 +52,7 @@ class SFRVipnetCUSImportXML
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
                 if (count($filtered) == 3 && $hasBusinessMail) {
-
-                    $model = SfrPerson::where(['pname'=> $filtered[1],'psurname' => $filtered[2], 'pmiddlename' => $filtered[3]])->get('pid');
+                    $model = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->get('pid');
                     $str_to_dump = sprintf('PID: %s, %s id: %s name: %s', $model, $businessMailMessage, $clientID, $clientName);
                     dump($str_to_dump);
                 } else {
