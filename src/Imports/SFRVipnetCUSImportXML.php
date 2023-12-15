@@ -13,7 +13,7 @@ class SFRVipnetCUSImportXML
         if (Storage::disk($storage)->exists($filename)) {
             $path = Storage::disk($storage)->path($filename);
             $xml = XML::import($path)->transform('coordinator')->with(ArrayTransformer::class)->get();
-            dump($xml->coordinator['client']);
+            dump($xml->coordinator);
         }
     }
 
