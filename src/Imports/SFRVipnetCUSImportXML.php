@@ -2,28 +2,18 @@
 namespace Osfrportal\OsfrportalLaravel\Imports;
 
 use Illuminate\Support\Collection;
+use SingleQuote\LaravelXmlParser\XML;
+use Illuminate\Support\Facades\Storage;
 
-use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
-use Maatwebsite\Excel\Concerns\WithValidation;
-use Maatwebsite\Excel\Concerns\SkipsOnFailure;
-use Maatwebsite\Excel\Concerns\SkipsFailures;
-use Maatwebsite\Excel\Validators\Failure;
-use Maatwebsite\Excel\Concerns\Importable;
-
-class SFRVipnetCUSImportXML implements ToCollection, WithChunkReading, SkipsOnFailure
+class SFRVipnetCUSImportXML
 {
-    use Importable, SkipsFailures;
-
-    public function chunkSize(): int
+    public function import($filename, $storage)
     {
-        return 1000;
-    }
-    public function collection(Collection $collection)
-    {
-        $collection->each(function ($item) {
-            dump($item);
-        });
+        if (Storage::disk($storage)->exists($filename)) {
+            $path = Storage::disk($storage)->path($filename);
+            $xml = XML::import($path)->get();
+            dump($xml);
+        }
     }
 
 }
