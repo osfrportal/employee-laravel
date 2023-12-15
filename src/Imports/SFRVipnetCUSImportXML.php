@@ -3,6 +3,7 @@ namespace Osfrportal\OsfrportalLaravel\Imports;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\XML;
+use Illuminate\Support\Facades\Storage;
 
 class SFRVipnetCUSImportXML
 {
