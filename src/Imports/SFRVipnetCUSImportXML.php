@@ -50,10 +50,12 @@ class SFRVipnetCUSImportXML
                 //$collection = Str::of($clientName)->explode(' ');
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
-
+                if (count($filtered) == 3) {
                 $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
                 dump($str_to_dump);
-                dump($filtered);
+                //dump($filtered);
+                }
+
                 /*
                 $rolesArray = json_decode(json_encode($roles), true);
                 dump($rolesArray);
