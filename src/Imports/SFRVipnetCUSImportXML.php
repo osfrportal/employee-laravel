@@ -31,7 +31,7 @@ class SFRVipnetCUSImportXML
                 foreach ($roles as $role) {
                     $roleID = $role->attributes()->id;
                     $roleName = $role->attributes()->name;
-                    if ($roleID === '0000') {
+                    if ($roleID == '0000') {
                         $hasBusinessMail = true;
                         break;
                     }
