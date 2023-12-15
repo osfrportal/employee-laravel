@@ -5,6 +5,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 
 class SFRVipnetCUSImportXML
 {
@@ -51,9 +52,10 @@ class SFRVipnetCUSImportXML
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
                 if (count($filtered) == 3 && $hasBusinessMail) {
-                    $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
+
+                    $model = SfrPerson::where(['pname'=> $filtered[0],'psurname' => $filtered[1], 'pmiddlename' => $filtered[2]])->get('pid');
+                    $str_to_dump = sprintf('PID: %s, %s id: %s name: %s', $model, $businessMailMessage, $clientID, $clientName);
                     dump($str_to_dump);
-                //dump($filtered);
                 } else {
                     $str_to_dump = sprintf('ОШИБКА ПАРСИНГА или отсутствует ДП id: %s name: %s', $clientID, $clientName);
                     dump($str_to_dump);
