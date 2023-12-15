@@ -34,7 +34,7 @@ class SFRVipnetImportCommand extends Command
          * Import persons
          */
         $this->output->info('Starting import');
-        (new SFRVipnetCUSImportXML)->import('442_network_report_202312081719.xml', null,  \Maatwebsite\Excel\Excel::XML);
+        (new SFRVipnetCUSImportXML)->import('442_network_report_202312081719.xml', 'imports',  \Maatwebsite\Excel\Excel::XML);
         $this->output->success('Import successful');
     }
 }
