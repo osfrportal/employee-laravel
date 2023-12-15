@@ -41,11 +41,7 @@ class SFRVipnetCUSImportXML
                     //$str_role_to_dump = sprintf('id: %s name: %s', $roleID, $roleName);
                     //dump($str_role_to_dump);
                 }
-                if ($hasBusinessMail) {
-                    $businessMailMessage = 'ДП:';
-                } else {
-                    $businessMailMessage = 'НЕТ ДП!';
-                }
+
                 $clientID = $client->attributes()->id;
                 $clientName = Str::squish(Str::remove('058 - ', $client->attributes()->name));
 
@@ -59,10 +55,10 @@ class SFRVipnetCUSImportXML
                         $pid = null;
                     }
                     if (Str::isUuid($pid)) {
-                        $str_to_dump = sprintf('PID: %s, %s id: %s name: %s', $model->pid, $businessMailMessage, $clientID, $clientName);
+                        $str_to_dump = sprintf('PID: %s, ДП: id: %s name: %s', $model->pid, $clientID, $clientName);
                         dump($str_to_dump);
                     } else {
-                        $str_to_dump = sprintf('НЕ НАЙДЕН В БАЗЕ id: %s name: %s', $clientID, $clientName);
+                        $str_to_dump = sprintf('НЕ НАЙДЕН В БАЗЕ ДП: id: %s name: %s', $clientID, $clientName);
                         dump($str_to_dump);
                     }
                 } else {
