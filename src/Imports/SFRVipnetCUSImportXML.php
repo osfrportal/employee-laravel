@@ -17,7 +17,11 @@ class SFRVipnetCUSImportXML
                 $str_to_dump = sprintf('id: %s name: %s', $element->attributes()->id, $element->attributes()->name);
                 dump($str_to_dump);
                 $roles = $element->xpath('role');
-                dump($roles);
+                foreach ($roles as $role) {
+                    $str_role_to_dump = sprintf('id: %s name: %s', $element->attributes()->id, $element->attributes()->name);
+                    dump($str_role_to_dump);
+                }
+
             }
         }
     }
