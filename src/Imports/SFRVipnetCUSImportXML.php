@@ -48,7 +48,7 @@ class SFRVipnetCUSImportXML
                 $clientName = Str::squish(Str::remove('058 - ', $client->attributes()->name));
                 $collection = Str::of($clientName)->explode(' ');
                 $re = '/(\S+)\s+(\S+)\s+(\S+)/';
-                $collection = Str::of($clientName)->matchAll($re);
+                $collection = Str::of($clientName)->match($re);
                 $str_to_dump = sprintf('%s id: %s name: %s', $businessMailMessage, $clientID, $clientName);
                 dump($str_to_dump);
                 dump($collection);
