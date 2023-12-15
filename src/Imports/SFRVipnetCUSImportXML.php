@@ -11,9 +11,9 @@ class SFRVipnetCUSImportXML
 
         //recursive Parser
         foreach ($array as $key => $value){
-            if(strpos(get_class($value),"SimpleXML")!==false){
+            //if(strpos(get_class($value),"SimpleXML")!==false){
                 $array[$key] = $this->SimpleXML2Array($value);
-            }
+            //}
         }
 
         return $array;
