@@ -230,6 +230,7 @@
                                         </div>
                                         <div class="col text-truncate">
                                             <div class="ms-4">
+                                                @dump($crypto)
                                                 @switch($crypto->cryptoType)
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
                                                         <div class="text-xs text-muted">Криптопро 4</div>
