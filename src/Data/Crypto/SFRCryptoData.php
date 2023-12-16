@@ -10,11 +10,10 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\EnumCast;
 use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
 
-
 class SFRCryptoData extends Data
 {
     public function __construct(
-        #[WithCast(EnumCast::class)]
+        #[WithCast(EnumCast::class, type: CryptoTypesEnum::class)]
         public CryptoTypesEnum $cryptoType,
         public ?string $cryptoId = null,
         public ?string $cryptoName = null,
