@@ -50,9 +50,10 @@ class SFRVipnetCUSImportXML
                 }
 
                 $clientID = (string)$client->attributes()->id;
-                $clientName = Str::squish(Str::remove('058 - ', $client->attributes()->name));
+                $clientName = $client->attributes()->name;
+                $clientNameForFind = Str::squish(Str::remove('058 - ', $clientName));
 
-                preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientName, $nameArray);
+                preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientNameForFind, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
                 if (count($filtered) == 3 && $hasBusinessMail) {
                     $model = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->first('pid');
