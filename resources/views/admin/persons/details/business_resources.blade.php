@@ -213,7 +213,7 @@
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
-                                            @switch($crypto->cryptoType)
+                                            @switch($crypto->cryptodata->cryptoType)
                                                 @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
                                                     <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
                                                         alt="" class="icon-small" />
@@ -231,13 +231,15 @@
                                         <div class="col text-truncate">
                                             <div class="ms-4">
                                                 @dump($crypto)
-                                                @switch($crypto->cryptoType)
+                                                @switch($crypto->cryptodata->cryptoType)
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
                                                         <div class="text-xs text-muted">Криптопро 4</div>
                                                     @break
 
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
                                                         <div class="text-xs text-muted">VipNet Деловая Почта</div>
+                                                        <div class="text-xs text-muted">ID АП: {{ $crypto->cryptodata->cryptoId }}</div>
+                                                        <div class="text-xs text-muted">Имя АП: {{ $crypto->cryptodata->cryptoName }}</div>
                                                     @break
 
                                                     @default
