@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
+use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
 
@@ -51,35 +52,37 @@ class SFRVipnetCUSImportXML
 
                 $clientID = (string)$client->attributes()->id;
                 $clientName = $client->attributes()->name;
+                $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
+                $cryptoModel = SfrPersonCrypto::firstOrNew(['cryptotype' => CryptoTypesEnum::VIPNET(), 'cryptoapid' => $clientID]);
+                $cryptoModel->cryptodata = $pushData;
+                
                 $clientNameForFind = Str::squish(Str::remove('058 - ', $clientName));
-
                 preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientNameForFind, $nameArray);
                 $filtered = Arr::except($nameArray, [0]);
-                if (count($filtered) == 3 && $hasBusinessMail) {
-                    $model = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->first('pid');
-                    if (!is_null($model)) {
-                        $pid = $model->getPid();
+
+                if ($hasBusinessMail) {
+                    if (count($filtered) == 3) {
+                        $model = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->first('pid');
+                        if (!is_null($model)) {
+                            $pid = $model->getPid();
+                        } else {
+                            $pid = null;
+                        }
+                        $cryptoModel->pid = $pid;
+
+                        if (Str::isUuid($pid)) {
+                            $foundCollection->push($pushData);
+                        } else {
+                            $notFoundCollection->push($pushData);
+                        }
                     } else {
-                        $pid = null;
-                    }
-                    if (Str::isUuid($pid)) {
-                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
-                        //$foundCollection->push(['pid' => $model->pid, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
-                        $foundCollection->push($pushData);
-                    } else {
-                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
-                        $notFoundCollection->push($pushData);
-                    }
-                } else {
-                    if (!$hasBusinessMail) {
-                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
-                        $withoutBusinessMail->push($pushData);
-                    } else {
-                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
                         $parsingErrorCollection->push($pushData);
                     }
-                }
 
+                    $cryptoModel->save();
+                } else {
+                    $withoutBusinessMail->push($pushData);
+                }
                 /*
                 $rolesArray = json_decode(json_encode($roles), true);
                 dump($rolesArray);

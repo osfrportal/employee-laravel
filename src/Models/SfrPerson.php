@@ -110,6 +110,15 @@ class SfrPerson extends Model
         return $this->hasMany(SfrCerts::class, 'pid')->orderByDesc('certvalidto');
     }
 
+     /**
+     * Криптосредства работника
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function SfrPersonCrypto()
+    {
+        return $this->hasMany(SfrPersonCrypto::class, 'pid');
+    }
+
     /**
      * Металлические печати работника
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
