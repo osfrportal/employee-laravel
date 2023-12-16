@@ -17,7 +17,6 @@ class SFRPhoneContactData extends Data
         public ?string $phone_internal = null,
         public ?string $phone_mobile = null,
         public ?string $areacode = null,
-        public ?string $vipnetapname = null,
     ) {
     }
 
@@ -31,7 +30,6 @@ class SFRPhoneContactData extends Data
             null,
             null,
             null,
-            null
         );
     }
 

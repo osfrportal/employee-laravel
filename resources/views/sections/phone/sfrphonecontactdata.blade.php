@@ -83,15 +83,6 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
 
-            <div class="mb-3">
-                <label class="mb-1" for="inputVipnetApName">Наименование АП VipNet Деловая почта:</label>
-                <input class="form-control form-control-sm @error('inputVipnetApName') is-invalid @enderror"
-                    id="inputVipnetApName" name="inputVipnetApName" type="text"
-                    value="{{ old('inputVipnetApName') ?? ($SFRPhoneContactData->vipnetapname ?? '') }}">
-            </div>
-            @error('inputVipnetApName')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
             <button class="btn btn-primary btn-submit" type="submit">Сохранить</button>
 
         </div>
