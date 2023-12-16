@@ -230,14 +230,16 @@
                                         </div>
                                         <div class="col text-truncate">
                                             <div class="ms-4">
-                                                @dump($crypto->cryptodata)
+                                                @dump($crypto)
                                                 @switch($crypto->cryptotype)
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
-                                                        <div class="text-xs text-muted">Криптопро 4</div>
+                                                        <div class="text-xs">Криптопро 4</div>
                                                     @break
 
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
-                                                        <div class="text-xs text-muted">VipNet Деловая Почта</div>
+                                                        <div class="text-xs">VipNet Деловая Почта</div>
+                                                        <div class="text-xs">Наименование АП: {{ $crypto->cryptodata->cryptoName}}</div>
+                                                        <div class="text-xs">ID АП: {{ $crypto->cryptodata->cryptoId}}</div>
                                                     @break
 
                                                     @default
