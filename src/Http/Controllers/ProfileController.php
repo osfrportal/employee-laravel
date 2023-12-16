@@ -93,8 +93,14 @@ class ProfileController extends Controller
         $certsUser = Auth::user()->SfrPerson->SfrPersonCerts;
         $rfidKeysUser = Auth::user()->SfrPerson->getPersonRfidCards();
         $stampsUser = Auth::user()->SfrPerson->SfrPersonStamps;
+        $cryptoUser = Auth::user()->SfrPerson->SfrPersonCrypto;
 
-        return view('osfrportal::sections.profile.usbskdcerts', ['certsUser' => $certsUser, 'rfidKeysUser' => $rfidKeysUser, 'stampsUser' => $stampsUser]);
+        return view('osfrportal::sections.profile.usbskdcerts', [
+            'certsUser' => $certsUser,
+            'rfidKeysUser' => $rfidKeysUser,
+            'stampsUser' => $stampsUser,
+            'cryptoUser' => $cryptoUser,
+        ]);
     }
 
     public function genDocsSignListPrint()

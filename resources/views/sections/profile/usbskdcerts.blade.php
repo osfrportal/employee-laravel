@@ -110,14 +110,14 @@
             @endif
         </div>
 
-        <div class="row">
+        <div class="row pt-2">
             @if ($certsUser->count() > 0)
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
                             Электронная подпись
                         </div>
-                        <div class="card-body px-0">
+                        <div class="card-body p-0">
                             <div class="list-group list-group-flush">
                                 @foreach ($certsUser as $cert)
                                     <div
@@ -192,38 +192,58 @@
                     </div>
                 </div>
             @endif
-            {{--
+            @if ($cryptoUser->count() > 0)
             <div class="col">
                 <div class="card">
                     <div class="card-header">
                         Криптосредства
                     </div>
-                    <div class="card-body px-0">
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            @foreach ($cryptoUser as $crypto)
+                                <div class="list-group-item list-group-item-success bg-opacity-25">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            @switch($crypto->cryptotype)
+                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
+                                                    <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
+                                                        alt="" class="icon-small" />
+                                                @break
 
-                        <div class="d-flex align-items-center justify-content-between px-4">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}" alt=""
-                                    class="icon-small" />
-                                <div class="ms-4">
-                                    <div class="text-xs text-muted">Криптопро 4</div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
+                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
+                                                    <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
+                                                        class="icon-small" />
+                                                @break
 
-                        <div class="d-flex align-items-center justify-content-between px-4">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
-                                    class="icon-small" />
-                                <div class="ms-4">
-                                    <div class="text-xs text-muted">VipNet Деловая Почта</div>
+                                                @default
+                                                    Не определен
+                                            @endswitch
+                                        </div>
+                                        <div class="col text-truncate">
+                                            <div class="ms-4">
+                                                @switch($crypto->cryptotype)
+                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
+                                                        <div class="text-xs">Криптопро 4</div>
+                                                    @break
+
+                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
+                                                        <div class="text-xs">VipNet Деловая Почта</div>
+                                                        <div class="text-xs">Наименование АП: {{ $crypto->cryptodata->cryptoName}}</div>
+                                                    @break
+
+                                                    @default
+                                                        Не определен
+                                                @endswitch
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-            --}}
+        @endif
         </div>
     </div>
 @endsection
