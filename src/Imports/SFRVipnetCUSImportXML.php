@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
+use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
+use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
 
 class SFRVipnetCUSImportXML
 {
@@ -60,7 +62,9 @@ class SFRVipnetCUSImportXML
                         $pid = null;
                     }
                     if (Str::isUuid($pid)) {
-                        $foundCollection->push(['pid' => $model->pid, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
+                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID);
+                        //$foundCollection->push(['pid' => $model->pid, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
+                        $foundCollection->push($pushData);
                     } else {
                         $notFoundCollection->push(['pid' => null, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
                     }
