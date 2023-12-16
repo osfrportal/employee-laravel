@@ -213,7 +213,7 @@
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
-                                            @switch($crypto->cryptodata->cryptoType)
+                                            @switch($crypto->cryptotype)
                                                 @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
                                                     <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
                                                         alt="" class="icon-small" />
@@ -230,8 +230,8 @@
                                         </div>
                                         <div class="col text-truncate">
                                             <div class="ms-4">
-                                                @dump($crypto)
-                                                @switch($crypto->cryptodata->cryptoType)
+                                                @dump($crypto->cryptodata)
+                                                @switch($crypto->cryptotype)
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
                                                         <div class="text-xs text-muted">Криптопро 4</div>
                                                     @break
