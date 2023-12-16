@@ -3,7 +3,7 @@
     <link href="{{ asset('osfrportal/css/profile.css') }}" rel="stylesheet">
 @endpush
 @section('content')
-    <div class="container-fluid px-4 mt-4">
+    <div class="container-fluid">
         <div class="row">
             @if (!is_null($rfidKeysUser))
                 <div class="col">
