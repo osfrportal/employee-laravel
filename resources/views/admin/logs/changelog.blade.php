@@ -10,6 +10,23 @@
                     dy=".3em">32x32</text>
             </svg>
             <div class="pb-3 mb-0  lh-sm border-bottom w-100">
+                <span class="d-block  mb-2">17-12-2023</span>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="ti ti-code-dots icon-size-16" title="[TEST]"></i> В раздел бизнес ресурсы загружена информация по АП VipNet
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex text-muted pt-3 notifblock">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
+                    dy=".3em">32x32</text>
+            </svg>
+            <div class="pb-3 mb-0  lh-sm border-bottom w-100">
                 <span class="d-block  mb-2">11-12-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -32,10 +49,6 @@
                     <li class="list-group-item">
                         <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлено всплывающее уведомление
                         работникам о необходимости ознакомления с документами
-                    </li>
-                    <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i>В контактные данные работника добавлено
-                        поле "Адрес VipNet" с отображением в телефонном справочнике
                     </li>
                     <li class="list-group-item">
                         <i class="ti ti-code-plus icon-size-16" title="[ADD]"></i> Добавлено отображение списка точек доступа при просмотре подробной информации по карте СКУД в административном интерфейсе
