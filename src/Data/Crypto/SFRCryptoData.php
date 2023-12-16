@@ -24,6 +24,7 @@ class SFRCryptoData extends Data
         return new self(
             CryptoTypesEnum::NONE(),
             null,
+            null,
         );
     }
 }
