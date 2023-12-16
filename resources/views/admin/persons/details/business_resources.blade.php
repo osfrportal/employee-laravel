@@ -238,8 +238,6 @@
 
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
                                                         <div class="text-xs text-muted">VipNet Деловая Почта</div>
-                                                        <div class="text-xs text-muted">ID АП: {{ $crypto->cryptodata->cryptoId }}</div>
-                                                        <div class="text-xs text-muted">Имя АП: {{ $crypto->cryptodata->cryptoName }}</div>
                                                     @break
 
                                                     @default
