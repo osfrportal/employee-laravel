@@ -54,34 +54,39 @@ class SFRVipnetCUSImportXML
                 $clientName = $client->attributes()->name;
                 $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
                 $cryptoModel = SfrPersonCrypto::firstOrNew(['cryptotype' => CryptoTypesEnum::VIPNET(), 'cryptoapid' => $clientID]);
-                $cryptoModel->cryptodata = $pushData;
-                
-                $clientNameForFind = Str::squish(Str::remove('058 - ', $clientName));
-                preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientNameForFind, $nameArray);
-                $filtered = Arr::except($nameArray, [0]);
-
-                if ($hasBusinessMail) {
-                    if (count($filtered) == 3) {
-                        $model = SfrPerson::where(['psurname'=> $filtered[1],'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->first('pid');
-                        if (!is_null($model)) {
-                            $pid = $model->getPid();
-                        } else {
-                            $pid = null;
-                        }
-                        $cryptoModel->pid = $pid;
-
-                        if (Str::isUuid($pid)) {
-                            $foundCollection->push($pushData);
-                        } else {
-                            $notFoundCollection->push($pushData);
-                        }
-                    } else {
-                        $parsingErrorCollection->push($pushData);
-                    }
-
-                    $cryptoModel->save();
+                if ($cryptoModel->exists) {
+                    break;
                 } else {
-                    $withoutBusinessMail->push($pushData);
+                    $cryptoModel->cryptodata = $pushData;
+
+                    $clientNameForFind = Str::squish(Str::remove('058 - ', $clientName));
+                    preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientNameForFind, $nameArray);
+                    $filtered = Arr::except($nameArray, [0]);
+
+                    if ($hasBusinessMail) {
+                        if (count($filtered) == 3) {
+                            $model = SfrPerson::where(['psurname' => $filtered[1], 'pname' => $filtered[2], 'pmiddlename' => $filtered[3]])->first('pid');
+                            if (!is_null($model)) {
+                                $pid = $model->getPid();
+                            } else {
+                                $pid = null;
+                            }
+                            $cryptoModel->pid = $pid;
+
+                            if (Str::isUuid($pid)) {
+                                $foundCollection->push($pushData);
+                            } else {
+                                $notFoundCollection->push($pushData);
+                            }
+                        } else {
+                            $parsingErrorCollection->push($pushData);
+                        }
+
+                        
+                    } else {
+                        $withoutBusinessMail->push($pushData);
+                    }
+                    $cryptoModel->save();
                 }
                 /*
                 $rolesArray = json_decode(json_encode($roles), true);
