@@ -30,6 +30,7 @@ class SFRVipnetCUSImportXML
         $notFoundCollection = collect();
         $foundCollection = collect();
         $withoutBusinessMail = collect();
+        $alreadyCreated = collect();
 
         if (Storage::disk($storage)->exists($filename)) {
             $xmlString = Storage::disk($storage)->get($filename);
@@ -55,6 +56,7 @@ class SFRVipnetCUSImportXML
                 $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
                 $cryptoModel = SfrPersonCrypto::firstOrNew(['cryptotype' => CryptoTypesEnum::VIPNET(), 'cryptoapid' => $clientID]);
                 if ($cryptoModel->exists) {
+                    $alreadyCreated->push($pushData);
                     break;
                 } else {
                     $cryptoModel->cryptodata = $pushData;
@@ -95,6 +97,7 @@ class SFRVipnetCUSImportXML
 
             }
             dump($foundCollection);
+            dump($alreadyCreated);
             dump($notFoundCollection);
             dump($withoutBusinessMail);
             dump($parsingErrorCollection);
