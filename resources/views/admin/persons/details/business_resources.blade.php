@@ -7,7 +7,7 @@
                         <div class="card-header">
                             Карты доступа СКУД
                         </div>
-                        <div class="card-body px-0">
+                        <div class="card-body p-0">
                             <div class="list-group list-group-flush">
                                 @foreach ($rfidKeysUser as $rfidKey)
                                     <div
@@ -119,14 +119,14 @@
         @endif
     </div>
 
-    <div class="row">
+    <div class="row pt-2">
         @if ($SFRPersonCerts->count() > 0)
             <div class="col">
                 <div class="card">
                     <div class="card-header">
                         Электронная подпись
                     </div>
-                    <div class="card-body px-0">
+                    <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             @foreach ($SFRPersonCerts as $cert)
                                 <div
@@ -207,7 +207,7 @@
                     <div class="card-header">
                         Криптосредства
                     </div>
-                    <div class="card-body px-0">
+                    <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             @foreach ($SFRPersonCrypto as $crypto)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
