@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mt-2">
     <div class="row">
         @if (!is_null($rfidKeysUser))
             @if ($rfidKeysUser->count() > 0)
