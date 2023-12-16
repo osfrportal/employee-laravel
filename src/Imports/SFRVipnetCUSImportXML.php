@@ -57,7 +57,6 @@ class SFRVipnetCUSImportXML
                 $cryptoModel = SfrPersonCrypto::firstOrNew(['cryptotype' => CryptoTypesEnum::VIPNET(), 'cryptoapid' => $clientID]);
                 if ($cryptoModel->exists) {
                     $alreadyCreated->push($pushData);
-                    break;
                 } else {
                     $cryptoModel->cryptodata = $pushData;
 
