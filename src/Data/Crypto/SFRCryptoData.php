@@ -17,6 +17,7 @@ class SFRCryptoData extends Data
         #[WithCast(EnumCast::class)]
         public CryptoTypesEnum $cryptoType,
         public ?string $cryptoId = null,
+        public ?string $cryptoName = null,
     ) {}
 
     public static function defValues(): SFRCryptoData

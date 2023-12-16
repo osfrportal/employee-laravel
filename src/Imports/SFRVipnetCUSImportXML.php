@@ -62,17 +62,20 @@ class SFRVipnetCUSImportXML
                         $pid = null;
                     }
                     if (Str::isUuid($pid)) {
-                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID);
+                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
                         //$foundCollection->push(['pid' => $model->pid, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
                         $foundCollection->push($pushData);
                     } else {
-                        $notFoundCollection->push(['pid' => null, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
+                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
+                        $notFoundCollection->push($pushData);
                     }
                 } else {
                     if (!$hasBusinessMail) {
-                        $withoutBusinessMail->push(['pid' => null, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
+                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
+                        $withoutBusinessMail->push($pushData);
                     } else {
-                        $parsingErrorCollection->push(['pid' => null, 'vipnetid' => $clientID, 'vipnetname' => $clientName]);
+                        $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
+                        $parsingErrorCollection->push($pushData);
                     }
                 }
 
