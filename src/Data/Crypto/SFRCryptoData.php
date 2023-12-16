@@ -14,7 +14,7 @@ class SFRCryptoData extends Data
 {
     public function __construct(
         #[WithCast(EnumCast::class, CryptoTypesEnum::class)]
-        public CryptoTypesEnum $cryptoType,
+        public int $cryptoType,
         public ?string $cryptoId = null,
         public ?string $cryptoName = null,
     ) {}
