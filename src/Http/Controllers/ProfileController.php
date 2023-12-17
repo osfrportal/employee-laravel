@@ -23,6 +23,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
 use Osfrportal\OsfrportalLaravel\Data\SFRSignData;
 use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
+use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 use phpseclib3\File\X509;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
@@ -93,7 +94,7 @@ class ProfileController extends Controller
         $certsUser = Auth::user()->SfrPerson->SfrPersonCerts;
         $rfidKeysUser = Auth::user()->SfrPerson->getPersonRfidCards();
         $stampsUser = Auth::user()->SfrPerson->SfrPersonStamps;
-        $cryptoUser = Auth::user()->SfrPerson->SfrPersonCrypto;
+        $cryptoUser = SFRCryptoData::from(Auth::user()->SfrPerson->SfrPersonCrypto->cryptodata);
 
         return view('osfrportal::sections.profile.usbskdcerts', [
             'certsUser' => $certsUser,
