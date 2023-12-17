@@ -201,17 +201,24 @@
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             @foreach ($cryptoUser as $crypto)
+                            @dd($crypto)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
-                                            @if ($crypto->cryptotype->equals(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()))
-                                            <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
+                                            @switch($crypto->cryptotype)
+                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
+                                                    <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
                                                         alt="" class="icon-small" />
-                                            @endif
-                                            @if ($crypto->cryptotype->equals(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()))
-                                            <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
+                                                @break
+
+                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
+                                                    <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
                                                         class="icon-small" />
-                                            @endif
+                                                @break
+
+                                                @default
+                                                    Не определен
+                                            @endswitch
                                         </div>
                                         <div class="col text-truncate">
                                             <div class="ms-4">
