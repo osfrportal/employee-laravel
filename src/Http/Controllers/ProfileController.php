@@ -94,7 +94,7 @@ class ProfileController extends Controller
         $certsUser = Auth::user()->SfrPerson->SfrPersonCerts;
         $rfidKeysUser = Auth::user()->SfrPerson->getPersonRfidCards();
         $stampsUser = Auth::user()->SfrPerson->SfrPersonStamps;
-        dd(Auth::user()->SfrPerson->SfrPersonCrypto);
+        dd(Auth::user()->SfrPerson->SfrPersonCrypto[0]->cryptodata);
         $cryptoUser = SFRCryptoData::fromModel(Auth::user()->SfrPerson->SfrPersonCrypto);
 
         return view('osfrportal::sections.profile.usbskdcerts', [
