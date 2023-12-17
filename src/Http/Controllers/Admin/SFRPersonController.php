@@ -25,6 +25,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrDocGroups;
 use Osfrportal\OsfrportalLaravel\Models\SfrSignatures;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
+use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRDocData;
 use Osfrportal\OsfrportalLaravel\Data\SFRSignData;
@@ -152,7 +153,7 @@ class SFRPersonController extends Controller
         $SFRUserData = $sfrperson->SfrUser;
         $SFRPhoneContactData = SFRPhoneContactData::from($sfrperson);
         $SFRPersonCerts = $sfrperson->SfrPersonCerts;
-        $SFRPersonCrypto = $sfrperson->SfrPersonCrypto;
+        $SFRPersonCrypto = SFRCryptoData::from($sfrperson->SfrPersonCrypto);
         $rfidKeysUser = $sfrperson->getPersonRfidCards();
 
 
