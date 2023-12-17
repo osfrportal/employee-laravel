@@ -201,11 +201,10 @@
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             @foreach ($cryptoUser as $crypto)
-                            @dump($crypto->cryptodata)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
-                                            @switch($crypto->cryptodata->cryptoType)
+                                            @switch($crypto->cryptotype)
                                                 @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
                                                     <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
                                                         alt="" class="icon-small" />

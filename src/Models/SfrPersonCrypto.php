@@ -25,7 +25,6 @@ class SfrPersonCrypto extends Model
     protected $casts = [
         'cryptotype' => CryptoTypesEnum::class,
         'cryptodata' => SFRCryptoData::class,
-        'cryptodata->cryptoType' => CryptoTypesEnum::class,
     ];
 
     protected $guarded = [];
