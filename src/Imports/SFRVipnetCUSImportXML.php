@@ -46,6 +46,8 @@ class SFRVipnetCUSImportXML
 
 
                 if ($cryptoModel->exists) {
+                    dump($cryptoModel->cryptodata);
+                    $cryptoModel->cryptodata->cryptoName = 'test';
                     dd($cryptoModel->cryptodata);
                     $alreadyCreated->push($pushData);
                 } else {
