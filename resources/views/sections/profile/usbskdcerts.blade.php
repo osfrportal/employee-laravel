@@ -89,24 +89,30 @@
                             Металлические печати
                         </div>
                         <div class="card-body p-0">
-                            @foreach ($stampsUser as $stamp)
-                                <div class="d-flex align-items-center justify-content-between px-4 alert alert-success">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-disc"></i>
-                                        <div class="ms-4">
-                                            <div class="text-xs text-muted">Металлическая печать
-                                                №{{ $stamp->Stamp->stampnumber ?? '' }}</div>
-                                            <div class="small">Описание: {{ $stamp->Stamp->stampdescription ?? '' }}</div>
-                                            <div class="small">Выдана {{ $stamp->stampjissue_at->format('d.m.Y') ?? '' }},
-                                                учетный №{{ $stamp->stampjpapernumber ?? '' }}</div>
+                            <div class="list-group list-group-flush">
+                                @foreach ($stampsUser as $stamp)
+                                    <div class="list-group-item list-group-item-success bg-opacity-25">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <div class="ti ti-disk icon-size-32"></div>
+                                            </div>
+                                            <div class="col text-truncate">
+                                                <div class="d-block text-truncate">
+                                                    Металлическая печать №{{ $stamp->Stamp->stampnumber ?? '' }}
+                                                </div>
+                                                <small class="text-muted d-block">Описание:
+                                                    {{ $stamp->Stamp->stampdescription ?? '' }}</small>
+                                                <small class="text-muted d-block">Выдана
+                                                    {{ $stamp->stampjissue_at->format('d.m.Y') ?? '' }},
+                                                    учетный №{{ $stamp->stampjpapernumber ?? '' }}</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-
             @endif
         </div>
 
@@ -193,57 +199,58 @@
                 </div>
             @endif
             @if ($cryptoUser->count() > 0)
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        Криптосредства
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="list-group list-group-flush">
-                            @foreach ($cryptoUser as $crypto)
-                                <div class="list-group-item list-group-item-success bg-opacity-25">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto">
-                                            @switch($crypto->cryptotype)
-                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
-                                                    <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
-                                                        alt="" class="icon-small" />
-                                                @break
-
-                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
-                                                    <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
-                                                        class="icon-small" />
-                                                @break
-
-                                                @default
-                                                    Не определен
-                                            @endswitch
-                                        </div>
-                                        <div class="col text-truncate">
-                                            <div class="ms-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Криптосредства
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
+                                @foreach ($cryptoUser as $crypto)
+                                    <div class="list-group-item list-group-item-success bg-opacity-25">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
                                                 @switch($crypto->cryptotype)
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
-                                                        <div class="text-xs">Криптопро 4</div>
+                                                        <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
+                                                            alt="" class="icon-small" />
                                                     @break
 
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
-                                                        <div class="text-xs">VipNet Деловая Почта</div>
-                                                        <div class="text-xs">Наименование АП: {{ $crypto->cryptodata->cryptoName}}</div>
+                                                        <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
+                                                            class="icon-small" />
                                                     @break
 
                                                     @default
                                                         Не определен
                                                 @endswitch
                                             </div>
+                                            <div class="col text-truncate">
+                                                <div class="ms-4">
+                                                    @switch($crypto->cryptotype)
+                                                        @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
+                                                            <div class="text-xs">Криптопро 4</div>
+                                                        @break
+
+                                                        @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
+                                                            <div class="text-xs">VipNet Деловая Почта</div>
+                                                            <div class="text-xs">Наименование АП:
+                                                                {{ $crypto->cryptodata->cryptoName }}</div>
+                                                        @break
+
+                                                        @default
+                                                            Не определен
+                                                    @endswitch
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endif
+            @endif
         </div>
     </div>
 @endsection

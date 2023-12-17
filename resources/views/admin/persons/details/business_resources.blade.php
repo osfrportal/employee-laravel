@@ -97,7 +97,7 @@
                     <div class="card-header">
                         Металлические печати
                     </div>
-                    <div class="card-body px-0">
+                    <div class="card-body p-0">
                         @foreach ($SFRPersonStamps as $stamp)
                             <div class="d-flex align-items-center justify-content-between px-4 alert alert-success">
                                 <div class="d-flex align-items-center">
