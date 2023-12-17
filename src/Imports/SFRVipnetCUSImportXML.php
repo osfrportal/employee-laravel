@@ -12,18 +12,6 @@ use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
 
 class SFRVipnetCUSImportXML
 {
-    private function SimpleXML2Array($xml){
-        $array = (array)$xml;
-
-        //recursive Parser
-        foreach ($array as $key => $value){
-            //if(strpos(get_class($value),"SimpleXML")!==false){
-                $array[$key] = $this->SimpleXML2Array($value);
-            //}
-        }
-
-        return $array;
-    }
     public function import($filename, $storage)
     {
         $parsingErrorCollection = collect();
