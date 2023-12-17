@@ -13,7 +13,7 @@ use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
 class SFRCryptoData extends Data
 {
     public function __construct(
-        public CryptoTypesEnum $cryptoType,
+        public int|CryptoTypesEnum $cryptoType,
         public ?string $cryptoId = null,
         public ?string $cryptoName = null,
     ) {}
