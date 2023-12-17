@@ -41,13 +41,15 @@ class SFRVipnetCUSImportXML
 
                 $clientID = (string)$client->attributes()->id;
                 $clientName = $client->attributes()->name;
-                $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
+
                 $cryptoModel = SfrPersonCrypto::firstOrNew(['cryptotype' => CryptoTypesEnum::VIPNET(), 'cryptoapid' => $clientID]);
-                $cryptoModel->cryptodata = $pushData;
+
 
                 if ($cryptoModel->exists) {
                     $alreadyCreated->push($pushData);
                 } else {
+                    $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
+                    $cryptoModel->cryptodata = $pushData;
                     $clientNameForFind = Str::squish(Str::remove('058 - ', $clientName));
                     preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientNameForFind, $nameArray);
                     $filtered = Arr::except($nameArray, [0]);

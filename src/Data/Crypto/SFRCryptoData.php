@@ -9,6 +9,7 @@ use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\EnumCast;
 use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
+use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 
 class SFRCryptoData extends Data
 {
@@ -16,6 +17,8 @@ class SFRCryptoData extends Data
         public int|CryptoTypesEnum $cryptoType,
         public ?string $cryptoId = null,
         public ?string $cryptoName = null,
+        public ?string $wsId = null,
+        public ?string $cryptoLicenseNumber = null,
     ) {}
 
     public static function defValues(): SFRCryptoData
@@ -24,6 +27,18 @@ class SFRCryptoData extends Data
             CryptoTypesEnum::NONE(),
             null,
             null,
+            null,
+            null,
+        );
+    }
+    public static function fromModel(SfrPersonCrypto $crypto): self
+    {
+        return new self(
+            new CryptoTypesEnum($crypto->cryptodata->cryptoType),
+            $crypto->cryptodata->cryptoId,
+            $crypto->cryptodata->cryptoName,
+            $crypto->cryptodata->wsId,
+            $crypto->cryptodata->cryptoLicenseNumber,
         );
     }
 }
