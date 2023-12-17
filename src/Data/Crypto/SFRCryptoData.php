@@ -14,7 +14,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 class SFRCryptoData extends Data
 {
     public function __construct(
-        public int|CryptoTypesEnum $cryptoType,
+        public CryptoTypesEnum $cryptoType,
         public ?string $cryptoId = null,
         public ?string $cryptoName = null,
         public ?string $wsId = null,
