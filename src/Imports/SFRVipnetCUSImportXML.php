@@ -46,10 +46,8 @@ class SFRVipnetCUSImportXML
 
 
                 if ($cryptoModel->exists) {
-                    dump($cryptoModel->cryptodata);
-                    $cryptoModel->cryptodata->cryptoName = 'test';
-                    dd($cryptoModel->cryptodata);
-                    $alreadyCreated->push($pushData);
+                    $cryptoModel->cryptodata->cryptoName = $clientName;
+                    $alreadyCreated->push($cryptoModel->cryptodata);
                 } else {
                     $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
                     $cryptoModel->cryptodata = $pushData;
