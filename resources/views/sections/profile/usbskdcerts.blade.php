@@ -94,7 +94,7 @@
                                     <div class="list-group-item list-group-item-success bg-opacity-25">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
-                                                <div class="ti ti-disk icon-size-32"></div>
+                                                <div class="ti ti-disc icon-size-32"></div>
                                             </div>
                                             <div class="col text-truncate">
                                                 <div class="d-block text-truncate">
