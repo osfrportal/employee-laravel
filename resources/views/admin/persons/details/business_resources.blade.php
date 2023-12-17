@@ -91,31 +91,36 @@
             </div>
             --}}
         @if ($SFRPersonStamps->count() > 0)
-
             <div class="col">
                 <div class="card">
                     <div class="card-header">
                         Металлические печати
                     </div>
                     <div class="card-body p-0">
-                        @foreach ($SFRPersonStamps as $stamp)
-                            <div class="d-flex align-items-center justify-content-between px-4 alert alert-success">
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-disc"></i>
-                                    <div class="ms-4">
-                                        <div class="text-xs text-muted">Металлическая печать
-                                            №{{ $stamp->Stamp->stampnumber ?? '' }}</div>
-                                        <div class="small">Описание: {{ $stamp->Stamp->stampdescription ?? '' }}</div>
-                                        <div class="small">Выдана {{ $stamp->stampjissue_at->format('d.m.Y') ?? '' }},
-                                            учетный №{{ $stamp->stampjpapernumber ?? '' }}</div>
+                        <div class="list-group list-group-flush">
+                            @foreach ($SFRPersonStamps as $stamp)
+                                <div class="list-group-item list-group-item-success bg-opacity-25">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <div class="ti ti-disc icon-size-32"></div>
+                                        </div>
+                                        <div class="col text-truncate">
+                                            <div class="d-block text-truncate">
+                                                Металлическая печать №{{ $stamp->Stamp->stampnumber ?? '' }}
+                                            </div>
+                                            <small class="text-muted d-block">Описание:
+                                                {{ $stamp->Stamp->stampdescription ?? '' }}</small>
+                                            <small class="text-muted d-block">Выдана
+                                                {{ $stamp->stampjissue_at->format('d.m.Y') ?? '' }},
+                                                учетный №{{ $stamp->stampjpapernumber ?? '' }}</small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-
         @endif
     </div>
 
