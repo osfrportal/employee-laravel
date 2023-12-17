@@ -204,20 +204,14 @@
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
-                                            @switch($crypto->cryptotype)
-                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
-                                                    <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
+                                            @if ($crypto->cryptotype->equals(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()))
+                                            <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
                                                         alt="" class="icon-small" />
-                                                @break
-
-                                                @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
-                                                    <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
+                                            @endif
+                                            @if ($crypto->cryptotype->equals(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()))
+                                            <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
                                                         class="icon-small" />
-                                                @break
-
-                                                @default
-                                                    Не определен
-                                            @endswitch
+                                            @endif
                                         </div>
                                         <div class="col text-truncate">
                                             <div class="ms-4">
