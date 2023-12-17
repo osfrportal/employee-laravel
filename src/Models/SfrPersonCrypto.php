@@ -23,7 +23,7 @@ class SfrPersonCrypto extends Model
     public $timestamps = true;
 
     protected $casts = [
-        //'cryptotype' => CryptoTypesEnum::class,
+        'cryptotype' => CryptoTypesEnum::class,
         'cryptodata' => SFRCryptoData::class,
     ];
 
