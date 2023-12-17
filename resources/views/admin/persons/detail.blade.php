@@ -24,8 +24,7 @@
                 <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-businessresources" role="tab"><i class="ti ti-apps"></i> Бизнес-ресурсы</a>
                 <a class="nav-link" id="nav-docs-tab" data-toggle="tab" href="#nav-docs" role="tab"><span
                         class="bi bi-layout-text-window"> Ознакомление</span></a>
-                <a class="nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab"><span
-                        class="bi bi-display"> ActiveDirectory</span></a>
+                <a class="nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab"><i class="ti ti-badge-ad"></i> ActiveDirectory</a>
                 <a class="nav-link" id="nav-activity-tab" data-toggle="tab" href="#nav-activity" role="tab"><i class="ti ti-activity"></i> Активность на портале</a>
 
         </nav>
