@@ -201,7 +201,7 @@
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             @foreach ($cryptoUser as $crypto)
-                            @dd($crypto)
+                            @dump($crypto->cryptodata)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
