@@ -153,7 +153,8 @@ class SFRPersonController extends Controller
         $SFRUserData = $sfrperson->SfrUser;
         $SFRPhoneContactData = SFRPhoneContactData::from($sfrperson);
         $SFRPersonCerts = $sfrperson->SfrPersonCerts;
-        $SFRPersonCrypto = SFRCryptoData::from($sfrperson->SfrPersonCrypto);
+        //$SFRPersonCrypto = SFRCryptoData::from($sfrperson->SfrPersonCrypto);
+        $SFRPersonCrypto = $sfrperson->SfrPersonCrypto;
         $rfidKeysUser = $sfrperson->getPersonRfidCards();
 
 

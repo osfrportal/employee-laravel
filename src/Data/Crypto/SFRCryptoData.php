@@ -32,6 +32,7 @@ class SFRCryptoData extends Data
             null,
         );
     }
+    /*
     public static function fromModel(SfrPersonCrypto $crypto): self
     {
         return new self(
@@ -42,4 +43,5 @@ class SFRCryptoData extends Data
             $crypto->cryptodata->cryptoLicenseNumber,
         );
     }
+    */
 }
