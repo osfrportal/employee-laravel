@@ -73,7 +73,10 @@ class SFRVipnetToXLSXExport implements FromCollection, Responsable, WithHeadings
             $contactUnit = null;
             $contactAppointment = null;
             $contactFullname = null;
-            //dd($crypto->SfrPerson->SfrPersonContacts);
+            $cryptoPurpose = $crypto->cryptodata->cryptoPurpose;
+            $cryptoName = $crypto->cryptodata->cryptoName;
+            $cryptoUserName = $crypto->cryptodata->cryptoUserName;
+
             if (!is_null($crypto->SfrPerson)) {
                 if (!is_null($crypto->SfrPerson->getPersonContactData())) {
                     $sfrperson = $crypto->SfrPerson;
@@ -88,9 +91,9 @@ class SFRVipnetToXLSXExport implements FromCollection, Responsable, WithHeadings
             }
             $personArr = [
                 'нет',
-                $crypto->cryptodata->cryptoName,
-                $crypto->cryptodata->cryptoUserName,
-                'Назначение абонентского пункта',
+                $cryptoName,
+                $cryptoUserName,
+                $cryptoPurpose,
                 $contactAppointment,
                 $contactUnit,
                 $contactFullname,
