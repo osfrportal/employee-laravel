@@ -160,6 +160,7 @@ Route::middleware('doNotCacheResponse')->controller(LoginController::class)->gro
 Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->group(function () {
     Route::get('/edit/{personid}', 'phoneShowEditForm')->name('editform')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
     Route::get('/export/xlsx', 'exportPhonesToXLSX')->name('export.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
+    Route::get('/export/vipnet/xlsx', 'exportPhonesToXLSXWithVipNet')->name('export.vipnet.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
     Route::post('/save', 'doUpdateContacts')->name('save')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
     Route::get('/', 'phoneIndex')->name('index')->middleware('doNotCacheResponse');
 });

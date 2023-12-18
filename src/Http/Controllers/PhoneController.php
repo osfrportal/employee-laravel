@@ -22,6 +22,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneData;
 
 use Osfrportal\OsfrportalLaravel\Exports\SFRPhonesToXLSXExport;
+use Osfrportal\OsfrportalLaravel\Exports\SFRVipnetToXLSXExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Support\Facades\Log;
@@ -330,5 +331,11 @@ class PhoneController extends Controller
         $this->authorize($this->permissionExportPD);
 
         return new SFRPhonesToXLSXExport();
+    }
+    public function exportPhonesToXLSXWithVipNet()
+    {
+        $this->authorize($this->permissionExportPD);
+
+        return new SFRVipnetToXLSXExport();
     }
 }

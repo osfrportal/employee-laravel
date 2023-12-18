@@ -24,6 +24,12 @@
                         <span class="bi bi-filetype-xlsx"> Экспорт в XLSX (Д.Р + СНИЛС)</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ active_link('osfrportal.phone.export.vipnet.xlsx') }}"
+                        href="{{ route('osfrportal.phone.export.vipnet.xlsx') }}">
+                        <span class="bi bi-filetype-xlsx"> Экспорт в XLSX (VipNet)</span>
+                    </a>
+                </li>
             </ul>
         @endcan
         @auth
