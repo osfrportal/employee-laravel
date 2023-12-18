@@ -73,9 +73,9 @@ class SFRVipnetToXLSXExport implements FromCollection, Responsable, WithHeadings
             $contactUnit = null;
             $contactAppointment = null;
             $contactFullname = null;
-            dd($crypto->SfrPerson);
-            if (!is_null($crypto->SfrPerson)) {
-                $sfrperson = $crypto->SfrPerson;
+            //dd($crypto->SfrPerson());
+            if (!is_null($crypto->SfrPerson())) {
+                $sfrperson = $crypto->SfrPerson();
                 $contact_data = SFRPhoneContactData::from($sfrperson->getPersonContactData());
                 $contactPhone_external = sprintf('(%s) %s', $contact_data->areacode, $contact_data->phone_external);
                 $contactPhone_internal = sprintf('(58) %s', $contact_data->phone_internal);
