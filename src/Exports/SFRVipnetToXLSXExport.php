@@ -26,12 +26,12 @@ class SFRVipnetToXLSXExport implements FromCollection, Responsable, WithHeadings
     private $writerType = Excel::XLSX;
 
 
-    private $sfrpersons;
+    //private $sfrpersons;
     private $sfrpersoncrypto;
 
     public function __construct()
     {
-        $this->sfrpersons = SfrPerson::all();
+        //$this->sfrpersons = SfrPerson::all();
         $this->sfrpersoncrypto = SfrPersonCrypto::where(['cryptotype' => CryptoTypesEnum::VIPNET()])->get();
 
         $this->fileName = sprintf('%s_Выгрузка_работников_с_vipnet.xlsx', Carbon::now()->format('Ymd_His'));
@@ -75,9 +75,9 @@ class SFRVipnetToXLSXExport implements FromCollection, Responsable, WithHeadings
             $contactFullname = null;
             //dd($crypto->SfrPerson->SfrPersonContacts);
             if (!is_null($crypto->SfrPerson)) {
-                if (!is_null($crypto->SfrPerson->SfrPersonContacts)) {
+                if (!is_null($crypto->SfrPerson->getPersonContactData())) {
                     $sfrperson = $crypto->SfrPerson;
-                    $contact_data = SFRPhoneContactData::from($crypto->SfrPerson->SfrPersonContacts);
+                    $contact_data = SFRPhoneContactData::from($crypto->SfrPerson->getPersonContactData());
                     $contactPhone_external = sprintf('(%s) %s', $contact_data->areacode, $contact_data->phone_external);
                     $contactPhone_internal = sprintf('(58) %s', $contact_data->phone_internal);
                     $contactEmail = $contact_data->email_ext;
