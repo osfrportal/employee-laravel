@@ -246,6 +246,7 @@
                                                         <div class="text-xs">VipNet Деловая Почта</div>
                                                         <div class="text-xs">Наименование АП: {{ $crypto->cryptodata->cryptoName ?? ''}}</div>
                                                         <div class="text-xs">ID АП: {{ $crypto->cryptodata->cryptoId ?? ''}}</div>
+                                                        <div class="text-xs">Наименование пользователя АП: {{ $crypto->cryptodata->cryptoUserName ?? ''}}</div>
                                                         <div class="text-xs">ПК: {{ $crypto->cryptodata->wsId ?? ''}}</div>
                                                     @break
 
