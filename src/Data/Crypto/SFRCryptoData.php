@@ -17,6 +17,7 @@ class SFRCryptoData extends Data
         public int|CryptoTypesEnum $cryptoType,
         public ?string $cryptoId = null,
         public ?string $cryptoName = null,
+        public ?string $cryptoUserName = null,
         public ?string $wsId = null,
         public ?string $cryptoLicenseNumber = null,
     ) {}
@@ -25,6 +26,7 @@ class SFRCryptoData extends Data
     {
         return new self(
             CryptoTypesEnum::NONE(),
+            null,
             null,
             null,
             null,

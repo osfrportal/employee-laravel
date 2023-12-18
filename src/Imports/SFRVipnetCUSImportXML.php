@@ -27,6 +27,7 @@ class SFRVipnetCUSImportXML
 
             foreach ($clients as $client) {
                 $roles = $client->xpath('role');
+                $clientUser = $client->xpath('user');
                 $hasBusinessMail = false;
                 foreach ($roles as $role) {
                     $roleID = (string)$role->attributes()->id;
@@ -41,15 +42,16 @@ class SFRVipnetCUSImportXML
 
                 $clientID = (string)$client->attributes()->id;
                 $clientName = $client->attributes()->name;
-
+                $clientUserName = (string)$clientUser->attributes()->name;
                 $cryptoModel = SfrPersonCrypto::firstOrNew(['cryptotype' => CryptoTypesEnum::VIPNET(), 'cryptoapid' => $clientID]);
 
 
                 if ($cryptoModel->exists) {
                     $cryptoModel->cryptodata->cryptoName = $clientName;
+                    $cryptoModel->cryptodata->cryptoUserName = $clientUserName;
                     $alreadyCreated->push($cryptoModel->cryptodata);
                 } else {
-                    $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName);
+                    $pushData = new SFRCryptoData(CryptoTypesEnum::VIPNET(), $clientID, $clientName, $clientUserName);
                     $cryptoModel->cryptodata = $pushData;
                     $clientNameForFind = Str::squish(Str::remove('058 - ', $clientName));
                     preg_match('/^(\S+)\s+(\S+)\s+(\S+)$/xA', $clientNameForFind, $nameArray);
