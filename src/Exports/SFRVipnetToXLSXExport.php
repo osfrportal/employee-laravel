@@ -7,7 +7,6 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Illuminate\Contracts\Support\Responsable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
@@ -26,12 +25,10 @@ class SFRVipnetToXLSXExport implements FromCollection, Responsable, WithHeadings
     private $writerType = Excel::XLSX;
 
 
-    //private $sfrpersons;
     private $sfrpersoncrypto;
 
     public function __construct()
     {
-        //$this->sfrpersons = SfrPerson::all();
         $this->sfrpersoncrypto = SfrPersonCrypto::where(['cryptotype' => CryptoTypesEnum::VIPNET()])->get();
 
         $this->fileName = sprintf('%s_Выгрузка_работников_с_vipnet.xlsx', Carbon::now()->format('Ymd_His'));
@@ -103,34 +100,6 @@ class SFRVipnetToXLSXExport implements FromCollection, Responsable, WithHeadings
             ];
             $personsCollection->push($personArr);
         }
-        /*
-        foreach ($this->sfrpersons->all() as $sfrperson) {
-            $contactPhone_external = null;
-            $contactPhone_internal = null;
-            $contactEmail = null;
-            if (($sfrperson->getUnit() !== "") && ($sfrperson->getAppointment() !== "")) {
-                if (!is_null($sfrperson->getPersonContactData())) {
-                    $contact_data = SFRPhoneContactData::from($sfrperson->getPersonContactData());
-                    $contactPhone_external = sprintf('(%s) %s', $contact_data->areacode, $contact_data->phone_external);
-                    $contactPhone_internal = sprintf('(58) %s', $contact_data->phone_internal);
-                    $contactEmail = $contact_data->email_ext;
-                }
-                $personArr = [
-                    'нет',
-                    'Имя сетевого узла',
-                    'Имя пользователя',
-                    'Назначение абонентского пункта',
-                    $sfrperson->getAppointment(),
-                    $sfrperson->getUnit(),
-                    $sfrperson->getFullName(),
-                    $contactPhone_external,
-                    $contactPhone_internal,
-                    $contactEmail,
-                ];
-                $personsCollection->push($personArr);
-            }
-        }
-        */
         return $personsCollection;
     }
 }
