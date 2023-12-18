@@ -332,6 +332,7 @@ class PhoneController extends Controller
 
         return new SFRPhonesToXLSXExport();
     }
+    /* export vipnet contact info */
     public function exportPhonesToXLSXWithVipNet()
     {
         $this->authorize($this->permissionExportPD);
