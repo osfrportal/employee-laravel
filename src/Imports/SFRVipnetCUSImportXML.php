@@ -42,7 +42,7 @@ class SFRVipnetCUSImportXML
 
                 $clientID = (string)$client->attributes()->id;
                 $clientName = $client->attributes()->name;
-                $clientUserName = (string)$clientUser->attributes()->name;
+                $clientUserName = (string)$clientUser[0]->attributes()->name;
                 $cryptoModel = SfrPersonCrypto::firstOrNew(['cryptotype' => CryptoTypesEnum::VIPNET(), 'cryptoapid' => $clientID]);
 
 
