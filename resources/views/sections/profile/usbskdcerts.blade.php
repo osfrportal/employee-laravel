@@ -237,6 +237,7 @@
                                                             <div class="text-xs">Наименование АП:
                                                                 {{ $crypto->cryptodata->cryptoName }}</div>
                                                             <div class="text-xs">Имя пользователя АП: {{ $crypto->cryptodata->cryptoUserName ?? ''}}</div>
+                                                            <div class="text-xs">Назначение АП: {{ $crypto->cryptodata->cryptoPurpose ?? ''}}</div>
                                                         @break
 
                                                         @default
