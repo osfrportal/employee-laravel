@@ -58,8 +58,14 @@ Breadcrumbs::for('osfrportal.admin.logs.logsphoneupdates', function (BreadcrumbT
     $trail->parent('osfrportal.admin.logs');
     $trail->push('Журнал обновления телефонного справочника');
 });
-
-
+/**
+ * Администрирование
+ * Криптосредства
+ */
+Breadcrumbs::for('osfrportal.admin.crypto.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin');
+    $trail->push('Криптосредства', route('osfrportal.admin.crypto.index'));
+});
 /**
  * Администрирование
  * Информационные системы

@@ -39,7 +39,7 @@
                             <li><a class="dropdown-item" href="{{ route('osfrportal.admin.certs.all') }}">Электронные подписи</a></li>
                         @endcan
                         @can('crypto-manage')
-                            <li><a class="dropdown-item" href="#">Криптосредства</a></li>
+                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.crypto.index') }}">Криптосредства</a></li>
                         @endcan
                         @can('skd-manage')
                             <li><a class="dropdown-item" href="#">СКУД</a></li>
