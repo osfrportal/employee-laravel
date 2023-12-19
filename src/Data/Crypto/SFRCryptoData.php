@@ -55,6 +55,5 @@ class SFRCryptoData extends Data
             $pid,
         );
     }
-    */
 
 }
