@@ -22,10 +22,16 @@ class SFRCryptoData extends Data
         public ?string $wsId = null,
         public ?string $cryptoLicenseNumber = null,
         public ?string $pid,
+        public ?array $personContactData = null,
     ) {}
 
     public static function defValues(): SFRCryptoData
     {
+        $contactdataArray = array(
+            'contactUnit' => null,
+            'contactAppointment' => null,
+            'contactFullname' => null,
+        );
         return new self(
             CryptoTypesEnum::NONE(),
             null,
@@ -35,15 +41,39 @@ class SFRCryptoData extends Data
             null,
             null,
             null,
+            $contactdataArray,
         );
     }
 
     public static function getFull(SfrPersonCrypto $crypto): self
     {
         $pid = null;
-        if (!is_null($crypto->SfrPerson)) {
-            $pid = $crypto->SfrPerson->getPid();
+
+        $contactUnit = null;
+        $contactAppointment = null;
+        $contactFullname = null;
+        $contactdataArray = array(
+            'contactUnit' => $contactUnit,
+            'contactAppointment' => $contactAppointment,
+            'contactFullname' => $contactFullname,
+        );
+        $sfrperson = $crypto->SfrPerson;
+
+
+        if (!is_null($sfrperson)) {
+            $pid = $sfrperson->getPid();
+            if (!is_null($sfrperson->getPersonContactData())) {
+                $contactUnit = $sfrperson->getUnit();
+                $contactAppointment = $sfrperson->getAppointment();
+                $contactFullname = $sfrperson->getFullName();
+                $contactdataArray = array(
+                    'contactUnit' => $contactUnit,
+                    'contactAppointment' => $contactAppointment,
+                    'contactFullname' => $contactFullname,
+                );
+            }
         }
+
         return new self(
             new CryptoTypesEnum($crypto->cryptodata->cryptoType),
             $crypto->cryptodata->cryptoId,
@@ -53,6 +83,7 @@ class SFRCryptoData extends Data
             $crypto->cryptodata->wsId,
             $crypto->cryptodata->cryptoLicenseNumber,
             $pid,
+            $contactdataArray,
         );
     }
 
