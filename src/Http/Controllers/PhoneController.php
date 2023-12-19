@@ -305,7 +305,7 @@ class PhoneController extends Controller
     {
         if (!Redis::exists($this->redisKey)) {
             $unitsAllFromDB = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->with('SfrPersons')->get();
-            $units_all = $this->convertPersonsFromUnit($unitsAllFromDB)
+            $units_all = $this->convertPersonsFromUnit($unitsAllFromDB);
             Redis::setex($this->redisKey, $this->durationInSeconds, json_encode($units_all));            
         }
 
