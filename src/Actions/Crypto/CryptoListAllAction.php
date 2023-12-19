@@ -16,7 +16,7 @@ class CryptoListAllAction
             $cryptoPurpose = $crypto->cryptodata->cryptoPurpose;
             $cryptoName = $crypto->cryptodata->cryptoName;
             $cryptoUserName = $crypto->cryptodata->cryptoUserName;
-            $cryptoCollection->push($crypto->cryptodata);
+            $cryptoCollection->push($crypto->cryptodata->toArray());
         }
         return $cryptoCollection;
     }
