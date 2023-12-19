@@ -98,8 +98,9 @@
                         searchable: true,
                         render: function(data, type, full, meta) {
                             if (data !== null) {
-                                console.log(data);
+                                
                                 var dateDB = new Date(Date.parse(data.date));
+                                console.log(dateDB);
                                 var mn = dateDB.getMonth() + 1;
                                 var month = mn < 10 ? '0' + mn :
                                     mn;
