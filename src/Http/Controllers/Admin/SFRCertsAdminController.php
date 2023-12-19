@@ -10,6 +10,8 @@ use Osfrportal\OsfrportalLaravel\Models\SfrCerts;
 
 class SFRCertsAdminController extends Controller
 {
+    private $redisKeyCertsList = 'admin:certs:cache:listall';
+    private $durationInSeconds = 900;
     /**
      * --------------------------------
      * API functions
@@ -17,6 +19,7 @@ class SFRCertsAdminController extends Controller
      */
     public function apiCertsListAll(Request $request)
     {
+        
         $columnsToGet = [
             'certuuid',
             'certserial',
@@ -26,8 +29,13 @@ class SFRCertsAdminController extends Controller
             'certdata->commonName AS CN',
             'certdata->certId AS certId',
         ];
-        $allCerts = SfrCerts::with('SfrPerson')->get($columnsToGet);
-        //dump($allCerts);
+        if (!Redis::exists($this->redisKeyCertsList)) {
+            $allCertsFromDB = SfrCerts::with('SfrPerson')->get($columnsToGet);
+            Redis::setex($this->redisKeyCertsList, $this->durationInSeconds, json_encode($allCertsFromDB));            
+        }
+
+        $allCerts = json_decode(Redis::get($this->redisKeyCertsList));
+
         return DataTables::of($allCerts)
         ->setRowClass(function ($cert) {
             if ($cert->revoked) {
