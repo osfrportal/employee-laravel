@@ -75,7 +75,7 @@ Breadcrumbs::for('osfrportal.admin.sysconfig', function (BreadcrumbTrail $trail)
     $trail->push('Основные настройки', route('osfrportal.admin.sysconfig.all'));
 });
 Breadcrumbs::for('osfrportal.admin.mainterance.index', function (BreadcrumbTrail $trail): void {
-    $trail->parent('osfrportal.sysconfig');
+    $trail->parent('osfrportal.admin');
     $trail->push('Обслуживание', route('osfrportal.admin.mainterance.index'));
 });
 /**
