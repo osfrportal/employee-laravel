@@ -29,10 +29,16 @@ use Illuminate\Support\Facades\Log;
 use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 
+use Illuminate\Support\Facades\Redis;
+
 class PhoneController extends Controller
 {
     private $result_collection;
     private $permissionExportPD = 'export-phones-pd';
+
+    private $durationInSeconds = 600;
+    private $redisKey = 'phone:cache';
+
     private function sortDialPlanArrayByField($arr_to_sort)
     {
         $array_name = [];
@@ -157,6 +163,7 @@ class PhoneController extends Controller
             'contactdata_old' => $contactdata_old,
         ];
         LogAddAction::run(LogActionsEnum::LOG_PHONE_UPDATE(), 'Обновлены контактные данные работника {personFullName}', $logContext);
+        Redis::del($this->redisKey);
 
 
         $this->flasher_interface->addSuccess('Данные успешно обновлены');
@@ -296,11 +303,15 @@ class PhoneController extends Controller
 
     public function apiPhonesData()
     {
-        $units_all = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->with('SfrPersons')->get();
+        if (!Redis::exists($this->redisKey)) {
+            $unitsAllFromDB = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->with('children')->orderBy('unitname', 'ASC')->with('SfrPersons')->get();
+            $units_all = $this->convertPersonsFromUnit($unitsAllFromDB)
+            Redis::setex($this->redisKey, $this->durationInSeconds, json_encode($units_all));            
+        }
 
-        //return $units_all->toJson();
+        $units_all = json_decode(Redis::get($this->redisKey));
 
-        return Datatables::of($this->convertPersonsFromUnit($units_all))
+        return Datatables::of($units_all)
             ->addColumn('action', function ($user) {
                 $url = route('osfrportal.phone.editform', ['personid' => $user->contactdata_person->persondata_pid]);
                 //$url = $user->contactdata_person->persondata_pid;

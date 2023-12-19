@@ -52,8 +52,8 @@ class SFRPersonController extends Controller
      */
     public function APIPersonsList()
     {
-        $durationInSeconds = 60;
-        $redisKey = 'admin:persons:listall';
+        $durationInSeconds = 600;
+        $redisKey = 'admin:persons:cache:listall';
         if (!Redis::exists($redisKey)) {
             $sfrpersonsFromDB = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
             Redis::setex($redisKey, $durationInSeconds, json_encode($sfrpersonsFromDB));            
@@ -62,7 +62,7 @@ class SFRPersonController extends Controller
         
 
         $sfrpersons = json_decode(Redis::get($redisKey));
-        //$sfrpersons = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
+
         //return DataTables::of($sfrpersons)->toJson();
         return DataTables::of($sfrpersons)
             ->setRowClass(function ($person) {
