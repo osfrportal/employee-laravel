@@ -15,7 +15,8 @@ class RedisSubscribeMainterance extends Component
     }
     public function render()
     {
-        Redis::set('admin:mainterance:123', 'Taylor');
+        $msg = array('time' => 'time_message', 'message' => 'text_message');
+        Redis::set('admin:mainterance:123', $msg);
         $this->redis_message = Redis::get('admin:mainterance:123');
         return view('osfrportal::livewire.admin.mainterance-messages', ['redis_message' => $this->redis_message]);
     }
