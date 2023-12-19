@@ -21,6 +21,7 @@ class SFRCryptoData extends Data
         public ?string $cryptoPurpose = null,
         public ?string $wsId = null,
         public ?string $cryptoLicenseNumber = null,
+        public ?string $pid,
     ) {}
 
     public static function defValues(): SFRCryptoData
@@ -33,17 +34,25 @@ class SFRCryptoData extends Data
             null,
             null,
             null,
+            null,
         );
     }
-/*
-    public static function fromModel(SfrPersonCrypto $crypto): self
+
+    public static function getFull(SfrPersonCrypto $crypto): self
     {
+        $pid = null;
+        if (!is_null($crypto->SfrPerson)) {
+            $pid = $crypto->SfrPerson->getPid();
+        }
         return new self(
             new CryptoTypesEnum($crypto->cryptodata->cryptoType),
             $crypto->cryptodata->cryptoId,
             $crypto->cryptodata->cryptoName,
+            $crypto->cryptodata->cryptoUserName,
+            $crypto->cryptodata->cryptoPurpose,
             $crypto->cryptodata->wsId,
             $crypto->cryptodata->cryptoLicenseNumber,
+            $pid,
         );
     }
     */
