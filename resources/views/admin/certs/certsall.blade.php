@@ -66,7 +66,6 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
-                            console.log(data);
                             if (data !== null) {
                                 return data;
                                 //var myArray = Object.values(data);
@@ -99,6 +98,7 @@
                         searchable: true,
                         render: function(data, type, full, meta) {
                             if (data !== null) {
+                                console.log(data);
                                 var dateDB = new Date(Date.parse(data.date));
                                 var mn = dateDB.getMonth() + 1;
                                 var month = mn < 10 ? '0' + mn :
