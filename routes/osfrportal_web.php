@@ -19,6 +19,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPhoneAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRDocsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCertsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRCryptoAdminController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRMainteranceAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRStampsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLinksAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLogsAdminController;
@@ -34,6 +35,10 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->name('admin.')->group(function () {
     Route::controller(SFRCryptoAdminController::class)->name('crypto.')->prefix('crypto')->group(function () {
         Route::get('/', 'cryptoShowList')->name('index');
+    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+
+    Route::controller(SFRMainteranceAdminController::class)->name('mainterance.')->prefix('mainterance')->group(function () {
+        Route::get('/', 'mainteranceIndex')->name('index');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFRInfoSystemsController::class)->name('infosystems.')->prefix('infosystems')->group(function () {

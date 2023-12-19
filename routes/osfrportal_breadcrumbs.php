@@ -68,6 +68,18 @@ Breadcrumbs::for('osfrportal.admin.crypto.index', function (BreadcrumbTrail $tra
 });
 /**
  * Администрирование
+ * Конфигурация портала
+ */
+Breadcrumbs::for('osfrportal.admin.sysconfig', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin');
+    $trail->push('Основные настройки', route('osfrportal.admin.sysconfig.all'));
+});
+Breadcrumbs::for('osfrportal.admin.sysconfig', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.sysconfig');
+    $trail->push('Обслуживание', route('osfrportal.admin.mainterance.index'));
+});
+/**
+ * Администрирование
  * Информационные системы
  */
 
