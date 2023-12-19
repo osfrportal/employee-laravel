@@ -67,6 +67,13 @@
                         searchable: true,
                         render: function(data, type, full, meta) {
                             if (data !== null) {
+                                
+                                if (data == 1) {
+                                    return 'УКЭП';
+                                }
+                                if (data == 2) {
+                                    return 'УНЭП';
+                                }
                                 return data;
                                 //var myArray = Object.values(data);
                                 //return myArray[1];
