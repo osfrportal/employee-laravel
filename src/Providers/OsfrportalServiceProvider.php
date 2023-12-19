@@ -162,6 +162,9 @@ class OsfrportalServiceProvider extends ServiceProvider
         ]);
         //Livewire::component('packagename::counter', YourPackage/Counter::class);
         Livewire::component('osfrportal::liveusers-count', \Osfrportal\OsfrportalLaravel\Livewire\Admin\LiveUsers::class);
+        Livewire::component('osfrportal::mainterance-messages', \Osfrportal\OsfrportalLaravel\Livewire\Admin\RedisSubscribeMainterance::class);
+
+
         Livewire::component('osfrportal::docsnotsigned-count', \Osfrportal\OsfrportalLaravel\Livewire\DocsNotSigned::class);
         Livewire::component('osfrportal::uploaddocsfiles', \Osfrportal\OsfrportalLaravel\Livewire\Admin\UploadDocsFiles::class);
         Livewire::component('osfrportal::notifications-count', \Osfrportal\OsfrportalLaravel\Livewire\NotificationsCount::class);
