@@ -17,10 +17,6 @@ class CryptoListAllAction
         $cryptoAll = SfrPersonCrypto::all();
         foreach ($cryptoAll as $crypto) {
             $cryptoDataFull = SFRCryptoData::getFull($crypto);
-
-            $cryptoPurpose = $crypto->cryptodata->cryptoPurpose;
-            $cryptoName = $crypto->cryptodata->cryptoName;
-            $cryptoUserName = $crypto->cryptodata->cryptoUserName;
             $cryptoCollection->push($cryptoDataFull->toArray());
         }
         return $cryptoCollection;
