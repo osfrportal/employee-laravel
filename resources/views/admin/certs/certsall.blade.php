@@ -66,6 +66,7 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
+                            console.log(data);
                             if (data !== null) {
                                 var myArray = Object.values(data);
                                 return myArray[1];
