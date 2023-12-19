@@ -4,6 +4,8 @@ namespace Osfrportal\OsfrportalLaravel\Actions\Crypto;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 
+use Yajra\DataTables\DataTables;
+
 class CryptoListAllAction
 {
     use AsAction;
@@ -18,6 +20,6 @@ class CryptoListAllAction
             $cryptoUserName = $crypto->cryptodata->cryptoUserName;
             $cryptoCollection->push($crypto->cryptodata->toArray());
         }
-        return $cryptoCollection;
+        return DataTables::of($cryptoCollection);
     }
 }
