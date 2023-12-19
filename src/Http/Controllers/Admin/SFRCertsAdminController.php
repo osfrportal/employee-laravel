@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Collection;
 use Osfrportal\OsfrportalLaravel\Models\SfrCerts;
+use Illuminate\Support\Facades\Redis;
 
 class SFRCertsAdminController extends Controller
 {
