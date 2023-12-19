@@ -20,6 +20,6 @@ class CryptoListAllAction
             $cryptoUserName = $crypto->cryptodata->cryptoUserName;
             $cryptoCollection->push($crypto->cryptodata->toArray());
         }
-        return DataTables::of($cryptoCollection);
+        return DataTables::of($cryptoCollection)->make(true);
     }
 }
