@@ -12,7 +12,12 @@ class CryptoListAllAction
     {
         $cryptoCollection = collect();
         $cryptoAll = SfrPersonCrypto::all();
-
+        foreach ($cryptoAll as $crypto) {
+            $cryptoPurpose = $crypto->cryptodata->cryptoPurpose;
+            $cryptoName = $crypto->cryptodata->cryptoName;
+            $cryptoUserName = $crypto->cryptodata->cryptoUserName;
+            $cryptoCollection->push($crypto->cryptodata);
+        }
         return $cryptoCollection;
     }
 }
