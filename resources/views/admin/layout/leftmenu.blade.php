@@ -1,7 +1,8 @@
 @can('admin-menu-show')
     <hr />
     <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link {{ active_link('osfrportal.admin.dashboard') }}" href="{{ route('osfrportal.admin.dashboard') }}">Административный раздел</a></li>
+        <li class="nav-item"><a class="nav-link {{ active_link('osfrportal.admin.dashboard') }}"
+                href="{{ route('osfrportal.admin.dashboard') }}">Административный раздел</a></li>
         @canany(['person-view', 'person-manage'])
             <ul class="nav flex-column px-3">
                 <div class="dropend">
@@ -36,7 +37,8 @@
                             <li><a class="dropdown-item" href="#">JaCarta/RuToken</a></li>
                         @endcan
                         @can('certs-manage')
-                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.certs.all') }}">Электронные подписи</a></li>
+                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.certs.all') }}">Электронные подписи</a>
+                            </li>
                         @endcan
                         @can('crypto-manage')
                             <li><a class="dropdown-item" href="{{ route('osfrportal.admin.crypto.index') }}">Криптосредства</a></li>
@@ -75,6 +77,8 @@
                     <ul class="dropdown-menu dropdown-menu-lg-end">
                         <li><a class="dropdown-item" href="{{ route('osfrportal.admin.sysconfig.all') }}">Основные
                                 настройки</a></li>
+                        <li><a class="dropdown-item" href="{{ route('osfrportal.admin.mainterance.index') }}">Основные
+                                настройки</a></li>
                     </ul>
                 </div>
             </ul>
@@ -112,7 +116,8 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false">ИС и полномочия</a>
                     <ul class="dropdown-menu dropdown-menu-lg-end">
-                        <li><a class="dropdown-item" href="{{ route('osfrportal.admin.infosystems.index') }}">Управление</a></li>
+                        <li><a class="dropdown-item" href="{{ route('osfrportal.admin.infosystems.index') }}">Управление</a>
+                        </li>
                     </ul>
                 </div>
             </ul>
@@ -127,7 +132,8 @@
                             <li><a class="dropdown-item" href="#">Системные</a></li>
                         @endcan
                         @can('logs-phone')
-                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.logs.logsphoneupdates') }}">Обновление телефонного справочника</a></li>
+                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.logs.logsphoneupdates') }}">Обновление
+                                    телефонного справочника</a></li>
                         @endcan
                         @can('logs-ad')
                             <li><a class="dropdown-item" href="#">AD входы на ПК</a></li>
