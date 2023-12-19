@@ -11,12 +11,12 @@ class RedisSubscribeMainterance extends Component
     public $redis_message;
     public function __construct()
     {
-        Redis::subscribe(['test-channel'], function (string $message) {
-            $this->redis_message = $message;
-        });
+            $this->redis_message = '';
     }
     public function render()
     {
+        Redis::set('admin:mainterance:123', 'Taylor');
+        $this->redis_message = Redis::get('admin:mainterance:123');
         return view('osfrportal::livewire.admin.mainterance-messages', ['redis_message' => $this->redis_message]);
     }
 }
