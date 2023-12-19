@@ -52,7 +52,7 @@ class SFRPersonController extends Controller
      */
     public function APIPersonsList()
     {
-        $durationInSeconds = 600;
+        $durationInSeconds = 1800;
         $redisKey = 'admin:persons:cache:listall';
         if (!Redis::exists($redisKey)) {
             $sfrpersonsFromDB = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();

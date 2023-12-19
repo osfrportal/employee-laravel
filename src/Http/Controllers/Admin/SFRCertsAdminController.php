@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redis;
 class SFRCertsAdminController extends Controller
 {
     private $redisKeyCertsList = 'admin:certs:cache:listall';
-    private $durationInSeconds = 900;
+    private $durationInSeconds = 3600;
     /**
      * --------------------------------
      * API functions

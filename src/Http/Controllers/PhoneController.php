@@ -36,7 +36,7 @@ class PhoneController extends Controller
     private $result_collection;
     private $permissionExportPD = 'export-phones-pd';
 
-    private $durationInSeconds = 600;
+    private $durationInSeconds = 3600;
     private $redisKey = 'phone:cache';
 
     private function sortDialPlanArrayByField($arr_to_sort)
