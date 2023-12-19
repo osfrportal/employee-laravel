@@ -33,7 +33,8 @@ use Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 use phpseclib3\File\X509;
 
-use PDF;
+use Illuminate\Support\Facades\Redis;
+
 use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 
 use Osfrportal\OsfrportalLaravel\Actions\GeneratePersonLoginPassAction;
@@ -51,9 +52,17 @@ class SFRPersonController extends Controller
      */
     public function APIPersonsList()
     {
+        $durationInSeconds = 60;
+        $redisKey = 'admin:persons:listall';
+        if (!Redis::exists($redisKey)) {
+            $sfrpersonsFromDB = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
+            Redis::setex($redisKey, $durationInSeconds, json_encode($sfrpersonsFromDB));            
+        }
         //$this->authorize($this->permissionView);
+        
 
-        $sfrpersons = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
+        $sfrpersons = json_decode(Redis::get($redisKey));
+        //$sfrpersons = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
         //return DataTables::of($sfrpersons)->toJson();
         return DataTables::of($sfrpersons)
             ->setRowClass(function ($person) {
