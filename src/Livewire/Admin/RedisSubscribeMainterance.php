@@ -19,7 +19,7 @@ class RedisSubscribeMainterance extends Component
     }
     public function render()
     {
-        $userId = Auth::user()->id;
+        $userId = Auth::user()->userid;
         $key = "admin:mainterance:{$userId}";
 
         $msg = json_encode(array('time' => 'time_message', 'message' => 'text_message'));
