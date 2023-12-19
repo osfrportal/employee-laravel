@@ -23,7 +23,7 @@ class RedisSubscribeMainterance extends Component
         $key = "admin:mainterance:{$userId}";
 
         $msg = json_encode(array('time' => 'time_message', 'message' => 'text_message'));
-        Redis::setex($key, $this->durationInSeconds, $userId);
+        Redis::setex($key, $this->durationInSeconds, $msg);
         //Redis::set($key, $msg, 'EX', 35);
         $this->redis_message = Redis::get($key);
         return view('osfrportal::livewire.admin.mainterance-messages', ['redis_message' => $this->redis_message]);
