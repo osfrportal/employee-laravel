@@ -110,7 +110,7 @@ class SfrPerson extends Model
         return $this->hasMany(SfrCerts::class, 'pid')->orderByDesc('certvalidto');
     }
 
-     /**
+    /**
      * Криптосредства работника
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -172,7 +172,7 @@ class SfrPerson extends Model
     public function getCertIdUKEP()
     {
         $ukepValidCerts = $this->getValidPersonCerts->filter(function ($value, int $key) {
-            if ($value->certtype == CertsTypesEnum::UKEP()) {
+            if (($value->certtype == CertsTypesEnum::UKEP()) && (!$value->revoked)) {
                 return $value->certserial;
             }
         });
@@ -182,7 +182,7 @@ class SfrPerson extends Model
 
     public function SfrPersonSignatures()
     {
-            return $this->hasMany(SfrSignatures::class, 'sign_pid', 'pid');
+        return $this->hasMany(SfrSignatures::class, 'sign_pid', 'pid');
     }
 
 
