@@ -103,7 +103,14 @@ Breadcrumbs::for('osfrportal.admin.infosystems.roles.add', function (BreadcrumbT
     $trail->push('Добавление ролей для ИС', route('osfrportal.admin.infosystems.roles.add'));
 });
 
-
+/**
+ * Администрирование
+ * Документы
+ */
+Breadcrumbs::for('osfrportal.admin.docs.all', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin');
+    $trail->push('Управление документами', route('osfrportal.admin.docs.all'));
+});
 
 /**
  * Пользовательский раздел
