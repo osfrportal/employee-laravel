@@ -86,9 +86,9 @@
                         searchable: false,
                         render: function(data, type, full, meta) {
                             if (data === true) {
-                                return '<i class="ti ti-square-check icon-size-24 text-primary"></i>';
+                                return '<i class="ti ti-square-check icon-size-24 text-success"></i>';
                             } else {
-                                return '<i class="ti ti-square icon-size-24 text-primary"></i>';
+                                return '<i class="ti ti-square icon-size-24 text-primary-emphasis"></i>';
                             }
                         }
                     },
