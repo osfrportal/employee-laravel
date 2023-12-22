@@ -13,6 +13,7 @@
                 <th>Наименование</th>
                 <th>Описание</th>
                 <th>Количество файлов</th>
+                <th>Дата окончания действия</th>
             </tr>
         </thead>
     </table>
@@ -50,10 +51,13 @@
                     {
                         data: 'docFileCount'
                     },
+                    {
+                        data: 'docDateEnd'
+                    },
                 ],
                 columnDefs: [{
                         className: "dt-center",
-                        targets: [0, 1, 2, 3, 4, 5, 6, 7]
+                        targets: [0, 1, 2, 3, 4, 5, 6, 7, 8]
                     },
                     {
                         // Actions
@@ -68,7 +72,8 @@
 
                             var linkView = "#";
                             return (
-                                '<a class="text-decoration-none" href="' + url +
+                                '<a class="text-decoration-none" title="Просмотр" href="' +
+                                url +
                                 '"><i class="ti ti-vocabulary icon-size-24 text-primary"></i></a>'
                             );
                         }
@@ -100,6 +105,15 @@
                     {
                         // Actions
                         targets: 4,
+                        orderable: true,
+                        searchable: true,
+                        render: function(data, type, full, meta) {
+                            return data.slice(0, 10).split('-').reverse().join('.')
+                        }
+                    },
+                    {
+                        // Actions
+                        targets: 8,
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
