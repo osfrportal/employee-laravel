@@ -126,6 +126,7 @@
                     },
                 ],
                 "createdRow": function(row, data, dataIndex) {
+                    console.log(data[8]);
                     if (data[8] !== null) {
                         $(row).addClass('bg-secondary');
                     } else {
