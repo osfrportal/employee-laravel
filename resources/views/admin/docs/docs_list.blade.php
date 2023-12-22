@@ -125,12 +125,13 @@
                         }
                     },
                 ],
-                "createdRow": function(row, data, dataIndex) {
-                    $(row).addClass('bg-secondary');
-                    if ((data[8] !== null) && (data[8] !== undefined)) {
-                        $(row).addClass('bg-secondary');
-                    }
-                }
+                /*
+                                "createdRow": function(row, data, dataIndex) {
+                                    if ((data[8] !== null) && (data[8] !== undefined)) {
+                                        $(row).addClass('bg-secondary');
+                                    }
+                                }
+                */
             });
         });
     </script>
