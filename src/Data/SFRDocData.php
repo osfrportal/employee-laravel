@@ -10,8 +10,6 @@ use Spatie\LaravelData\Attributes\DataCollectionOf;
 class SFRDocData extends Data
 {
     public function __construct(
-        //make each property of the data object nullable like this:
-        //public ?string $room,
         public string $docName = "",
         public string $docNumber,
         public string $docDate,
@@ -23,8 +21,9 @@ class SFRDocData extends Data
         public ?int $docFileCount = 0,
         public ?string $docTypeName = "",
         public ?string $docGroupName = "",
-        #[DataCollectionOf(SFRDocSignsByPersonData::class)]
+    #[DataCollectionOf(SFRDocSignsByPersonData::class)]
         public ?DataCollection $docPersonSigns = null,
+        public ?string $docDateEnd,
     ) {
     }
     public static function rules(): array
@@ -52,17 +51,18 @@ class SFRDocData extends Data
         //dd($doc);
         $docData = json_decode(json: $doc->doc_data, flags: JSON_UNESCAPED_UNICODE);
         return new self(
-            $doc->doc_name,
-            $doc->doc_number,
-            $doc->doc_date,
-            $doc->doc_typeid,
-            $doc->doc_groupid,
-            $docData->docDescription,
-            $docData->docNeedSign,
-            $doc->docid,
-            $doc->SfrDocsFiles()->count(),
-            $doc->docType->type_name,
-            $doc->docGroup->group_name,
+            docName: $doc->doc_name,
+            docNumber: $doc->doc_number,
+            docDate: $doc->doc_date,
+            docType: $doc->doc_typeid,
+            docGroup: $doc->doc_groupid,
+            docDescription: $docData->docDescription,
+            docNeedSign: $docData->docNeedSign,
+            docId: $doc->docid,
+            docFileCount: $doc->SfrDocsFiles()->count(),
+            docTypeName: $doc->docType->type_name,
+            docGroupName: $doc->docGroup->group_name,
+            docDateEnd: $doc->doc_date_end,
         );
     }
 }
