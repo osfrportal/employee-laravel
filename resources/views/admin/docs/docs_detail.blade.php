@@ -53,13 +53,27 @@
 
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Дата окончания действия документа:</label>
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext"
-                            value="{{ $docData->docDateEnd ?? '' }}">
+                <form method="POST" action="{{ route('osfrportal.admin.docs.save') }}" enctype="multipart/form-data">
+                    <div class="mb-3 row">
+                        <label for="docDateEnd" class="col-sm-2 col-form-label">Дата окончания действия документа:</label>
+                        <div class="col-sm-10">
+                            <input type="date"
+                                class="form-control form-control-sm  @error('docDateEnd') is-invalid @enderror"
+                                id="docDateEnd" name="docDateEnd" value="{{ old('docDateEnd') ?? $docData->docDateEnd }}"
+                                required>
+                            @error('docDateEnd')
+                                <div id="docDateEnd" class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <button class="btn btn-success btn-submit">Сохранить</button> <a
+                                    class="btn btn-danger btn-reset" href="{{ route('osfrportal.admin.docs.all') }}"
+                                    role="button">К списку</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="table-responsive">
