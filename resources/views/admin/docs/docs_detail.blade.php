@@ -53,7 +53,9 @@
 
                     </div>
                 </div>
-                <form method="POST" action="{{ route('osfrportal.admin.docs.save') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('osfrportal.admin.docs.savedateend') }}"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="docid" id="docid" value="{{ $docid ?? '' }}">
                     <div class="mb-3 row">
                         <label for="docDateEnd" class="col-sm-2 col-form-label">Дата окончания действия документа:</label>
                         <div class="col-sm-3">

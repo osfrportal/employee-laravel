@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Osfrportal\OsfrportalLaravel\Actions\Units\HierarchyUnitsListAction;
 
 use Osfrportal\OsfrportalLaravel\Http\Requests\ReportsMakeByUnitsRequest;
+use Osfrportal\OsfrportalLaravel\Http\Requests\DocDateEndSaveRequest;
 
 class SFRDocsAdminController extends Controller
 {
@@ -155,6 +156,23 @@ class SFRDocsAdminController extends Controller
         ]);
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
         return redirect()->route('osfrportal.admin.docs.all');
+    }
+    public function docsSaveDateEnd(DocDateEndSaveRequest $request)
+    {
+        $docid = $request->input('docid');
+        $docDateEnd = $request->input('docDateEnd');
+
+        try {
+            $doc = SfrDocs::where('docid', $docid)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Документ не найден!');
+            return back();
+        }
+        $doc->doc_date_end = $docDateEnd;
+        $doc->save();
+
+        $this->flasher_interface->addSuccess('Данные успешно сохранены');
+        return redirect()->route('osfrportal.admin.docs.detail', ['docid' => $docid]);
     }
     //ТИПЫ ДОКУМЕНТОВ
     public function typesShowList()
