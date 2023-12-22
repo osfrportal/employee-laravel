@@ -69,7 +69,7 @@
                             var linkView = "#";
                             return (
                                 '<a href="' + url +
-                                '"><i class="ti ti-vocabulary"></i></a>'
+                                '"><i class="ti ti-vocabulary icon-size-24"></i></a>'
                             );
                         }
                     },
@@ -81,9 +81,9 @@
                         searchable: false,
                         render: function(data, type, full, meta) {
                             if (data === true) {
-                                return '<h6 class="bi bi-check-lg"></h6>';
+                                return '<i class="ti ti-square-check icon-size-24"></i>';
                             } else {
-                                return '<h6 class="bi bi-dash-lg"></h6>';
+                                return '<i class="ti ti-square icon-size-24"></i>';
                             }
                         }
                     },
