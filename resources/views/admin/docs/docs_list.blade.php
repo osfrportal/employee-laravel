@@ -72,7 +72,7 @@
 
                             var linkView = "#";
                             return (
-                                '<a class="text-decoration-none" title="Просмотр" href="' +
+                                '<a class="btn" title="Просмотр" href="' +
                                 url +
                                 '"><i class="ti ti-vocabulary icon-size-24 text-primary"></i></a>'
                             );
