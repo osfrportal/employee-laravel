@@ -1,14 +1,4 @@
 @extends('osfrportal::layout')
-@section('title2')
-    <div class="pt-0">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Администрирование</a></li>
-                <li class="breadcrumb-item active">Управление документами</li>
-            </ol>
-        </nav>
-    </div>
-@endsection
 @section('content')
     <a class="btn btn-primary" href="{{ route('osfrportal.admin.docs.add') }}" role="button">Добавить</a>
     <hr>
@@ -103,7 +93,7 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
-                            var docsTypes = JSON.parse({{ Js::from($groupsShort) ?? ''}});
+                            var docsTypes = JSON.parse({{ Js::from($groupsShort) ?? '' }});
                             return docsTypes[data];
                         }
                     },
