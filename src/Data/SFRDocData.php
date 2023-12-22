@@ -62,6 +62,7 @@ class SFRDocData extends Data
             docFileCount: $doc->SfrDocsFiles()->count(),
             docTypeName: $doc->docType->type_name,
             docGroupName: $doc->docGroup->group_name,
+            docPersonSigns: null,
             docDateEnd: $doc->doc_date_end,
         );
     }
