@@ -161,7 +161,7 @@ class SFRDocsAdminController extends Controller
     {
         $docid = $request->input('docid');
         $docDateEnd = $request->input('docDateEnd');
-
+        dd($request->all());
         try {
             $doc = SfrDocs::where('docid', $docid)->firstOrFail();
         } catch (ModelNotFoundException $e) {
