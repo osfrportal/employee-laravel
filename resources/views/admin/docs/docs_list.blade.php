@@ -117,7 +117,7 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
-                            if (data !== null) {
+                            if ((data !== null) && (data !== undefined)) {
                                 return data.slice(0, 10).split('-').reverse().join('.');
                             } else {
                                 return '';
@@ -126,8 +126,8 @@
                     },
                 ],
                 "createdRow": function(row, data, dataIndex) {
-                    console.log(data[8]);
-                    if (data[8] !== null) {
+                    //console.log(data[8]);
+                    if ((data[8] !== null) && (data[8] !== undefined)) {
                         $(row).addClass('bg-secondary');
                     } else {
                         $(row).addClass('bg-success');
