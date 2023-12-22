@@ -53,6 +53,13 @@
 
                     </div>
                 </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Дата окончания действия документа:</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext"
+                            value="{{ $docData->docDateEnd ?? '' }}">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="table-responsive">
@@ -74,7 +81,7 @@
                 <tbody align="center">
                     @foreach ($docFiles as $docFile)
                         <tr>
-                            <td scope="row">1</td>
+                            <td scope="row">-</td>
                             <td>
                                 {{ $docFile->file_enabled === false ? 'Скрыт' : 'Активен' }}
                             </td>
