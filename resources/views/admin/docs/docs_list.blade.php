@@ -126,11 +126,9 @@
                     },
                 ],
                 "createdRow": function(row, data, dataIndex) {
-                    //console.log(data[8]);
+                    $(row).addClass('bg-secondary');
                     if ((data[8] !== null) && (data[8] !== undefined)) {
                         $(row).addClass('bg-secondary');
-                    } else {
-                        $(row).addClass('bg-success');
                     }
                 }
             });
