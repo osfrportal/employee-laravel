@@ -125,6 +125,13 @@
                         }
                     },
                 ],
+                "createdRow": function(row, data, dataIndex) {
+                    if (data[8] !== null) {
+                        $(row).addClass('bg-secondary');
+                    } else {
+                        $(row).addClass('bg-success');
+                    }
+                }
             });
         });
     </script>
