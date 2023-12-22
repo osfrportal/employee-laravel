@@ -68,8 +68,8 @@
 
                             var linkView = "#";
                             return (
-                                '<a href="' + url +
-                                '"><i class="ti ti-vocabulary icon-size-24"></i></a>'
+                                '<a class="text-decoration-none" href="' + url +
+                                '"><i class="ti ti-vocabulary icon-size-24 text-primary"></i></a>'
                             );
                         }
                     },
@@ -81,9 +81,9 @@
                         searchable: false,
                         render: function(data, type, full, meta) {
                             if (data === true) {
-                                return '<i class="ti ti-square-check icon-size-24"></i>';
+                                return '<i class="ti ti-square-check icon-size-24 text-primary"></i>';
                             } else {
-                                return '<i class="ti ti-square icon-size-24"></i>';
+                                return '<i class="ti ti-square icon-size-24 text-primary"></i>';
                             }
                         }
                     },
