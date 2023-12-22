@@ -117,7 +117,11 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
-                            return data.slice(0, 10).split('-').reverse().join('.')
+                            if (data !== null) {
+                                return data.slice(0, 10).split('-').reverse().join('.');
+                            } else {
+                                return '';
+                            }
                         }
                     },
                 ],
