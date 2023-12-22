@@ -238,6 +238,15 @@ class SfrPerson extends Model
         }
         return $workstartdate;
     }
+    public function getWorkStartDateCarbon()
+    {
+        if (!is_null($this->pworkstart)) {
+            $workstartdate = Carbon::parse($this->pworkstart);
+        } else {
+            $workstartdate = null;
+        }
+        return $workstartdate;
+    }
 
     /**
      *

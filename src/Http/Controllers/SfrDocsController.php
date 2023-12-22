@@ -60,7 +60,8 @@ class SfrDocsController extends Controller
 
     }
 
-    public function apiSaveUNEPSign(Request $request) {
+    public function apiSaveUNEPSign(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'sign_fileId' => 'required|uuid',
             'sign_docId' => 'required|uuid',
@@ -89,7 +90,8 @@ class SfrDocsController extends Controller
 
     }
 
-    public function apiSaveUKEPSignToDB(Request $request) {
+    public function apiSaveUKEPSignToDB(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'sign_fileId' => 'required|uuid',
             'sign_docId' => 'required|uuid',
@@ -119,6 +121,7 @@ class SfrDocsController extends Controller
 
         $certIdUNEP = Auth::user()->SfrPerson->getCertIdUNEP();
         $certIdUKEP = Auth::user()->SfrPerson->getCertIdUKEP();
+        $personWorkStartDate = Auth::user()->SfrPerson->getWorkStartDateCarbon();
 
         //Проверяем каким сертификатом будем подписывать
         $certToUse = CertsTypesEnum::NONE();
@@ -149,13 +152,16 @@ class SfrDocsController extends Controller
             }
 
             $docDataDTO = SFRDocData::forList($doc);
-            $docType = SfrDocTypes::where('typeid', $docDataDTO->docType)->firstOrFail('type_name');
-            $docGroup = SfrDocGroups::where('groupid', $docDataDTO->docGroup)->firstOrFail('group_name');
-            $docDataDTO->docTypeName = $docType->type_name;
-            $docDataDTO->docGroupName = $docGroup->group_name;
-            $docDataDTO->docDate = Carbon::parse($docDataDTO->docDate)->format('d.m.Y');
-            $docDataDTO->docFiles = $doc->SfrDocsFiles;
-            $collectionDocs->push($docDataDTO);
+            $docDateEndCarbon = Carbon::parse($docDataDTO->docDateEnd);
+            if ($docDateEndCarbon->gte($personWorkStartDate)) {
+                $docType = SfrDocTypes::where('typeid', $docDataDTO->docType)->firstOrFail('type_name');
+                $docGroup = SfrDocGroups::where('groupid', $docDataDTO->docGroup)->firstOrFail('group_name');
+                $docDataDTO->docTypeName = $docType->type_name;
+                $docDataDTO->docGroupName = $docGroup->group_name;
+                $docDataDTO->docDate = Carbon::parse($docDataDTO->docDate)->format('d.m.Y');
+                $docDataDTO->docFiles = $doc->SfrDocsFiles;
+                $collectionDocs->push($docDataDTO);
+            }
 
         }
         $docsToSign = $collectionDocs;
