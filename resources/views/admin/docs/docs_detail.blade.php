@@ -56,7 +56,7 @@
                 <form method="POST" action="{{ route('osfrportal.admin.docs.save') }}" enctype="multipart/form-data">
                     <div class="mb-3 row">
                         <label for="docDateEnd" class="col-sm-2 col-form-label">Дата окончания действия документа:</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-3">
                             <input type="date"
                                 class="form-control form-control-sm  @error('docDateEnd') is-invalid @enderror"
                                 id="docDateEnd" name="docDateEnd" value="{{ old('docDateEnd') ?? $docData->docDateEnd }}">
