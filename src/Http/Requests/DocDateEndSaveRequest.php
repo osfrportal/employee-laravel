@@ -24,7 +24,7 @@ class DocDateEndSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'docDateEnd' => 'required|nullable',
+            'docDateEnd' => 'nullable',
             'docid' => 'required|uuid',
         ];
     }
