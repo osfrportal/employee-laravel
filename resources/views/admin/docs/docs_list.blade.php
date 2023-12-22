@@ -72,9 +72,9 @@
 
                             var linkView = "#";
                             return (
-                                '<a class="btn" title="Просмотр" href="' +
+                                '<a class="btn btn-success" title="Просмотр" href="' +
                                 url +
-                                '"><i class="ti ti-vocabulary icon-size-24 text-primary"></i></a>'
+                                '"><i class="ti ti-vocabulary icon-size-24"></i></a>'
                             );
                         }
                     },
