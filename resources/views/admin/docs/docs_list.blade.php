@@ -69,7 +69,7 @@
                             var linkView = "#";
                             return (
                                 '<a href="' + url +
-                                '"><i class="bi bi-book"></i></a>'
+                                '"><i class="ti ti-vocabulary"></i></a>'
                             );
                         }
                     },
