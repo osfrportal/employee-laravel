@@ -69,7 +69,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-sm btn-success">Сохранить</button>
-                                <button type="reset" class="btn btn-sm btn-warning">Очистить</button>
+                                <button type="reset" class="btn btn-sm btn-warning" id="btnClearDate">Очистить</button>
                             </div>
                         </div>
                     </div>
@@ -112,3 +112,12 @@
 
     @livewire('osfrportal::uploaddocsfiles', ['docid' => $docid])
 @endsection
+@push('footer-scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#btnClearDate').click(function() {
+                $('input[id="docDateEnd"]').val(0);
+            });
+        });
+    </script>
+@endpush
