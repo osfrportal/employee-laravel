@@ -68,7 +68,8 @@
                         </div>
                         <div class="col">
                             <div class="mb-3">
-                                <button class="btn btn-sm btn-success btn-submit">Сохранить</button>
+                                <button type="submit" class="btn btn-sm btn-success">Сохранить</button>
+                                <button type="reset" class="btn btn-sm btn-warning">Очистить</button>
                             </div>
                         </div>
                     </div>
