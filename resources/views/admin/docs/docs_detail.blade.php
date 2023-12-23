@@ -116,7 +116,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#btnClearDate').click(function() {
-                $('input[id="docDateEnd"]').val(0);
+                $('input[id="docDateEnd"]').val('');
             });
         });
     </script>
