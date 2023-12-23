@@ -69,7 +69,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-sm btn-success">Сохранить</button>
-                                <button type="reset" class="btn btn-sm btn-warning" id="btnClearDate">Очистить</button>
+                                <button type="button" class="btn btn-sm btn-warning" id="btnClearDate">Очистить</button>
                             </div>
                         </div>
                     </div>
