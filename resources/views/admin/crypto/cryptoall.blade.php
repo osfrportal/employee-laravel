@@ -62,7 +62,6 @@
                     {
                         targets: 0,
                         render: function(data, type, row, meta) {
-                            console.log(data);
                             return data;
                         }
                     },
@@ -76,6 +75,7 @@
                     {
                         targets: 8,
                         render: function(data, type, row, meta) {
+                            console.log(row.pid);
                             if (row.pid !== null) {
                                 var personProfileUrl =
                                     '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
