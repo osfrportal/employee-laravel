@@ -75,7 +75,7 @@
                     {
                         targets: 8,
                         render: function(data, type, row, meta) {
-                            if (!row.pid) {
+                            if (row.pid !== 'null') {
                                 var personProfileUrl =
                                     '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
                                 personProfileUrl = personProfileUrl.replace(':slug', row.pid);
