@@ -3,6 +3,8 @@
 @section('content')
     <a class="btn btn-primary" href="#"><i class="ti ti-shield-plus icon-size-24"></i>
         Добавить</a>
+    <a class="btn btn-primary" href="#"><i class="ti ti-shield-code icon-size-24"></i>
+        Загрузить файл ЦУСа VipNet</a>
     <hr>
     <table class="table table-striped table-sm dataTable no-footer" id="table-crypto">
         <thead>
