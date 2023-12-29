@@ -75,11 +75,10 @@
                     {
                         targets: 8,
                         render: function(data, type, row, meta) {
-                            console.log(row.pid);
-                            if (row.pid !== null) {
+                            if (!row.pid) {
                                 var personProfileUrl =
                                     '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
-                                personProfileUrl = personProfileUrl.replace(':slug', 'pid');
+                                personProfileUrl = personProfileUrl.replace(':slug', row.pid);
                                 var personOutHtml = '<a href="' + personProfileUrl +
                                     '" target="_blank" title="Просмотр профиля работника">' + data
                                     .contactFullname + '</a><br>' + data.contactAppointment +
