@@ -61,22 +61,22 @@
                     },
                     {
                         targets: 0,
-                        render: function(data, type, full, meta) {
+                        render: function(data, type, row, meta) {
                             console.log(data);
                             return data;
                         }
                     },
                     {
                         targets: 1,
-                        render: function(data, type, full, meta) {
+                        render: function(data, type, row, meta) {
                             var myArray = Object.values(data);
                             return myArray[1];
                         }
                     },
                     {
                         targets: 8,
-                        render: function(data, type, full, meta) {
-                            if (data !== null) {
+                        render: function(data, type, row, meta) {
+                            if (row.pid !== null) {
                                 var personProfileUrl =
                                     '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
                                 personProfileUrl = personProfileUrl.replace(':slug', 'pid');
