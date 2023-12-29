@@ -26,7 +26,7 @@
                 serverSide: false,
                 ordering: true,
                 columnDefs: [{
-                        className: "dt-center",
+                        className: "dt-center align-middle",
                         targets: [0, 1, 2, 3, 4, 5, 6],
                     },
                     {
