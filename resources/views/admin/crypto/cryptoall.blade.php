@@ -4,6 +4,7 @@
     <table class="table table-responsive table-striped table-sm dataTable no-footer" id="table-certs">
         <thead>
             <tr>
+                <th>&nbsp;</th>
                 <th>cryptoType</th>
                 <th>cryptoId</th>
                 <th>cryptoName</th>
@@ -25,7 +26,10 @@
                 serverSide: false,
                 ordering: true,
                 columns: [{
-                        data: 'cryptoType.label'
+                        data: ''
+                    },
+                    {
+                        data: 'cryptoType'
                     },
                     {
                         data: 'cryptoId'
@@ -51,18 +55,35 @@
                 ],
                 columnDefs: [{
                         className: "dt-center",
-                        targets: [0, 1, 2, 3, 4, 5, 6, 7],
+                        targets: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                         orderable: true,
                         searchable: true,
                     },
                     {
-                        targets: 7,
+                        targets: 1,
+                        orderable: true,
+                        searchable: true,
+                        render: function(data, type, full, meta) {
+                            var myArray = Object.values(data);
+                            console.log(myArray);
+                            return myArray[1];
+                        }
+                    },
+                    {
+                        targets: 8,
                         orderable: true,
                         searchable: true,
                         render: function(data, type, full, meta) {
                             if (data !== null) {
-                                return data.contactFullname + '<br>' + data.contactAppointment +
+                                var personProfileUrl =
+                                    '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
+                                personProfileUrl = personProfileUrl.replace(':slug', data);
+                                var personOutHtml = '<a href="' + personProfileUrl +
+                                    '" target="_blank" title="Просмотр профиля работника"' + data
+                                    .contactFullname + '</a><br>' + data.contactAppointment +
                                     '<br>' + data.contactUnit;
+
+                                return personOutHtml;
                             } else {
                                 return '';
                             }
