@@ -50,7 +50,7 @@
                         data: 'cryptoType',
                         render: function(data, type, row, meta) {
                             var cryptoType = Object.values(data);
-                            return cryptoType[1] + '(' + cryptoType[0] + ')';
+                            return cryptoType[1];
                         }
                     },
                     {
@@ -80,9 +80,15 @@
                         searchable: true,
                         render: function(data, type, row, meta) {
                             var cryptoType = Object.values(row.cryptoType);
-                            var outHtml = row.cryptoId + '/' + row.cryptoName + '/' + row
-                                .cryptoUserName;
-                            return outHtml + '<hr>' + row.cryptoLicenseNumber;
+                            var outHtml = '';
+                            if (cryptoType[0] == 1) {
+                                outHtml = row.cryptoLicenseNumber;
+                            }
+                            if (cryptoType[0] == 2) {
+                                outHtml = row.cryptoId + '/' + row.cryptoName + '/' + row
+                                    .cryptoUserName;
+                            }
+                            return outHtml;
                         }
                     },
                     {
