@@ -25,7 +25,7 @@
                 serverSide: false,
                 ordering: true,
                 columns: [{
-                        data: 'cryptoType.label'
+                        data: 'cryptoType'
                     },
                     {
                         data: 'cryptoId'
@@ -54,6 +54,15 @@
                         targets: [0, 1, 2, 3, 4, 5, 6, 7],
                         orderable: true,
                         searchable: true,
+                    },
+                    {
+                        targets: 0,
+                        orderable: true,
+                        searchable: true,
+                        render: function(data, type, full, meta) {
+                            var myArray = Object.values(data);
+                            return myArray[1];
+                        }
                     },
                     {
                         targets: 7,
