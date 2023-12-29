@@ -11,8 +11,7 @@
                 <th>cryptoPurpose</th>
                 <th>wsId</th>
                 <th>cryptoLicenseNumber</th>
-                <th>pid</th>
-                <th>personContactData</th>
+                <th>Работник</th>
                 <th>personContactData</th>
                 <th>personContactData</th>
             </tr>
@@ -49,24 +48,29 @@
                         data: 'cryptoLicenseNumber'
                     },
                     {
-                        data: 'pid'
-                    },
-                    {
-                        data: 'personContactData.contactUnit'
-                    },
-                    {
-                        data: 'personContactData.contactAppointment'
-                    },
-                    {
-                        data: 'personContactData.contactFullname'
+                        data: 'personContactData'
                     },
                 ],
                 columnDefs: [{
-                    className: "dt-center",
-                    targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                    orderable: true,
-                    searchable: true,
-                }, ],
+                        className: "dt-center",
+                        targets: [0, 1, 2, 3, 4, 5, 6, 7],
+                        orderable: true,
+                        searchable: true,
+                    },
+                    {
+                        targets: 7,
+                        orderable: true,
+                        searchable: true,
+                        render: function(data, type, full, meta) {
+                            if (data !== null) {
+                                return data.contactFullname + '<br>' + data.contactAppointment +
+                                    '<br>' + data.contactUnit;
+                            } else {
+                                return '';
+                            }
+                        }
+                    },
+                ],
             });
         });
     </script>
