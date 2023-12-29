@@ -10,7 +10,7 @@
                 <th>Идентификатор узла<br>Имя узла<br>Имя пользователя (VipNet)</th>
                 <th>Назначение</th>
                 <th>Номер лицензии</th>
-                <th>wsId</th>
+                <th>Рабочая станция</th>
 
 
             </tr>
@@ -33,6 +33,8 @@
                     },
                     {
                         targets: 0,
+                        orderable: false,
+                        searchable: false,
                         data: 'cryptouuid',
                         render: function(data, type, row, meta) {
                             var url = '{{ route('osfrportal.admin.crypto.detail', ':slug') }}';
