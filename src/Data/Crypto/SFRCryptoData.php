@@ -23,7 +23,9 @@ class SFRCryptoData extends Data
         public ?string $cryptoLicenseNumber = null,
         public ?string $pid,
         public ?array $personContactData = null,
-    ) {}
+        public ?string $cryptouuid,
+    ) {
+    }
 
     public static function defValues(): SFRCryptoData
     {
@@ -42,6 +44,7 @@ class SFRCryptoData extends Data
             null,
             null,
             $contactdataArray,
+            null,
         );
     }
 
@@ -84,6 +87,7 @@ class SFRCryptoData extends Data
             $crypto->cryptodata->cryptoLicenseNumber,
             $pid,
             $contactdataArray,
+            $crypto->cryptoid,
         );
     }
 
