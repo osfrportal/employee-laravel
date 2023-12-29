@@ -5,14 +5,14 @@
         <thead>
             <tr>
                 <th>&nbsp;</th>
-                <th>cryptoType</th>
-                <th>cryptoId</th>
-                <th>cryptoName</th>
-                <th>cryptoUserName</th>
-                <th>cryptoPurpose</th>
-                <th>wsId</th>
-                <th>cryptoLicenseNumber</th>
+                <th>Тип</th>
                 <th>Работник</th>
+                <th>Идентификатор узла/Имя узла/Имя пользователя (VipNet)</th>
+                <th>Назначение</th>
+                <th>Номер лицензии</th>
+                <th>wsId</th>
+
+
             </tr>
         </thead>
     </table>
@@ -25,34 +25,6 @@
                 processing: false,
                 serverSide: false,
                 ordering: true,
-                columns: [{
-                        data: 'cryptouuid'
-                    },
-                    {
-                        data: 'cryptoType'
-                    },
-                    {
-                        data: 'cryptoId'
-                    },
-                    {
-                        data: 'cryptoName'
-                    },
-                    {
-                        data: 'cryptoUserName'
-                    },
-                    {
-                        data: 'cryptoPurpose'
-                    },
-                    {
-                        data: 'wsId'
-                    },
-                    {
-                        data: 'cryptoLicenseNumber'
-                    },
-                    {
-                        data: 'personContactData'
-                    },
-                ],
                 columnDefs: [{
                         className: "dt-center",
                         targets: [0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -61,6 +33,7 @@
                     },
                     {
                         targets: 0,
+                        data: 'cryptouuid',
                         render: function(data, type, row, meta) {
                             var url = '{{ route('osfrportal.admin.crypto.detail', ':slug') }}';
                             url = url.replace(':slug', data);
@@ -71,13 +44,15 @@
                     },
                     {
                         targets: 1,
+                        data: 'cryptoType',
                         render: function(data, type, row, meta) {
                             var myArray = Object.values(data);
                             return myArray[1];
                         }
                     },
                     {
-                        targets: 8,
+                        targets: 2,
+                        data: 'personContactData',
                         render: function(data, type, row, meta) {
                             if (row.pid) {
                                 var personProfileUrl =
@@ -93,6 +68,25 @@
                                 return '';
                             }
                         }
+                    },
+                    {
+                        targets: 3,
+                        render: function(data, type, row, meta) {
+                            return row.cryptoId + '<br>' + row.cryptoName + '<br>' + row
+                                .cryptoUserName;
+                        }
+                    },
+                    {
+                        targets: 4,
+                        data: 'cryptoPurpose',
+                    },
+                    {
+                        targets: 5,
+                        data: 'cryptoLicenseNumber',
+                    },
+                    {
+                        targets: 6,
+                        data: 'wsId',
                     },
                 ],
             });
