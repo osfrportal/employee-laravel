@@ -65,16 +65,18 @@ class SFRCryptoData extends Data
 
         if (!is_null($sfrperson)) {
             $pid = $sfrperson->getPid();
-            if (!is_null($sfrperson->getPersonContactData())) {
-                $contactUnit = $sfrperson->getUnit();
-                $contactAppointment = $sfrperson->getAppointment();
-                $contactFullname = $sfrperson->getFullName();
-                $contactdataArray = array(
-                    'contactUnit' => $contactUnit,
-                    'contactAppointment' => $contactAppointment,
-                    'contactFullname' => $contactFullname,
-                );
-            }
+            $contactFullname = $sfrperson->getFullName();
+
+            //if (!is_null($sfrperson->getPersonContactData())) {
+            $contactUnit = $sfrperson->getUnit();
+            $contactAppointment = $sfrperson->getAppointment();
+
+            $contactdataArray = array(
+                'contactUnit' => $contactUnit,
+                'contactAppointment' => $contactAppointment,
+                'contactFullname' => $contactFullname,
+            );
+            //}
         }
 
         return new self(
