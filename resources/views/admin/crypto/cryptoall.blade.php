@@ -26,7 +26,7 @@
                 serverSide: false,
                 ordering: true,
                 columns: [{
-                        data: ''
+                        data: 'pid'
                     },
                     {
                         data: 'cryptoType'
@@ -61,8 +61,16 @@
                     },
                     {
                         targets: 1,
-                        orderable: true,
-                        searchable: true,
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, full, meta) {
+                            var myArray = Object.values(data);
+                            console.log(myArray);
+                            return myArray[1];
+                        }
+                    },
+                    {
+                        targets: 1,
                         render: function(data, type, full, meta) {
                             var myArray = Object.values(data);
                             console.log(myArray);
@@ -71,13 +79,11 @@
                     },
                     {
                         targets: 8,
-                        orderable: true,
-                        searchable: true,
                         render: function(data, type, full, meta) {
                             if (data !== null) {
                                 var personProfileUrl =
                                     '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
-                                personProfileUrl = personProfileUrl.replace(':slug', data);
+                                personProfileUrl = personProfileUrl.replace(':slug', 'pid');
                                 var personOutHtml = '<a href="' + personProfileUrl +
                                     '" target="_blank" title="Просмотр профиля работника"' + data
                                     .contactFullname + '</a><br>' + data.contactAppointment +
