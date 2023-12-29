@@ -25,7 +25,7 @@
                 serverSide: false,
                 ordering: true,
                 columns: [{
-                        data: 'cryptoType'
+                        data: 'cryptoType.label'
                     },
                     {
                         data: 'cryptoId'
