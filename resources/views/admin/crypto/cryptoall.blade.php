@@ -7,9 +7,10 @@
                 <th>&nbsp;</th>
                 <th>Тип</th>
                 <th>Работник</th>
-                <th>Идентификатор узла<br>Имя узла<br>Имя пользователя (VipNet)</th>
+                <th>Идентификатор узла<br>Имя узла<br>Имя пользователя (VipNet)
+                    <hr>Номер лицензии
+                </th>
                 <th>Назначение</th>
-                <th>Номер лицензии</th>
                 <th>Рабочая станция</th>
 
 
@@ -79,7 +80,7 @@
                         searchable: true,
                         render: function(data, type, row, meta) {
                             return row.cryptoId + '<br>' + row.cryptoName + '<br>' + row
-                                .cryptoUserName;
+                                .cryptoUserName + '<hr>' + row.cryptoLicenseNumber;
                         }
                     },
                     {
@@ -90,12 +91,6 @@
                     },
                     {
                         targets: 5,
-                        orderable: true,
-                        searchable: true,
-                        data: 'cryptoLicenseNumber',
-                    },
-                    {
-                        targets: 6,
                         orderable: true,
                         searchable: true,
                         data: 'wsId',
