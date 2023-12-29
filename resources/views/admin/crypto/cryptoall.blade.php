@@ -62,7 +62,10 @@
                     {
                         targets: 0,
                         render: function(data, type, row, meta) {
-                            return data;
+                            var url = "#";
+                            var linkView = '<a class="btn" title="Просмотр" href="' + url +
+                                '"><i class="ti ti-shield icon-size-24 text-primary"></i></a>';
+                            return linkView;
                         }
                     },
                     {
