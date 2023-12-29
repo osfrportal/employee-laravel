@@ -1,13 +1,13 @@
 @extends('osfrportal::layout')
 
 @section('content')
-    <div id="buttons_wrapper">
+    <div id="buttons_wrapper" class="mb-3">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-6 text-start">
                 <a class="btn btn-sm btn-primary" href="#"><i class="ti ti-shield-plus icon-size-24"></i>
                     Добавить</a>
             </div>
-            <div class="col-sm-12">
+            <div class="col-6 text-end">
                 <a class="btn btn-sm btn-outline-primary" href="#"><i class="ti ti-shield-code icon-size-24"></i>
                     Загрузить файл ЦУСа VipNet</a>
             </div>
