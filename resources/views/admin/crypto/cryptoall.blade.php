@@ -1,9 +1,9 @@
 @extends('osfrportal::layout')
 
 @section('content')
-    <table class="table table-responsive table-striped table-sm dataTable no-footer" id="table-certs">
+    <table class="table table-responsive table-striped table-sm dataTable no-footer" id="table-crypto">
         <thead>
-            <tr>
+            <tr class="dt-center align-middle">
                 <th>&nbsp;</th>
                 <th>Тип</th>
                 <th>Работник</th>
@@ -21,14 +21,14 @@
 @push('footer-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#table-certs').DataTable({
+            $('#table-crypto').DataTable({
                 ajax: '{{ route('osfrapi.osfrportal.admin.crypto.all') }}',
                 processing: false,
                 serverSide: false,
                 ordering: true,
                 columnDefs: [{
                         className: "dt-center align-middle",
-                        targets: [0, 1, 2, 3, 4, 5, 6],
+                        targets: [0, 1, 2, 3, 4, 5],
                     },
                     {
                         targets: 0,
