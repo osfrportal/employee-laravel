@@ -10,7 +10,7 @@
                 <th>Идентификатор узла<br>Имя узла<br>Имя пользователя (VipNet)</th>
                 <th>Назначение</th>
                 <th>Номер лицензии</th>
-                <th>wsId</th>
+                <th>Рабочая станция</th>
 
 
             </tr>
@@ -28,11 +28,11 @@
                 columnDefs: [{
                         className: "dt-center",
                         targets: [0, 1, 2, 3, 4, 5, 6],
-                        orderable: true,
-                        searchable: true,
                     },
                     {
                         targets: 0,
+                        orderable: false,
+                        searchable: false,
                         data: 'cryptouuid',
                         render: function(data, type, row, meta) {
                             var url = '{{ route('osfrportal.admin.crypto.detail', ':slug') }}';
@@ -44,6 +44,8 @@
                     },
                     {
                         targets: 1,
+                        orderable: true,
+                        searchable: true,
                         data: 'cryptoType',
                         render: function(data, type, row, meta) {
                             var myArray = Object.values(data);
@@ -52,6 +54,8 @@
                     },
                     {
                         targets: 2,
+                        orderable: true,
+                        searchable: true,
                         data: 'personContactData',
                         render: function(data, type, row, meta) {
                             if (row.pid) {
@@ -71,6 +75,8 @@
                     },
                     {
                         targets: 3,
+                        orderable: true,
+                        searchable: true,
                         render: function(data, type, row, meta) {
                             return row.cryptoId + '<br>' + row.cryptoName + '<br>' + row
                                 .cryptoUserName;
@@ -78,14 +84,20 @@
                     },
                     {
                         targets: 4,
+                        orderable: true,
+                        searchable: true,
                         data: 'cryptoPurpose',
                     },
                     {
                         targets: 5,
+                        orderable: true,
+                        searchable: true,
                         data: 'cryptoLicenseNumber',
                     },
                     {
                         targets: 6,
+                        orderable: true,
+                        searchable: true,
                         data: 'wsId',
                     },
                 ],
