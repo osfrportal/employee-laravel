@@ -62,7 +62,8 @@
                     {
                         targets: 0,
                         render: function(data, type, row, meta) {
-                            var url = "#";
+                            var url = '{{ route('osfrportal.admin.crypto.detail', ':slug') }}';
+                            url = url.replace(':slug', data);
                             var linkView = '<a class="btn" title="Просмотр" href="' + url +
                                 '"><i class="ti ti-shield icon-size-24 text-primary"></i></a>';
                             return linkView;

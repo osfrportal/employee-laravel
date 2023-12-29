@@ -34,6 +34,7 @@ use Spatie\ResponseCache\Facades\ResponseCache;
  */
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->name('admin.')->group(function () {
     Route::controller(SFRCryptoAdminController::class)->name('crypto.')->prefix('crypto')->group(function () {
+        Route::get('/view/{cryptouuid}', 'showDetailedInfo')->name('detail');
         Route::get('/', 'cryptoShowList')->name('index');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 

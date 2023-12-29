@@ -66,6 +66,10 @@ Breadcrumbs::for('osfrportal.admin.crypto.index', function (BreadcrumbTrail $tra
     $trail->parent('osfrportal.admin');
     $trail->push('Криптосредства', route('osfrportal.admin.crypto.index'));
 });
+Breadcrumbs::for('osfrportal.admin.crypto.detail', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.crypto.index');
+    $trail->push('Подробная информация');
+});
 /**
  * Администрирование
  * Конфигурация портала
