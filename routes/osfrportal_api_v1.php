@@ -23,6 +23,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/card/{cardid}/accesspoints', 'apiGetAccessPointsByCardId')->name('card.accesspoints');
         });
     });
+    Route::prefix('crypto')->name('crypto.')->group(function () {
+        Route::controller(SFRApiController::class)->group(function () {
+            Route::get('/', 'apiCryptoListAll')->name('all');
+        });
+    });
 
 
 

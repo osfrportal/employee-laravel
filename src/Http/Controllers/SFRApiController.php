@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-
+use Yajra\DataTables\DataTables;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
@@ -34,6 +34,7 @@ use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocsAllGroupedAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2InfosystemsAllGroupedAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2InfosystemByIDAction;
 use Osfrportal\OsfrportalLaravel\Actions\Orion\GetAccessPointsByCardIdAction;
+use Osfrportal\OsfrportalLaravel\Actions\Crypto\CryptoListAllAction;
 
 class SFRApiController extends Controller
 {
@@ -64,5 +65,11 @@ class SFRApiController extends Controller
     {
         $data = Select2InfosystemByIDAction::run($isysid);
         return $data;
+    }
+
+    public function apiCryptoListAll()
+    {
+        $data = CryptoListAllAction::run();
+        return DataTables::of($data)->make(true);
     }
 }

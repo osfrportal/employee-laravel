@@ -8,7 +8,6 @@ class SFRCryptoAdminController extends Controller
 {
     public function cryptoShowList()
     {
-        dump(CryptoListAllAction::run());
         return view('osfrportal::admin.crypto.cryptoall');
     }
 }
