@@ -63,6 +63,7 @@
                         targets: 0,
                         render: function(data, type, full, meta) {
                             console.log(data);
+                            return data;
                         }
                     },
                     {
