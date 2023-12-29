@@ -1,7 +1,7 @@
 @extends('osfrportal::layout')
 
 @section('content')
-    <table class="table table-striped table-sm dataTable no-footer" id="table-certs">
+    <table class="table table-responsive table-striped table-sm dataTable no-footer" id="table-certs">
         <thead>
             <tr>
                 <th>cryptoType</th>
@@ -12,8 +12,6 @@
                 <th>wsId</th>
                 <th>cryptoLicenseNumber</th>
                 <th>Работник</th>
-                <th>personContactData</th>
-                <th>personContactData</th>
             </tr>
         </thead>
     </table>
