@@ -7,8 +7,8 @@
                 <th>&nbsp;</th>
                 <th>Тип</th>
                 <th>Работник</th>
-                <th>Идентификатор узла<br>Имя узла<br>Имя пользователя (VipNet)
-                    <hr>Номер лицензии
+                <th>Идентификатор узла/Имя узла/Имя пользователя (VipNet)
+                    <hr>Номер лицензии (Криптопро)
                 </th>
                 <th>Назначение</th>
                 <th>Рабочая станция</th>
@@ -49,8 +49,8 @@
                         searchable: true,
                         data: 'cryptoType',
                         render: function(data, type, row, meta) {
-                            var myArray = Object.values(data);
-                            return myArray[1];
+                            var cryptoType = Object.values(data);
+                            return cryptoType[1] + '(' + cryptoType[0] + ')';
                         }
                     },
                     {
@@ -79,8 +79,10 @@
                         orderable: true,
                         searchable: true,
                         render: function(data, type, row, meta) {
-                            return row.cryptoId + '<br>' + row.cryptoName + '<br>' + row
-                                .cryptoUserName + '<hr>' + row.cryptoLicenseNumber;
+                            var cryptoType = Object.values(row.cryptoType);
+                            var outHtml = row.cryptoId + '/' + row.cryptoName + '/' + row
+                                .cryptoUserName;
+                            return outHtml + '<hr>' + row.cryptoLicenseNumber;
                         }
                     },
                     {
