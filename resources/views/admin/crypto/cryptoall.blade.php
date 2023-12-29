@@ -1,7 +1,8 @@
 @extends('osfrportal::layout')
 
 @section('content')
-    <a class="btn btn-primary ti ti-shield-plus" href="#" role="button">Добавить</a>
+    <a class="btn btn-primary" href="#" role="button"><i class="ti ti-shield-plus icon-size-24 text-primary"></i>
+        Добавить</a>
     <hr>
     <table class="table table-striped table-sm dataTable no-footer" id="table-crypto">
         <thead>
