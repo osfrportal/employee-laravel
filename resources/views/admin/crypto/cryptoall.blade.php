@@ -1,7 +1,7 @@
 @extends('osfrportal::layout')
 
 @section('content')
-    <table class="table table-responsive table-striped table-sm dataTable no-footer" id="table-crypto">
+    <table class="table table-striped table-sm dataTable no-footer" id="table-crypto">
         <thead>
             <tr class="dt-center align-middle">
                 <th>&nbsp;</th>
@@ -85,7 +85,7 @@
                                 outHtml = row.cryptoLicenseNumber;
                             }
                             if (cryptoType[0] == 2) {
-                                outHtml = row.cryptoId + '/' + row.cryptoName + '/' + row
+                                outHtml = row.cryptoId + '<br>' + row.cryptoName + '<br>' + row
                                     .cryptoUserName;
                             }
                             return outHtml;
