@@ -14,6 +14,10 @@
                                 @selected($cryptoDataFull->cryptoType == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())>
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
                             </option>
+                            <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->value }}"
+                                @selected($cryptoDataFull->cryptoType == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())>
+                                {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->label }}
+                            </option>
                         </select>
                         @error('cryptoType')
                             <div class="text-danger">{{ $message }}</div>
