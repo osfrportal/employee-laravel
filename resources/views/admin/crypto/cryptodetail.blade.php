@@ -10,6 +10,10 @@
                         <label class="mb-1" for="cryptoType">Тип криптосредства:</label>
                         <select name="cryptoType" id="cryptoType"
                             class="form-control form-control-sm @error('cryptoType') is-invalid @enderror">
+                            <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE()->value }}"
+                                @selected($cryptoDataFull->cryptoType == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE())>
+                                {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE()->label }}
+                            </option>
                             <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->value }}"
                                 @selected($cryptoDataFull->cryptoType == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())>
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->label }}

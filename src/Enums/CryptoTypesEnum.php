@@ -15,7 +15,7 @@ final class CryptoTypesEnum extends Enum
     protected static function labels(): array
     {
         return [
-            'NONE' => 'Отсуствует',
+            'NONE' => 'Не определено',
             'VIPNET' => 'VipNet',
             'CRYPTOPRO' => 'КриптоПРО CSP',
         ];
