@@ -36,7 +36,7 @@
                                         <label class="mb-1" for="cryptoId">ID узла:</label>
                                         <input class="form-control form-control-sm @error('cryptoId') is-invalid @enderror"
                                             id="cryptoId" name="cryptoId" type="text" placeholder="Введите ID узла VipNet"
-                                            value="{{ old('cryptoId') ?? ($cryptoDataFull->cryptoId ?? '') }}">
+                                            value="{{ old('cryptoId') ?? ($cryptoDataFull->cryptoId ?? '') }}" readonly>
                                         @error('cryptoId')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -45,7 +45,7 @@
                                         <label class="mb-1" for="cryptoName">Имя узла:</label>
                                         <input class="form-control form-control-sm @error('cryptoName') is-invalid @enderror"
                                             id="cryptoName" name="cryptoName" type="text" placeholder="Введите имя узла VipNet"
-                                            value="{{ old('cryptoName') ?? ($cryptoDataFull->cryptoName ?? '') }}">
+                                            value="{{ old('cryptoName') ?? ($cryptoDataFull->cryptoName ?? '') }}" readonly>
                                         @error('cryptoName')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -55,7 +55,7 @@
                                         <input class="form-control form-control-sm @error('cryptoUserName') is-invalid @enderror"
                                             id="cryptoUserName" name="cryptoUserName" type="text"
                                             placeholder="Введите имя пользователя VipNet"
-                                            value="{{ old('cryptoUserName') ?? ($cryptoDataFull->cryptoUserName ?? '') }}">
+                                            value="{{ old('cryptoUserName') ?? ($cryptoDataFull->cryptoUserName ?? '') }}" readonly>
                                         @error('cryptoUserName')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
