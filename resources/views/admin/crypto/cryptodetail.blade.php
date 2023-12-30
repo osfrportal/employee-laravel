@@ -8,9 +8,13 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label class="mb-1" for="cryptoType">Тип криптосредства:</label>
-                        <input class="form-control form-control-sm @error('cryptoType') is-invalid @enderror"
-                            id="cryptoType" name="cryptoType" type="text" placeholder="Введите имя узла VipNet"
-                            value="{{ old('cryptoType') ?? ($cryptoDataFull->cryptoType ?? '') }}">
+                        <select name="cryptoType" id="cryptoType"
+                            class="form-control form-control-sm @error('cryptoType') is-invalid @enderror">
+                            <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->value }}"
+                                @selected(old('version') == $version)>
+                                {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
+                            </option>
+                        </select>
                         @error('cryptoType')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -51,7 +55,7 @@
                                         <label class="mb-1" for="cryptoId">ID узла:</label>
                                         <input class="form-control form-control-sm @error('cryptoId') is-invalid @enderror"
                                             id="cryptoId" name="cryptoId" type="text" placeholder="Введите ID узла VipNet"
-                                            value="{{ old('cryptoId') ?? ($cryptoDataFull->cryptoId ?? '') }}" readonly>
+                                            value="{{ old('cryptoId') ?? ($cryptoDataFull->cryptoId ?? '') }}" @readonly(true)>
                                         @error('cryptoId')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -60,7 +64,8 @@
                                         <label class="mb-1" for="cryptoName">Имя узла:</label>
                                         <input class="form-control form-control-sm @error('cryptoName') is-invalid @enderror"
                                             id="cryptoName" name="cryptoName" type="text" placeholder="Введите имя узла VipNet"
-                                            value="{{ old('cryptoName') ?? ($cryptoDataFull->cryptoName ?? '') }}" readonly>
+                                            value="{{ old('cryptoName') ?? ($cryptoDataFull->cryptoName ?? '') }}"
+                                            @readonly(true)>
                                         @error('cryptoName')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -71,7 +76,7 @@
                                             id="cryptoUserName" name="cryptoUserName" type="text"
                                             placeholder="Введите имя пользователя VipNet"
                                             value="{{ old('cryptoUserName') ?? ($cryptoDataFull->cryptoUserName ?? '') }}"
-                                            readonly>
+                                            @readonly(true)>
                                         @error('cryptoUserName')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
