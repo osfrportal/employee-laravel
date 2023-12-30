@@ -11,7 +11,7 @@
                         <select name="cryptoType" id="cryptoType"
                             class="form-control form-control-sm @error('cryptoType') is-invalid @enderror">
                             <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->value }}"
-                                @selected(old('version') == $version)>
+                                @selected($cryptoDataFull->cryptoType == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())>
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
                             </option>
                         </select>
