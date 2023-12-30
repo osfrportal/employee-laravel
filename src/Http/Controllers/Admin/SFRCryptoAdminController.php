@@ -16,7 +16,6 @@ class SFRCryptoAdminController extends Controller
     {
         $crypto = SfrPersonCrypto::where('cryptouuid', $cryptouuid)->first();
         $cryptoDataFull = SFRCryptoData::getFull($crypto);
-        dump($cryptoDataFull);
         return view('osfrportal::admin.crypto.cryptodetail', ['cryptoDataFull' => $cryptoDataFull]);
     }
 }

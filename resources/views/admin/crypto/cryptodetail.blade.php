@@ -24,6 +24,19 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="card mb-4">
+                        <div class="card-header">Работник</div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="text-xs">ФИО: {{ $cryptoDataFull->personContactData['contactFullname'] ?? '' }}
+                                </div>
+                                <div class="text-xs">Должность:
+                                    {{ $cryptoDataFull->personContactData['contactAppointment'] ?? '' }}</div>
+                                <div class="text-xs">Подразделение:
+                                    {{ $cryptoDataFull->personContactData['contactUnit'] ?? '' }}</div>
+                            </div>
+                        </div>
+                    </div>
                     @switch($cryptoDataFull->cryptoType)
                         @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
                             <div class="card mb-4">
@@ -55,7 +68,8 @@
                                         <input class="form-control form-control-sm @error('cryptoUserName') is-invalid @enderror"
                                             id="cryptoUserName" name="cryptoUserName" type="text"
                                             placeholder="Введите имя пользователя VipNet"
-                                            value="{{ old('cryptoUserName') ?? ($cryptoDataFull->cryptoUserName ?? '') }}" readonly>
+                                            value="{{ old('cryptoUserName') ?? ($cryptoDataFull->cryptoUserName ?? '') }}"
+                                            readonly>
                                         @error('cryptoUserName')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
