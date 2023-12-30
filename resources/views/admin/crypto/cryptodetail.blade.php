@@ -79,9 +79,9 @@
                                 </div>
                             </div>
                         @break
-
-                    </div>
+                    @endswitch
                 </div>
-            </form>
-        </div>
-    @endsection
+            </div>
+        </form>
+    </div>
+@endsection
