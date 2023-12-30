@@ -29,7 +29,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">VipNet</div>
                                 <div class="card-body">
-                                    <div class="small text-muted">
+                                    <div class="small text-muted mb-3">
                                         Данные загружаются автоматически из файла экспорта структуры сети ЦУС.
                                     </div>
                                     <div class="mb-3">
