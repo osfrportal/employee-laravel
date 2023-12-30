@@ -29,6 +29,9 @@
                             <div class="card mb-4">
                                 <div class="card-header">VipNet</div>
                                 <div class="card-body">
+                                    <div class="small text-muted">
+                                        Данные загружаются автоматически из файла экспорта структуры сети ЦУС.
+                                    </div>
                                     <div class="mb-3">
                                         <label class="mb-1" for="cryptoId">ID узла:</label>
                                         <input class="form-control form-control-sm @error('cryptoId') is-invalid @enderror"
