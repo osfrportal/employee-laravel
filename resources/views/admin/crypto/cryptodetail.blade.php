@@ -8,8 +8,7 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label class="mb-1" for="cryptoType">Тип криптосредства:</label>
-                        <select name="cryptoType" id="cryptoType"
-                            class="form-control form-control-sm @error('cryptoType') is-invalid @enderror">
+                        <select name="cryptoType" id="cryptoType" class="form-control form-control-sm" disabled>
                             <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE()->value }}"
                                 @selected($cryptoDataFull->cryptoType == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE())>
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE()->label }}
@@ -23,9 +22,6 @@
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
                             </option>
                         </select>
-                        @error('cryptoType')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="mb-1" for="cryptoType">Назначение:</label>
