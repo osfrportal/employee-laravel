@@ -18,6 +18,6 @@ class SFRCryptoAdminController extends Controller
         $cryptoDataFull = SFRCryptoData::getFull($crypto);
         dump($cryptoDataFull);
         dump($crypto);
-        return view('osfrportal::admin.crypto.cryptodetail');
+        return view('osfrportal::admin.crypto.cryptodetail', ['cryptoDataFull' => $cryptoDataFull]);
     }
 }
