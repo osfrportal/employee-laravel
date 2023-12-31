@@ -51,7 +51,7 @@
                         dataType: 'json',
                         url: function(params) {
                             var urlroute =
-                                '{{ route('osfrportal.admin.stamps.api.select2.persons.search', ':slug') }}';
+                                '{{ route('osfrapi.osfrportal.admin.select2.persons.search', ':slug') }}';
                             urlroute = urlroute.replace(':slug', params.term);
                             return urlroute;
                         }

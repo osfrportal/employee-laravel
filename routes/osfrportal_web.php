@@ -88,7 +88,6 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
     })->middleware(['permission:links-manage']);
 
     Route::controller(SFRStampsAdminController::class)->name('stamps.')->prefix('stamps')->group(function () {
-        Route::get('/api/select2/persons/{query}', 'apiSelect2PersonsList')->name('api.select2.persons.search');
         Route::get('/api/journal', 'apiJournalAll')->name('api.journal');
         Route::get('/api/all', 'apiStampsListAll')->name('api.all');
         Route::post('/save', 'saveStamp')->name('stampsave');

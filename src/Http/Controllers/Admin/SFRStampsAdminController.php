@@ -41,20 +41,6 @@ class SFRStampsAdminController extends Controller
         return DataTables::of($journalFull)->make(true);
     }
 
-    /**
-     * API интерфейс для вывода информации о работнике
-     * Использутеся для Ajax запроса формой select2
-     * @param string $searchq
-     * @return \Illuminate\Http\JsonResponse
-     * @todo Перенести в отдельный SFRApiController
-     */
-    public function apiSelect2PersonsList(string $searchq, SFRPersonService $sfrpersonservice)
-    {
-        $tmp = $sfrpersonservice->APIPersonsSearchSelect2($searchq);
-        return response()->json(data: $tmp, options: JSON_UNESCAPED_UNICODE);
-    }
-
-
 
     /**
      * --------------------------------
