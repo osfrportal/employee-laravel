@@ -25,7 +25,7 @@ class SFRCryptoAdminController extends Controller
     public function cryptoSaveDetail(СryptoSaveDetailRequest $saveRequest)
     {
         $validated = $saveRequest->validated();
-        $crypto = SfrPersonCrypto::where('cryptouuid', $cryptouuid)->first();
+        $crypto = SfrPersonCrypto::where('cryptouuid', $validated['cryptouuid'])->first();
         $crypto->pid = $validated['personid'];
         //$crypto->save();
         dump($crypto);
