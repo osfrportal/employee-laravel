@@ -114,6 +114,9 @@
                             </div>
                         @break
                     @endswitch
+                    <div class="mb-3">
+                        <input class="btn btn-primary" type="submit" value="Сохранить">
+                    </div>
                 </div>
             </div>
         </form>
