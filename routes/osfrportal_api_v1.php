@@ -57,6 +57,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/allgrouped', 'apiSelect2InfosystemsGroupedAll')->name('allgrouped');
 
         });
+        Route::prefix('persons')->name('persons.')->controller(SFRApiController::class)->group(function () {
+            Route::get('/search/{query}', 'apiSelect2PersonsList')->name('search');
+        });
     });
 
     Route::controller(PermissionsController::class)->group(function () {

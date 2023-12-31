@@ -36,6 +36,8 @@ use Osfrportal\OsfrportalLaravel\Actions\Api\Select2InfosystemByIDAction;
 use Osfrportal\OsfrportalLaravel\Actions\Orion\GetAccessPointsByCardIdAction;
 use Osfrportal\OsfrportalLaravel\Actions\Crypto\CryptoListAllAction;
 
+use Osfrportal\OsfrportalLaravel\Services\SFRPersonService;
+
 class SFRApiController extends Controller
 {
     public function apiSelect2UnitsAll(Request $request)
@@ -71,5 +73,16 @@ class SFRApiController extends Controller
     {
         $data = CryptoListAllAction::run();
         return DataTables::of($data)->make(true);
+    }
+    /**
+     * API интерфейс для вывода информации о работнике
+     * Использутеся для Ajax запроса формой select2
+     * @param string $searchq
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function apiSelect2PersonsList(string $searchq, SFRPersonService $sfrpersonservice)
+    {
+        $tmp = $sfrpersonservice->APIPersonsSearchSelect2($searchq);
+        return response()->json(data: $tmp, options: JSON_UNESCAPED_UNICODE);
     }
 }
