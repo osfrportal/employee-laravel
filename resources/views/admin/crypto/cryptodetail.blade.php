@@ -36,14 +36,20 @@
                         <div class="card-header">Работник</div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <div class="text-xs">ФИО: <a
-                                        href="{{ route('osfrportal.admin.persons.detail', $cryptoDataFull->pid ?? '') }}"
-                                        target="_blank">{{ $cryptoDataFull->personContactData['contactFullname'] ?? '' }}</a>
-                                </div>
-                                <div class="text-xs">Должность:
-                                    {{ $cryptoDataFull->personContactData['contactAppointment'] ?? '' }}</div>
-                                <div class="text-xs">Подразделение:
-                                    {{ $cryptoDataFull->personContactData['contactUnit'] ?? '' }}</div>
+                                @if ($cryptoDataFull->pid)
+                                    <div class="text-xs">ФИО: <a
+                                            href="{{ route('osfrportal.admin.persons.detail', $cryptoDataFull->pid) }}"
+                                            target="_blank">{{ $cryptoDataFull->personContactData['contactFullname'] ?? '' }}</a>
+                                    </div>
+                                    <div class="text-xs">Должность:
+                                        {{ $cryptoDataFull->personContactData['contactAppointment'] ?? '' }}</div>
+                                    <div class="text-xs">Подразделение:
+                                        {{ $cryptoDataFull->personContactData['contactUnit'] ?? '' }}</div>
+                                @else
+                                    <a class="btn btn-sm btn-primary" href="#"><i
+                                            class="ti ti-shield-plus icon-size-24"></i>
+                                        Назначить работнику</a>
+                                @endif
                             </div>
                         </div>
                     </div>
