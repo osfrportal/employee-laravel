@@ -35,7 +35,7 @@
                     <div class="card mb-4">
                         <div class="card-header">Работник</div>
                         <div class="card-body">
-                            <div class="mb-3">
+                            <div>
                                 @if ($cryptoDataFull->pid)
                                     <div class="text-xs">ФИО: <a
                                             href="{{ route('osfrportal.admin.persons.detail', $cryptoDataFull->pid) }}"
