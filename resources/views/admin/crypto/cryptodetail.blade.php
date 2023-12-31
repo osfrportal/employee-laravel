@@ -46,9 +46,12 @@
                                     <div class="text-xs">Подразделение:
                                         {{ $cryptoDataFull->personContactData['contactUnit'] ?? '' }}</div>
                                 @else
-                                    <a class="btn btn-sm btn-primary" href="#"><i
-                                            class="ti ti-user-shield icon-size-24"></i>
-                                        Назначить работнику</a>
+                                    <label for="js-persons-ajax" class="col-form-label">Работник:</label>
+                                    <select class="form-select form-select-sm mb-3" id="js-persons-ajax" name="personid"
+                                        data-placeholder="Выберите работника" data-allow-clear="true"
+                                        data-minimum-input-length="4" data-ajax--delay="500" data-language="ru"
+                                        data-selection-css-class="select2--small"
+                                        data-dropdown-css-class="select2--small"></select>
                                 @endif
                             </div>
                         </div>
