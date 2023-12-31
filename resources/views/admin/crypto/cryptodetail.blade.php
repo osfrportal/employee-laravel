@@ -46,7 +46,6 @@
                                     <div class="text-xs">Подразделение:
                                         {{ $cryptoDataFull->personContactData['contactUnit'] ?? '' }}</div>
                                 @else
-                                    <label for="js-persons-ajax" class="col-form-label">Работник:</label>
                                     <select class="form-select form-select-sm mb-3" id="js-persons-ajax" name="personid"
                                         data-placeholder="Выберите работника" data-allow-clear="true"
                                         data-minimum-input-length="4" data-ajax--delay="500" data-language="ru"
@@ -125,3 +124,20 @@
         </form>
     </div>
 @endsection
+@push('footer-scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#js-persons-ajax').select2({
+                ajax: {
+                    dataType: 'json',
+                    url: function(params) {
+                        var urlroute =
+                            '{{ route('osfrportal.admin.stamps.api.select2.persons.search', ':slug') }}';
+                        urlroute = urlroute.replace(':slug', params.term);
+                        return urlroute;
+                    }
+                }
+            });
+        });
+    </script>
+@endpush
