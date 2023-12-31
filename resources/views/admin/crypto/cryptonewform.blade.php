@@ -7,6 +7,40 @@
                 <div class="card-header">Добавление криптосредства</div>
                 <div class="card-body">
                     <div class="mb-3">
+                        <label class="mb-1" for="cryptoType">Тип криптосредства:</label>
+                        <select name="cryptoType" id="cryptoType" class="form-control form-control-sm">
+                            <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE()->value }}"
+                                @selected(old('cryptoType') == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE())>
+                                {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE()->label }}
+                            </option>
+                            <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->value }}"
+                                @selected(old('cryptoType') == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())>
+                                {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->label }}
+                            </option>
+                            <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->value }}"
+                                @selected(old('cryptoType') == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())>
+                                {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="mb-1" for="cryptoType">Назначение:</label>
+                        <input class="form-control form-control-sm @error('cryptoPurpose') is-invalid @enderror"
+                            id="cryptoPurpose" name="cryptoPurpose" type="text" value="{{ old('cryptoPurpose') ?? '' }}">
+                        @error('cryptoPurpose')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">Работник</div>
+                        <div class="card-body">
+                            <select class="form-select form-select-sm mb-3" id="js-persons-ajax" name="personid"
+                                data-placeholder="Выберите работника" data-allow-clear="true" data-minimum-input-length="4"
+                                data-ajax--delay="500" data-language="ru" data-selection-css-class="select2--small"
+                                data-dropdown-css-class="select2--small"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
                         <input class="btn btn-primary" type="submit" value="Добавить">
                     </div>
                 </div>
