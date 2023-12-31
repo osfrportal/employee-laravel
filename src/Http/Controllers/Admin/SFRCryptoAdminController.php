@@ -5,7 +5,7 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 
-use Illuminate\Support\Request;
+use Illuminate\Http\Request;
 
 class SFRCryptoAdminController extends Controller
 {
