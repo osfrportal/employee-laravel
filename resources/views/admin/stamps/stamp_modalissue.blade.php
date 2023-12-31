@@ -11,7 +11,7 @@
                 <div class="modal-body">
 
                     <div class="mb-3">
-                        <label for="select2person" class="col-form-label">Работник:</label>
+                        <label for="js-persons-infosystems-ajax" class="col-form-label">Работник:</label>
                         <select class="form-select form-select-sm mb-3" id="js-persons-infosystems-ajax" name="personid"
                             data-placeholder="Выберите работника" data-allow-clear="true" data-minimum-input-length="4"
                             data-ajax--delay="500" data-language="ru" data-selection-css-class="select2--small"
