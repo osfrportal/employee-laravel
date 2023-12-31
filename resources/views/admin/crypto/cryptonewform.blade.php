@@ -18,7 +18,7 @@
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->label }}
                             </option>
                             <option value="{{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->value }}"
-                                @selected(old('cryptoType') == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())>
+                                @selected(old('cryptoType') == Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()) disabled>
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
                             </option>
                         </select>
@@ -38,6 +38,20 @@
                                 data-placeholder="Выберите работника" data-allow-clear="true" data-minimum-input-length="4"
                                 data-ajax--delay="500" data-language="ru" data-selection-css-class="select2--small"
                                 data-dropdown-css-class="select2--small"></select>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO()->label }}</div>
+                        <div class="card-body">
+                            <label class="mb-1" for="cryptoLicenseNumber">Номер лицензии:</label>
+                            <input class="form-control form-control-sm @error('cryptoLicenseNumber') is-invalid @enderror"
+                                id="cryptoLicenseNumber" name="cryptoLicenseNumber" type="text"
+                                value="{{ old('cryptoLicenseNumber') ?? '' }}"
+                                data-inputmask="'mask': '*****-*****-*****-*****-*****'">
+                            @error('cryptoLicenseNumber')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3">
