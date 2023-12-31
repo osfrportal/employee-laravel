@@ -37,6 +37,8 @@
                         <div class="card-body">
                             <div>
                                 @if ($cryptoDataFull->pid)
+                                    <input type="hidden" name="personid" id="personid"
+                                        value="{{ $cryptoDataFull->pid }}">
                                     <div class="text-xs">ФИО: <a
                                             href="{{ route('osfrportal.admin.persons.detail', $cryptoDataFull->pid) }}"
                                             target="_blank">{{ $cryptoDataFull->personContactData['contactFullname'] ?? '' }}</a>
