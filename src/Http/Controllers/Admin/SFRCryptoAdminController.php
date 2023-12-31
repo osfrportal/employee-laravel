@@ -5,6 +5,8 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 
+use Illuminate\Support\Request;
+
 class SFRCryptoAdminController extends Controller
 {
     public function cryptoShowList()
@@ -17,5 +19,10 @@ class SFRCryptoAdminController extends Controller
         $crypto = SfrPersonCrypto::where('cryptouuid', $cryptouuid)->first();
         $cryptoDataFull = SFRCryptoData::getFull($crypto);
         return view('osfrportal::admin.crypto.cryptodetail', ['cryptoDataFull' => $cryptoDataFull]);
+    }
+
+    public function cryptoSaveDetail(Request $request)
+    {
+        dd($request->all());
     }
 }
