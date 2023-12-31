@@ -6,6 +6,8 @@ use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 use Osfrportal\OsfrportalLaravel\Http\Requests\СryptoSaveDetailRequest;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use Illuminate\Http\Request;
 
 class SFRCryptoAdminController extends Controller
@@ -25,11 +27,18 @@ class SFRCryptoAdminController extends Controller
     public function cryptoSaveDetail(СryptoSaveDetailRequest $saveRequest)
     {
         $validated = $saveRequest->validated();
-        $crypto = SfrPersonCrypto::where('cryptouuid', $validated['cryptouuid'])->first();
+
+        try {
+            $crypto = SfrPersonCrypto::where('cryptouuid', $validated['cryptouuid'])->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Документ не найден!');
+            return back();
+        }
         $crypto->pid = $validated['personid'];
         $crypto->cryptodata->pid = $validated['personid'];
+        $crypto->cryptodata->cryptoPurpose = $validated['cryptoPurpose'];
         $crypto->save();
-        dump($crypto);
-        dd($validated);
+        $this->flasher_interface->addSuccess('Данные успешно сохранены');
+        return redirect()->route('osfrportal.admin.crypto.detail', ['cryptouuid' => $validated['cryptouuid']]);
     }
 }
