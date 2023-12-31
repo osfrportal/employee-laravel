@@ -41,4 +41,16 @@ class SFRCryptoAdminController extends Controller
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
         return redirect()->route('osfrportal.admin.crypto.detail', ['cryptouuid' => $validated['cryptouuid']]);
     }
+
+    public function addCryptoForm()
+    {
+        return view('osfrportal::admin.crypto.cryptonewform');
+    }
+
+    public function cryptoSaveNew(Request $request)
+    {
+        dd($request->all());
+        $this->flasher_interface->addSuccess('Криптосредство успешно добавлено');
+        return redirect()->route('osfrportal.admin.crypto.index');
+    }
 }
