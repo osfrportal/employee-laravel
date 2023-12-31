@@ -4,7 +4,8 @@
     <div id="buttons_wrapper" class="mb-3">
         <div class="row">
             <div class="col-6 text-start">
-                <a class="btn btn-sm btn-primary" href="#"><i class="ti ti-shield-plus icon-size-24"></i>
+                <a class="btn btn-sm btn-primary" href="{{ route('osfrportal.admin.crypto.new') }}"><i
+                        class="ti ti-shield-plus icon-size-24"></i>
                     Добавить</a>
             </div>
             <div class="col-6 text-end">
