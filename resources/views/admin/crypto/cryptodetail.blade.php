@@ -47,7 +47,7 @@
                                         {{ $cryptoDataFull->personContactData['contactUnit'] ?? '' }}</div>
                                 @else
                                     <a class="btn btn-sm btn-primary" href="#"><i
-                                            class="ti ti-shield-plus icon-size-24"></i>
+                                            class="ti ti-user-shield icon-size-24"></i>
                                         Назначить работнику</a>
                                 @endif
                             </div>
