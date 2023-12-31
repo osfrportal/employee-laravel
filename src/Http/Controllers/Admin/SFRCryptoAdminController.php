@@ -4,6 +4,7 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
+use Osfrportal\OsfrportalLaravel\Http\Requests\СryptoSaveDetailRequest;
 
 use Illuminate\Http\Request;
 
@@ -21,8 +22,10 @@ class SFRCryptoAdminController extends Controller
         return view('osfrportal::admin.crypto.cryptodetail', ['cryptoDataFull' => $cryptoDataFull]);
     }
 
-    public function cryptoSaveDetail(Request $request)
+    public function cryptoSaveDetail(СryptoSaveDetailRequest $saveRequest)
     {
-        dd($request->all());
+        $validated = $saveRequest->validated();
+
+        dd($validated);
     }
 }

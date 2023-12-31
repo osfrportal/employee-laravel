@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <form method="POST" action="{{ route('osfrportal.admin.crypto.detail.save') }}">
+            @csrf
             <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
             <div class="card mb-4">
                 <div class="card-header">Информация о криптосредстве</div>
