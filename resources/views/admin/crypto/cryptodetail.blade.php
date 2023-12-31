@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <div class="text-xs">ФИО: <a
-                                        href="{{ route('osfrportal.admin.persons.detail', $cryptoDataFull->pid) }}"
+                                        href="{{ route('osfrportal.admin.persons.detail', $cryptoDataFull->pid ?? '') }}"
                                         target="_blank">{{ $cryptoDataFull->personContactData['contactFullname'] ?? '' }}</a>
                                 </div>
                                 <div class="text-xs">Должность:
