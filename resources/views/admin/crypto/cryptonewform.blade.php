@@ -21,6 +21,9 @@
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
                             </option>
                         </select>
+                        @error('cryptoType')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                         <div class="font-italic text-muted mb-4">
                             Добавление криптосредств VipNet производится автоматически при загрузке структуры сети из ЦУСа.
                         </div>
