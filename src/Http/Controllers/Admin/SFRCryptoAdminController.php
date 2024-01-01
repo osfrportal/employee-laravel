@@ -48,9 +48,11 @@ class SFRCryptoAdminController extends Controller
         return view('osfrportal::admin.crypto.cryptonewform');
     }
 
-    public function cryptoSaveNew(СryptoAddNewRequest $request)
+    public function cryptoSaveNew(СryptoAddNewRequest $saveRequest)
     {
-        dd($request->all());
+
+        $validated = $saveRequest->validated();
+        dd($validated);
         $this->flasher_interface->addSuccess('Криптосредство успешно добавлено');
         return redirect()->route('osfrportal.admin.crypto.index');
     }
