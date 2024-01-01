@@ -9,6 +9,8 @@ use Osfrportal\OsfrportalLaravel\Http\Requests\СryptoAddNewRequest;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
+
 use Illuminate\Http\Request;
 
 class SFRCryptoAdminController extends Controller
