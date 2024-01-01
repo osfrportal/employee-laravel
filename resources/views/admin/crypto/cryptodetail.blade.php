@@ -110,7 +110,8 @@
                                             class="form-control form-control-sm @error('cryptoLicenseNumber') is-invalid @enderror"
                                             id="cryptoLicenseNumber" name="cryptoLicenseNumber" type="text"
                                             placeholder="Введите номер лицензии"
-                                            value="{{ old('cryptoLicenseNumber') ?? ($cryptoDataFull->cryptoLicenseNumber ?? '') }}">
+                                            value="{{ old('cryptoLicenseNumber') ?? ($cryptoDataFull->cryptoLicenseNumber ?? '') }}"
+                                            data-inputmask="'mask': '*{5}-*{5}-*{5}-*{5}-*{5}'">
                                         @error('cryptoLicenseNumber')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
