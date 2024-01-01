@@ -62,11 +62,10 @@ class SFRCryptoAdminController extends Controller
             $crypto = SfrPersonCrypto::where('cryptotype', CryptoTypesEnum::CRYPTOPRO())->whereJsonContains('cryptodata->cryptoLicenseNumber', $cryptoLicenseNumber)->first();
             if ($crypto == null) {
                 $cryptoNew = new SfrPersonCrypto();
+                $cryptodata = new SFRCryptoData(cryptoType: $cryptoType, cryptoPurpose: $cryptoPurpose, pid: $personid, cryptoLicenseNumber: $cryptoLicenseNumber);
                 $cryptoNew->pid = $personid;
                 $cryptoNew->cryptotype = $cryptoType;
-                $cryptoNew->cryptodata->pid = $personid;
-                $cryptoNew->cryptodata->cryptoLicenseNumber = $cryptoLicenseNumber;
-                $cryptoNew->cryptodata->cryptoPurpose = $cryptoPurpose;
+                $cryptoNew->cryptodata = $cryptodata;
                 $cryptoNew->save();
             } else {
                 $this->flasher_interface->addError('Криптосредство уже существует в базе');
