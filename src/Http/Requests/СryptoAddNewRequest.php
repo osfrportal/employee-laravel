@@ -49,6 +49,7 @@ class СryptoAddNewRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'cryptoType.*' => 'Необходимо выбрать тип криптосредства',
             '*.uuid' => 'Некорректный формат идентификатора',
             '*.required' => 'Поле обязательно для заполнения',
             '*.required_if' => 'Поле обязательно для заполнения',
