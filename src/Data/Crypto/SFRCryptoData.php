@@ -21,9 +21,9 @@ class SFRCryptoData extends Data
         public ?string $cryptoPurpose = null,
         public ?string $wsId = null,
         public ?string $cryptoLicenseNumber = null,
-        public ?string $pid,
+        public ?string $pid = null,
         public ?array $personContactData = null,
-        public ?string $cryptouuid,
+        public ?string $cryptouuid = null,
     ) {
     }
 

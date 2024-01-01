@@ -62,7 +62,7 @@ class SFRCryptoAdminController extends Controller
             $crypto = SfrPersonCrypto::where('cryptotype', CryptoTypesEnum::CRYPTOPRO())->whereJsonContains('cryptodata->cryptoLicenseNumber', $cryptoLicenseNumber)->first();
             if ($crypto == null) {
                 $cryptoNew = new SfrPersonCrypto();
-                $cryptodata = new SFRCryptoData();
+                $cryptodata = new SFRCryptoData($cryptoType);
                 $cryptodata->cryptoType = $cryptoType;
                 $cryptodata->cryptoPurpose = $cryptoPurpose;
                 $cryptodata->pid = $personid;
