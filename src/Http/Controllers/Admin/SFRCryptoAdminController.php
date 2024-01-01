@@ -52,11 +52,13 @@ class SFRCryptoAdminController extends Controller
 
     public function cryptoSaveNew(СryptoAddNewRequest $saveRequest)
     {
-
-        $validated = $saveRequest->validated();
         $cryptoType = $saveRequest->input('cryptoType');
-        dump($cryptoType->equals(CryptoTypesEnum::CRYPTOPRO()));
-        dd($validated);
+        if ($cryptoType->equals(CryptoTypesEnum::CRYPTOPRO())) {
+            $cryptoPurpose = $saveRequest->input('cryptoPurpose', null);
+            $cryptoLicenseNumber = $saveRequest->input('cryptoLicenseNumber', null);
+            $personid = $saveRequest->input('personid', null);
+        }
+
         $this->flasher_interface->addSuccess('Криптосредство успешно добавлено');
         return redirect()->route('osfrportal.admin.crypto.index');
     }
