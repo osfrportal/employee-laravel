@@ -8,7 +8,8 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label class="mb-1" for="cryptoType">Тип криптосредства:</label>
-                        <select name="cryptoType" id="cryptoType" class="form-control form-control-sm">
+                        <select name="cryptoType" id="cryptoType"
+                            class="form-control form-control-sm @error('cryptoType') is-invalid @enderror">
                             <option value="99" @selected(old('cryptoType') == 99)>
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::NONE()->label }}
                             </option>
