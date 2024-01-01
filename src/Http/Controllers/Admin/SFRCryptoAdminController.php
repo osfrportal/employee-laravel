@@ -52,8 +52,8 @@ class SFRCryptoAdminController extends Controller
     {
 
         $validated = $saveRequest->validated();
-        $cryptoType = $validated['cryptoType'];
-        dump($saveRequest->all());
+        $cryptoType = $saveRequest->input('cryptoType');
+        dump($cryptoType->equals(CryptoTypesEnum::CRYPTOPRO()));
         dd($validated);
         $this->flasher_interface->addSuccess('Криптосредство успешно добавлено');
         return redirect()->route('osfrportal.admin.crypto.index');
