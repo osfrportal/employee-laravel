@@ -32,7 +32,7 @@ class СryptoAddNewRequest extends FormRequest
             'cryptoType' => new EnumRule(CryptoTypesEnum::class),
             'cryptoPurpose' => 'nullable|string',
             'personid' => 'nullable|uuid',
-            'cryptoLicenseNumber' => 'required_if:cryptoType,1|string|size:25'
+            'cryptoLicenseNumber' => 'required_if:cryptoType,1|size:25'
         ];
     }
     public function enums(): array
@@ -51,6 +51,7 @@ class СryptoAddNewRequest extends FormRequest
         return [
             '*.uuid' => 'Некорректный формат идентификатора',
             '*.required' => 'Поле обязательно для заполнения',
+            '*.required_if' => 'Поле обязательно для заполнения',
             '*.string' => 'Поле должно иметь формат строки',
         ];
     }
