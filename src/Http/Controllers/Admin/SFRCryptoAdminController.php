@@ -5,6 +5,7 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonCrypto;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 use Osfrportal\OsfrportalLaravel\Http\Requests\СryptoSaveDetailRequest;
+use Osfrportal\OsfrportalLaravel\Http\Requests\СryptoAddNewRequest;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -47,7 +48,7 @@ class SFRCryptoAdminController extends Controller
         return view('osfrportal::admin.crypto.cryptonewform');
     }
 
-    public function cryptoSaveNew(Request $request)
+    public function cryptoSaveNew(СryptoAddNewRequest $request)
     {
         dd($request->all());
         $this->flasher_interface->addSuccess('Криптосредство успешно добавлено');
