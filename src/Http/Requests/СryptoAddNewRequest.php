@@ -10,6 +10,8 @@ use Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum;
 
 class СryptoAddNewRequest extends FormRequest
 {
+    use TransformsEnums;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -50,7 +52,6 @@ class СryptoAddNewRequest extends FormRequest
             '*.uuid' => 'Некорректный формат идентификатора',
             '*.required' => 'Поле обязательно для заполнения',
             '*.string' => 'Поле должно иметь формат строки',
-            '*.boolean' => 'Поле должно содержать только логическое значение',
         ];
     }
 }
