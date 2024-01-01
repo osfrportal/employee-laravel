@@ -22,6 +22,9 @@
                                 {{ Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET()->label }}
                             </option>
                         </select>
+                        <div class="font-italic text-muted mb-4">
+                            Добавление криптосредств VipNet производится автоматически при загрузке структуры сети из ЦУСа.
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="mb-1" for="cryptoType">Назначение:</label>
