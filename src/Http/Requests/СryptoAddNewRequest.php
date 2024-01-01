@@ -32,7 +32,7 @@ class СryptoAddNewRequest extends FormRequest
             'cryptoType' => new EnumRule(CryptoTypesEnum::class),
             'cryptoPurpose' => 'nullable|string',
             'personid' => 'nullable|uuid',
-            'cryptoLicenseNumber' => 'required_if:cryptoType,1|size:25'
+            'cryptoLicenseNumber' => 'required_if:cryptoType,1,size:25'
         ];
     }
     public function enums(): array
