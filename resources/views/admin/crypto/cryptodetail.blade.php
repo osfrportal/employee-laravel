@@ -164,10 +164,11 @@
 
             let deletepersonbtn = document.getElementById('deletepersonbtn');
 
-            deletepersonbtn.addEventListener('click', function() {
-                let btn = document.getElementById('deletepersonbtn');
-                var personid = btn.getAttribute('data-crypto-personid');
-                var cryptouuid = btn.getAttribute('data-crypto-cryptouuid');
+            deletepersonbtn.addEventListener('click', confirmDelete.bind(deletepersonbtn, deletepersonbtn));
+
+            function confirmDelete(button) {
+                var personid = button.getAttribute('data-crypto-personid');
+                var cryptouuid = button.getAttribute('data-crypto-cryptouuid');
                 console.log(personid);
                 console.log(cryptouuid);
                 swal({
@@ -184,7 +185,7 @@
                             });
                         }
                     });
-            });
+            };
         });
     </script>
 @endpush
