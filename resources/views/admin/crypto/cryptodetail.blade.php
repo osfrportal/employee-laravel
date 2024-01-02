@@ -168,7 +168,7 @@
             deletepersonbtn.addEventListener('click', function() {
                 swal({
                         title: "Вы уверены?",
-                        text: "Будет удалена привязка криптосредства к работнику {personid}",
+                        text: "Будет удалена привязка криптосредства ${cryptouuid} к работнику ${personid}",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
