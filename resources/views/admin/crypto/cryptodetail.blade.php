@@ -129,6 +129,8 @@
                             </div>
                         @break
                     @endswitch
+                </div>
+                <div class="card-footer">
                     <div id="form_buttons_wrapper" class="mb-3">
                         <div class="row">
                             <div class="col-6 text-start">
@@ -149,10 +151,9 @@
             @csrf
             <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
             <div class="card mb-4">
-                <div class="card-header">Информация о криптосредстве</div>
                 <div class="card-body">
                     <div class="mb-3">
-                        <input class="btn btn-error" type="submit" value="Удалить криптосредство">
+                        <input class="btn btn-danger" type="submit" value="Удалить криптосредство">
                     </div>
                 </div>
             </div>
