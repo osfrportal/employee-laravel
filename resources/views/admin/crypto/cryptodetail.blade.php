@@ -185,7 +185,8 @@
                                 "{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => ':slugcryptouuid', 'personid' => ':slugpersonid']) }}";
                             linkDelete = linkDelete.replace(':slugcryptouuid', cryptouuid).replace(
                                 ':slugpersonid', personid);
-                            console.log(linkDelete);
+                            //console.log(linkDelete);
+                            $(location).attr('href', linkDelete);
                         }
                     });
             };
