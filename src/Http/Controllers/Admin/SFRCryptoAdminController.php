@@ -49,7 +49,6 @@ class SFRCryptoAdminController extends Controller
     {
         return view('osfrportal::admin.crypto.cryptonewform');
     }
-
     public function cryptoSaveNew(СryptoAddNewRequest $saveRequest)
     {
         $cryptoType = $saveRequest->input('cryptoType');
