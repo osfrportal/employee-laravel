@@ -57,6 +57,11 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="card-footer">
+                            <a class="btn btn-sm btn-outline-danger" href="{{ route('osfrportal.admin.crypto.index') }}"><i
+                                    class="ti ti-shield icon-size-24"></i>
+                                Удалить назначение работнику</a>
+                        </div>
                     </div>
                     @switch($cryptoDataFull->cryptoType)
                         @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
