@@ -148,7 +148,7 @@
             </div>
         </form>
         <div class="card">
-            <div class="card-footer">
+            <div class="card-body">
                 <form method="POST" action="#" id="cryptodelete">
                     @csrf
                     <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
