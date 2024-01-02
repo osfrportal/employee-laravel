@@ -165,8 +165,9 @@
             let deletepersonbtn = document.getElementById('deletepersonbtn');
 
             deletepersonbtn.addEventListener('click', function() {
-                var personid = deletepersonbtn.getAttribute('data-crypto-personid');
-                var cryptouuid = deletepersonbtn.getAttribute('data-crypto-cryptouuid');
+                let btn = document.getElementById('deletepersonbtn');
+                var personid = btn.getAttribute('data-crypto-personid');
+                var cryptouuid = btn.getAttribute('data-crypto-cryptouuid');
                 console.log(personid);
                 console.log(cryptouuid);
                 swal({
