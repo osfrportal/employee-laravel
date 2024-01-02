@@ -149,10 +149,10 @@
         </form>
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="#" id="form-cryptodelete">
+                <form method="POST" action="{{ route('osfrportal.admin.crypto.delete') }}" id="form-cryptodelete">
                     @csrf
                     <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
-                    <input class="btn btn-danger" type="submit" value="Удалить криптосредство">
+                    <input class="btn btn-danger" type="button" value="Удалить криптосредство" id="btncryptodelete">
                 </form>
             </div>
         </div>
@@ -172,9 +172,9 @@
                     }
                 }
             });
-            $('#form-cryptodelete').submit(function(e) {
+
+            $('#btncryptodelete').click(function(e) {
                 e.preventDefault();
-                var formDelete = $(this);
                 swal({
                         title: "Вы уверены?",
                         text: "Криптосредство будет удалено из базы!",
@@ -184,16 +184,16 @@
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            formDelete.submit();
+                            $('#form-cryptodelete').submit();
                         }
                     });
             });
 
             let deletepersonbtn = document.getElementById('deletepersonbtn');
 
-            deletepersonbtn.addEventListener('click', confirmDelete.bind(deletepersonbtn, deletepersonbtn));
+            deletepersonbtn.addEventListener('click', confirmDeletePerson.bind(deletepersonbtn, deletepersonbtn));
 
-            function confirmDelete(button) {
+            function confirmDeletePerson(button) {
                 var personid = button.getAttribute('data-crypto-personid');
                 var cryptouuid = button.getAttribute('data-crypto-cryptouuid');
 
