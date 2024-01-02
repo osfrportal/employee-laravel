@@ -87,7 +87,7 @@ class SFRCryptoAdminController extends Controller
             $crypto = SfrPersonCrypto::where('cryptouuid', $cryptouuid)->where('pid', $personid)->firstOrFail();
 
         } catch (ModelNotFoundException $e) {
-            $this->flasher_interface->addError('Криптосредство не найдено!');
+            $this->flasher_interface->addError('Криптосредство с указанным работником не найдено!');
             return redirect()->route('osfrportal.admin.crypto.index');
         }
         $crypto->pid = null;
