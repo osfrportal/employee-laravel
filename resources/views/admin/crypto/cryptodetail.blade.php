@@ -162,7 +162,20 @@
 
             let deletepersonbtn = document.getElementById('deletepersonbtn');
             deletepersonbtn.addEventListener('click', function() {
-                swal("Our First Alert");
+                swal({
+                        title: "Вы уверены?",
+                        text: "Будет удалена привязка криптосредства к работнику",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                        }
+                    });
             });
         });
     </script>
