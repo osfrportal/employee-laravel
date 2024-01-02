@@ -167,6 +167,8 @@
             deletepersonbtn.addEventListener('click', function() {
                 var personid = deletepersonbtn.getAttribute('data-crypto-personid');
                 var cryptouuid = deletepersonbtn.getAttribute('data-crypto-cryptouuid');
+                console.log(personid);
+                console.log(cryptouuid);
                 swal({
                         title: "Вы уверены?",
                         text: "Будет удалена привязка криптосредства ${cryptouuid} к работнику ${personid}",
