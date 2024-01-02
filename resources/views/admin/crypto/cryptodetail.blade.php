@@ -163,8 +163,8 @@
             });
 
             let deletepersonbtn = document.getElementById('deletepersonbtn');
-            var personid = buttonReturn.getAttribute('data-crypto-personid')
-            var cryptouuid = buttonReturn.getAttribute('data-crypto-cryptouuid')
+            var personid = deletepersonbtn.getAttribute('data-crypto-personid')
+            var cryptouuid = deletepersonbtn.getAttribute('data-crypto-cryptouuid')
             deletepersonbtn.addEventListener('click', function() {
                 swal({
                         title: "Вы уверены?",
