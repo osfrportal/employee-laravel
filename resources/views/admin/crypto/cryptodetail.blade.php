@@ -59,8 +59,7 @@
                         </div>
                         @if ($cryptoDataFull->pid)
                             <div class="card-footer">
-                                <a class="btn btn-sm btn-outline-danger"
-                                    href="{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => $cryptoDataFull->cryptouuid, 'personid' => $cryptoDataFull->pid]) }}"><i
+                                <a class="btn btn-sm btn-outline-danger" href="#" id="deletepersonbtn"><i
                                         class="ti ti-user-cancel icon-size-24"></i>
                                     Удалить назначение работнику</a>
                             </div>
@@ -159,6 +158,11 @@
                         return urlroute;
                     }
                 }
+            });
+
+            let deletepersonbtn = document.getElementById('deletepersonbtn');
+            deletepersonbtn.addEventListener('click', function() {
+                swal("Our First Alert");
             });
         });
     </script>
