@@ -120,8 +120,17 @@
                             </div>
                         @break
                     @endswitch
-                    <div class="mb-3">
-                        <input class="btn btn-primary" type="submit" value="Сохранить">
+                    <div id="form_buttons_wrapper" class="mb-3">
+                        <div class="row">
+                            <div class="col-6 text-start">
+                                <input class="btn btn-primary" type="submit" value="Сохранить">
+                            </div>
+                            <div class="col-6 text-end">
+                                <a class="btn btn-sm btn-outline-primary" href="#"><i
+                                        class="ti ti-shield-code icon-size-24"></i>
+                                    К списку</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
