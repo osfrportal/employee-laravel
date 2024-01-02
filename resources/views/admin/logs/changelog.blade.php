@@ -15,7 +15,20 @@
                     <ul class="list-group list-group-flush">
                         @foreach ($detailedlogs as $detail)
                             <li class="list-group-item">
-                                <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> {{ $detail->log_data }}
+                                @switch($detail->log_type)
+                                    @case(Osfrportal\OsfrportalLaravel\Enums\ChangelogTypesEnum::ADD())
+                                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i>
+                                    @break
+
+                                    @case(Osfrportal\OsfrportalLaravel\Enums\ChangelogTypesEnum::FIX())
+                                        <i class="ti ti-code-asterix icon-size-24" title="[FIX]"></i>
+                                    @break
+
+                                    @case(Osfrportal\OsfrportalLaravel\Enums\ChangelogTypesEnum::TEST())
+                                        <i class="ti ti-code-dots icon-size-24" title="[TEST]"></i>
+                                    @break
+                                @endswitch
+                                {{ $detail->log_data }}
                             </li>
                         @endforeach
                     </ul>
@@ -99,64 +112,8 @@
                 </ul>
             </div>
         </div>
-        <div class="d-flex text-muted pt-3 notifblock">
-            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-                preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                    dy=".3em">32x32</text>
-            </svg>
-            <div class="pb-3 mb-0  lh-sm border-bottom w-100">
-                <span class="d-block  mb-2">11-12-2023</span>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлен импорт файла с датами начала
-                        работы + синхронизация этой даты в ADOC
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="d-flex text-muted pt-3 notifblock">
-            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-                preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                    dy=".3em">32x32</text>
-            </svg>
-            <div class="pb-3 mb-0  lh-sm border-bottom w-100">
-                <span class="d-block  mb-2">08-12-2023</span>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлено всплывающее уведомление
-                        работникам о необходимости ознакомления с документами
-                    </li>
-                    <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлено отображение списка точек
-                        доступа при просмотре подробной информации по карте СКУД в административном интерфейсе
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="d-flex text-muted pt-3 notifblock">
-            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-                preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                    dy=".3em">32x32</text>
-            </svg>
-            <div class="pb-3 mb-0  lh-sm border-bottom w-100">
-                <span class="d-block  mb-2">28-11-2023</span>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <i class="ti ti-code-plus icon-size-24" title="[ADD]"></i> Добавлен отчет "Ведомость ознакомления
-                        работников с нормативными документами"
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+
         <div class="d-flex text-muted pt-3 notifblock">
             <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
