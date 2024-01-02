@@ -34,7 +34,7 @@ class SFRCryptoAdminController extends Controller
         try {
             $crypto = SfrPersonCrypto::where('cryptouuid', $validated['cryptouuid'])->firstOrFail();
         } catch (ModelNotFoundException $e) {
-            $this->flasher_interface->addError('Документ не найден!');
+            $this->flasher_interface->addError('Криптосредство не найдено!');
             return back();
         }
         $crypto->pid = $validated['personid'];
@@ -79,5 +79,23 @@ class SFRCryptoAdminController extends Controller
 
         $this->flasher_interface->addSuccess('Криптосредство успешно добавлено');
         return redirect()->route('osfrportal.admin.crypto.index');
+    }
+
+    public function cryptoRemovePerson($cryptouuid, $personid)
+    {
+        try {
+            $crypto = SfrPersonCrypto::where('cryptouuid', $cryptouuid)->where('pid', $personid)->firstOrFail();
+
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Криптосредство не найдено!');
+            return redirect()->route('osfrportal.admin.crypto.index');
+        }
+        $crypto->pid = null;
+        $crypto->cryptodata->pid = null;
+
+        $crypto->save();
+
+        $this->flasher_interface->addSuccess('Привязка к работнику успешно удалена.');
+        return redirect()->route('osfrportal.admin.crypto.detail', ['cryptouuid' => $validated['cryptouuid']]);
     }
 }

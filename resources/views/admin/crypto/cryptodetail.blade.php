@@ -60,7 +60,7 @@
                         @if ($cryptoDataFull->pid)
                             <div class="card-footer">
                                 <a class="btn btn-sm btn-outline-danger"
-                                    href="{{ route('osfrportal.admin.crypto.index') }}"><i
+                                    href="{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => $cryptoDataFull->cryptouuid, 'personid' => $cryptoDataFull->pid]) }}"><i
                                         class="ti ti-user-cancel icon-size-24"></i>
                                     Удалить назначение работнику</a>
                             </div>

@@ -39,6 +39,7 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::get('/view/{cryptouuid}', 'showDetailedInfo')->name('detail');
         Route::post('/save/detail', 'cryptoSaveDetail')->name('detail.save');
         Route::post('/save/new', 'cryptoSaveNew')->name('new.save');
+        Route::get('/deleteperson/{cryptouuid}/{personid}', 'cryptoRemovePerson')->name('person.remove');
         Route::get('/', 'cryptoShowList')->name('index');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
