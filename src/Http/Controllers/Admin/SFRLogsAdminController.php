@@ -94,4 +94,8 @@ class SFRLogsAdminController extends Controller
         dump($logs);
         return view('osfrportal::admin.logs.changelog');
     }
+    public function changelogAddForm()
+    {
+        return view('osfrportal::admin.logs.changelogadd');
+    }
 }
