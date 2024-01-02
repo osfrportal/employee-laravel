@@ -126,8 +126,9 @@
                                 <input class="btn btn-primary" type="submit" value="Сохранить">
                             </div>
                             <div class="col-6 text-end">
-                                <a class="btn btn-sm btn-outline-primary" href="#"><i
-                                        class="ti ti-shield-code icon-size-24"></i>
+                                <a class="btn btn-sm btn-outline-primary"
+                                    href="{{ route('osfrportal.admin.crypto.index') }}"><i
+                                        class="ti ti-shield icon-size-24"></i>
                                     К списку</a>
                             </div>
                         </div>

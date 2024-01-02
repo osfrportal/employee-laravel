@@ -41,7 +41,8 @@
                             </li>
                         @endcan
                         @can('crypto-manage')
-                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.crypto.index') }}">Криптосредства</a></li>
+                            <li><a class="dropdown-item ti ti-shield"
+                                    href="{{ route('osfrportal.admin.crypto.index') }}">Криптосредства</a></li>
                         @endcan
                         @can('skd-manage')
                             <li><a class="dropdown-item" href="#">СКУД</a></li>
@@ -77,7 +78,8 @@
                     <ul class="dropdown-menu dropdown-menu-lg-end">
                         <li><a class="dropdown-item" href="{{ route('osfrportal.admin.sysconfig.all') }}">Основные
                                 настройки</a></li>
-                        <li><a class="dropdown-item" href="{{ route('osfrportal.admin.mainterance.index') }}">Обслуживание</a></li>
+                        <li><a class="dropdown-item" href="{{ route('osfrportal.admin.mainterance.index') }}">Обслуживание</a>
+                        </li>
                     </ul>
                 </div>
             </ul>
