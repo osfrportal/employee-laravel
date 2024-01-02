@@ -92,10 +92,9 @@ class SFRLogsAdminController extends Controller
             ->groupBy(function ($val) {
                 return Carbon::parse($val->created_at)->format('d-m-Y');
             });
-        //->groupBy(DB::raw('CAST(created_at AS DATE)'));
 
-        dump($logs);
-        return view('osfrportal::admin.logs.changelog');
+        //dump($logs);
+        return view('osfrportal::admin.logs.changelog', ['logs' => $logs]);
     }
     public function changelogAddForm()
     {
