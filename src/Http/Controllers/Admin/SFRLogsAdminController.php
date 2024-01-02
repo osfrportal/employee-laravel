@@ -90,7 +90,7 @@ class SFRLogsAdminController extends Controller
         $logs = SfrChangelog::orderByDesc('created_at')
             ->get()
             ->groupBy(function ($val) {
-                return Carbon::parse($val->created_at)->format('d');
+                return Carbon::parse($val->created_at)->format('d-m-Y');
             });
         //->groupBy(DB::raw('CAST(created_at AS DATE)'));
 
