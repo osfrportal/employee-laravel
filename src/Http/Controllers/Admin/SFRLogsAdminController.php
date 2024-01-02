@@ -87,8 +87,11 @@ class SFRLogsAdminController extends Controller
 
     public function changelogIndex()
     {
-        $logs = SfrChangelog::select('*')
-            ->get();
+        $logs = SfrChangelog::orderByDesc('created_at')
+            ->get()
+            ->groupBy(function ($val) {
+                return Carbon::parse($val->created_at)->format('d');
+            });
         //->groupBy(DB::raw('CAST(created_at AS DATE)'));
 
         dump($logs);
