@@ -22,7 +22,7 @@ class SfrChangelog extends Model
     public $timestamps = true;
 
     protected $casts = [
-        'cryptotype' => ChangelogTypesEnum::class,
+        'log_type' => ChangelogTypesEnum::class,
     ];
 
     protected $guarded = [];
