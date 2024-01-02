@@ -63,8 +63,8 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFRLogsAdminController::class)->name('logs.')->prefix('logs')->group(function () {
-        Route::view('/changelog', 'osfrportal::admin.logs.changelog')->name('changelog');
         Route::get('/phoneupdates', 'logsPhoneUpdates')->name('logsphoneupdates');
+        Route::get('/changelog', 'changelogIndex')->name('changelog');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFRSysconfigController::class)->name('sysconfig.')->prefix('sysconfig')->group(function () {

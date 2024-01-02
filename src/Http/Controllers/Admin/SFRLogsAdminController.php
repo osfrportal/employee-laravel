@@ -1,6 +1,7 @@
 <?php
 
 namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
@@ -9,8 +10,12 @@ use Illuminate\Support\Facades\Log;
 
 use Carbon\Carbon;
 use danielme85\LaravelLogToDB\LogToDB;
+
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
+use Osfrportal\OsfrportalLaravel\Enums\ChangelogTypesEnum;
+
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
+use Osfrportal\OsfrportalLaravel\Models\SfrChangelog;
 
 class SFRLogsAdminController extends Controller
 {
@@ -77,5 +82,12 @@ class SFRLogsAdminController extends Controller
 
         //dump($this->phoneLogs);
         return view('osfrportal::admin.logs.logsphoneupdates', ['logKeysDescription' => $logKeysDescription, 'phoneLogs' => $this->phoneLogs]);
+    }
+
+    public function changelogIndex()
+    {
+        $logs = SfrChangelog::all();
+        dump($logs);
+        return view('osfrportal::admin.logs.changelog');
     }
 }
