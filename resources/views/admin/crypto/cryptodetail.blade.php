@@ -59,9 +59,7 @@
                         </div>
                         @if ($cryptoDataFull->pid)
                             <div class="card-footer">
-                                <a class="btn btn-sm btn-outline-danger" href="#" id="deletepersonbtn"
-                                    data-crypto-personid="{{ $cryptoDataFull->pid }}"
-                                    data-crypto-cryptouuid="{{ $cryptoDataFull->cryptouuid }}"><i
+                                <a class="btn btn-sm btn-outline-danger" href="#" id="btnpersoncryptodelete"><i
                                         class="ti ti-user-cancel icon-size-24"></i>
                                     Удалить назначение работнику</a>
                             </div>
@@ -156,6 +154,13 @@
                 </form>
             </div>
         </div>
+        @if ($cryptoDataFull->pid)
+            <form action="{{ route('osfrportal.admin.crypto.person.remove') }}" method="POST"
+                id="form-personcryptodelete">
+                <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
+                <input type="hidden" name="personid" id="personid" value="{{ $cryptoDataFull->pid }}">
+            </form>
+        @endif
     </div>
 @endsection
 @push('footer-scripts')
@@ -188,36 +193,20 @@
                     });
             });
 
-            let deletepersonbtn = document.getElementById('deletepersonbtn');
-            if (deletepersonbtn) {
-                deletepersonbtn.addEventListener('click', confirmDeletePerson.bind(deletepersonbtn,
-                    deletepersonbtn));
-            }
-
-            function confirmDeletePerson(button) {
-                var personid = button.getAttribute('data-crypto-personid');
-                var cryptouuid = button.getAttribute('data-crypto-cryptouuid');
-
+            $('#btnpersoncryptodelete').click(function() {
                 swal({
                         title: "Вы уверены?",
-                        text: "Будет удалена привязка криптосредства к работнику",
+                        text: "Будет удалена привязка криптосредства к работнику!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            //console.log(personid);
-                            //console.log(cryptouuid);
-                            let linkDelete =
-                                "{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => ':slugcryptouuid', 'personid' => ':slugpersonid']) }}";
-                            linkDelete = linkDelete.replace(':slugcryptouuid', cryptouuid).replace(
-                                ':slugpersonid', personid);
-                            //console.log(linkDelete);
-                            $(location).attr('href', linkDelete);
+                            $('#form-personcryptodelete').submit();
                         }
                     });
-            };
+            });
         });
     </script>
 @endpush

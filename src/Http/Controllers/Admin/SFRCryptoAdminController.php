@@ -81,8 +81,10 @@ class SFRCryptoAdminController extends Controller
         return redirect()->route('osfrportal.admin.crypto.index');
     }
 
-    public function cryptoRemovePerson($cryptouuid, $personid)
+    public function cryptoRemovePerson(Request $request)
     {
+        $cryptouuid = $request->input('cryptouuid');
+        $personid = $request->input('personid');
         try {
             $crypto = SfrPersonCrypto::where('cryptouuid', $cryptouuid)->where('pid', $personid)->firstOrFail();
 
