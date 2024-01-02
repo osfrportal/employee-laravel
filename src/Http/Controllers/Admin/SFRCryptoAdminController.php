@@ -98,4 +98,18 @@ class SFRCryptoAdminController extends Controller
         $this->flasher_interface->addSuccess('Привязка к работнику успешно удалена.');
         return redirect()->route('osfrportal.admin.crypto.detail', ['cryptouuid' => $cryptouuid]);
     }
+
+    public function removeCrypto(Request $request)
+    {
+        $cryptouuid = $request->input('cryptouuid');
+        try {
+            $crypto = SfrPersonCrypto::where('cryptouuid', $cryptouuid)->delete();
+
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Криптосредство не найдено!');
+            return redirect()->route('osfrportal.admin.crypto.index');
+        }
+        $this->flasher_interface->addSuccess('Криптосредство успешно удалено');
+        return redirect()->route('osfrportal.admin.crypto.index');
+    }
 }

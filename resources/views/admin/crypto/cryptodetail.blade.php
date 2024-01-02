@@ -149,7 +149,7 @@
         </form>
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="#" id="cryptodelete">
+                <form method="POST" action="#" id="form-cryptodelete">
                     @csrf
                     <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
                     <input class="btn btn-danger" type="submit" value="Удалить криптосредство">
@@ -171,6 +171,22 @@
                         return urlroute;
                     }
                 }
+            });
+            $('#form-cryptodelete').submit(function(e) {
+                e.preventDefault();
+                var formDelete = $(this);
+                swal({
+                        title: "Вы уверены?",
+                        text: "Криптосредство будет удалено из базы!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            formDelete.submit();
+                        }
+                    });
             });
 
             let deletepersonbtn = document.getElementById('deletepersonbtn');
