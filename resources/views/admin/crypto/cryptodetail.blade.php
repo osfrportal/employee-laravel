@@ -59,10 +59,10 @@
                         </div>
                         @if ($cryptoDataFull->pid)
                             <div class="card-footer">
-                                <a class="btn btn-sm btn-outline-danger" href="#" id="deletepersonbtn"><i
-                                        class="ti ti-user-cancel icon-size-24"
-                                        data-crypto-personid="{{ $cryptoDataFull->pid }}"
-                                        data-crypto-cryptouuid="{{ $cryptoDataFull->cryptouuid }}"></i>
+                                <a class="btn btn-sm btn-outline-danger" href="#" id="deletepersonbtn"
+                                    data-crypto-personid="{{ $cryptoDataFull->pid }}"
+                                    data-crypto-cryptouuid="{{ $cryptoDataFull->cryptouuid }}"><i
+                                        class="ti ti-user-cancel icon-size-24"></i>
                                     Удалить назначение работнику</a>
                             </div>
                         @endif
