@@ -1,7 +1,7 @@
 @extends('osfrportal::layout')
 @section('content')
     <div class="container">
-        <form method="POST" action="{{ route('osfrportal.admin.crypto.detail.save') }}">
+        <form method="POST" action="{{ route('osfrportal.admin.crypto.detail.save') }}" id="cryptosave">
             @csrf
             <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
             <div class="card mb-4">
@@ -141,6 +141,18 @@
                                     К списку</a>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form method="POST" action="#" id="cryptodelete">
+            @csrf
+            <input type="hidden" id="cryptouuid" name="cryptouuid" value="{{ $cryptoDataFull->cryptouuid }}">
+            <div class="card mb-4">
+                <div class="card-header">Информация о криптосредстве</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <input class="btn btn-error" type="submit" value="Удалить криптосредство">
                     </div>
                 </div>
             </div>
