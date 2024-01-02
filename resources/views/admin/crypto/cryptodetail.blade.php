@@ -167,11 +167,9 @@
             deletepersonbtn.addEventListener('click', confirmDelete.bind(deletepersonbtn, deletepersonbtn));
 
             function confirmDelete(button) {
-                console.log(this.value);
                 var personid = button.getAttribute('data-crypto-personid');
                 var cryptouuid = button.getAttribute('data-crypto-cryptouuid');
-                console.log(personid);
-                console.log(cryptouuid);
+
                 swal({
                         title: "Вы уверены?",
                         text: "Будет удалена привязка криптосредства ${cryptouuid} к работнику ${personid}",
@@ -181,6 +179,8 @@
                     })
                     .then((willDelete) => {
                         if (willDelete) {
+                            console.log(personid);
+                            console.log(cryptouuid);
                             swal("Poof! Your imaginary file has been deleted!", {
                                 icon: "success",
                             });
