@@ -86,7 +86,10 @@ class SFRLogsAdminController extends Controller
 
     public function changelogIndex()
     {
-        $logs = SfrChangelog::all();
+        $logs = SfrChangelog::select('id', 'title', 'created_at')
+            ->get()
+            ->groupBy(DB::raw('CAST(created_at AS DATE)'));
+
         dump($logs);
         return view('osfrportal::admin.logs.changelog');
     }
