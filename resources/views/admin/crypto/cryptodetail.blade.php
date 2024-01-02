@@ -167,6 +167,7 @@
             deletepersonbtn.addEventListener('click', confirmDelete.bind(deletepersonbtn, deletepersonbtn));
 
             function confirmDelete(button) {
+                console.log(this.value);
                 var personid = button.getAttribute('data-crypto-personid');
                 var cryptouuid = button.getAttribute('data-crypto-cryptouuid');
                 console.log(personid);
