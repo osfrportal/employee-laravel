@@ -172,7 +172,7 @@
 
                 swal({
                         title: "Вы уверены?",
-                        text: "Будет удалена привязка криптосредства ${cryptouuid} к работнику ${personid}",
+                        text: "Будет удалена привязка криптосредства к работнику",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
@@ -181,9 +181,9 @@
                         if (willDelete) {
                             console.log(personid);
                             console.log(cryptouuid);
-                            swal("Poof! Your imaginary file has been deleted!", {
-                                icon: "success",
-                            });
+                            let linkDelete =
+                                "{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => ${cryptouuid}, 'personid' => ${personid}]) }}";
+                            console.log(linkDelete);
                         }
                     });
             };
