@@ -179,10 +179,12 @@
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            console.log(personid);
-                            console.log(cryptouuid);
+                            //console.log(personid);
+                            //console.log(cryptouuid);
                             let linkDelete =
-                                "{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => @${cryptouuid}, 'personid' => @${personid}]) }}";
+                                "{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => ':slugcryptouuid', 'personid' => ':slugpersonid']) }}";
+                            linkDelete = linkDelete.replace(':slugcryptouuid', cryptouuid).replace(
+                                ':slugpersonid', personid);
                             console.log(linkDelete);
                         }
                     });
