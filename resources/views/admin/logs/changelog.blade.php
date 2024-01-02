@@ -67,7 +67,8 @@
                 <span class="d-block  mb-2">17-12-2023</span>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <i class="ti ti-code-dots icon-size-24" title="[TEST]"></i> В раздел бизнес ресурсы загружена
+                        <i class="ti ti-code-dots icon-size-24" title="[TEST]"></i> В раздел Бизнес-ресурсы
+                        &RightArrow; Криптосредства загружена
                         информация по АП VipNet
                     </li>
                 </ul>
