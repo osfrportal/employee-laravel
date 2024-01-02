@@ -5,6 +5,7 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
