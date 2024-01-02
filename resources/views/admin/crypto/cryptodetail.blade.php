@@ -173,8 +173,7 @@
                 }
             });
 
-            $('#btncryptodelete').click(function(e) {
-                e.preventDefault();
+            $('#btncryptodelete').click(function() {
                 swal({
                         title: "Вы уверены?",
                         text: "Криптосредство будет удалено из базы!",
