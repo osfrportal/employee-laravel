@@ -60,7 +60,9 @@
                         @if ($cryptoDataFull->pid)
                             <div class="card-footer">
                                 <a class="btn btn-sm btn-outline-danger" href="#" id="deletepersonbtn"><i
-                                        class="ti ti-user-cancel icon-size-24"></i>
+                                        class="ti ti-user-cancel icon-size-24"
+                                        data-crypto-personid="{{ $cryptoDataFull->pid }}"
+                                        data-crypto-cryptouuid="{{ $cryptoDataFull->cryptouuid }}"></i>
                                     Удалить назначение работнику</a>
                             </div>
                         @endif
@@ -161,10 +163,12 @@
             });
 
             let deletepersonbtn = document.getElementById('deletepersonbtn');
+            var personid = buttonReturn.getAttribute('data-crypto-personid')
+            var cryptouuid = buttonReturn.getAttribute('data-crypto-cryptouuid')
             deletepersonbtn.addEventListener('click', function() {
                 swal({
                         title: "Вы уверены?",
-                        text: "Будет удалена привязка криптосредства к работнику",
+                        text: "Будет удалена привязка криптосредства к работнику {personid}",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
