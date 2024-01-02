@@ -189,8 +189,10 @@
             });
 
             let deletepersonbtn = document.getElementById('deletepersonbtn');
-
-            deletepersonbtn.addEventListener('click', confirmDeletePerson.bind(deletepersonbtn, deletepersonbtn));
+            if (deletepersonbtn) {
+                deletepersonbtn.addEventListener('click', confirmDeletePerson.bind(deletepersonbtn,
+                    deletepersonbtn));
+            }
 
             function confirmDeletePerson(button) {
                 var personid = button.getAttribute('data-crypto-personid');
