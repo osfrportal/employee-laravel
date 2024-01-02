@@ -1,6 +1,6 @@
 @extends('osfrportal::layout')
 @section('content')
-    <form method="POST" action="#" id="changelogadd">
+    <form method="POST" action="{{ route('osfrportal.admin.logs.changelog.save') }}" id="changelogadd">
         @csrf
         <input type="text" id="log_data" name="log_data" value="">
         <select id="log_type" name="log_type">

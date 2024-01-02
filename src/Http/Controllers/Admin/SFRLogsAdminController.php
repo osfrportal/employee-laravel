@@ -98,4 +98,9 @@ class SFRLogsAdminController extends Controller
     {
         return view('osfrportal::admin.logs.changelogadd');
     }
+
+    public function changelogSaveNew(Request $request)
+    {
+        dd($request->all());
+    }
 }
