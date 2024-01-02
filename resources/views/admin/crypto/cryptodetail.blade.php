@@ -182,7 +182,7 @@
                             console.log(personid);
                             console.log(cryptouuid);
                             let linkDelete =
-                                "{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => ${cryptouuid}, 'personid' => ${personid}]) }}";
+                                "{{ route('osfrportal.admin.crypto.person.remove', ['cryptouuid' => @${cryptouuid}, 'personid' => @${personid}]) }}";
                             console.log(linkDelete);
                         }
                     });
