@@ -101,6 +101,12 @@ class SFRLogsAdminController extends Controller
 
     public function changelogSaveNew(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        $log = new SfrChangelog();
+        $log->log_data = $request->input('log_data');
+        $log->log_type = $request->input('log_type');
+        $log->save();
+        $this->flasher_interface->addSuccess('Запись добавлена');
+        return redirect()->route('osfrportal.admin.logs.changelog.add');
     }
 }
