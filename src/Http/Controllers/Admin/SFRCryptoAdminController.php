@@ -96,6 +96,6 @@ class SFRCryptoAdminController extends Controller
         $crypto->save();
 
         $this->flasher_interface->addSuccess('Привязка к работнику успешно удалена.');
-        return redirect()->route('osfrportal.admin.crypto.detail', ['cryptouuid' => $validated['cryptouuid']]);
+        return redirect()->route('osfrportal.admin.crypto.detail', ['cryptouuid' => $cryptouuid]);
     }
 }
