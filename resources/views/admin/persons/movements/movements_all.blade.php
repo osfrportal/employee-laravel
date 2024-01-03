@@ -30,8 +30,7 @@
                         name: 'movementtype',
                     },
                     {
-                        data: 'pid',
-                        name: 'pid'
+                        data: 'movementdata',
                     },
                     {
                         data: 'movementdata',
@@ -61,6 +60,9 @@
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center',
+                        render: function(data, type, full, meta) {
+                            return data.movementPersonFullFIO;
+                        }
                     },
                     {
                         targets: 3,
@@ -70,7 +72,7 @@
                         render: function(data, type, full, meta) {
                             let arr = Object.entries(data);
                             console.table(arr);
-                            return data;
+                            return data.movementAppointmentNew;
                         }
                     },
                     {
@@ -78,6 +80,11 @@
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center',
+                        render: function(data, type, full, meta) {
+                            let arr = Object.entries(data);
+                            console.table(arr);
+                            return data.movementDepartmentNew;
+                        }
                     },
                 ],
             });
