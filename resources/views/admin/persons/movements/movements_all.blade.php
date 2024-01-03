@@ -38,7 +38,7 @@
                     className: 'dt-body-center',
                     render: function(data, type, full, meta) {
                         //return JSON.stringify(data);
-                        return data.label;
+                        return data['label'];
                     }
                 }, ],
             });
