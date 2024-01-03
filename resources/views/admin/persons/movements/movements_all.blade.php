@@ -61,17 +61,17 @@
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center',
-                        render: function(data, type, full, meta) {
-                            let arr = JSON.stringify(data);
-                            console.table(arr);
-                            return data;
-                        }
                     },
                     {
                         targets: 3,
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center',
+                        render: function(data, type, full, meta) {
+                            let arr = Object.entries(data);
+                            console.table(arr);
+                            return data;
+                        }
                     },
                     {
                         targets: 4,
