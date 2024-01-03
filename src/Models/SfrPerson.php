@@ -129,6 +129,15 @@ class SfrPerson extends Model
     }
 
     /**
+     * Кадровые перемещения работника
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function SfrPersonMovements()
+    {
+        return $this->hasMany(SfrPersonMovements::class, 'pid')->orderByDesc('movementeventdate');
+    }
+
+    /**
      * ID работника в системе Орион ПРО
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
