@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Log;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 use Osfrportal\OsfrportalLaravel\Enums\PersonsMovementsEnum;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
+use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
+use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonMovementData;
 
 class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, WithHeadingRow, WithValidation, SkipsOnFailure
@@ -53,7 +55,25 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $personStatus = new PersonsMovementsEnum(Arr::get($this->enumMovementsArray, $item['vid_sobytiia'], 0));
             //$personStatus = Arr::get($this->enumMovementsArray, $item['vid_sobytiia'], 0);
             $personMovementDate = Carbon::createFromFormat('d.m.Y', $item['period']);
-            dump(new SFRPersonMovementData(movementType: $personStatus, movementPersonFullFIO: $personFullFIO, movementDepartmentNew: $personDepartmentNew, movementAppointmentNew: $personAppointmentNew, movementSnils: $personSnils, movementEventDate: $personMovementDate));
+            $movementPid = null;
+            $movementAppointmentNewID = null;
+            $movementDepartmentNewID = null;
+
+            $personDB = SfrPerson::where('psnils', $personSnils)->first();
+            $appointmentDB = SfrAppointment::where('aname', $personAppointmentNew)->first();
+            $departmentDB = SfrUnits::where('unitname', $personDepartmentNew)->first();
+            if ($personDB) {
+                $movementPid = $personDB->pid;
+            }
+            if ($appointmentDB) {
+                $movementAppointmentNewID = $appointmentDB->aid;
+            }
+            if ($departmentDB) {
+                $movementDepartmentNewID = $departmentDB->unitid;
+            }
+
+
+            dump(new SFRPersonMovementData(movementType: $personStatus, movementPid: $movementPid, movementPersonFullFIO: $personFullFIO, movementDepartmentNew: $personDepartmentNew, movementDepartmentNewID: $movementDepartmentNewID, movementAppointmentNew: $personAppointmentNew, movementAppointmentNewID: $movementAppointmentNewID, movementSnils: $personSnils, movementEventDate: $personMovementDate));
         });
 
     }
