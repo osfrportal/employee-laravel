@@ -271,6 +271,16 @@ class SfrPerson extends Model
         }
     }
 
+    public function getAppointmentID()
+    {
+        $papp = $this->SfrPersonAppointment->first();
+        if (!is_null($papp)) {
+            return $papp->aid;
+        } else {
+            return null;
+        }
+    }
+
     /**
      *
      * @return string
@@ -282,6 +292,15 @@ class SfrPerson extends Model
             return $unit->unitname;
         } else {
             return "";
+        }
+    }
+    public function getUnitID()
+    {
+        $unit = $this->SfrPersonUnit->first();
+        if (!is_null($unit)) {
+            return $unit->unitid;
+        } else {
+            return null;
         }
     }
 

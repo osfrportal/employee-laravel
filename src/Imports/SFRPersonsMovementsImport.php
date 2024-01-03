@@ -53,23 +53,22 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $personDepartmentNew = trim($item['podrazdelenie']);
             $personAppointmentNew = trim($item['dolznost']);
             $personStatus = new PersonsMovementsEnum(Arr::get($this->enumMovementsArray, $item['vid_sobytiia'], 0));
-            //$personStatus = Arr::get($this->enumMovementsArray, $item['vid_sobytiia'], 0);
             $personMovementDate = Carbon::createFromFormat('d.m.Y', $item['period']);
             $movementPid = null;
             $movementAppointmentNewID = null;
             $movementDepartmentNewID = null;
 
             $personDB = SfrPerson::where('psnils', $personSnils)->first();
-            $appointmentDB = SfrAppointment::where('aname', $personAppointmentNew)->first();
-            $departmentDB = SfrUnits::where('unitname', $personDepartmentNew)->first();
+            $appointmentDBfromFile = SfrAppointment::where('aname', $personAppointmentNew)->first();
+            $departmentDBfromFile = SfrUnits::where('unitname', $personDepartmentNew)->first();
             if ($personDB) {
                 $movementPid = $personDB->pid;
             }
-            if ($appointmentDB) {
-                $movementAppointmentNewID = $appointmentDB->aid;
+            if ($appointmentDBfromFile) {
+                $movementAppointmentNewID = $appointmentDBfromFile->aid;
             }
-            if ($departmentDB) {
-                $movementDepartmentNewID = $departmentDB->unitid;
+            if ($departmentDBfromFile) {
+                $movementDepartmentNewID = $departmentDBfromFile->unitid;
             }
             $movementData = new SFRPersonMovementData(movementType: $personStatus);
             $movementData->movementPid = $movementPid;
@@ -79,6 +78,16 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
                 $movementData->movementDepartmentOldID = $movementDepartmentNewID;
                 $movementData->movementAppointmentOld = $personAppointmentNew;
                 $movementData->movementAppointmentOldID = $movementAppointmentNewID;
+            } elseif ($personStatus->equals(PersonsMovementsEnum::PersonMove())) {
+                $movementData->movementDepartmentNew = $personDepartmentNew;
+                $movementData->movementDepartmentNewID = $movementDepartmentNewID;
+                $movementData->movementAppointmentNew = $personAppointmentNew;
+                $movementData->movementAppointmentNewID = $movementAppointmentNewID;
+                //на момент импорта в базе содержится информация о старой должности
+                $movementData->movementDepartmentOld = $personDB->getUnit();
+                $movementData->movementDepartmentOldID = $personDB->getUnitID();
+                $movementData->movementAppointmentOldID = $personDB->getAppointmentID();
+                $movementData->movementAppointmentOld = $personDB->getAppointment();
             } else {
                 $movementData->movementDepartmentNew = $personDepartmentNew;
                 $movementData->movementDepartmentNewID = $movementDepartmentNewID;
