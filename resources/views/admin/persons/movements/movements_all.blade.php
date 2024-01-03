@@ -49,6 +49,12 @@
                     },
                 ],
                 columnDefs: [{
+                        targets: 0,
+                        orderable: false,
+                        searchable: false,
+                        visible: false,
+                    },
+                    {
                         targets: 1,
                         orderable: true,
                         searchable: true,
