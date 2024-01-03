@@ -48,6 +48,7 @@
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center dt-head-center',
+                        render: DataTable.render.date(),
                     },
                     {
                         targets: 1,
