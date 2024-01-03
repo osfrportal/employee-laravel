@@ -87,6 +87,7 @@ class SFRLogsAdminController extends Controller
 
     public function changelogIndex()
     {
+        //whereBetween('created_at', [now(), now()->addDays(7)])
         $logs = SfrChangelog::orderByDesc('created_at')
             ->get()
             ->groupBy(function ($val) {
