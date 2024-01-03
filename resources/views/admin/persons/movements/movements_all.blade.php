@@ -1,7 +1,7 @@
 @extends('osfrportal::layout')
 @section('content')
     <div class="pt-0">
-        <table class="table table-sm no-footer" id="table-movements">
+        <table class="table table-sm dataTable no-footer" id="table-movements">
             <thead>
                 <tr>
                     <th></th>
@@ -24,6 +24,7 @@
                 ordering: true,
                 order: [
                     [1, 'desc'],
+                    [3, 'asc'],
                 ],
                 ajax: "{{ route('osfrportal.admin.persons.movements.all') }}",
                 columns: [{
