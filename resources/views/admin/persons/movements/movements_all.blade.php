@@ -1,21 +1,23 @@
 @extends('osfrportal::layout')
 @section('content')
-    <table class="table table-bordered data-table">
-        <thead>
-            <tr>
-                <th>Дата события</th>
-                <th>Событие</th>
-                <th>Работник</th>
-                <th>Должность</th>
-                <th>Подразделение</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="pt-0">
+        <table class="table table-striped table-sm dataTable no-footer " id="table-movements">
+            <thead>
+                <tr>
+                    <th>Дата события</th>
+                    <th>Событие</th>
+                    <th>Работник</th>
+                    <th>Должность</th>
+                    <th>Подразделение</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 @endsection
 @push('footer-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('.data-table').DataTable({
+            var table = $('#table-movements').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('osfrportal.admin.persons.movements.all') }}",
