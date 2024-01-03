@@ -24,8 +24,7 @@
                         name: 'movementeventdate'
                     },
                     {
-                        data: 'movementtype.label',
-                        name: 'movementtype'
+                        data: 'movementtype',
                     },
                     {
                         data: 'pid',
@@ -39,7 +38,7 @@
                     className: 'dt-body-center',
                     render: function(data, type, full, meta) {
                         //return JSON.stringify(data);
-                        return data;
+                        return data.label;
                     }
                 }, ],
             });
