@@ -1,7 +1,7 @@
 @extends('osfrportal::layout')
 @section('content')
     <div class="pt-0">
-        <table class="table table-striped table-sm dataTable no-footer " id="table-movements">
+        <table class="table table-striped table-sm dataTable no-footer" id="table-movements">
             <thead>
                 <tr>
                     <th>Дата события</th>
@@ -61,6 +61,11 @@
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center',
+                        render: function(data, type, full, meta) {
+                            let arr = Object.entries(data);
+                            console.table(arr);
+                            return data;
+                        }
                     },
                     {
                         targets: 3,
