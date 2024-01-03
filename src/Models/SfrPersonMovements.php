@@ -22,7 +22,7 @@ class SfrPersonMovements extends Model
     protected $casts = [
         'movementtype' => PersonsMovementsEnum::class,
         'movementdata' => SFRPersonMovementData::class,
-        'movementeventdate' => 'datetime:d-m-Y',
+        //'movementeventdate' => 'datetime:d-m-Y',
     ];
     /*
         protected function serializeDate(DateTimeInterface $date): string
