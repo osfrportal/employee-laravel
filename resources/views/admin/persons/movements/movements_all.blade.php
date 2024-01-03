@@ -41,8 +41,8 @@
                     className: 'dt-body-center',
                     render: function(data, type, full, meta) {
                         //console.table(JSON.stringify(data));
-                        console.table(data);
-                        let arr = Object.entries(data);
+                        //console.table(data);
+                        let arr = Object.values(data);
                         console.table(arr);
                         return data;
                     }
