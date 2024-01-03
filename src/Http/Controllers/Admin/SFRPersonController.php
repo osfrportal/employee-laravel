@@ -230,7 +230,6 @@ class SFRPersonController extends Controller
             $data = SfrPersonMovements::select('*');
             return Datatables::of($data)
                 ->setRowId('movid')
-                ->addIndexColumn()
                 ->make(true);
         } else {
             return view('osfrportal::admin.persons.movements.movements_all');
