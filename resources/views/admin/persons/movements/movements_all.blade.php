@@ -103,6 +103,12 @@
                         }
                     },
                 ],
+                createdRow: function(row, data, dataIndex) {
+                    console.table(data);
+                    if (data[2] == 'someVal') {
+                        $(row).addClass('redClass');
+                    }
+                }
             });
         });
     </script>
