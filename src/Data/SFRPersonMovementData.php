@@ -11,7 +11,7 @@ class SFRPersonMovementData extends Data
 {
     public function __construct(
     #[WithCast(EnumCast::class)]
-        public PersonsMovementsEnum $movementType,
+        public int|PersonsMovementsEnum $movementType,
         public ?string $movementPid = null,
         public ?string $movementPersonFullFIO = null,
         public ?string $movementSnils = null,
