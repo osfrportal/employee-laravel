@@ -62,7 +62,7 @@
                         searchable: true,
                         className: 'dt-body-center',
                         render: function(data, type, full, meta) {
-                            let arr = Object.entries(data);
+                            let arr = JSON.stringify(data);
                             console.table(arr);
                             return data;
                         }
