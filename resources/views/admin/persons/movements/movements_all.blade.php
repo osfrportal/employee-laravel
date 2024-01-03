@@ -105,7 +105,7 @@
                 ],
                 createdRow: function(row, data, dataIndex) {
                     console.table(data);
-                    if (data[2] == 'someVal') {
+                    if (data['movementdata'].movementType == 2) {
                         $(row).addClass('redClass');
                     }
                 }
