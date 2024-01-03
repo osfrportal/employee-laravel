@@ -42,7 +42,7 @@
                     render: function(data, type, full, meta) {
                         //console.table(JSON.stringify(data));
                         console.table(data);
-                        console.log(data[1]);
+                        console.log(data['* value']);
                         return data;
                     }
                 }, ],
