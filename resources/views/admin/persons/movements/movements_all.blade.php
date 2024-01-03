@@ -47,13 +47,13 @@
                         targets: 0,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-justify dt-head-center',
+                        className: 'dt-body-center dt-head-center',
                     },
                     {
                         targets: 1,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-justify dt-head-center',
+                        className: 'dt-body-center dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.values(data);
                             return arr[1];
@@ -63,7 +63,7 @@
                         targets: 2,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-justify dt-head-center',
+                        className: 'dt-body-center dt-head-center',
                         render: function(data, type, full, meta) {
                             return data.movementPersonFullFIO;
                         }
@@ -72,7 +72,7 @@
                         targets: 3,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-justify dt-head-center',
+                        className: 'dt-body-left dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.entries(data);
                             console.table(arr);
@@ -83,7 +83,7 @@
                         targets: 4,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-justify dt-head-center',
+                        className: 'dt-body-left dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.entries(data);
                             console.table(arr);
