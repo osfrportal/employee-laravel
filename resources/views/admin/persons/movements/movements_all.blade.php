@@ -3,13 +3,13 @@
     <table class="table table-bordered data-table">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Дата события</th>
+                <th>Событие</th>
+                <th>Работник</th>
+                <th>Должность</th>
+                <th>Подразделение</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
     </table>
 @endsection
 @push('footer-scripts')
@@ -31,7 +31,18 @@
                         data: 'pid',
                         name: 'pid'
                     },
-                ]
+                ],
+                columnDefs: [{
+                    targets: 1,
+                    orderable: true,
+                    searchable: true,
+                    className: 'dt-body-center',
+                    render: function(data, type, full, meta) {
+                        return (
+                            JSON.stringify(data)
+                        );
+                    }
+                }, ],
             });
         });
     </script>
