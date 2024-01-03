@@ -41,9 +41,8 @@
                     className: 'dt-body-center',
                     render: function(data, type, full, meta) {
                         console.table(JSON.stringify(data));
-                        var jsondata = JSON.parse(data[0]);
-                        console.log(jsondata);
-                        return jsondata;
+                        console.table(data);
+                        return data;
                     }
                 }, ],
             });
