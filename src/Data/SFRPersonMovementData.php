@@ -7,6 +7,7 @@ use Osfrportal\OsfrportalLaravel\Enums\PersonsMovementsEnum;
 use Carbon\Carbon;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\EnumCast;
+use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 
 class SFRPersonMovementData extends Data
 {
@@ -24,6 +25,7 @@ class SFRPersonMovementData extends Data
         public ?string $movementAppointmentNewID = null,
         public ?string $movementAppointmentOld = null,
         public ?string $movementAppointmentOldID = null,
+    #[WithCast(DateTimeInterfaceCast::class, format: 'd-m-Y')]
         public ?Carbon $movementEventDate = null
     ) {
     }
