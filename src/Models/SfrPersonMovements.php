@@ -22,13 +22,14 @@ class SfrPersonMovements extends Model
     protected $casts = [
         'movementtype' => PersonsMovementsEnum::class,
         'movementdata' => SFRPersonMovementData::class,
+        'movementeventdate' => 'datetime:d-m-Y',
     ];
-
-    protected function serializeDate(DateTimeInterface $date): string
-    {
-        return $date->format('d-m-Y');
-    }
-
+    /*
+        protected function serializeDate(DateTimeInterface $date): string
+        {
+            return $date->format('d-m-Y');
+        }
+    */
     /**
      * Данные работника
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
