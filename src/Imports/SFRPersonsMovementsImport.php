@@ -123,14 +123,14 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $movementData->movementSnils = $personSnils;
 
 
-            dump($movementExists->count());
+            //dump($movementExists->count());
             $movementToDBModel = new SfrPersonMovements();
             $movementToDBModel->pid = $movementPid;
             $movementToDBModel->movementdata = $movementData;
             $movementToDBModel->movementtype = $personStatus;
             $movementToDBModel->movementeventdate = $personMovementDate;
             if ($movementExists->count() == 0) {
-                dump($movementData);
+                //dump($movementData);
                 $movementToDBModel->save();
             }
         });
