@@ -229,7 +229,6 @@ class SFRPersonController extends Controller
         if ($request->ajax()) {
             $data = SfrPersonMovements::select('*');
             return Datatables::of($data)
-                ->addIndexColumn()
                 ->make(true);
         } else {
             return view('osfrportal::admin.persons.movements.movements_all');

@@ -4,7 +4,6 @@
         <table class="table table-striped table-sm dataTable no-footer" id="table-movements">
             <thead>
                 <tr>
-                    <th></th>
                     <th>Дата события</th>
                     <th>Событие</th>
                     <th>Работник</th>
