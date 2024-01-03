@@ -94,6 +94,10 @@
                             if (data.movementType == 2) {
                                 return data.movementDepartmentOld;
                             }
+                            if (data.movementType == 1) {
+                                return 'Старое: ' + data.movementDepartmentOld + '<br>Новое: ' +
+                                    data.movementDepartmentNew;
+                            }
                             return data.movementDepartmentNew;
                         }
                     },
