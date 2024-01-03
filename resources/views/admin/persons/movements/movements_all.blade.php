@@ -1,7 +1,7 @@
 @extends('osfrportal::layout')
 @section('content')
     <div class="pt-0">
-        <table class="table table-striped table-sm dataTable no-footer" id="table-movements">
+        <table class="table table-sm no-footer" id="table-movements">
             <thead>
                 <tr>
                     <th></th>
