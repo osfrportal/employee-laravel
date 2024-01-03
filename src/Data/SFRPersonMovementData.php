@@ -4,13 +4,10 @@ namespace Osfrportal\OsfrportalLaravel\Data;
 
 use Spatie\LaravelData\Data;
 use Osfrportal\OsfrportalLaravel\Enums\PersonsMovementsEnum;
-use Spatie\LaravelData\Attributes\WithCast;
-use Spatie\LaravelData\Casts\EnumCast;
 
 class SFRPersonMovementData extends Data
 {
     public function __construct(
-    #[WithCast(EnumCast::class)]
         public int|PersonsMovementsEnum $movementType,
         public ?string $movementPid = null,
         public ?string $movementPersonFullFIO = null,
