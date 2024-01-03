@@ -20,6 +20,10 @@
             var table = $('#table-movements').DataTable({
                 processing: true,
                 serverSide: true,
+                ordering: true,
+                order: [
+                    [0, 'desc'],
+                ],
                 ajax: "{{ route('osfrportal.admin.persons.movements.all') }}",
                 columns: [{
                         data: 'movementeventdate',
@@ -43,13 +47,13 @@
                         targets: 0,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-center',
+                        className: 'dt-body-justify dt-head-center',
                     },
                     {
                         targets: 1,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-center',
+                        className: 'dt-body-justify dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.values(data);
                             return arr[1];
@@ -59,7 +63,7 @@
                         targets: 2,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-center',
+                        className: 'dt-body-justify dt-head-center',
                         render: function(data, type, full, meta) {
                             return data.movementPersonFullFIO;
                         }
@@ -68,7 +72,7 @@
                         targets: 3,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-center',
+                        className: 'dt-body-justify dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.entries(data);
                             console.table(arr);
@@ -79,7 +83,7 @@
                         targets: 4,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-center',
+                        className: 'dt-body-justify dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.entries(data);
                             console.table(arr);
