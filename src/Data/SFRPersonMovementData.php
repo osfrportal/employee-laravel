@@ -11,8 +11,21 @@ use Spatie\LaravelData\Casts\EnumCast;
 class SFRPersonMovementData extends Data
 {
     public function __construct(
-    #[WithCast(EnumCast::class)] public PersonsMovementsEnum $movementType, public ?string $movementPid = null, public ?string $movementPersonFullFIO = null, public ?string $movementSnils = null, public ?string $movementDepartmentNew = null, public ?string $movementDepartmentNewID = null, public ?string $movementDepartmentOld = null, public ?string $movementDepartmentOldID = null, public ?string $movementAppointmentNew = null, public ?string $movementAppointmentNewID = null, public ?string $movementAppointmentOld = null, public ?string $movementAppointmentOldID = null, public ?Carbon $movementEventDate = null)
-    {
+    #[WithCast(EnumCast::class)]
+        public PersonsMovementsEnum $movementType,
+        public ?string $movementPid = null,
+        public ?string $movementPersonFullFIO = null,
+        public ?string $movementSnils = null,
+        public ?string $movementDepartmentNew = null,
+        public ?string $movementDepartmentNewID = null,
+        public ?string $movementDepartmentOld = null,
+        public ?string $movementDepartmentOldID = null,
+        public ?string $movementAppointmentNew = null,
+        public ?string $movementAppointmentNewID = null,
+        public ?string $movementAppointmentOld = null,
+        public ?string $movementAppointmentOldID = null,
+        public ?Carbon $movementEventDate = null
+    ) {
     }
 
     public static function defValues(): SFRPersonMovementData

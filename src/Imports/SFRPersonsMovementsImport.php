@@ -53,7 +53,7 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $personStatus = new PersonsMovementsEnum(Arr::get($this->enumMovementsArray, $item['vid_sobytiia'], 0));
             //$personStatus = Arr::get($this->enumMovementsArray, $item['vid_sobytiia'], 0);
             $personMovementDate = Carbon::createFromFormat('d.m.Y', $item['period']);
-            dump(new SFRPersonMovementData($personStatus, movementPersonFullFIO: $personFullFIO, movementDepartmentNew: $personDepartmentNew, movementAppointmentNew: $personAppointmentNew, movementSnils: $personSnils, movementEventDate: $personMovementDate));
+            dump(new SFRPersonMovementData(movementType: $personStatus, movementPersonFullFIO: $personFullFIO, movementDepartmentNew: $personDepartmentNew, movementAppointmentNew: $personAppointmentNew, movementSnils: $personSnils, movementEventDate: $personMovementDate));
         });
 
     }

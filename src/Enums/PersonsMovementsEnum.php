@@ -9,10 +9,11 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self PersonMove()
  * @method static self PersonFire()
  * @method static self PersonStart()
+ * @method static self PersonRecovery()
  * @method static self NONE()
  */
 
- final class PersonsMovementsEnum extends Enum
+final class PersonsMovementsEnum extends Enum
 {
     protected static function labels(): array
     {
@@ -20,6 +21,7 @@ use Spatie\Enum\Laravel\Enum;
             'PersonMove' => 'Перемещение',
             'PersonFire' => 'Увольнение',
             'PersonStart' => 'Прием',
+            'PersonRecovery' => 'Восстановление в должности',
             'NONE' => 'Не определено',
         ];
     }
@@ -29,6 +31,7 @@ use Spatie\Enum\Laravel\Enum;
             'PersonMove' => 1,
             'PersonFire' => 2,
             'PersonStart' => 3,
+            'PersonRecovery' => 4,
             'NONE' => 0,
         ];
     }
