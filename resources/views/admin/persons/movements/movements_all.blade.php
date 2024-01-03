@@ -18,7 +18,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#table-movements').DataTable({
-                dom: '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>',
+                dom: '<"top"flp<"clear">>rt<"bottom"ip<"clear">>',
                 processing: true,
                 serverSide: true,
                 ordering: true,
