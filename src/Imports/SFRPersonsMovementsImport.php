@@ -126,7 +126,7 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $movementToDBModel->movementdata = $movementData;
             $movementToDBModel->movementtype = $personStatus;
             $movementToDBModel->movementeventdate = $personMovementDate;
-            $movementToDBModel->save();
+            //$movementToDBModel->save();
         });
 
     }
