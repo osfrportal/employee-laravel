@@ -22,6 +22,7 @@ use Osfrportal\OsfrportalLaravel\Enums\PersonsMovementsEnum;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
+use Osfrportal\OsfrportalLaravel\Models\SfrPersonMovements;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonMovementData;
 
 class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, WithHeadingRow, WithValidation, SkipsOnFailure
@@ -98,6 +99,13 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $movementData->movementEventDate = $personMovementDate;
 
             dump($movementData);
+
+            $movementToDBModel = new SfrPersonMovements();
+            $movementToDBModel->pid = $movementPid;
+            $movementToDBModel->movementdata = $movementData;
+            $movementToDBModel->movementtype = $personStatus;
+            $movementToDBModel->movementeventdate = $personMovementDate;
+            $movementToDBModel->save();
         });
 
     }
