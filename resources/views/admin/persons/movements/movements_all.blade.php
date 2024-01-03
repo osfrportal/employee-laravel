@@ -106,7 +106,16 @@
                 createdRow: function(row, data, dataIndex) {
                     console.table(data);
                     if (data['movementdata'].movementType == 2) {
-                        $(row).addClass('redClass');
+                        $(row).addClass('table-danger');
+                    }
+                    if (data['movementdata'].movementType == 3) {
+                        $(row).addClass('table-success');
+                    }
+                    if (data['movementdata'].movementType == 1) {
+                        $(row).addClass('table-warning');
+                    }
+                    if (data['movementdata'].movementType == 4) {
+                        $(row).addClass('table-info');
                     }
                 }
             });
