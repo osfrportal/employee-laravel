@@ -74,10 +74,17 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $movementData = new SFRPersonMovementData(movementType: $personStatus);
             $movementData->movementPid = $movementPid;
             $movementData->movementPersonFullFIO = $personFullFIO;
-            $movementData->movementDepartmentNew = $personDepartmentNew;
-            $movementData->movementDepartmentNewID = $movementDepartmentNewID;
-            $movementData->movementAppointmentNew = $personAppointmentNew;
-            $movementData->movementAppointmentNewID = $movementAppointmentNewID;
+            if ($personStatus->equals(PersonsMovementsEnum::PersonFire())) {
+                $movementData->movementDepartmentOld = $personDepartmentNew;
+                $movementData->movementDepartmentOldID = $movementDepartmentNewID;
+                $movementData->movementAppointmentOld = $personAppointmentNew;
+                $movementData->movementAppointmentOldID = $movementAppointmentNewID;
+            } else {
+                $movementData->movementDepartmentNew = $personDepartmentNew;
+                $movementData->movementDepartmentNewID = $movementDepartmentNewID;
+                $movementData->movementAppointmentNew = $personAppointmentNew;
+                $movementData->movementAppointmentNewID = $movementAppointmentNewID;
+            }
             $movementData->movementSnils = $personSnils;
             $movementData->movementEventDate = $personMovementDate;
 
