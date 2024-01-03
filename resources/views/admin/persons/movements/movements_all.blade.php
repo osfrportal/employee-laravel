@@ -80,6 +80,10 @@
                             if (data.movementType == 2) {
                                 return data.movementAppointmentOld;
                             }
+                            if (data.movementType == 1) {
+                                return 'Старая: ' + data.movementAppointmentOld + '<br>Новая: ' +
+                                    data.movementAppointmentNew;
+                            }
                             return data.movementAppointmentNew;
                         }
                     },
