@@ -77,12 +77,12 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $movementData->movementPersonFullFIO = $personFullFIO;
             if ($personStatus->equals(PersonsMovementsEnum::PersonFire())) {
                 //проверяем, содержится ли указанная информация в базе для исключения дублирования
-                $movementExists = SfrPersonMovements::whereJsonContains('movementdata->movementPid', $movementPid)
-                    ->whereJsonContains('movementdata->movementEventDate', $personMovementDate)
-                    ->whereJsonContains('movementdata->movementDepartmentOld', $personDepartmentNew)
-                    ->whereJsonContains('movementdata->movementDepartmentOldID', $movementDepartmentNewID)
-                    ->whereJsonContains('movementdata->movementAppointmentOld', $personAppointmentNew)
-                    ->whereJsonContains('movementdata->movementAppointmentOldID', $movementAppointmentNewID)
+                $movementExists = SfrPersonMovements::where('movementdata->movementPid', $movementPid)
+                    ->where('movementdata->movementEventDate', $personMovementDate)
+                    ->where('movementdata->movementDepartmentOld', $personDepartmentNew)
+                    ->where('movementdata->movementDepartmentOldID', $movementDepartmentNewID)
+                    ->where('movementdata->movementAppointmentOld', $personAppointmentNew)
+                    ->where('movementdata->movementAppointmentOldID', $movementAppointmentNewID)
                     ->get();
                 $movementData->movementDepartmentOld = $personDepartmentNew;
                 $movementData->movementDepartmentOldID = $movementDepartmentNewID;
@@ -90,12 +90,12 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
                 $movementData->movementAppointmentOldID = $movementAppointmentNewID;
             } elseif ($personStatus->equals(PersonsMovementsEnum::PersonMove())) {
                 //проверяем, содержится ли указанная информация в базе для исключения дублирования
-                $movementExists = SfrPersonMovements::whereJsonContains('movementdata->movementPid', $movementPid)
-                    ->whereJsonContains('movementdata->movementEventDate', $personMovementDate)
-                    ->whereJsonContains('movementdata->movementDepartmentNew', $personDepartmentNew)
-                    ->whereJsonContains('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
-                    ->whereJsonContains('movementdata->movementAppointmentNew', $personAppointmentNew)
-                    ->whereJsonContains('movementdata->movementAppointmentNewID', $movementAppointmentNewID)
+                $movementExists = SfrPersonMovements::where('movementdata->movementPid', $movementPid)
+                    ->where('movementdata->movementEventDate', $personMovementDate)
+                    ->where('movementdata->movementDepartmentNew', $personDepartmentNew)
+                    ->where('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
+                    ->where('movementdata->movementAppointmentNew', $personAppointmentNew)
+                    ->where('movementdata->movementAppointmentNewID', $movementAppointmentNewID)
                     ->get();
                 $movementData->movementDepartmentNew = $personDepartmentNew;
                 $movementData->movementDepartmentNewID = $movementDepartmentNewID;
@@ -108,12 +108,12 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
                 $movementData->movementAppointmentOld = ($personDB->getAppointment() !== $personAppointmentNew ? $personDB->getAppointment() : null);
             } else {
                 //проверяем, содержится ли указанная информация в базе для исключения дублирования
-                $movementExists = SfrPersonMovements::whereJsonContains('movementdata->movementPid', $movementPid)
-                    ->whereJsonContains('movementdata->movementEventDate', $personMovementDate)
-                    ->whereJsonContains('movementdata->movementDepartmentNew', $personDepartmentNew)
-                    ->whereJsonContains('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
-                    ->whereJsonContains('movementdata->movementAppointmentNew', $personAppointmentNew)
-                    ->whereJsonContains('movementdata->movementAppointmentNewID', $movementAppointmentNewID)
+                $movementExists = SfrPersonMovements::where('movementdata->movementPid', $movementPid)
+                    ->where('movementdata->movementEventDate', $personMovementDate)
+                    ->where('movementdata->movementDepartmentNew', $personDepartmentNew)
+                    ->where('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
+                    ->where('movementdata->movementAppointmentNew', $personAppointmentNew)
+                    ->where('movementdata->movementAppointmentNewID', $movementAppointmentNewID)
                     ->get();
                 $movementData->movementDepartmentNew = $personDepartmentNew;
                 $movementData->movementDepartmentNewID = $movementDepartmentNewID;
