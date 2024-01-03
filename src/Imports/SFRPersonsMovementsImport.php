@@ -71,15 +71,32 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             if ($departmentDBfromFile) {
                 $movementDepartmentNewID = $departmentDBfromFile->unitid;
             }
+
             $movementData = new SFRPersonMovementData(movementType: $personStatus);
             $movementData->movementPid = $movementPid;
             $movementData->movementPersonFullFIO = $personFullFIO;
             if ($personStatus->equals(PersonsMovementsEnum::PersonFire())) {
+                //проверяем, содержится ли указанная информация в базе для исключения дублирования
+                $movementExists = SfrPersonMovements::whereJsonContains('movementdata->movementPid', $movementPid)
+                    ->whereJsonContains('movementdata->movementEventDate', $personMovementDate)
+                    ->whereJsonContains('movementdata->movementDepartmentOld', $personDepartmentNew)
+                    ->whereJsonContains('movementdata->movementDepartmentOldID', $movementDepartmentNewID)
+                    ->whereJsonContains('movementdata->movementAppointmentOld', $personAppointmentNew)
+                    ->whereJsonContains('movementdata->movementAppointmentOldID', $movementAppointmentNewID)
+                    ->get();
                 $movementData->movementDepartmentOld = $personDepartmentNew;
                 $movementData->movementDepartmentOldID = $movementDepartmentNewID;
                 $movementData->movementAppointmentOld = $personAppointmentNew;
                 $movementData->movementAppointmentOldID = $movementAppointmentNewID;
             } elseif ($personStatus->equals(PersonsMovementsEnum::PersonMove())) {
+                //проверяем, содержится ли указанная информация в базе для исключения дублирования
+                $movementExists = SfrPersonMovements::whereJsonContains('movementdata->movementPid', $movementPid)
+                    ->whereJsonContains('movementdata->movementEventDate', $personMovementDate)
+                    ->whereJsonContains('movementdata->movementDepartmentNew', $personDepartmentNew)
+                    ->whereJsonContains('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
+                    ->whereJsonContains('movementdata->movementAppointmentNew', $personAppointmentNew)
+                    ->whereJsonContains('movementdata->movementAppointmentNewID', $movementAppointmentNewID)
+                    ->get();
                 $movementData->movementDepartmentNew = $personDepartmentNew;
                 $movementData->movementDepartmentNewID = $movementDepartmentNewID;
                 $movementData->movementAppointmentNew = $personAppointmentNew;
@@ -90,6 +107,14 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
                 $movementData->movementAppointmentOldID = ($personDB->getAppointmentID() !== $movementAppointmentNewID ? $personDB->getAppointmentID() : null);
                 $movementData->movementAppointmentOld = ($personDB->getAppointment() !== $personAppointmentNew ? $personDB->getAppointment() : null);
             } else {
+                //проверяем, содержится ли указанная информация в базе для исключения дублирования
+                $movementExists = SfrPersonMovements::whereJsonContains('movementdata->movementPid', $movementPid)
+                    ->whereJsonContains('movementdata->movementEventDate', $personMovementDate)
+                    ->whereJsonContains('movementdata->movementDepartmentNew', $personDepartmentNew)
+                    ->whereJsonContains('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
+                    ->whereJsonContains('movementdata->movementAppointmentNew', $personAppointmentNew)
+                    ->whereJsonContains('movementdata->movementAppointmentNewID', $movementAppointmentNewID)
+                    ->get();
                 $movementData->movementDepartmentNew = $personDepartmentNew;
                 $movementData->movementDepartmentNewID = $movementDepartmentNewID;
                 $movementData->movementAppointmentNew = $personAppointmentNew;
@@ -99,13 +124,13 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             $movementData->movementEventDate = $personMovementDate;
 
             dump($movementData);
-
+            dump($movementExists);
             $movementToDBModel = new SfrPersonMovements();
             $movementToDBModel->pid = $movementPid;
             $movementToDBModel->movementdata = $movementData;
             $movementToDBModel->movementtype = $personStatus;
             $movementToDBModel->movementeventdate = $personMovementDate;
-            $movementToDBModel->save();
+            //$movementToDBModel->save();
         });
 
     }
