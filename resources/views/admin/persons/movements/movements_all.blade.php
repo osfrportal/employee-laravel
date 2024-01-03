@@ -33,20 +33,48 @@
                         data: 'pid',
                         name: 'pid'
                     },
+                    {
+                        data: 'movementdata',
+                    },
+                    {
+                        data: 'movementdata',
+                    },
                 ],
                 columnDefs: [{
-                    targets: 1,
-                    orderable: true,
-                    searchable: true,
-                    className: 'dt-body-center',
-                    render: function(data, type, full, meta) {
-                        //console.table(JSON.stringify(data));
-                        //console.table(data);
-                        let arr = Object.values(data);
-                        //console.table(arr);
-                        return arr[1];
-                    }
-                }, ],
+                        targets: 0,
+                        orderable: true,
+                        searchable: true,
+                        className: 'dt-body-center',
+                    },
+                    {
+                        targets: 1,
+                        orderable: true,
+                        searchable: true,
+                        className: 'dt-body-center',
+                        render: function(data, type, full, meta) {
+                            let arr = Object.values(data);
+                            return arr[1];
+                        }
+                    },
+                    {
+                        targets: 2,
+                        orderable: true,
+                        searchable: true,
+                        className: 'dt-body-center',
+                    },
+                    {
+                        targets: 3,
+                        orderable: true,
+                        searchable: true,
+                        className: 'dt-body-center',
+                    },
+                    {
+                        targets: 4,
+                        orderable: true,
+                        searchable: true,
+                        className: 'dt-body-center',
+                    },
+                ],
             });
         });
     </script>
