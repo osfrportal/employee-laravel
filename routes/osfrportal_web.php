@@ -117,6 +117,8 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFRPersonController::class)->name('persons.')->prefix('persons')->group(function () {
+        Route::get('/movements/all', 'movementsAllShow')->name('movements.all');
+
         Route::post('/resetpassword', 'sendRandPassword')->name('resetpassword');
         Route::get('/detail/{personid}', 'ShowPersonDetail')->name('detail');
         Route::get('/print/docssigns/{personid}', 'genDocsSignListPrint')->name('print.docs.signlist');

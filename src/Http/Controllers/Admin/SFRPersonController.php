@@ -56,10 +56,10 @@ class SFRPersonController extends Controller
         $redisKey = 'admin:persons:cache:listall';
         if (!Redis::exists($redisKey)) {
             $sfrpersonsFromDB = SFRPersonData::collection(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
-            Redis::setex($redisKey, $durationInSeconds, json_encode($sfrpersonsFromDB));            
+            Redis::setex($redisKey, $durationInSeconds, json_encode($sfrpersonsFromDB));
         }
         //$this->authorize($this->permissionView);
-        
+
 
         $sfrpersons = json_decode(Redis::get($redisKey));
 
@@ -219,5 +219,12 @@ class SFRPersonController extends Controller
             $this->flasher_interface->addSuccess('Пароль сгенерирован и отправлен на почту работнику');
             return redirect()->route('osfrportal.admin.persons.detail', ['personid' => $personid]);
         }
+    }
+
+
+
+    public function movementsAllShow()
+    {
+        return view('osfrportal::admin.persons.movements.movements_all');
     }
 }

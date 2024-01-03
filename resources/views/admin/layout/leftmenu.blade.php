@@ -14,7 +14,8 @@
                             </li>
                         @endcan
                         @can('personmovements-view')
-                            <li><a class="dropdown-item" href="#">Кадровые перемещения</a></li>
+                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.persons.movements.all') }}">Кадровые
+                                    перемещения</a></li>
                         @endcan
                     </ul>
                 </div>
