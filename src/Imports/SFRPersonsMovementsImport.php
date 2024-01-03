@@ -78,11 +78,10 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             if ($personStatus->equals(PersonsMovementsEnum::PersonFire())) {
                 //проверяем, содержится ли указанная информация в базе для исключения дублирования
                 $movementExists = SfrPersonMovements::where('movementdata->movementPid', $movementPid)
-                    //->where('movementdata->movementEventDate', $personMovementDate)
-                    //->where('movementdata->movementDepartmentOld', $personDepartmentNew)
-                    //->where('movementdata->movementDepartmentOldID', $movementDepartmentNewID)
-                    //->where('movementdata->movementAppointmentOld', $personAppointmentNew)
-                    //->where('movementdata->movementAppointmentOldID', $movementAppointmentNewID)
+                    ->where('movementdata->movementDepartmentOld', $personDepartmentNew)
+                    ->where('movementdata->movementDepartmentOldID', $movementDepartmentNewID)
+                    ->where('movementdata->movementAppointmentOld', $personAppointmentNew)
+                    ->where('movementdata->movementAppointmentOldID', $movementAppointmentNewID)
                     ->get();
                 $movementData->movementDepartmentOld = $personDepartmentNew;
                 $movementData->movementDepartmentOldID = $movementDepartmentNewID;
@@ -91,7 +90,6 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             } elseif ($personStatus->equals(PersonsMovementsEnum::PersonMove())) {
                 //проверяем, содержится ли указанная информация в базе для исключения дублирования
                 $movementExists = SfrPersonMovements::where('movementdata->movementPid', $movementPid)
-                    ->where('movementdata->movementEventDate', $personMovementDate)
                     ->where('movementdata->movementDepartmentNew', $personDepartmentNew)
                     ->where('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
                     ->where('movementdata->movementAppointmentNew', $personAppointmentNew)
@@ -109,7 +107,6 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             } else {
                 //проверяем, содержится ли указанная информация в базе для исключения дублирования
                 $movementExists = SfrPersonMovements::where('movementdata->movementPid', $movementPid)
-                    ->where('movementdata->movementEventDate', $personMovementDate)
                     ->where('movementdata->movementDepartmentNew', $personDepartmentNew)
                     ->where('movementdata->movementDepartmentNewID', $movementDepartmentNewID)
                     ->where('movementdata->movementAppointmentNew', $personAppointmentNew)
@@ -121,7 +118,6 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
                 $movementData->movementAppointmentNewID = $movementAppointmentNewID;
             }
             $movementData->movementSnils = $personSnils;
-            $movementData->movementEventDate = $personMovementDate;
 
             dump($movementData);
             dump($movementExists);
