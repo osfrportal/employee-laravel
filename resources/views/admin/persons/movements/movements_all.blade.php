@@ -24,7 +24,6 @@
                 ordering: true,
                 order: [
                     [1, 'desc'],
-                    [3, 'asc'],
                 ],
                 ajax: "{{ route('osfrportal.admin.persons.movements.all') }}",
                 columns: [{
