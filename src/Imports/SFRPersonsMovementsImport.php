@@ -71,9 +71,17 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             if ($departmentDB) {
                 $movementDepartmentNewID = $departmentDB->unitid;
             }
+            $movementData = new SFRPersonMovementData(movementType: $personStatus);
+            $movementData->movementPid = $movementPid;
+            $movementData->movementPersonFullFIO = $personFullFIO;
+            $movementData->movementDepartmentNew = $personDepartmentNew;
+            $movementData->movementDepartmentNewID = $movementDepartmentNewID;
+            $movementData->movementAppointmentNew = $personAppointmentNew;
+            $movementData->movementAppointmentNewID = $movementAppointmentNewID;
+            $movementData->movementSnils = $personSnils;
+            $movementData->movementEventDate = $personMovementDate;
 
-
-            dump(new SFRPersonMovementData(movementType: $personStatus, movementPid: $movementPid, movementPersonFullFIO: $personFullFIO, movementDepartmentNew: $personDepartmentNew, movementDepartmentNewID: $movementDepartmentNewID, movementAppointmentNew: $personAppointmentNew, movementAppointmentNewID: $movementAppointmentNewID, movementSnils: $personSnils, movementEventDate: $personMovementDate));
+            dump($movementData);
         });
 
     }
