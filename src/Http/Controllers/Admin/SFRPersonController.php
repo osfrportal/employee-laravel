@@ -23,6 +23,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocTypes;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocGroups;
 use Osfrportal\OsfrportalLaravel\Models\SfrSignatures;
+use Osfrportal\OsfrportalLaravel\Models\SfrPersonMovements;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
@@ -223,8 +224,15 @@ class SFRPersonController extends Controller
 
 
 
-    public function movementsAllShow()
+    public function movementsAllShow(Request $request)
     {
-        return view('osfrportal::admin.persons.movements.movements_all');
+        if ($request->ajax()) {
+            $data = SfrPersonMovements::select('*');
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        } else {
+            return view('osfrportal::admin.persons.movements.movements_all');
+        }
     }
 }
