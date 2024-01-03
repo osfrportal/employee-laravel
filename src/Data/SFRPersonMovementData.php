@@ -25,7 +25,7 @@ class SFRPersonMovementData extends Data
         public ?string $movementAppointmentNewID = null,
         public ?string $movementAppointmentOld = null,
         public ?string $movementAppointmentOldID = null,
-    #[WithCast(DateTimeInterfaceCast::class, format: 'd-m-Y')]
+    #[WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d')]
         public ?Carbon $movementEventDate = null
     ) {
     }
