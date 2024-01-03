@@ -229,6 +229,7 @@ class SFRPersonController extends Controller
         if ($request->ajax()) {
             $data = SfrPersonMovements::select('*');
             return Datatables::of($data)
+                ->setRowId('movid')
                 ->addIndexColumn()
                 ->make(true);
         } else {
