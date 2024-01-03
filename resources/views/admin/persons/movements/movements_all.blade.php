@@ -75,8 +75,11 @@
                         searchable: true,
                         className: 'dt-body-left dt-head-center',
                         render: function(data, type, full, meta) {
-                            let arr = Object.entries(data);
+                            //let arr = Object.entries(data);
                             //console.table(arr);
+                            if (data.movementType == 2) {
+                                return data.movementAppointmentOld;
+                            }
                             return data.movementAppointmentNew;
                         }
                     },
@@ -86,8 +89,11 @@
                         searchable: true,
                         className: 'dt-body-left dt-head-center',
                         render: function(data, type, full, meta) {
-                            let arr = Object.entries(data);
+                            //let arr = Object.entries(data);
                             //console.table(arr);
+                            if (data.movementType == 2) {
+                                return data.movementDepartmentOld;
+                            }
                             return data.movementDepartmentNew;
                         }
                     },
