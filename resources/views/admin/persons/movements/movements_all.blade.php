@@ -43,8 +43,8 @@
                         //console.table(JSON.stringify(data));
                         //console.table(data);
                         let arr = Object.values(data);
-                        console.table(arr);
-                        return data;
+                        //console.table(arr);
+                        return arr[1];
                     }
                 }, ],
             });
