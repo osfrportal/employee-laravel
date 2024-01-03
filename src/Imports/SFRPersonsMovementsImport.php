@@ -84,10 +84,10 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
                 $movementData->movementAppointmentNew = $personAppointmentNew;
                 $movementData->movementAppointmentNewID = $movementAppointmentNewID;
                 //на момент импорта в базе содержится информация о старой должности
-                $movementData->movementDepartmentOld = $personDB->getUnit();
-                $movementData->movementDepartmentOldID = $personDB->getUnitID();
-                $movementData->movementAppointmentOldID = $personDB->getAppointmentID();
-                $movementData->movementAppointmentOld = $personDB->getAppointment();
+                $movementData->movementDepartmentOld = ($personDB->getUnit() !== $personDepartmentNew ? $personDB->getUnit() : null);
+                $movementData->movementDepartmentOldID = ($personDB->getUnitID() !== $movementDepartmentNewID ? $personDB->getUnitID() : null);
+                $movementData->movementAppointmentOldID = ($personDB->getAppointmentID() !== $movementAppointmentNewID ? $personDB->getAppointmentID() : null);
+                $movementData->movementAppointmentOld = ($personDB->getAppointment() !== $personAppointmentNew ? $personDB->getAppointment() : null);
             } else {
                 $movementData->movementDepartmentNew = $personDepartmentNew;
                 $movementData->movementDepartmentNewID = $movementDepartmentNewID;
