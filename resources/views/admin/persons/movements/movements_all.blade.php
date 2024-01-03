@@ -104,7 +104,7 @@
                     },
                 ],
                 createdRow: function(row, data, dataIndex) {
-                    console.table(data);
+                    //console.table(data);
                     if (data['movementdata'].movementType == 2) {
                         $(row).addClass('table-danger');
                     }
