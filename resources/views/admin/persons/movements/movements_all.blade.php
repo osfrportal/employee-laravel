@@ -76,7 +76,7 @@
                         className: 'dt-body-left dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.entries(data);
-                            console.table(arr);
+                            //console.table(arr);
                             return data.movementAppointmentNew;
                         }
                     },
@@ -87,7 +87,7 @@
                         className: 'dt-body-left dt-head-center',
                         render: function(data, type, full, meta) {
                             let arr = Object.entries(data);
-                            console.table(arr);
+                            //console.table(arr);
                             return data.movementDepartmentNew;
                         }
                     },
