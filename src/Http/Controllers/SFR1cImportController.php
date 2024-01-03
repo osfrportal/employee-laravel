@@ -46,7 +46,7 @@ class SFR1cImportController extends Controller
     {
         parent::__construct();
         $this->now_date_for_import = Carbon::now(config('app.timezone', 'Europe/Moscow'))->format('Y-m-d');
-        $this->now_date_for_import = '2023-09-30';
+        $this->now_date_for_import = '2023-10-31';
         $this->absence_file_name = sprintf('otsutstvie_058 %s.txt', $this->now_date_for_import);
         $this->vacation_file_name = sprintf('vacation_058 %s.txt', $this->now_date_for_import);
         $this->dekret_file_name = sprintf('dekret_058 %s.txt', $this->now_date_for_import);
