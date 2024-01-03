@@ -39,7 +39,7 @@
                     className: 'dt-body-center',
                     render: function(data, type, full, meta) {
                         var jsondata = JSON.stringify(data);
-                        console.log(jsondata['label']);
+                        console.log(jsondata.label);
                         return jsondata;
                     }
                 }, ],
