@@ -4,6 +4,7 @@
         <table class="table table-striped table-sm dataTable no-footer" id="table-movements">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Дата события</th>
                     <th>Событие</th>
                     <th>Работник</th>
@@ -22,10 +23,14 @@
                 serverSide: true,
                 ordering: true,
                 order: [
-                    [0, 'desc'],
+                    [1, 'desc'],
                 ],
                 ajax: "{{ route('osfrportal.admin.persons.movements.all') }}",
                 columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
                         data: 'movementeventdate',
                         name: 'movementeventdate'
                     },
@@ -44,14 +49,14 @@
                     },
                 ],
                 columnDefs: [{
-                        targets: 0,
+                        targets: 1,
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center dt-head-center',
                         render: DataTable.render.date(),
                     },
                     {
-                        targets: 1,
+                        targets: 2,
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center dt-head-center',
@@ -61,7 +66,7 @@
                         }
                     },
                     {
-                        targets: 2,
+                        targets: 3,
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center dt-head-center',
@@ -70,7 +75,7 @@
                         }
                     },
                     {
-                        targets: 3,
+                        targets: 4,
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-left dt-head-center',
@@ -81,7 +86,7 @@
                         }
                     },
                     {
-                        targets: 4,
+                        targets: 5,
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-left dt-head-center',
