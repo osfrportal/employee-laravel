@@ -40,8 +40,9 @@
                     searchable: true,
                     className: 'dt-body-center',
                     render: function(data, type, full, meta) {
-                        console.table(JSON.stringify(data));
+                        //console.table(JSON.stringify(data));
                         console.table(data);
+                        console.log(data['label']);
                         return data;
                     }
                 }, ],
