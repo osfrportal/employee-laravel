@@ -29,10 +29,11 @@
                     <ul class="dropdown-menu dropdown-menu-lg-end">
                         @can('stamps-manage')
                             <li><a class="dropdown-item" href="{{ route('osfrportal.admin.stamps.all') }}"><i
-                                        class="ti ti-disk"></i> Металлические печати</a></li>
+                                        class="ti ti-disc"></i> Металлические печати</a></li>
                         @endcan
                         @can('flash-manage')
-                            <li><a class="dropdown-item" href="#">Устройства хранения данных</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="ti ti-device-usb"></i> Устройства хранения
+                                    данных</a></li>
                         @endcan
                         @can('tokens-manage')
                             <li><a class="dropdown-item" href="#">JaCarta/RuToken</a></li>
