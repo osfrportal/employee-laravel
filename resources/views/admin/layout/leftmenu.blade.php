@@ -28,7 +28,8 @@
                         aria-expanded="false">Бизнес ресурсы</a>
                     <ul class="dropdown-menu dropdown-menu-lg-end">
                         @can('stamps-manage')
-                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.stamps.all') }}">Металлические
+                            <li><a class="dropdown-item" href="{{ route('osfrportal.admin.stamps.all') }}"><i
+                                        class="ti ti-disk"></i> Металлические
                                     печати</a></li>
                         @endcan
                         @can('flash-manage')
