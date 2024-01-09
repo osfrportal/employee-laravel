@@ -39,10 +39,13 @@
         <div class="card mb-4">
             <div class="card-header">Работник</div>
             <div class="card-body">
-                <select class="form-select form-select-sm mb-3" id="js-persons-ajax" name="personid"
-                    data-placeholder="Выберите работника" data-allow-clear="true" data-minimum-input-length="4"
-                    data-ajax--delay="500" data-language="ru" data-selection-css-class="select2--small"
-                    data-dropdown-css-class="select2--small"></select>
+                <select class="form-select form-select-sm mb-3 @error('personid') is-invalid @enderror" id="js-persons-ajax"
+                    name="personid" data-placeholder="Выберите работника" data-allow-clear="true"
+                    data-minimum-input-length="4" data-ajax--delay="500" data-language="ru"
+                    data-selection-css-class="select2--small" data-dropdown-css-class="select2--small"></select>
+                @error('personid')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
         <div class="mb-3">
