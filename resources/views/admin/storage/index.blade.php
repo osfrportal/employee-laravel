@@ -45,7 +45,7 @@
                 order: [
                     [0, 'desc'],
                 ],
-                ajax: "{{ route('osfrportal.admin.persons.movements.all') }}",
+                ajax: "{{ route('osfrportal.admin.storage.index') }}",
                 columns: [{
                         data: 'stornumber',
                     },
