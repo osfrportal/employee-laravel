@@ -35,6 +35,14 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    <label class="mb-1" for="storvolume">Емкость носителя в мегабайтах:</label>
+                    <input class="form-control form-control-sm @error('storvolume') is-invalid @enderror" id="storvolume"
+                        name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}">
+                    @error('storvolume')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label class="mb-1" for="stornumber">Учетный номер:</label>
                     <input class="form-control form-control-sm @error('stornumber') is-invalid @enderror" id="stornumber"
                         name="stornumber" type="text" value="{{ old('stornumber') ?? '' }}">
