@@ -81,6 +81,14 @@ Breadcrumbs::for('osfrportal.admin.crypto.new', function (BreadcrumbTrail $trail
 });
 /**
  * Администрирование
+ * Устройства хранения данных
+ */
+Breadcrumbs::for('osfrportal.admin.storage.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin');
+    $trail->push('Устройства хранения данных', route('osfrportal.admin.storage.index'));
+});
+/**
+ * Администрирование
  * Конфигурация портала
  */
 Breadcrumbs::for('osfrportal.admin.sysconfig', function (BreadcrumbTrail $trail): void {
