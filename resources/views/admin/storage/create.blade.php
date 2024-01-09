@@ -2,6 +2,13 @@
 
 @section('content')
     create form
+    @foreach ($StorageTypes as $storageType)
+        @dump($storageType)
+    @endforeach
+
+    @foreach ($StorageCategoryTypes as $storageCategoryType)
+        @dump($storageCategoryType)
+    @endforeach
     <div class="container">
         <form method="POST" action="{{ route('osfrportal.admin.storage.store') }}">
             @csrf
