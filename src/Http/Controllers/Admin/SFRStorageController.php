@@ -8,6 +8,7 @@ use Yajra\DataTables\DataTables;
 use Osfrportal\OsfrportalLaravel\Enums\StorageTypesEnum;
 use Osfrportal\OsfrportalLaravel\Enums\StorageCategoryTypesEnum;
 
+use Osfrportal\OsfrportalLaravel\Models\SfrStorage;
 
 class SFRStorageController extends Controller
 {
