@@ -38,7 +38,8 @@
                     <label class="mb-1" for="storvolume">Емкость носителя:</label>
                     <div class="input-group">
                         <input class="form-control form-control-sm @error('storvolume') is-invalid @enderror"
-                            id="storvolume" name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}">
+                            id="storvolume" name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}"
+                            size="12">
                         <span class="input-group-text" id="basic-addon2">Мегабайт</span>
                     </div>
                     @error('storvolume')
