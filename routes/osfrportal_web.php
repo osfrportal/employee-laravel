@@ -251,7 +251,7 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
 
 Route::middleware('doNotCacheResponse')->get('/test-staff', function () {
     ResponseCache::clear();
-    Auth::user()->assignRole('ozi-staff');
+    //Auth::user()->assignRole('ozi-staff');
     dump('DONE');
 });
 
