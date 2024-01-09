@@ -249,7 +249,7 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
     $sfruser->save();
 });
 
-Route::middleware('doNotCacheResponse')->get('/test2', function () {
+Route::middleware('doNotCacheResponse')->get('/test-staff', function () {
     ResponseCache::clear();
     Auth::user()->assignRole('ozi-staff');
 });
