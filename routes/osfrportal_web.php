@@ -51,6 +51,7 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
 
     Route::controller(SFRStorageController::class)->name('storage.')->prefix('storage')->group(function () {
         Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'create')->name('store');
         Route::get('/', 'index')->name('index');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
