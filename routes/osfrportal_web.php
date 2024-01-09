@@ -26,6 +26,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRLogsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFROtrsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRInfoSystemsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRAdminDashboardController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRStorageController;
 use Illuminate\Support\Facades\Storage;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
@@ -46,6 +47,10 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
 
     Route::controller(SFRMainteranceAdminController::class)->name('mainterance.')->prefix('mainterance')->group(function () {
         Route::get('/', 'mainteranceIndex')->name('index');
+    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+
+    Route::controller(SFRStorageController::class)->name('storage.')->prefix('storage')->group(function () {
+        Route::get('/', 'index')->name('index');
     })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
 
     Route::controller(SFRInfoSystemsController::class)->name('infosystems.')->prefix('infosystems')->group(function () {
