@@ -45,6 +45,7 @@ class SFRPersonController extends Controller
 {
     private $permissionManage = 'person-manage';
     private $permissionView = 'person-view';
+    private $permissionMovementsView = 'personmovements-view';
 
     /**
      * ----------------------------
@@ -226,6 +227,8 @@ class SFRPersonController extends Controller
 
     public function movementsAllShow(Request $request)
     {
+        $this->authorize($this->permissionMovementsView);
+
         if ($request->ajax()) {
             $data = SfrPersonMovements::select('*');
             return Datatables::of($data)

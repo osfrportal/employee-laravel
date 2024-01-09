@@ -3,7 +3,7 @@
     <ul class="nav flex-column">
         <li class="nav-item"><a class="nav-link {{ active_link('osfrportal.admin.dashboard') }}"
                 href="{{ route('osfrportal.admin.dashboard') }}">Административный раздел</a></li>
-        @canany(['person-view', 'person-manage'])
+        @canany(['person-view', 'person-manage', 'personmovements-view'])
             <ul class="nav flex-column px-3">
                 <div class="dropend">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
