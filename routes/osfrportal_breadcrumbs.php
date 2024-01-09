@@ -89,7 +89,7 @@ Breadcrumbs::for('osfrportal.admin.storage.index', function (BreadcrumbTrail $tr
 });
 Breadcrumbs::for('osfrportal.admin.storage.create', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin.storage.index');
-    $trail->push('Добавление', route('osfrportal.admin.storage.create'));
+    $trail->push('Добавление устройства хранения', route('osfrportal.admin.storage.create'));
 });
 /**
  * Администрирование

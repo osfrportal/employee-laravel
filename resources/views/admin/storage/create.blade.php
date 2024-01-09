@@ -68,18 +68,39 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label class="mb-1" for="storarrivedfrom">Работник:</label>
+                    <select class="form-select form-select-sm mb-3 @error('personid') is-invalid @enderror"
+                        id="js-persons-ajax" name="personid" data-placeholder="Выберите работника" data-allow-clear="true"
+                        data-minimum-input-length="4" data-ajax--delay="500" data-language="ru"
+                        data-selection-css-class="select2--small" data-dropdown-css-class="select2--small"></select>
+                    @error('personid')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
         <div class="card mb-4">
-            <div class="card-header">Работник</div>
+            <div class="card-header">Снятие с учета</div>
             <div class="card-body">
-                <select class="form-select form-select-sm mb-3 @error('personid') is-invalid @enderror" id="js-persons-ajax"
-                    name="personid" data-placeholder="Выберите работника" data-allow-clear="true"
-                    data-minimum-input-length="4" data-ajax--delay="500" data-language="ru"
-                    data-selection-css-class="select2--small" data-dropdown-css-class="select2--small"></select>
-                @error('personid')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+                <div class="mb-3">
+                    <label class="mb-1" for="stordestroydate">Дата документа о снятии с учета:</label>
+                    <input id="stordestroydate" type="date" name="stordestroydate"
+                        class="form-control form-control-sm @error('stordestroydate') is-invalid @enderror"
+                        value="{{ old('stordestroydate') ?? '' }}" />
+                    @error('stordestroydate')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="mb-1" for="stordestroydoc">Номер документа о снятии с учета:</label>
+                    <input id="stordestroydoc" type="text" name="stordestroydoc"
+                        class="form-control form-control-sm @error('stordestroydoc') is-invalid @enderror"
+                        value="{{ old('stordestroydoc') ?? '' }}" />
+                    @error('stordestroydoc')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
         <div class="mb-3">
