@@ -37,4 +37,9 @@ class SFRStorageController extends Controller
         $StorageCategoryTypes = StorageCategoryTypesEnum::toArray();
         return view('osfrportal::admin.storage.create', ['StorageTypes' => $StorageTypes, 'StorageCategoryTypes' => $StorageCategoryTypes]);
     }
+
+    public function store(Request $request)
+    {
+        dump($request->all());
+    }
 }
