@@ -20,12 +20,12 @@ class SFRStorageController extends Controller
     {
         $this->authorize($this->permissionManage);
         if ($request->ajax()) {
-            $data = SfrStorage::select('*');
-            return Datatables::of($data)
+            $model = SfrStorage::with(['person', 'journalcheck'])->select('sfrstorage.*');
+
+            return Datatables::of($model)
                 ->setRowId('storuuid')
                 ->make(true);
         } else {
-            dump(SfrStorage::all());
             return view('osfrportal::admin.storage.index');
         }
     }

@@ -24,4 +24,13 @@ class SfrStorage extends Model
         'stormark' => StorageCategoryTypesEnum::class,
         //'movementdata' => SFRPersonMovementData::class,
     ];
+
+    public function person()
+    {
+        return $this->belongsToMany(SfrPerson::class, 'sfrpersonstorage', 'pid', 'pid')->withTimestamps();
+    }
+    public function journalcheck()
+    {
+        return $this->hasMany(SfrStorageJounalCheck::class, 'storuuid', 'storuuid')->withTimestamps();
+    }
 }
