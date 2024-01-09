@@ -40,7 +40,9 @@ class SFRStorageController extends Controller
 
     public function store(StorageAddNewRequest $request)
     {
-        dump($request->all());
-        dump($request->validated());
+        //dump($request->all());
+        //dump($request->validated());
+        $this->flasher_interface->addSuccess('Устройство хранения успешно добавлено');
+        return redirect()->route('osfrportal.admin.storage.index');
     }
 }
