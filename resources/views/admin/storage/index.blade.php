@@ -34,3 +34,47 @@
         </table>
     </div>
 @endsection
+@push('footer-scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#table-storage').DataTable({
+                dom: '<"top"flp<"clear">>rt<"bottom"ip<"clear">>',
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                order: [
+                    [0, 'desc'],
+                ],
+                ajax: "{{ route('osfrportal.admin.persons.movements.all') }}",
+                columns: [{
+                        data: 'stornumber',
+                    },
+                    {
+                        data: 'stordate',
+                    },
+                    {
+                        data: 'stortype',
+                    },
+                    {
+                        data: 'stormark',
+                    },
+                    {
+                        data: 'storserial',
+                    },
+                    {
+                        data: 'storvolume',
+                    },
+                    {
+                        data: 'storarrivedfrom',
+                    },
+                ],
+                columnDefs: [{
+                    targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    orderable: true,
+                    searchable: true,
+                    className: 'dt-body-center dt-head-center',
+                }, ],
+            });
+        });
+    </script>
+@endpush
