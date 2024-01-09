@@ -10,7 +10,7 @@ use Osfrportal\OsfrportalLaravel\Enums\StorageCategoryTypesEnum;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrStorage;
 use Illuminate\Http\Request;
-
+use Osfrportal\OsfrportalLaravel\Http\Requests\StorageAddNewRequest;
 class SFRStorageController extends Controller
 {
 
@@ -38,8 +38,8 @@ class SFRStorageController extends Controller
         return view('osfrportal::admin.storage.create', ['StorageTypes' => $StorageTypes, 'StorageCategoryTypes' => $StorageCategoryTypes]);
     }
 
-    public function store(Request $request)
+    public function store(StorageAddNewRequest $request)
     {
-        dump($request->all());
+        dd($request->all());
     }
 }
