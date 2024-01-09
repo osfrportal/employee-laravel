@@ -14,6 +14,7 @@ class SFRStorageController extends Controller
 {
     public function index()
     {
+        dump(SfrStorage::all());
         return view('osfrportal::admin.storage.index');
     }
 }
