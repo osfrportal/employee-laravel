@@ -4,7 +4,8 @@
     <div id="buttons_wrapper" class="mb-3">
         <div class="row">
             <div class="col-6 text-start">
-                <a class="btn btn-sm btn-primary" href="#"><i class="ti ti-device-usb icon-size-24"></i>
+                <a class="btn btn-sm btn-primary" href="{{ route('osfrportal.admin.storage.create') }}"><i
+                        class="ti ti-device-usb icon-size-24"></i>
                     Добавить</a>
             </div>
             <div class="col-6 text-end">

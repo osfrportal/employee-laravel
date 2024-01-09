@@ -29,4 +29,10 @@ class SFRStorageController extends Controller
             return view('osfrportal::admin.storage.index');
         }
     }
+
+    public function create()
+    {
+        $this->authorize($this->permissionManage);
+        return view('osfrportal::admin.storage.create');
+    }
 }
