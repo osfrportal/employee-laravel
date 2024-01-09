@@ -35,9 +35,12 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="mb-1" for="storvolume">Емкость носителя в мегабайтах:</label>
-                    <input class="form-control form-control-sm @error('storvolume') is-invalid @enderror" id="storvolume"
-                        name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}">
+                    <label class="mb-1" for="storvolume">Емкость носителя:</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm @error('storvolume') is-invalid @enderror"
+                            id="storvolume" name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}">
+                        <span class="input-group-text" id="basic-addon2">Мегабайт</span>
+                    </div>
                     @error('storvolume')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
