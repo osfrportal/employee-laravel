@@ -40,6 +40,7 @@ class SFRStorageController extends Controller
 
     public function store(StorageAddNewRequest $request)
     {
-        dd($request->all());
+        dump($request->all());
+        dump($request->validated());
     }
 }
