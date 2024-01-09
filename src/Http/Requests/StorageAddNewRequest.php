@@ -18,6 +18,7 @@ class StorageAddNewRequest extends FormRequest
             'stortype' => new EnumRule(StorageTypesEnum::class),
             'stormark' => new EnumRule(StorageCategoryTypesEnum::class),
             'personid' => 'required|uuid',
+            'stordate' => 'required|date',
         ];
     }
     public function enums(): array
@@ -34,6 +35,7 @@ class StorageAddNewRequest extends FormRequest
             'stortype.*' => 'Необходимо выбрать тип stortype',
             'stormark.*' => 'Необходимо выбрать тип stormark',
             '*.uuid' => 'Некорректный формат идентификатора',
+            '*.date' => 'Некорректный формат даты',
             '*.required' => 'Поле обязательно для заполнения',
             '*.required_if' => 'Поле обязательно для заполнения',
             '*.string' => 'Поле должно иметь формат строки',

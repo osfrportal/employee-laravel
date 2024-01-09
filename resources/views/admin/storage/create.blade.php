@@ -34,6 +34,15 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label class="mb-1" for="stordate">Дата постановки на учет:</label>
+                    <input id="stordate" type="date" name="stordate"
+                        class="form-control form-control-sm @error('stordate') is-invalid @enderror"
+                        value="{{ old('stordate') ?? '' }}" />
+                    @error('stordate')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
         <div class="card mb-4">
