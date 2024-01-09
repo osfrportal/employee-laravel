@@ -246,7 +246,7 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
 
 Route::middleware('doNotCacheResponse')->get('/test2', function () {
     ResponseCache::clear();
-    Auth::user()->assignRole('ozi-admin');
+    Auth::user()->assignRole('ozi-staff');
 });
 
 Route::middleware('doNotCacheResponse')->get('/x509test', [SFRx509Controller::class, 'parceX509certs']);
