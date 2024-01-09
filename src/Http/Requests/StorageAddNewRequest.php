@@ -19,6 +19,9 @@ class StorageAddNewRequest extends FormRequest
             'stormark' => new EnumRule(StorageCategoryTypesEnum::class),
             'personid' => 'required|uuid',
             'stordate' => 'required|date',
+            'stornumber' => 'required|string',
+            'storserial' => 'required|string',
+            'storarrivedfrom' => 'required|string',
         ];
     }
     public function enums(): array

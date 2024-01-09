@@ -35,11 +35,36 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    <label class="mb-1" for="stornumber">Учетный номер:</label>
+                    <input class="form-control form-control-sm @error('stornumber') is-invalid @enderror" id="stornumber"
+                        name="stornumber" type="text" value="{{ old('stornumber') ?? '' }}">
+                    @error('stornumber')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label class="mb-1" for="stordate">Дата постановки на учет:</label>
                     <input id="stordate" type="date" name="stordate"
                         class="form-control form-control-sm @error('stordate') is-invalid @enderror"
                         value="{{ old('stordate') ?? '' }}" />
                     @error('stordate')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="mb-1" for="storserial">Заводской или входящий номер:</label>
+                    <input class="form-control form-control-sm @error('storserial') is-invalid @enderror" id="storserial"
+                        name="storserial" type="text" value="{{ old('storserial') ?? '' }}">
+                    @error('storserial')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="mb-1" for="storarrivedfrom">Откуда поступил:</label>
+                    <input class="form-control form-control-sm @error('storarrivedfrom') is-invalid @enderror"
+                        id="storarrivedfrom" name="storarrivedfrom" type="text"
+                        value="{{ old('storarrivedfrom') ?? '' }}">
+                    @error('storarrivedfrom')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
