@@ -68,6 +68,7 @@
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             @foreach ($storageUser as $storage)
+                                @dump($storage)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">

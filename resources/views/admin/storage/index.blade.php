@@ -51,7 +51,7 @@
                     },
                     {
                         data: 'stordate',
-                        render: DataTable.render.date(),
+                        //render: DataTable.render.date(),
                     },
                     {
                         data: 'stortype',
