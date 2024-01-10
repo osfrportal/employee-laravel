@@ -66,13 +66,13 @@
                 </div>
                 <div class="row g-3">
                     <div class="col">
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 has-validation">
                             <div class="form-floating">
                                 <input class="form-control form-control-sm @error('storvolume') is-invalid @enderror"
                                     id="storvolume" name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}">
-                                <span class="input-group-text">Мегабайт</span>
                                 <label for="storvolume">Емкость носителя:</label>
                             </div>
+                            <span class="input-group-text">Мегабайт</span>
 
                             @error('storvolume')
                                 <div class="text-danger">{{ $message }}</div>
