@@ -6,6 +6,24 @@
         <div class="card mb-4">
             <div class="card-header">Добавление устройства хранения</div>
             <div class="card-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control form-control-sm @error('stornumber') is-invalid @enderror"
+                        id="stornumber" name="stornumber" value="{{ old('stornumber') ?? '' }}">
+                    <label for="stornumber">Email address</label>
+                </div>
+                @error('stornumber')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+
+                <div class="mb-3">
+                    <label class="mb-1" for="stordate">Дата постановки на учет:</label>
+                    <input id="stordate" type="date" name="stordate"
+                        class="form-control form-control-sm @error('stordate') is-invalid @enderror"
+                        value="{{ old('stordate') ?? '' }}" />
+                    @error('stordate')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
                 <div class="mb-3">
                     <label class="mb-1" for="stortype">Тип:</label>
                     <select name="stortype" id="stortype"
@@ -45,23 +63,7 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="mb-3">
-                    <label class="mb-1" for="stornumber">Учетный номер:</label>
-                    <input class="form-control form-control-sm @error('stornumber') is-invalid @enderror" id="stornumber"
-                        name="stornumber" type="text" value="{{ old('stornumber') ?? '' }}">
-                    @error('stornumber')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label class="mb-1" for="stordate">Дата постановки на учет:</label>
-                    <input id="stordate" type="date" name="stordate"
-                        class="form-control form-control-sm @error('stordate') is-invalid @enderror"
-                        value="{{ old('stordate') ?? '' }}" />
-                    @error('stordate')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+
                 <div class="mb-3">
                     <label class="mb-1" for="storserial">Заводской или входящий номер:</label>
                     <input class="form-control form-control-sm @error('storserial') is-invalid @enderror" id="storserial"
