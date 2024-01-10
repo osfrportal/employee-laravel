@@ -95,7 +95,8 @@
                             if (data[0]) {
                                 var personProfileUrl =
                                     '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
-                                personProfileUrl = personProfileUrl.replace(':slug', data[0].pid);
+                                personProfileUrl = personProfileUrl.replace(':slug', data[0]
+                                    .personid);
                                 var fullname = data[0].psurname + ' ' + data[0].pname + ' ' + data[
                                         0]
                                     .pmiddlename;
