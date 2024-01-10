@@ -21,7 +21,7 @@ class SFRStorageController extends Controller
     {
         $this->authorize($this->permissionManage);
         if ($request->ajax()) {
-            $model = SfrStorage::with(['person', 'journalcheck'])->select('sfrstorage.*');
+            $model = SfrStorage::with('person')->select('sfrstorage.*');
 
             return Datatables::of($model)
                 ->setRowId('storuuid')
