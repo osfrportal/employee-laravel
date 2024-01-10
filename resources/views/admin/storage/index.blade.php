@@ -58,14 +58,18 @@
                         render: function(data, type, full, meta) {
                             let arr = Object.values(data);
                             return arr[1];
-                        }
+                        },
+                        searchable: false,
+                        orderable: false,
                     },
                     {
                         data: 'stormark',
                         render: function(data, type, full, meta) {
                             let arr = Object.values(data);
                             return arr[1];
-                        }
+                        },
+                        searchable: false,
+                        orderable: false,
                     },
                     {
                         data: 'storserial',

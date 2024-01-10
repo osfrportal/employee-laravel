@@ -26,7 +26,7 @@ class SfrStorage extends Model
         //'movementdata' => SFRPersonMovementData::class,
     ];
 
-    protected $with = ['person', 'journalcheck'];
+    //protected $with = ['person', 'journalcheck'];
 
     public function person()
     {
