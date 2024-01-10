@@ -80,7 +80,7 @@
                     {
                         data: 'person',
                         render: function(data, type, full, meta) {
-                            if (data) {
+                            if (data[0]) {
                                 return data[0].psurname + ' ' + data[0].pname + ' ' + data[0]
                                     .pmiddlename;
                             } else {
