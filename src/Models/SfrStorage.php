@@ -41,10 +41,10 @@ class SfrStorage extends Model
     }
     public function getStorageVolumeAttribute()
     {
-        if ($this->storvolume >= 1000) {
-            $data = sprintf('%s Гб', ($this->storvolume / 1000));
-        } elseif ($this->storvolume >= 999999) {
+        if ($this->storvolume >= 1000000) {
             $data = sprintf('%s Тб', ($this->storvolume / 1000000));
+        } elseif ($this->storvolume >= 1000) {
+            $data = sprintf('%s Гб', ($this->storvolume / 1000));
         } else {
             $data = sprintf('%s Мб', $this->storvolume);
         }
