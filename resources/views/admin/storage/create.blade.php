@@ -87,7 +87,7 @@
                             <span class="input-group-text">Мегабайт</span>
 
                             @error('storvolume')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
