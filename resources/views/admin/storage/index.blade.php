@@ -79,9 +79,9 @@
                         render: function(data, type, full, meta) {
                             var storvolume = Number(data);
                             if (storvolume >= 999) {
-                                var outHtml = (storvolume / 1000) + 'Гб';
+                                var outHtml = (storvolume / 1000) + ' Гб';
                             } else {
-                                var outHtml = storvolume + 'Мб';
+                                var outHtml = storvolume + ' Мб';
                             }
                             return outHtml;
                         },
@@ -107,7 +107,8 @@
                             }
                             return outHtml;
 
-                        }
+                        },
+                        searchable: false,
                     },
                     {
                         data: 'stordestroydate',
