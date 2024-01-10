@@ -27,7 +27,6 @@
                     <th>Емкость носителя</th>
                     <th>Откуда поступил</th>
                     <th>Работник</th>
-                    <th>Отметка о проверке</th>
                     <th>Дата документа о снятии с учета</th>
                     <th>Номер документа о снятии с учета</th>
                 </tr>
@@ -90,9 +89,6 @@
                         }
                     },
                     {
-                        data: 'storarrivedfrom',
-                    },
-                    {
                         data: 'stordestroydate',
                         render: DataTable.render.date(),
                     },
@@ -101,7 +97,7 @@
                     },
                 ],
                 columnDefs: [{
-                    targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
                     orderable: true,
                     searchable: true,
                     className: 'dt-body-center dt-head-center',
