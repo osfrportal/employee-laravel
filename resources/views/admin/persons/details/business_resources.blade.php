@@ -69,7 +69,6 @@
                         <div class="list-group list-group-flush">
                             @foreach ($storageUser as $storage)
                                 @dump($storage->stortype)
-                                @dump($storage->storage_type)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
@@ -80,7 +79,7 @@
                                                 Учетный №{{ $storage->stornumber ?? '' }}
                                             </div>
                                             <small class="text-muted d-block">Тип:
-                                                {{ $storage->stortype ?? '' }}</small>
+                                                {{ $storage->stortype->label ?? '' }}</small>
                                             <small class="text-muted d-block">Дата выдачи
                                                 {{ $storage->storage_date ?? '' }},
                                                 учетный №{{ $storage->stornumber ?? '' }}</small>
