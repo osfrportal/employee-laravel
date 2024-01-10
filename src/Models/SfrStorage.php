@@ -30,7 +30,7 @@ class SfrStorage extends Model
 
     protected $appends = [
         'storage_date',
-        'storage_type',
+        'storage_volume'
     ];
 
     //protected $with = ['person', 'journalcheck'];
@@ -39,9 +39,14 @@ class SfrStorage extends Model
     {
         return Carbon::parse($this->stordate)->format('d.m.Y');
     }
-    public function getStorageTypeAttribute()
+    public function getStorageVolumeAttribute()
     {
-        return $this->stortype;
+        if ($this->storvolume >= 1000) {
+            $data = sprintf('%s Гб', ($this->storvolume / 1000));
+        } else {
+            $data = sprintf('%s Мб', $this->storvolume);
+        }
+        return $data;
     }
     public function person()
     {

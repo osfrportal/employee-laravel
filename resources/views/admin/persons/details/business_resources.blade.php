@@ -68,7 +68,6 @@
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             @foreach ($storageUser as $storage)
-                                @dump($storage->stortype)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
@@ -76,10 +75,12 @@
                                         </div>
                                         <div class="col text-truncate">
                                             <div class="d-block text-truncate">
-                                                Учетный №{{ $storage->stornumber ?? '' }}
+                                                Тип: {{ $storage->stortype->label ?? '' }}
                                             </div>
-                                            <small class="text-muted d-block">Тип:
-                                                {{ $storage->stortype->label ?? '' }}</small>
+                                            <small class="text-muted d-block">Объем:
+                                                {{ $storage->storage_volume ?? '' }}</small>
+                                            <small class="text-muted d-block">Метка категории:
+                                                {{ $storage->stormark->label ?? '' }}</small>
                                             <small class="text-muted d-block">Дата выдачи
                                                 {{ $storage->storage_date ?? '' }},
                                                 учетный №{{ $storage->stornumber ?? '' }}</small>
