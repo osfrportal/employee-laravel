@@ -30,7 +30,7 @@ class SfrStorage extends Model
 
     public function person()
     {
-        return $this->belongsToMany(SfrPerson::class, 'sfrpersonstorage', 'storuuid', 'pid')->using(SfrPersonStorage::class)->select(['pid', 'pname', 'pmiddlename', 'psurname'])->withTimestamps();
+        return $this->belongsToMany(SfrPerson::class, 'sfrpersonstorage', 'storuuid', 'pid')->select(['pid', 'pname', 'pmiddlename', 'psurname'])->using(SfrPersonStorage::class)->withTimestamps();
     }
     public function journalcheck()
     {
