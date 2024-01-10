@@ -5,6 +5,7 @@ namespace Osfrportal\OsfrportalLaravel\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Osfrportal\OsfrportalLaravel\Models\SfrStorage;
 
 class SfrStorageJounalCheck extends Model
 {

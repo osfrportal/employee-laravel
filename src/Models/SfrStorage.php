@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Osfrportal\OsfrportalLaravel\Enums\StorageCategoryTypesEnum;
 use Osfrportal\OsfrportalLaravel\Enums\StorageTypesEnum;
+use Osfrportal\OsfrportalLaravel\Models\SfrStorageJounalCheck;
 
 class SfrStorage extends Model
 {
