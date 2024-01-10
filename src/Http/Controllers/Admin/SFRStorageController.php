@@ -9,6 +9,7 @@ use Osfrportal\OsfrportalLaravel\Enums\StorageTypesEnum;
 use Osfrportal\OsfrportalLaravel\Enums\StorageCategoryTypesEnum;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrStorage;
+use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Illuminate\Http\Request;
 use Osfrportal\OsfrportalLaravel\Http\Requests\StorageAddNewRequest;
 
@@ -55,7 +56,8 @@ class SFRStorageController extends Controller
         $model->stordestroydate = $validated['stordestroydate'];
         $model->stordestroydoc = $validated['stordestroydoc'];
         $model->save();
-        $model->person()->attach($validated['personid']);
+        $person = SfrPerson::find($validated['personid']);
+        $model->person()->attach($person);
 
         $this->flasher_interface->addSuccess('Устройство хранения успешно добавлено');
         return redirect()->route('osfrportal.admin.storage.index');
