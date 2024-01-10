@@ -75,13 +75,15 @@
                                         </div>
                                         <div class="col text-truncate">
                                             <div class="d-block text-truncate">
-                                                Тип: {{ $storage->stortype->label ?? '' }}
+                                                <a href="#{{ $storage->storuuid }}" target="_blank">
+                                                    Тип: {{ $storage->stortype->label ?? '' }}
+                                                    ({{ $storage->storage_volume ?? '' }})
+                                                </a>
                                             </div>
                                             <div class="d-block text-truncate">
-                                                Объем: {{ $storage->storage_volume ?? '' }}
+                                                Серийный номер:
+                                                {{ $storage->storserial ?? '' }}
                                             </div>
-                                            <small class="text-muted d-block">Серийный номер:
-                                                {{ $storage->storserial ?? '' }}</small>
                                             <small class="text-muted d-block">Метка категории:
                                                 {{ $storage->stormark->label ?? '' }}</small>
                                             <small class="text-muted d-block">Дата выдачи
