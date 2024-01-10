@@ -32,23 +32,23 @@
                 </div>
                 <div class="row g-3">
                     <div class="col">
-                        <div class="form-floating">
+                        <div class="form-floating mb-3">
                             <select name="stortype" id="stortype"
-                                class="form-select @error('stortype') is-invalid @enderror">
+                                class="form-select form-select-sm @error('stortype') is-invalid @enderror">
                                 @foreach ($StorageTypes as $storageTypeKey => $storageType)
                                     <option value="{{ $storageTypeKey }}" @selected(old('stortype') == $storageTypeKey)>
                                         {{ $storageType }}
                                     </option>
                                 @endforeach
                             </select>
-                            <label class="mb-1" for="stortype">Тип:</label>
+                            <label for="stortype">Тип:</label>
                             @error('stortype')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-floating">
+                        <div class="form-floating mb-3">
                             <select name="stormark" id="stormark"
                                 class="form-select form-select-sm @error('stormark') is-invalid @enderror">
                                 @foreach ($StorageCategoryTypes as $storageCategoryTypeKey => $storageCategoryType)
@@ -57,32 +57,37 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <label class="mb-1" for="stormark">Метка категории носителя:</label>
+                            <label for="stormark">Метка категории носителя:</label>
                             @error('stormark')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="mb-1" for="storvolume">Емкость носителя:</label>
-                    <div class="input-group w-25">
-                        <input class="form-control form-control-sm @error('storvolume') is-invalid @enderror"
-                            id="storvolume" name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}">
-                        <span class="input-group-text" id="basic-addon2">Мегабайт</span>
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <div class="input-group w-25">
+                                <input class="form-control form-control-sm @error('storvolume') is-invalid @enderror"
+                                    id="storvolume" name="storvolume" type="text" value="{{ old('storvolume') ?? '' }}">
+                                <span class="input-group-text" id="basic-addon2">Мегабайт</span>
+                            </div>
+                            <label for="storvolume">Емкость носителя:</label>
+                            @error('storvolume')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    @error('storvolume')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label class="mb-1" for="storserial">Заводской или входящий номер:</label>
-                    <input class="form-control form-control-sm @error('storserial') is-invalid @enderror" id="storserial"
-                        name="storserial" type="text" value="{{ old('storserial') ?? '' }}">
-                    @error('storserial')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input class="form-control form-control-sm @error('storserial') is-invalid @enderror"
+                                id="storserial" name="storserial" type="text" value="{{ old('storserial') ?? '' }}">
+                            <label for="storserial">Заводской или входящий номер:</label>
+                            @error('storserial')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="mb-1" for="storarrivedfrom">Откуда поступил:</label>
