@@ -117,23 +117,29 @@
         <div class="card mb-4">
             <div class="card-header">Снятие с учета</div>
             <div class="card-body">
-                <div class="mb-3">
-                    <label class="mb-1" for="stordestroydate">Дата документа о снятии с учета:</label>
-                    <input id="stordestroydate" type="date" name="stordestroydate"
-                        class="form-control form-control-sm @error('stordestroydate') is-invalid @enderror"
-                        value="{{ old('stordestroydate') ?? '' }}" />
-                    @error('stordestroydate')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label class="mb-1" for="stordestroydoc">Номер документа о снятии с учета:</label>
-                    <input id="stordestroydoc" type="text" name="stordestroydoc"
-                        class="form-control form-control-sm @error('stordestroydoc') is-invalid @enderror"
-                        value="{{ old('stordestroydoc') ?? '' }}" />
-                    @error('stordestroydoc')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input id="stordestroydate" type="date" name="stordestroydate"
+                                class="form-control form-control-sm @error('stordestroydate') is-invalid @enderror"
+                                value="{{ old('stordestroydate') ?? '' }}" />
+                            <label for="stordestroydate">Дата документа о снятии с учета:</label>
+                            @error('stordestroydate')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input id="stordestroydoc" type="text" name="stordestroydoc"
+                                class="form-control form-control-sm @error('stordestroydoc') is-invalid @enderror"
+                                value="{{ old('stordestroydoc') ?? '' }}" />
+                            <label for="stordestroydoc">Номер документа о снятии с учета:</label>
+                            @error('stordestroydoc')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
