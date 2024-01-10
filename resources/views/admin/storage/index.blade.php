@@ -80,8 +80,13 @@
                     {
                         data: 'person',
                         render: function(data, type, full, meta) {
-                            return data[0].psurname + ' ' + data[0].pname + ' ' + data[0]
-                                .pmiddlename;
+                            if (data) {
+                                return data[0].psurname + ' ' + data[0].pname + ' ' + data[0]
+                                    .pmiddlename;
+                            } else {
+                                return '';
+                            }
+
                         }
                     },
                 ],
