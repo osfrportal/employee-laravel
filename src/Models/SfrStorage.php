@@ -26,6 +26,8 @@ class SfrStorage extends Model
         //'movementdata' => SFRPersonMovementData::class,
     ];
 
+    protected $with = ['person', 'journalcheck'];
+
     public function person()
     {
         return $this->belongsToMany(SfrPerson::class, 'sfrpersonstorage', 'storuuid', 'pid')->using(SfrPersonStorage::class)->withTimestamps();
