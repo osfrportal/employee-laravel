@@ -59,39 +59,38 @@
             @endif
         @endif
 
-
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    Устройства хранения данных, Jacarta/Rutoken
-                </div>
-                <div class="card-body px-0">
-                    @dump($storageUser)
-                    <div class="d-flex align-items-center justify-content-between px-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-usb-drive fa-2x"></i>
-                            <div class="ms-4">
-                                <div class="text-xs text-muted">USB Flash</div>
-                            </div>
+        @if (!is_null($storageUser))
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Устройства хранения данных
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            @foreach ($storageUser as $storage)
+                                <div class="list-group-item list-group-item-success bg-opacity-25">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <div class="ti ti-database icon-size-32"></div>
+                                        </div>
+                                        <div class="col text-truncate">
+                                            <div class="d-block text-truncate">
+                                                Учетный №{{ $storage->stornumber ?? '' }}
+                                            </div>
+                                            <small class="text-muted d-block">Тип:
+                                                {{ $storage->stortype ?? '' }}</small>
+                                            <small class="text-muted d-block">Дата выдачи
+                                                {{ $storage->stordate->format('d.m.Y') ?? '' }},
+                                                учетный №{{ $storage->stornumber ?? '' }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                    {{--
-                        <hr />
-                        <div class="d-flex align-items-center justify-content-between px-4">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('osfrportal/images/logo_token.svg') }}" alt=""
-                                    class="icon-small" />
-                                <div class="ms-4">
-                                    <div class="text-xs text-muted">JaCarta</div>
-                                    <div class="small">Серийный номер: А5588669</div>
-                                </div>
-                            </div>
-                        </div>
-                        --}}
                 </div>
             </div>
-        </div>
-
+        @endif
         @if ($SFRPersonStamps->count() > 0)
             <div class="col">
                 <div class="card">
