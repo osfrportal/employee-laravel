@@ -137,6 +137,21 @@ class SfrPerson extends Model
         return $this->hasMany(SfrPersonMovements::class, 'pid')->orderByDesc('movementeventdate');
     }
 
+    public function SfrPersonStorage()
+    {
+        return $this->belongsToMany(SfrStorage::class, 'sfrpersonstorage', 'storuuid', 'pid')->using(SfrPersonStorage::class)->withTimestamps();
+    }
+
+    public function getPersonStorage()
+    {
+        if (!is_null($this->SfrPersonStorage)) {
+            return $this->SfrPersonStorage;
+        } else {
+            return null;
+        }
+    }
+
+
     /**
      * ID работника в системе Орион ПРО
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

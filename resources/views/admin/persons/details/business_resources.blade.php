@@ -59,22 +59,23 @@
             @endif
         @endif
 
-        {{--
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        Устройства хранения данных, Jacarta/Rutoken
-                    </div>
-                    <div class="card-body px-0">
 
-                        <div class="d-flex align-items-center justify-content-between px-4">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-usb-drive fa-2x"></i>
-                                <div class="ms-4">
-                                    <div class="text-xs text-muted">USB Flash</div>
-                                </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Устройства хранения данных, Jacarta/Rutoken
+                </div>
+                <div class="card-body px-0">
+                    @dump($storageUser)
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-usb-drive fa-2x"></i>
+                            <div class="ms-4">
+                                <div class="text-xs text-muted">USB Flash</div>
                             </div>
                         </div>
+                    </div>
+                    {{--
                         <hr />
                         <div class="d-flex align-items-center justify-content-between px-4">
                             <div class="d-flex align-items-center">
@@ -86,10 +87,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        --}}
                 </div>
             </div>
-            --}}
+        </div>
+
         @if ($SFRPersonStamps->count() > 0)
             <div class="col">
                 <div class="card">
@@ -238,17 +240,22 @@
                                                 @switch($crypto->cryptotype)
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
                                                         <div class="text-xs">Криптопро 4</div>
-                                                        <div class="text-xs">Номер лицензии: {{ $crypto->cryptodata->cryptoLicenseNumber ?? ''}}</div>
-                                                        <div class="text-xs">ПК: {{ $crypto->cryptodata->wsId ?? ''}}</div>
+                                                        <div class="text-xs">Номер лицензии:
+                                                            {{ $crypto->cryptodata->cryptoLicenseNumber ?? '' }}</div>
+                                                        <div class="text-xs">ПК: {{ $crypto->cryptodata->wsId ?? '' }}</div>
                                                     @break
 
                                                     @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
                                                         <div class="text-xs">VipNet Деловая Почта</div>
-                                                        <div class="text-xs">Наименование АП: {{ $crypto->cryptodata->cryptoName ?? ''}}</div>
-                                                        <div class="text-xs">ID АП: {{ $crypto->cryptodata->cryptoId ?? ''}}</div>
-                                                        <div class="text-xs">Имя пользователя АП: {{ $crypto->cryptodata->cryptoUserName ?? ''}}</div>
-                                                        <div class="text-xs">Назначение АП: {{ $crypto->cryptodata->cryptoPurpose ?? ''}}</div>
-                                                        <div class="text-xs">ПК: {{ $crypto->cryptodata->wsId ?? ''}}</div>
+                                                        <div class="text-xs">Наименование АП:
+                                                            {{ $crypto->cryptodata->cryptoName ?? '' }}</div>
+                                                        <div class="text-xs">ID АП: {{ $crypto->cryptodata->cryptoId ?? '' }}
+                                                        </div>
+                                                        <div class="text-xs">Имя пользователя АП:
+                                                            {{ $crypto->cryptodata->cryptoUserName ?? '' }}</div>
+                                                        <div class="text-xs">Назначение АП:
+                                                            {{ $crypto->cryptodata->cryptoPurpose ?? '' }}</div>
+                                                        <div class="text-xs">ПК: {{ $crypto->cryptodata->wsId ?? '' }}</div>
                                                     @break
 
                                                     @default
