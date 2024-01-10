@@ -120,22 +120,22 @@
                 <div class="row g-3">
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input id="stordestroydate" type="date" name="stordestroydate"
-                                class="form-control form-control-sm @error('stordestroydate') is-invalid @enderror"
-                                value="{{ old('stordestroydate') ?? '' }}" />
-                            <label for="stordestroydate">Дата документа о снятии с учета:</label>
-                            @error('stordestroydate')
+                            <input id="stordestroydoc" type="text" name="stordestroydoc"
+                                class="form-control form-control-sm @error('stordestroydoc') is-invalid @enderror"
+                                value="{{ old('stordestroydoc') ?? '' }}" />
+                            <label for="stordestroydoc">Номер документа:</label>
+                            @error('stordestroydoc')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input id="stordestroydoc" type="text" name="stordestroydoc"
-                                class="form-control form-control-sm @error('stordestroydoc') is-invalid @enderror"
-                                value="{{ old('stordestroydoc') ?? '' }}" />
-                            <label for="stordestroydoc">Номер документа о снятии с учета:</label>
-                            @error('stordestroydoc')
+                            <input id="stordestroydate" type="date" name="stordestroydate"
+                                class="form-control form-control-sm @error('stordestroydate') is-invalid @enderror"
+                                value="{{ old('stordestroydate') ?? '' }}" />
+                            <label for="stordestroydate">Дата документа:</label>
+                            @error('stordestroydate')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
