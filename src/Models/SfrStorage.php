@@ -23,6 +23,7 @@ class SfrStorage extends Model
     protected $casts = [
         'stortype' => StorageTypesEnum::class,
         'stormark' => StorageCategoryTypesEnum::class,
+        'stordate' => 'date:d-m-Y',
         //'movementdata' => SFRPersonMovementData::class,
     ];
 
