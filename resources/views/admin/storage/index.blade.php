@@ -77,6 +77,12 @@
                     {
                         data: 'storarrivedfrom',
                     },
+                    {
+                        data: 'person',
+                        render: function(data, type, full, meta) {
+                            return data.psurname + ' ' + data.pname + ' ' + data.pmiddlename;
+                        }
+                    },
                 ],
                 columnDefs: [{
                     targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
