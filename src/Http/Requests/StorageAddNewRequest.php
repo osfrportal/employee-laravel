@@ -20,7 +20,7 @@ class StorageAddNewRequest extends FormRequest
             'personid' => 'required|uuid',
             'stordate' => 'required|date',
             'storvolume' => 'required|integer',
-            'stornumber' => 'required|string',
+            'stornumber' => 'required|string|unique:Osfrportal\OsfrportalLaravel\Models\SfrStorage,stornumber',
             'storserial' => 'required|string',
             'storarrivedfrom' => 'required|string',
             'stordestroydate' => 'nullable|date',
