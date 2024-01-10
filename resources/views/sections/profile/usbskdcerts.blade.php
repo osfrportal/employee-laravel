@@ -50,7 +50,43 @@
                     </div>
                 </div>
             @endif
-
+            @if (!is_null($storageUser))
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Устройства хранения данных
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
+                                @foreach ($storageUser as $storage)
+                                    <div class="list-group-item list-group-item-success bg-opacity-25">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <div class="ti ti-database icon-size-32"></div>
+                                            </div>
+                                            <div class="col text-truncate">
+                                                <div class="d-block text-truncate">
+                                                    Тип: {{ $storage->stortype->label ?? '' }}
+                                                    ({{ $storage->storage_volume ?? '' }})
+                                                </div>
+                                                <div class="d-block text-truncate">
+                                                    Серийный номер:
+                                                    {{ $storage->storserial ?? '' }}
+                                                </div>
+                                                <small class="text-muted d-block">Метка категории:
+                                                    {{ $storage->stormark->label ?? '' }}</small>
+                                                <small class="text-muted d-block">Дата выдачи
+                                                    {{ $storage->storage_date ?? '' }},
+                                                    учетный №{{ $storage->stornumber ?? '' }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             {{--
             <div class="col">
                 <div class="card">
@@ -236,8 +272,10 @@
                                                             <div class="text-xs">VipNet Деловая Почта</div>
                                                             <div class="text-xs">Наименование АП:
                                                                 {{ $crypto->cryptodata->cryptoName }}</div>
-                                                            <div class="text-xs">Имя пользователя АП: {{ $crypto->cryptodata->cryptoUserName ?? ''}}</div>
-                                                            <div class="text-xs">Назначение АП: {{ $crypto->cryptodata->cryptoPurpose ?? ''}}</div>
+                                                            <div class="text-xs">Имя пользователя АП:
+                                                                {{ $crypto->cryptodata->cryptoUserName ?? '' }}</div>
+                                                            <div class="text-xs">Назначение АП:
+                                                                {{ $crypto->cryptodata->cryptoPurpose ?? '' }}</div>
                                                         @break
 
                                                         @default
