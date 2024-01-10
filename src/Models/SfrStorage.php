@@ -30,6 +30,7 @@ class SfrStorage extends Model
 
     protected $appends = [
         'storage_date',
+        'storage_type',
     ];
 
     //protected $with = ['person', 'journalcheck'];
@@ -38,7 +39,10 @@ class SfrStorage extends Model
     {
         return Carbon::parse($this->stordate)->format('d.m.Y');
     }
-
+    public function getStorageTypeAttribute()
+    {
+        return $this->stortype;
+    }
     public function person()
     {
         return $this->belongsToMany(SfrPerson::class, 'sfrpersonstorage', 'storuuid', 'pid')->select(['ppersons.pid AS personid', 'pname', 'pmiddlename', 'psurname'])->using(SfrPersonStorage::class)->withTimestamps();

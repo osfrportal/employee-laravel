@@ -69,6 +69,7 @@
                         <div class="list-group list-group-flush">
                             @foreach ($storageUser as $storage)
                                 @dump($storage)
+                                @dump($storage->storage_type)
                                 <div class="list-group-item list-group-item-success bg-opacity-25">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
