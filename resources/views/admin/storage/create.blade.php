@@ -89,18 +89,19 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input class="form-control form-control-sm @error('storarrivedfrom') is-invalid @enderror"
+                                id="storarrivedfrom" name="storarrivedfrom" type="text"
+                                value="{{ old('storarrivedfrom') ?? '' }}">
+                            <label for="storarrivedfrom">Откуда поступил:</label>
+                            @error('storarrivedfrom')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label class="mb-1" for="storarrivedfrom">Откуда поступил:</label>
-                    <input class="form-control form-control-sm @error('storarrivedfrom') is-invalid @enderror"
-                        id="storarrivedfrom" name="storarrivedfrom" type="text"
-                        value="{{ old('storarrivedfrom') ?? '' }}">
-                    @error('storarrivedfrom')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label class="mb-1" for="storarrivedfrom">Работник:</label>
                     <select class="form-select form-select-sm mb-3 @error('personid') is-invalid @enderror"
                         id="js-persons-ajax" name="personid" data-placeholder="Выберите работника" data-allow-clear="true"
                         data-minimum-input-length="4" data-ajax--delay="500" data-language="ru"
