@@ -77,8 +77,11 @@
                                             <div class="d-block text-truncate">
                                                 Тип: {{ $storage->stortype->label ?? '' }}
                                             </div>
-                                            <small class="text-muted d-block">Объем:
-                                                {{ $storage->storage_volume ?? '' }}</small>
+                                            <div class="d-block text-truncate">
+                                                Объем: {{ $storage->storage_volume ?? '' }}
+                                            </div>
+                                            <small class="text-muted d-block">Серийный номер:
+                                                {{ $storage->storserial ?? '' }}</small>
                                             <small class="text-muted d-block">Метка категории:
                                                 {{ $storage->stormark->label ?? '' }}</small>
                                             <small class="text-muted d-block">Дата выдачи
