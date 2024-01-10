@@ -9,11 +9,19 @@
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control form-control-sm @error('stornumber') is-invalid @enderror"
                         id="stornumber" name="stornumber" value="{{ old('stornumber') ?? '' }}">
-                    <label for="stornumber">Email address</label>
+                    <label for="stornumber">Учетный номер</label>
+                    @error('stornumber')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                @error('stornumber')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control form-control-sm @error('stordate') is-invalid @enderror"
+                        id="stordate" name="stordate" value="{{ old('stordate') ?? '' }}">
+                    <label for="stordate">Дата постановки на учет:</label>
+                    @error('stordate')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <div class="mb-3">
                     <label class="mb-1" for="stordate">Дата постановки на учет:</label>
