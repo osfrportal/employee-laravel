@@ -78,8 +78,10 @@
                         data: 'storvolume',
                         render: function(data, type, full, meta) {
                             var storvolume = Number(data);
-                            if (storvolume >= 999) {
+                            if (storvolume >= 1000) {
                                 var outHtml = (storvolume / 1000) + ' Гб';
+                            } else if (storvolume >= 1000000) {
+                                var outHtml = (storvolume / 1000000) + ' Тб';
                             } else {
                                 var outHtml = storvolume + ' Мб';
                             }
