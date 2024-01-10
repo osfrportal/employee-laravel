@@ -56,9 +56,9 @@ class SFRStorageController extends Controller
         $model->stordestroydate = $validated['stordestroydate'];
         $model->stordestroydoc = $validated['stordestroydoc'];
         $model->save();
-        $model->refresh();
-        $person = SfrPerson::find($validated['personid']);
-        $model->person()->attach($person);
+        //$model->refresh();
+        //$person = SfrPerson::find($validated['personid']);
+        $model->person()->attach($validated['personid']);
 
         $this->flasher_interface->addSuccess('Устройство хранения успешно добавлено');
         return redirect()->route('osfrportal.admin.storage.index');
