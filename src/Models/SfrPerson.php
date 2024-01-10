@@ -144,7 +144,7 @@ class SfrPerson extends Model
 
     public function getPersonStorage()
     {
-        if (!is_null($this->SfrPersonStorage)) {
+        if (!is_null($this->SfrPersonStorage) && ($this->SfrPersonStorage->count() > 0)) {
             return $this->SfrPersonStorage;
         } else {
             return null;
