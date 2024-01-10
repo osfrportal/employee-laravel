@@ -16,6 +16,6 @@ class SfrStorageJounalCheck extends Model
 
     public function storage()
     {
-        return $this->belongsTo(SfrStorageJounalCheck::class, 'storuuid', 'storuuid')->withTimestamps();
+        return $this->belongsTo(SfrStorage::class, 'storuuid', 'storuuid')->withTimestamps();
     }
 }
