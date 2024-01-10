@@ -6,31 +6,29 @@
         <div class="card mb-4">
             <div class="card-header">Добавление устройства хранения</div>
             <div class="card-body">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control form-control-sm @error('stornumber') is-invalid @enderror"
-                        id="stornumber" name="stornumber" value="{{ old('stornumber') ?? '' }}">
-                    <label for="stornumber">Учетный номер</label>
-                    @error('stornumber')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="date" class="form-control form-control-sm @error('stordate') is-invalid @enderror"
-                        id="stordate" name="stordate" value="{{ old('stordate') ?? '' }}">
-                    <label for="stordate">Дата постановки на учет:</label>
-                    @error('stordate')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label class="mb-1" for="stordate">Дата постановки на учет:</label>
-                    <input id="stordate" type="date" name="stordate"
-                        class="form-control form-control-sm @error('stordate') is-invalid @enderror"
-                        value="{{ old('stordate') ?? '' }}" />
-                    @error('stordate')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                class="form-control form-control-sm @error('stornumber') is-invalid @enderror"
+                                id="stornumber" name="stornumber" value="{{ old('stornumber') ?? '' }}">
+                            <label for="stornumber">Учетный номер</label>
+                            @error('stornumber')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="date"
+                                class="form-control form-control-sm @error('stordate') is-invalid @enderror" id="stordate"
+                                name="stordate" value="{{ old('stordate') ?? '' }}">
+                            <label for="stordate">Дата постановки на учет:</label>
+                            @error('stordate')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="mb-1" for="stortype">Тип:</label>
