@@ -81,7 +81,7 @@
                                             <small class="text-muted d-block">Тип:
                                                 {{ $storage->stortype ?? '' }}</small>
                                             <small class="text-muted d-block">Дата выдачи
-                                                {{ $storage->stordate ?? '' }},
+                                                {{ $storage->storage_date ?? '' }},
                                                 учетный №{{ $storage->stornumber ?? '' }}</small>
                                         </div>
                                     </div>

@@ -10,6 +10,9 @@ use Osfrportal\OsfrportalLaravel\Enums\StorageCategoryTypesEnum;
 use Osfrportal\OsfrportalLaravel\Enums\StorageTypesEnum;
 use Osfrportal\OsfrportalLaravel\Models\SfrStorageJounalCheck;
 
+use Carbon\Carbon;
+
+
 class SfrStorage extends Model
 {
     use Uuid, SoftDeletes;
@@ -23,11 +26,18 @@ class SfrStorage extends Model
     protected $casts = [
         'stortype' => StorageTypesEnum::class,
         'stormark' => StorageCategoryTypesEnum::class,
-        'stordate' => 'date:d-m-Y',
-        //'movementdata' => SFRPersonMovementData::class,
+    ];
+
+    protected $appends = [
+        'storage_date',
     ];
 
     //protected $with = ['person', 'journalcheck'];
+
+    public function getStorageDateAttribute()
+    {
+        return Carbon::parse($this->stordate)->format('d.m.Y');
+    }
 
     public function person()
     {
