@@ -12,4 +12,10 @@ class SfrStorageJounalCheck extends Model
     protected $table = 'sfrstoragejournalcheck';
     protected $primaryKey = 'id';
     public $timestamps = true;
+
+
+    public function storage()
+    {
+        return $this->belongsTo(SfrStorageJounalCheck::class, 'storuuid', 'storuuid')->withTimestamps();
+    }
 }
