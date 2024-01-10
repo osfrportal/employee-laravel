@@ -76,6 +76,10 @@
                     },
                     {
                         data: 'storvolume',
+                        render: function(data, type, full, meta) {
+                            var x = Number(data);
+                            return x;
+                        },
                     },
                     {
                         data: 'storarrivedfrom',
@@ -84,11 +88,19 @@
                         data: 'person',
                         render: function(data, type, full, meta) {
                             if (data[0]) {
-                                return data[0].psurname + ' ' + data[0].pname + ' ' + data[0]
+                                var personProfileUrl =
+                                    '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
+                                personProfileUrl = personProfileUrl.replace(':slug', data[0].pid);
+                                var fullname = data[0].psurname + ' ' + data[0].pname + ' ' + data[
+                                        0]
                                     .pmiddlename;
+                                var outHtml = '<a href="' + personProfileUrl +
+                                    '" target="_blank" title="Просмотр профиля работника">' +
+                                    fullname + '</a>';
                             } else {
-                                return '';
+                                var outHtml = '';
                             }
+                            return outHtml;
 
                         }
                     },
