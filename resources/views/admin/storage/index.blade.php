@@ -56,9 +56,17 @@
                     },
                     {
                         data: 'stortype',
+                        render: function(data, type, full, meta) {
+                            let arr = Object.values(data);
+                            return arr[1];
+                        }
                     },
                     {
                         data: 'stormark',
+                        render: function(data, type, full, meta) {
+                            let arr = Object.values(data);
+                            return arr[1];
+                        }
                     },
                     {
                         data: 'storserial',
