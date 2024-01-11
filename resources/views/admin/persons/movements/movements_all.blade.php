@@ -66,8 +66,17 @@
                         orderable: true,
                         searchable: true,
                         className: 'dt-body-center dt-head-center',
-                        render: function(data, type, full, meta) {
-                            return data.movementPersonFullFIO;
+                        render: function(data, type, row, meta) {
+                            var personOutHtml = data.movementPersonFullFIO;
+                            if (row.pid) {
+                                var personProfileUrl =
+                                    '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
+                                personProfileUrl = personProfileUrl.replace(':slug', row.pid);
+                                personOutHtml = '<a href="' + personProfileUrl +
+                                    '" target="_blank" title="Просмотр профиля работника">' + data
+                                    .movementPersonFullFIO + '</a>';
+                            }
+                            return personOutHtml;
                         }
                     },
                     {
