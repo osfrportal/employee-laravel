@@ -25,7 +25,7 @@ class StorageAddNewRequest extends FormRequest
             'storarrivedfrom' => 'required|string',
             'stordestroydate' => 'nullable|date',
             'stordestroydoc' => 'nullable|string',
-            'storpurpose' => 'nullable|max:10',
+            'storpurpose' => 'nullable|max:1000',
         ];
     }
     public function enums(): array

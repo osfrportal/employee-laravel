@@ -77,7 +77,8 @@
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <textarea class="form-control form-control-sm" id="storpurpose" name="storpurpose">{{ old('storpurpose', '') }}</textarea>
+                            <textarea class="form-control form-control-sm @error('stormark') is-invalid @enderror" id="storpurpose"
+                                name="storpurpose">{{ old('storpurpose', '') }}</textarea>
                             <label for="storpurpose">Назначение (описание)</label>
                             @error('storpurpose')
                                 <div class="text-danger">{{ $message }}</div>

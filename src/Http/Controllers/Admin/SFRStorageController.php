@@ -55,6 +55,7 @@ class SFRStorageController extends Controller
         $model->storarrivedfrom = $validated['storarrivedfrom'];
         $model->stordestroydate = $validated['stordestroydate'];
         $model->stordestroydoc = $validated['stordestroydoc'];
+        $model->storpurpose = $validated['storpurpose'];
         $model->save();
         //$model->refresh();
         //$person = SfrPerson::find($validated['personid']);
