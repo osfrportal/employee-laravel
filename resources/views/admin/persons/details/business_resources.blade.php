@@ -89,8 +89,8 @@
                                             <small class="text-muted d-block">Дата выдачи
                                                 {{ $storage->storage_date ?? '' }},
                                                 учетный №{{ $storage->stornumber ?? '' }}</small>
-                                                <small class="text-muted d-block">Описание
-                                                    {{ $storage->storpurpose ?? '' }}</small>
+                                            <small class="text-muted d-block">Описание
+                                                {{ $storage->storpurpose ?? '' }}</small>
                                         </div>
                                     </div>
                                 </div>
