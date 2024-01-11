@@ -104,7 +104,7 @@
                         <div class="form-floating mb-3">
                             <input class="form-control form-control-sm @error('storarrivedfrom') is-invalid @enderror"
                                 id="storarrivedfrom" name="storarrivedfrom" type="text"
-                                value="{{ old('storarrivedfrom') ?? '' }}">
+                                value="{{ old('storarrivedfrom', 'Склад') }}">
                             <label for="storarrivedfrom">Откуда поступил:</label>
                             @error('storarrivedfrom')
                                 <div class="text-danger">{{ $message }}</div>
