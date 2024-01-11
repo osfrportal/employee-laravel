@@ -25,7 +25,7 @@ class SaveInfosystemPostRequest extends FormRequest
         return [
             'isysid' => 'required|uuid',
             'isys_name' => 'required',
-            'parent_isysid' => 'nullable|uuid',
+            'parent_isysid' => 'nullable|uuid|string',
         ];
     }
     /**
