@@ -25,6 +25,7 @@ class StorageAddNewRequest extends FormRequest
             'storarrivedfrom' => 'required|string',
             'stordestroydate' => 'nullable|date',
             'stordestroydoc' => 'nullable|string',
+            'storpurpose' => 'nullable|max:10',
         ];
     }
     public function enums(): array
@@ -45,6 +46,7 @@ class StorageAddNewRequest extends FormRequest
             '*.required' => 'Поле обязательно для заполнения',
             '*.unique' => 'Запись с указанным номером уже существует',
             '*.string' => 'Поле должно иметь формат строки',
+            '*.max' => 'Максимальное количество символов :max',
         ];
     }
 

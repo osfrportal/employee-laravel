@@ -75,6 +75,15 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="form-floating">
+                            <textarea class="form-control form-control-sm" id="storpurpose" name="storpurpose">{{ old('storpurpose', '') }}</textarea>
+                            <label for="storpurpose">Назначение (описание)</label>
+                            @error('storpurpose')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="row g-3">
                     <div class="col">
