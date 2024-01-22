@@ -5,6 +5,7 @@ use Lorisleiva\Actions\Concerns\AsAction;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
+use Carbon\Carbon;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 
 class GetPersonsBirthdaysAction
@@ -16,13 +17,15 @@ class GetPersonsBirthdaysAction
 
     public function handle()
     {
+        $dateFrom = Carbon::now();
+        $dateTo = Carbon::now()->subDays(7);
+
         $personsFromDB = SfrPerson::whereBetween('pbirthdate', [$dateFrom, $dateTo])->get();
         dump($personsFromDB);
         /*
         if (!Redis::exists($this->redisKey)) {
             $personsBirthdaysCollection = collect();
-            $dateFrom = Carbon::now();
-            $dateTo = Carbon::now()->subDays(7);
+            
             $personsFromDB = SfrPerson::whereBetween('pbirthdate', [$dateFrom, $dateTo])->get();
             Redis::setex($this->redisKey, $this->durationInSeconds, json_encode($personsBirthdaysCollection));
         } else {
