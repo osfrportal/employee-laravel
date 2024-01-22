@@ -23,7 +23,7 @@ class GetPersonsBirthdaysAction
         $personsFromDB = SfrPerson::BirthDayBetween($dateFrom, $dateTo)->get();
         foreach ($personsFromDB as $person) {
             if (!is_null($person->getAppointmentID())) {
-                printf('%s - %s | %s - %s<br />', $person->getFullName(), $person->getBirthDate(), $person->getUnit(), $person->getAppointment());
+                printf('%s - %s | %s - %s\r\n<br />', $person->getFullName(), $person->getBirthDate(), $person->getUnit(), $person->getAppointment());
             }
         }
 
