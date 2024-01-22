@@ -18,7 +18,7 @@ class GetPersonsBirthdaysAction
     public function handle()
     {
         $dateFrom = Carbon::now();
-        $dateTo = Carbon::now()->subDays(7);
+        $dateTo = Carbon::now()->addDays(7);
         dump($dateFrom->format('m-d'));
         dump($dateTo->format('m-d'));
 
