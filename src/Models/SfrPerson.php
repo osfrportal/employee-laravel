@@ -267,6 +267,11 @@ class SfrPerson extends Model
         $birthdate = Carbon::parse($this->pbirthdate)->format('d.m.Y');
         return $birthdate;
     }
+    public function getBirthDateWithoutYear()
+    {
+        $birthdate = Carbon::parse($this->pbirthdate)->format('d.m');
+        return $birthdate;
+    }
 
     /**
      *

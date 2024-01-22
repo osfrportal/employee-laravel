@@ -28,7 +28,7 @@ class GetPersonsBirthdaysAction
                 $personArr = [
                     'pid' => $person->getPid(),
                     'fullname' => $person->getFullName(),
-                    'birthdate' => $person->getBirthDate(),
+                    'birthdate' => $person->getBirthDateWithoutYear(),
                     'unit' => $person->getUnit(),
                     'appointment' => $person->getAppointment(),
 
