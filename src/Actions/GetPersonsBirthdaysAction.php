@@ -18,7 +18,7 @@ class GetPersonsBirthdaysAction
     public function handle()
     {
         $dateFrom = Carbon::now();
-        $dateTo = Carbon::now()->subDays(80);
+        $dateTo = Carbon::now()->subDays(150);
 
         $personsFromDB = SfrPerson::whereBetween('pbirthdate', [$dateFrom, $dateTo])->get();
         dump($personsFromDB);
