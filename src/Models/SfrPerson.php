@@ -217,12 +217,12 @@ class SfrPerson extends Model
         $tillMonthDay = $till->format('m-d');
         if ($fromMonthDay <= $tillMonthDay) {
             //normal search within the one year
-            $query->whereRaw("to_char(pbirthdate, '%m-%d') BETWEEN '{$fromMonthDay}' AND '{$tillMonthDay}'");
+            $query->whereRaw("to_char(pbirthdate, 'MM-DD') BETWEEN '{$fromMonthDay}' AND '{$tillMonthDay}'");
         } else {
             //we are overlapping a year, search at end and beginning of year
             $query->where(function ($query) use ($fromMonthDay, $tillMonthDay) {
-                $query->whereRaw("to_char(pbirthdate, '%m-%d') BETWEEN '{$fromMonthDay}' AND '12-31'")
-                    ->orWhereRaw("to_char(pbirthdate, '%m-%d') BETWEEN '01-01' AND '{$tillMonthDay}'");
+                $query->whereRaw("to_char(pbirthdate, 'MM-DD') BETWEEN '{$fromMonthDay}' AND '12-31'")
+                    ->orWhereRaw("to_char(pbirthdate, 'MM-DD') BETWEEN '01-01' AND '{$tillMonthDay}'");
             });
         }
     }
