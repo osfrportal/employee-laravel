@@ -36,7 +36,7 @@ class GetPersonsBirthdaysAction
                 $personsBirthdaysCollection->push($personArr);
             }
         }
-        dump($personsBirthdaysCollection);
+        $personsBirthdaysCollection->dump();
 
         /*
         if (!Redis::exists($this->redisKey)) {
