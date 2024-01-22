@@ -19,6 +19,8 @@ class GetPersonsBirthdaysAction
     {
         $dateFrom = Carbon::now();
         $dateTo = Carbon::now()->subDays(7);
+        dump($dateFrom->format('m-d'));
+        dump($dateTo->format('m-d'));
 
         $personsFromDB = SfrPerson::BirthDayBetween($dateFrom, $dateTo)->get();
         dump($personsFromDB);
