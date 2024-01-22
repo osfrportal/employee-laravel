@@ -20,12 +20,23 @@ class GetPersonsBirthdaysAction
         $dateFrom = Carbon::now();
         $dateTo = Carbon::now()->addDays(7);
 
+        $personsBirthdaysCollection = collect();
+
         $personsFromDB = SfrPerson::BirthDayBetween($dateFrom, $dateTo)->get();
         foreach ($personsFromDB as $person) {
             if (!is_null($person->getAppointmentID())) {
-                printf('%s - %s | %s - %s\r\n<br />', $person->getFullName(), $person->getBirthDate(), $person->getUnit(), $person->getAppointment());
+                $personArr = [
+                    'pid' => $person->getPid(),
+                    'fullname' => $person->getFullName(),
+                    'birthdate' => $person->getBirthDate(),
+                    'unit' => $person->getUnit(),
+                    'appointment' => $person->getAppointment(),
+
+                ];
+                $personsBirthdaysCollection->push($personArr);
             }
         }
+        dump($personsBirthdaysCollection);
 
         /*
         if (!Redis::exists($this->redisKey)) {
