@@ -19,11 +19,14 @@ class GetPersonsBirthdaysAction
     {
         $dateFrom = Carbon::now();
         $dateTo = Carbon::now()->addDays(7);
-        dump($dateFrom->format('m-d'));
-        dump($dateTo->format('m-d'));
 
         $personsFromDB = SfrPerson::BirthDayBetween($dateFrom, $dateTo)->get();
-        dump($personsFromDB);
+        foreach ($personsFromDB as $person) {
+            if (!is_null($person->getAppointmentID())) {
+                dump($person);
+            }
+        }
+
         /*
         if (!Redis::exists($this->redisKey)) {
             $personsBirthdaysCollection = collect();
