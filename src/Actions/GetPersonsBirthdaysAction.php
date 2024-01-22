@@ -36,6 +36,7 @@ class GetPersonsBirthdaysAction
                 $personsBirthdaysCollection->push($personArr);
             }
         }
+        $personsBirthdaysCollection = $personsBirthdaysCollection->sortBy('fullname');
         $personsBirthdaysCollection->dump();
 
         /*
