@@ -18,11 +18,9 @@ class GetPersonsBirthdaysAction
     public function handle()
     {
         $dateFrom = Carbon::now();
-        $dateTo = Carbon::now()->subDays(365);
+        $dateTo = Carbon::now()->subDays(7);
 
-        $personsFromDB = SfrPerson::whereBetween('pbirthdate', [$dateFrom, $dateTo])->get();
-        dump($dateFrom);
-        dump($dateTo);
+        $personsFromDB = SfrPerson::BirthDayBetween($dateFrom, $dateTo)->get();
         dump($personsFromDB);
         /*
         if (!Redis::exists($this->redisKey)) {
