@@ -22,7 +22,7 @@ class GetPersonsBirthdaysAction
 
         $personsBirthdaysCollection = collect();
 
-        $personsFromDB = SfrPerson::BirthDayBetween($dateFrom, $dateTo)->get();
+        $personsFromDB = SfrPerson::BirthDayBetween($dateFrom, $dateTo)->sortBy('pbirthdate')->get();
         foreach ($personsFromDB as $person) {
             if (!is_null($person->getAppointmentID())) {
                 $personArr = [
@@ -36,7 +36,7 @@ class GetPersonsBirthdaysAction
                 $personsBirthdaysCollection->push($personArr);
             }
         }
-        $personsBirthdaysCollection = $personsBirthdaysCollection->sortBy('fullname');
+        //$personsBirthdaysCollection = $personsBirthdaysCollection->sortBy('fullname');
         $personsBirthdaysCollection->dump();
 
         /*
