@@ -164,72 +164,75 @@
                         <div class="card-body p-0">
                             <div class="list-group list-group-flush">
                                 @foreach ($certsUser as $cert)
-                                    <div
-                                        class="list-group-item @if ($cert->revoked) {{ 'list-group-item-danger' }} @else {{ $cert->certvalidto->isPast() ? 'list-group-item-dark' : 'list-group-item-success' }} @endif bg-opacity-25">
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                <div
-                                                    class="ti ti-award{{ $cert->revoked || $cert->certvalidto->isPast() ? '-off' : '' }} icon-size-32">
+                                    @if (!$cert->revoked && !$cert->certvalidto->isPast())
+                                        <div
+                                            class="list-group-item @if ($cert->revoked) {{ 'list-group-item-danger' }} @else {{ $cert->certvalidto->isPast() ? 'list-group-item-dark' : 'list-group-item-success' }} @endif bg-opacity-25">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <div
+                                                        class="ti ti-award{{ $cert->revoked || $cert->certvalidto->isPast() ? '-off' : '' }} icon-size-32">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col text-truncate">
-                                                <div class="ms-4">
-                                                    @if ($cert->revoked)
-                                                        <div class="text-xs">
-                                                            <b>ОТОЗВАН {{ $cert->revokedate->format('d.m.Y') ?? '' }}</b>
+                                                <div class="col text-truncate">
+                                                    <div class="ms-4">
+                                                        @if ($cert->revoked)
+                                                            <div class="text-xs">
+                                                                <b>ОТОЗВАН
+                                                                    {{ $cert->revokedate->format('d.m.Y') ?? '' }}</b>
+                                                            </div>
+                                                        @else
+                                                            @if ($cert->certvalidto->isPast())
+                                                                <div class="text-xs">Истек:
+                                                                    {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                        <div
+                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                            Вид:
+                                                            @switch($cert->certtype)
+                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
+                                                                    Усиленный квалифицированный (УКЭП)
+                                                                @break
+
+                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
+                                                                    Усиленный неквалифицированный (УНЭП)
+                                                                @break
+
+                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::DOMAIN())
+                                                                    Вход в операционную систему (ActiveDirectory)
+                                                                @break
+
+                                                                @default
+                                                                    Не определен
+                                                            @endswitch
                                                         </div>
-                                                    @else
-                                                        @if ($cert->certvalidto->isPast())
-                                                            <div class="text-xs">Истек:
-                                                                {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
+                                                        @if (!is_null($cert->certdata->Ogrn) && !is_null($cert->certdata->Innle))
+                                                            <div class="text-xs">
+                                                                Тип: Сертификат юридического лица
                                                             </div>
                                                         @endif
-                                                    @endif
-                                                    <div
-                                                        class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                        Вид:
-                                                        @switch($cert->certtype)
-                                                            @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
-                                                                Усиленный квалифицированный (УКЭП)
-                                                            @break
-
-                                                            @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
-                                                                Усиленный неквалифицированный (УНЭП)
-                                                            @break
-
-                                                            @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::DOMAIN())
-                                                                Вход в операционную систему (ActiveDirectory)
-                                                            @break
-
-                                                            @default
-                                                                Не определен
-                                                        @endswitch
-                                                    </div>
-                                                    @if (!is_null($cert->certdata->Ogrn) && !is_null($cert->certdata->Innle))
-                                                        <div class="text-xs">
-                                                            Тип: Сертификат юридического лица
+                                                        <div
+                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                            Кому выдан: {{ $cert->certdata->commonName ?? '' }}
                                                         </div>
-                                                    @endif
-                                                    <div
-                                                        class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                        Кому выдан: {{ $cert->certdata->commonName ?? '' }}
-                                                    </div>
-                                                    <div
-                                                        class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                        Срок действия: с
-                                                        {{ $cert->certvalidfrom->format('d.m.Y') ?? '' }}
-                                                        по
-                                                        {{ $cert->certvalidto->format('d.m.Y') ?? '' }}</div>
-                                                    <div class="small text-muted">
-                                                        Номер сертификата: {{ $cert->certserial ?? '' }}
-                                                    </div>
-                                                    <div class="small text-muted">
-                                                        Издатель: {{ $cert->certdata->iss_commonName ?? '' }}
+                                                        <div
+                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                            Срок действия: с
+                                                            {{ $cert->certvalidfrom->format('d.m.Y') ?? '' }}
+                                                            по
+                                                            {{ $cert->certvalidto->format('d.m.Y') ?? '' }}</div>
+                                                        <div class="small text-muted">
+                                                            Номер сертификата: {{ $cert->certserial ?? '' }}
+                                                        </div>
+                                                        <div class="small text-muted">
+                                                            Издатель: {{ $cert->certdata->iss_commonName ?? '' }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
