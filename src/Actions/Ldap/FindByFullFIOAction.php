@@ -15,8 +15,11 @@ class FindByFullFIOAction
         $fullname = $sfrperson->getFullName();
 
         $usersAD = SfrADUser::where('cn', '=', $fullname)->get();
+        return $usersAD;
+        /*
         foreach ($usersAD as $userAD) {
             dump($userAD);
         }
+        */
     }
 }
