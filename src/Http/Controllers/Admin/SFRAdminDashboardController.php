@@ -10,7 +10,7 @@ class SFRAdminDashboardController extends Controller
     {
         $usersAD = SfrADUser::limit(10)->get();
         foreach ($usersAD as $userAD) {
-            $userAD->getFirstAttribute('cn');
+            dump($userAD->getFirstAttribute('cn'));
         }
 
         return view('osfrportal::admin.dashboard.admin_dashboard');
