@@ -67,6 +67,9 @@ class SFRLogsAdminController extends Controller
                 $old = $blank_json->toArray();
             }
             if (!empty($old) && !empty($new)) {
+                dump($old);
+                dump($new);
+                /*
                 foreach ($old as $key => $value) {
                     if ($value !== $new[$key])
                         $differences[$key] = [
@@ -74,6 +77,7 @@ class SFRLogsAdminController extends Controller
                             "new" => $new[$key]
                         ];
                 }
+                */
             }
             $tmparr = Arr::add($tmparr, 'differences', $differences);
 
