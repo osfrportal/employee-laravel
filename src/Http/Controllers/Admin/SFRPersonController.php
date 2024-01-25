@@ -168,7 +168,7 @@ class SFRPersonController extends Controller
         $SFRPersonCrypto = $sfrperson->SfrPersonCrypto;
         $rfidKeysUser = $sfrperson->getPersonRfidCards();
         $storageUser = $sfrperson->getPersonStorage();
-        $SFRPersonDekret = $sfrperson->SfrPersonDekret()->get();
+        $SFRPersonDekret = $sfrperson->SfrPersonDekret()->get()->sortByDesc('dekretend');
 
 
         $docsSignsUser = $this->getPersonDocsSigns($personid);
