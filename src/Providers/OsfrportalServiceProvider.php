@@ -148,7 +148,6 @@ class OsfrportalServiceProvider extends ServiceProvider
         ]);
         $this->registerLogToDBoptions();
         $this->registerBreadCrumbsConfig();
-        $this->registerADConfig();
     }
 
     protected function registerBladeDirectives()
