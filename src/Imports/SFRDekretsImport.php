@@ -54,8 +54,9 @@ class SFRDekretsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
                     $dateDekretEndCarbon = Carbon::parse($dateend);
                     if ($dateDekretEndDBCarbon->ne($dateDekretEndCarbon)) {
                         //Если дата окончания в базе не соответствует дате окончания декрета в файле - обновляем в базе
-                        $resultStart->dekretend = $dateend;
-                        $resultStart->save();
+                        $rowToUpdate = SfrPersonDekret::where('pid', $sfrperson->pid)->where('dekretstart', $resultStart->dekretstart)->where('dekretend', $resultStart->dekretend)->first();
+                        $rowToUpdate->dekretend = $dateend;
+                        $rowToUpdate->save();
 
                         $log_context = [
                             'pid' => $sfrperson->pid,
