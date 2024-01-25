@@ -47,15 +47,16 @@ class SFRDekretsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
             $sfrperson = SFRPerson::where('pinn', $item['sotrudnikfiziceskoe_licoinn'])->first();
             if (!is_null($sfrperson)) {
                 //проверяем, есть ли в базе декрет с указанной датой старта
-                $resultStart = $sfrperson->SfrPersonDekret()->where('dekretstart','=', $datestart)->first();
+                $resultStart = $sfrperson->SfrPersonDekret()->where('dekretstart', '=', $datestart)->first();
                 if (!is_null($resultStart)) {
                     //если нашли такой декрет проверяем дату окончания
                     $dateDekretEndDBCarbon = Carbon::parse($resultStart->dekretend);
                     $dateDekretEndCarbon = Carbon::parse($dateend);
                     if ($dateDekretEndDBCarbon->ne($dateDekretEndCarbon)) {
                         //Если дата окончания в базе не соответствует дате окончания декрета в файле - обновляем в базе
-                        dump($resultStart);
-                        /*
+                        $resultStart->dekretend = $dateend;
+                        $resultStart->save();
+
                         $log_context = [
                             'pid' => $sfrperson->pid,
                             'dekretstart' => $datestart,
@@ -63,25 +64,25 @@ class SFRDekretsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
                             'dekretendOld' => $resultStart->dekretend,
                         ];
                         Log::info('Обновлен декретный отпуск работника', $log_context);
-                        */
+
                     }
                 } else {
                     //Если не нашли - создаем запись о декрете
-                /*
-                $result = $sfrperson->SfrPersonDekret()->firstOrCreate(
-                    ['pid' => $sfrperson->pid, 'dekretstart' => $datestart, 'dekretend' => $dateend]
-                );
-                if ($result->wasRecentlyCreated) {
-                    $sfrperson->SfrPersonContacts()->delete();
-                    $sfrperson->save();
-                    $log_context = [
-                        'pid' => $sfrperson->pid,
-                        'dekretstart' => $datestart,
-                        'dekretend' => $dateend,
-                    ];
-                    Log::info('Добавлен декретный отпуск работника', $log_context);
-                }
-                */
+
+                    $result = $sfrperson->SfrPersonDekret()->firstOrCreate(
+                        ['pid' => $sfrperson->pid, 'dekretstart' => $datestart, 'dekretend' => $dateend]
+                    );
+                    if ($result->wasRecentlyCreated) {
+                        $sfrperson->SfrPersonContacts()->delete();
+                        $sfrperson->save();
+                        $log_context = [
+                            'pid' => $sfrperson->pid,
+                            'dekretstart' => $datestart,
+                            'dekretend' => $dateend,
+                        ];
+                        Log::info('Добавлен декретный отпуск работника', $log_context);
+                    }
+
                 }
             } else {
                 $log_context = [
