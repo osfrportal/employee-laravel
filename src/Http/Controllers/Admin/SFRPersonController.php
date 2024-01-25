@@ -41,6 +41,8 @@ use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 use Osfrportal\OsfrportalLaravel\Actions\GeneratePersonLoginPassAction;
 use Osfrportal\OsfrportalLaravel\Actions\SendPasswordToUserAction;
 
+use Osfrportal\OsfrportalLaravel\Actions\Ldap\FindByFullFIOAction;
+
 class SFRPersonController extends Controller
 {
     private $permissionManage = 'person-manage';
@@ -159,6 +161,8 @@ class SFRPersonController extends Controller
         $this->authorize($this->permissionView);
 
         $sfrperson = SfrPerson::where('pid', $personid)->with('SfrUser')->first();
+        $ad = FindByFullFIOAction::run($sfrperson);
+        dump($ad);
         $SFRPersonData = SFRPersonData::from($sfrperson);
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
         $SFRUserData = $sfrperson->SfrUser;
