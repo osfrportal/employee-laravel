@@ -47,7 +47,7 @@ class SFRDekretsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
             $sfrperson = SFRPerson::where('pinn', $item['sotrudnikfiziceskoe_licoinn'])->first();
             if (!is_null($sfrperson)) {
                 //проверяем, есть ли в базе декрет с указанной датой старта
-                $resultStart = $sfrperson->SfrPersonDekret()->where('dekretstart','=', $datestart)->get();
+                $resultStart = $sfrperson->SfrPersonDekret()->where('dekretstart','=', $datestart)->first();
                 if (!is_null($resultStart)) {
                     //если нашли такой декрет проверяем дату окончания
                     //if ($resultStart->dekretend !== $dateend) {
