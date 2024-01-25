@@ -233,7 +233,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             'hosts' => [config('osfrportal.ldap_host')],
             'username' => config('osfrportal.ldap_username'),
             'password' => config('osfrportal.ldap_password'),
-            'port' => config('osfrportal.ldap_port'),
+            'port' => (int) config('osfrportal.ldap_port'),
             'base_dn' => config('osfrportal.ldap_basedn'),
             'timeout' => config('osfrportal.ldap_timeout'),
             'use_ssl' => false,
