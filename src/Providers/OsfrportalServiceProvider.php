@@ -247,6 +247,9 @@ class OsfrportalServiceProvider extends ServiceProvider
         config([
             'ldap.connections' => $adConnections,
         ]);
+        config([
+            'ldap.default' => 'sfrAD',
+        ]);
     }
     protected function registerStorageConfig()
     {
