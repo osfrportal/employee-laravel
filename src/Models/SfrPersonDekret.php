@@ -10,9 +10,10 @@ class SfrPersonDekret extends Model
 
     protected $table = 'pemployeedekret';
 
-    public $incrementing = false;
-    protected $keyType = 'string';
-    public $timestamps = false;
+    //public $incrementing = false;
+    public $incrementing = true;
+    //protected $keyType = 'string';
+    public $timestamps = true;
 
     /**
      * Атрибуты, для которых НЕ разрешено массовое присвоение значений.
