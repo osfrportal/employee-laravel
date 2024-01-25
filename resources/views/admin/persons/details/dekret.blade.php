@@ -3,7 +3,7 @@
         <div class="card-header">Декрет</div>
         <div class="card-body">
             @foreach ($SFRPersonDekret as $SFRPersonDekretRow)
-                {{ $SFRPersonDekretRow->dekretstart }} {{ $SFRPersonDekretRow->dekretend }}<br>
+                {{ $SFRPersonDekretRow->dekretstart->format('d.m.Y') }} {{ $SFRPersonDekretRow->dekretend }}<br>
             @endforeach
         </div>
     </div>
