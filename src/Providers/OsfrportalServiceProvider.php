@@ -245,7 +245,7 @@ class OsfrportalServiceProvider extends ServiceProvider
         //$adConnections = ['sfrAD' => $sfrad, 'fssAD' => $fssad];
         $adConnections = ['sfrAD' => $sfrad];
         config([
-            'ldap.connections' => array_merge($adConnections, config('ldap.connections', [])),
+            'ldap.connections' => $adConnections,
         ]);
     }
     protected function registerStorageConfig()
