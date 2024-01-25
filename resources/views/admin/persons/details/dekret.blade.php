@@ -2,7 +2,7 @@
     <div class="card mb-4 mb-xl-0 mt-2">
         <div class="card-header">Декрет</div>
         <div class="card-body">
-            <div class="container text-center">
+            <div class="container text-left">
                 @foreach ($SFRPersonDekret as $SFRPersonDekretRow)
                     <div class="row">
                         <div class="col">
