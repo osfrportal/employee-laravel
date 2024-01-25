@@ -47,7 +47,7 @@ class OsfrportalServiceProvider extends ServiceProvider
         if (\Schema::hasTable('sfrconfig')) {
             $this->registerConfigFromDB();
             $this->registerStorageConfig();
-            $this->registerADConfig();
+            //$this->registerADConfig();
             $this->registerMSSQLDatabases();
         }
         Gate::after(function ($user, $ability) {
@@ -244,12 +244,15 @@ class OsfrportalServiceProvider extends ServiceProvider
         //$fssad = [];
         //$adConnections = ['sfrAD' => $sfrad, 'fssAD' => $fssad];
         $adConnections = ['sfrAD' => $sfrad];
+        /*
         config([
             'ldap.connections' => $adConnections,
         ]);
+        
         config([
             'ldap.default' => 'sfrAD',
         ]);
+        */
     }
     protected function registerStorageConfig()
     {
