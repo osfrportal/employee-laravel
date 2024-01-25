@@ -50,9 +50,9 @@ class SFRDekretsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
                 $resultStart = $sfrperson->SfrPersonDekret()->where('dekretstart','=', $datestart)->first();
                 if (!is_null($resultStart)) {
                     //если нашли такой декрет проверяем дату окончания
-                    //if ($resultStart->dekretend !== $dateend) {
+                    if ($resultStart->dekretend !== $dateend) {
                         dump($resultStart);
-                    //}
+                    }
                 }
                 /*
                 $result = $sfrperson->SfrPersonDekret()->firstOrCreate(
