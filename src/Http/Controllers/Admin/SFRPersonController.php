@@ -162,7 +162,6 @@ class SFRPersonController extends Controller
 
         $sfrperson = SfrPerson::where('pid', $personid)->with('SfrUser')->first();
         $ad = FindByFullFIOAction::run($sfrperson);
-        dump($ad);
         $SFRPersonData = SFRPersonData::from($sfrperson);
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
         $SFRUserData = $sfrperson->SfrUser;
@@ -197,6 +196,7 @@ class SFRPersonController extends Controller
             'SFRPersonCrypto' => $SFRPersonCrypto,
             'storageUser' => $storageUser,
             'SFRPersonDekret' => $SFRPersonDekret,
+            'ad' => $ad,
         ]);
     }
 

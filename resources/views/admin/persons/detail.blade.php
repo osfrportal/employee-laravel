@@ -49,7 +49,9 @@
             <div class="tab-pane" id="nav-businessresources" role="tabpanel">
                 @include('osfrportal::admin.persons.details.business_resources')
             </div>
-            <div class="tab-pane" id="nav-ad" role="tabpanel">..ad.</div>
+            <div class="tab-pane" id="nav-ad" role="tabpanel">
+                @include('osfrportal::admin.persons.details.activedirectory')
+            </div>
             <div class="tab-pane" id="nav-docs" role="tabpanel">
                 <div class="m-2">
                     <a href="{{ route('osfrportal.admin.persons.print.docs.signlist', $SFRPersonData->persondata_pid) }}"
