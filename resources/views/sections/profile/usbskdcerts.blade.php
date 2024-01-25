@@ -5,6 +5,149 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            @if ($certsUser->count() > 0)
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Электронная подпись
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
+                                @foreach ($certsUser as $cert)
+                                    @if (!$cert->revoked && !$cert->certvalidto->isPast())
+                                        <div
+                                            class="list-group-item @if ($cert->revoked) {{ 'list-group-item-danger' }} @else {{ $cert->certvalidto->isPast() ? 'list-group-item-dark' : 'list-group-item-success' }} @endif bg-opacity-25">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <div
+                                                        class="ti ti-award{{ $cert->revoked || $cert->certvalidto->isPast() ? '-off' : '' }} icon-size-32">
+                                                    </div>
+                                                </div>
+                                                <div class="col text-truncate">
+                                                    <div class="ms-4">
+                                                        @if ($cert->revoked)
+                                                            <div class="text-xs">
+                                                                <b>ОТОЗВАН
+                                                                    {{ $cert->revokedate->format('d.m.Y') ?? '' }}</b>
+                                                            </div>
+                                                        @else
+                                                            @if ($cert->certvalidto->isPast())
+                                                                <div class="text-xs">Истек:
+                                                                    {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                        <div
+                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                            Вид:
+                                                            @switch($cert->certtype)
+                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
+                                                                    Усиленный квалифицированный (УКЭП)
+                                                                @break
+
+                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
+                                                                    Усиленный неквалифицированный (УНЭП)
+                                                                @break
+
+                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::DOMAIN())
+                                                                    Вход в операционную систему (ActiveDirectory)
+                                                                @break
+
+                                                                @default
+                                                                    Не определен
+                                                            @endswitch
+                                                        </div>
+                                                        @if (!is_null($cert->certdata->Ogrn) && !is_null($cert->certdata->Innle))
+                                                            <div class="text-xs">
+                                                                Тип: Сертификат юридического лица
+                                                            </div>
+                                                        @endif
+                                                        <div
+                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                            Кому выдан: {{ $cert->certdata->commonName ?? '' }}
+                                                        </div>
+                                                        <div
+                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
+                                                            Срок действия: с
+                                                            {{ $cert->certvalidfrom->format('d.m.Y') ?? '' }}
+                                                            по
+                                                            {{ $cert->certvalidto->format('d.m.Y') ?? '' }}</div>
+                                                        <div class="small text-muted">
+                                                            Номер сертификата: {{ $cert->certserial ?? '' }}
+                                                        </div>
+                                                        <div class="small text-muted">
+                                                            Издатель: {{ $cert->certdata->iss_commonName ?? '' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if ($cryptoUser->count() > 0)
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Криптосредства
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
+                                @foreach ($cryptoUser as $crypto)
+                                    <div class="list-group-item list-group-item-success bg-opacity-25">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                @switch($crypto->cryptotype)
+                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
+                                                        <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
+                                                            alt="" class="icon-small" />
+                                                    @break
+
+                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
+                                                        <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
+                                                            class="icon-small" />
+                                                    @break
+
+                                                    @default
+                                                        Не определен
+                                                @endswitch
+                                            </div>
+                                            <div class="col text-truncate">
+                                                <div class="ms-4">
+                                                    @switch($crypto->cryptotype)
+                                                        @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
+                                                            <div class="text-xs">Криптопро 4</div>
+                                                        @break
+
+                                                        @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
+                                                            <div class="text-xs">VipNet Деловая Почта</div>
+                                                            <div class="text-xs">Наименование АП:
+                                                                {{ $crypto->cryptodata->cryptoName }}</div>
+                                                            <div class="text-xs">Имя пользователя АП:
+                                                                {{ $crypto->cryptodata->cryptoUserName ?? '' }}</div>
+                                                            <div class="text-xs">Назначение АП:
+                                                                {{ $crypto->cryptodata->cryptoPurpose ?? '' }}</div>
+                                                        @break
+
+                                                        @default
+                                                            Не определен
+                                                    @endswitch
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+        <div class="row pt-2">
             @if (!is_null($rfidKeysUser))
                 <div class="col">
                     <div class="card">
@@ -143,150 +286,6 @@
                                                 <small class="text-muted d-block">Выдана
                                                     {{ $stamp->stampjissue_at->format('d.m.Y') ?? '' }},
                                                     учетный №{{ $stamp->stampjpapernumber ?? '' }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-        </div>
-
-        <div class="row pt-2">
-            @if ($certsUser->count() > 0)
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            Электронная подпись
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="list-group list-group-flush">
-                                @foreach ($certsUser as $cert)
-                                    @if (!$cert->revoked && !$cert->certvalidto->isPast())
-                                        <div
-                                            class="list-group-item @if ($cert->revoked) {{ 'list-group-item-danger' }} @else {{ $cert->certvalidto->isPast() ? 'list-group-item-dark' : 'list-group-item-success' }} @endif bg-opacity-25">
-                                            <div class="row align-items-center">
-                                                <div class="col-auto">
-                                                    <div
-                                                        class="ti ti-award{{ $cert->revoked || $cert->certvalidto->isPast() ? '-off' : '' }} icon-size-32">
-                                                    </div>
-                                                </div>
-                                                <div class="col text-truncate">
-                                                    <div class="ms-4">
-                                                        @if ($cert->revoked)
-                                                            <div class="text-xs">
-                                                                <b>ОТОЗВАН
-                                                                    {{ $cert->revokedate->format('d.m.Y') ?? '' }}</b>
-                                                            </div>
-                                                        @else
-                                                            @if ($cert->certvalidto->isPast())
-                                                                <div class="text-xs">Истек:
-                                                                    {{ $cert->certvalidto->format('d.m.Y') ?? '' }}
-                                                                </div>
-                                                            @endif
-                                                        @endif
-                                                        <div
-                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                            Вид:
-                                                            @switch($cert->certtype)
-                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
-                                                                    Усиленный квалифицированный (УКЭП)
-                                                                @break
-
-                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
-                                                                    Усиленный неквалифицированный (УНЭП)
-                                                                @break
-
-                                                                @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::DOMAIN())
-                                                                    Вход в операционную систему (ActiveDirectory)
-                                                                @break
-
-                                                                @default
-                                                                    Не определен
-                                                            @endswitch
-                                                        </div>
-                                                        @if (!is_null($cert->certdata->Ogrn) && !is_null($cert->certdata->Innle))
-                                                            <div class="text-xs">
-                                                                Тип: Сертификат юридического лица
-                                                            </div>
-                                                        @endif
-                                                        <div
-                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                            Кому выдан: {{ $cert->certdata->commonName ?? '' }}
-                                                        </div>
-                                                        <div
-                                                            class="{{ $cert->certvalidto->isPast() || $cert->revoked ? 'small text-muted' : 'text-xs' }}">
-                                                            Срок действия: с
-                                                            {{ $cert->certvalidfrom->format('d.m.Y') ?? '' }}
-                                                            по
-                                                            {{ $cert->certvalidto->format('d.m.Y') ?? '' }}</div>
-                                                        <div class="small text-muted">
-                                                            Номер сертификата: {{ $cert->certserial ?? '' }}
-                                                        </div>
-                                                        <div class="small text-muted">
-                                                            Издатель: {{ $cert->certdata->iss_commonName ?? '' }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-            @if ($cryptoUser->count() > 0)
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            Криптосредства
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="list-group list-group-flush">
-                                @foreach ($cryptoUser as $crypto)
-                                    <div class="list-group-item list-group-item-success bg-opacity-25">
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                @switch($crypto->cryptotype)
-                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
-                                                        <img src="{{ asset('osfrportal/images/logo_cryptopro_csp.svg') }}"
-                                                            alt="" class="icon-small" />
-                                                    @break
-
-                                                    @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
-                                                        <img src="{{ asset('osfrportal/images/logo_vipnet.svg') }}" alt=""
-                                                            class="icon-small" />
-                                                    @break
-
-                                                    @default
-                                                        Не определен
-                                                @endswitch
-                                            </div>
-                                            <div class="col text-truncate">
-                                                <div class="ms-4">
-                                                    @switch($crypto->cryptotype)
-                                                        @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::CRYPTOPRO())
-                                                            <div class="text-xs">Криптопро 4</div>
-                                                        @break
-
-                                                        @case(Osfrportal\OsfrportalLaravel\Enums\CryptoTypesEnum::VIPNET())
-                                                            <div class="text-xs">VipNet Деловая Почта</div>
-                                                            <div class="text-xs">Наименование АП:
-                                                                {{ $crypto->cryptodata->cryptoName }}</div>
-                                                            <div class="text-xs">Имя пользователя АП:
-                                                                {{ $crypto->cryptodata->cryptoUserName ?? '' }}</div>
-                                                            <div class="text-xs">Назначение АП:
-                                                                {{ $crypto->cryptodata->cryptoPurpose ?? '' }}</div>
-                                                        @break
-
-                                                        @default
-                                                            Не определен
-                                                    @endswitch
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
