@@ -49,13 +49,24 @@ class SFRDekretsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
                 //проверяем, есть ли в базе декрет с указанной датой старта
                 $resultStart = $sfrperson->SfrPersonDekret()->where('dekretstart','=', $datestart)->first();
                 if (!is_null($resultStart)) {
+                    //если нашли такой декрет проверяем дату окончания
                     $dateDekretEndDBCarbon = Carbon::parse($resultStart->dekretend);
                     $dateDekretEndCarbon = Carbon::parse($dateend);
-                    //если нашли такой декрет проверяем дату окончания
                     if ($dateDekretEndDBCarbon->ne($dateDekretEndCarbon)) {
+                        //Если дата окончания в базе не соответствует дате окончания декрета в файле - обновляем в базе
                         dump($resultStart);
+                        /*
+                        $log_context = [
+                            'pid' => $sfrperson->pid,
+                            'dekretstart' => $datestart,
+                            'dekretend' => $dateend,
+                            'dekretendOld' => $resultStart->dekretend,
+                        ];
+                        Log::info('Обновлен декретный отпуск работника', $log_context);
+                        */
                     }
-                }
+                } else {
+                    //Если не нашли - создаем запись о декрете
                 /*
                 $result = $sfrperson->SfrPersonDekret()->firstOrCreate(
                     ['pid' => $sfrperson->pid, 'dekretstart' => $datestart, 'dekretend' => $dateend]
@@ -71,6 +82,7 @@ class SFRDekretsImport implements ToCollection, WithCustomCsvSettings, WithHeadi
                     Log::info('Добавлен декретный отпуск работника', $log_context);
                 }
                 */
+                }
             } else {
                 $log_context = [
                     'inn' => $item['sotrudnikfiziceskoe_licoinn'],
