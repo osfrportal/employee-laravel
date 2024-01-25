@@ -7,8 +7,6 @@
                     <div class="row">
                         <div class="col">
                             c {{ \Carbon\Carbon::parse($SFRPersonDekretRow->dekretstart)->format('d.m.Y') }}
-                        </div>
-                        <div class="col">
                             по {{ \Carbon\Carbon::parse($SFRPersonDekretRow->dekretend)->format('d.m.Y') }}
                         </div>
                     </div>
