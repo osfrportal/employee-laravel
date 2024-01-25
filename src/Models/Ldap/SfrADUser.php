@@ -12,5 +12,5 @@ class SfrADUser extends Model
         'organizationalperson',
         'user',
     ];
-    protected ?string $connection = 'sfrAD';
+    protected ?string $connection = 'default';
 }
