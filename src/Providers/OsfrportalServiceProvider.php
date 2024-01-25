@@ -237,7 +237,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             'base_dn' => config('osfrportal.ldap_basedn'),
             'timeout' => config('osfrportal.ldap_timeout'),
             'use_ssl' => false,
-            'use_tls' => config('osfrportal.ldap_tls'),
+            'use_tls' => (bool) config('osfrportal.ldap_tls'),
             'use_sasl' => false,
             'sasl_options' => [],
         ];
