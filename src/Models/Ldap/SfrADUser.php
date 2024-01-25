@@ -6,7 +6,7 @@ use LdapRecord\Models\Model;
 
 class SfrADUser extends Model
 {
-    public static $objectClasses = [
+    public static array $objectClasses = [
         'top',
         'person',
         'organizationalperson',
