@@ -21,11 +21,14 @@
             <div class="nav nav-tabs" id="person-tab" role="tablist">
                 <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"><span
                         class="bi bi-file-earmark-person"> Основные данные</span></a>
-                <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-businessresources" role="tab"><i class="ti ti-apps"></i> Бизнес-ресурсы</a>
+                <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-businessresources" role="tab"><i
+                        class="ti ti-apps"></i> Бизнес-ресурсы</a>
                 <a class="nav-link" id="nav-docs-tab" data-toggle="tab" href="#nav-docs" role="tab"><span
                         class="bi bi-layout-text-window"> Ознакомление</span></a>
-                <a class="nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab"><i class="ti ti-badge-ad"></i> ActiveDirectory</a>
-                <a class="nav-link" id="nav-activity-tab" data-toggle="tab" href="#nav-activity" role="tab"><i class="ti ti-activity"></i> Активность на портале</a>
+                <a class="nav-link" id="nav-ad-tab" data-toggle="tab" href="#nav-ad" role="tab"><i
+                        class="ti ti-badge-ad"></i> ActiveDirectory</a>
+                <a class="nav-link" id="nav-activity-tab" data-toggle="tab" href="#nav-activity" role="tab"><i
+                        class="ti ti-activity"></i> Активность на портале</a>
 
         </nav>
         <div class="tab-content" id="person-tabContent">
@@ -35,6 +38,7 @@
                         <div class="col">
                             @include('osfrportal::admin.persons.details.main')
                             @include('osfrportal::admin.persons.details.user')
+                            @include('osfrportal::admin.persons.details.dekret')
                         </div>
                         <div class="col">
                             @include('osfrportal::admin.persons.details.contactdata')
