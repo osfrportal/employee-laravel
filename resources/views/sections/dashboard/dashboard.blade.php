@@ -10,6 +10,9 @@
             @include('osfrportal::sections.dashboard.notifications.notifications_unread')
         </div>
     @endif
+    <div class="row">
+        @include('osfrportal::sections.dashboard.birthdays')
+    </div>
 @endsection
 @push('footer-scripts')
     <script type="module">
