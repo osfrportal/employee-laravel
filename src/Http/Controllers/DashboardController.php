@@ -22,19 +22,19 @@ class DashboardController extends Controller
     public function dashboardIndex()
     {
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
+        $personsBirthdays = GetPersonsBirthdaysAction::run();
 
         $unreadNotifications = Auth::user()->unreadNotifications()->get()->toArray();
-        return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount]);
+        return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount, 'personsBirthdays' => $personsBirthdays]);
     }
     public function dashboardIndex2()
     {
-        LiveUsersListAction::run();
+        //LiveUsersListAction::run();
         $personsBirthdays = GetPersonsBirthdaysAction::run();
-        dump($personsBirthdays);
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $unreadNotifications = Auth::user()->unreadNotifications()->limit(10)->get()->toArray();
-        return view('osfrportal::sections.dashboard.dashboard2', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount]);
+        return view('osfrportal::sections.dashboard.dashboard2', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount, 'personsBirthdays' => $personsBirthdays]);
     }
 
     public function markNotificationRead(Request $request)

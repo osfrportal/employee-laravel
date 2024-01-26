@@ -33,6 +33,7 @@
                 </div>
             </div>
         </div>
+        @include('osfrportal::sections.dashboard.birthdays')
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <!-- Website Analytics-->
