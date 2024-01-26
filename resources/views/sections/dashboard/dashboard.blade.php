@@ -11,7 +11,9 @@
         </div>
     @endif
     <div class="row">
-        @include('osfrportal::sections.dashboard.birthdays')
+        <div class="col">
+            @include('osfrportal::sections.dashboard.birthdays')
+        </div>
     </div>
 @endsection
 @push('footer-scripts')

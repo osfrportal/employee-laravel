@@ -11,7 +11,7 @@
                             <div class="col-auto">
                                 {{ $personBirthday->birthdate ?? '' }}
                             </div>
-                            <div class="col text-truncate">
+                            <div class="col">
                                 <div class="ms-4">
                                     <div class="text-xs">{{ $personBirthday->fullname ?? '' }}</div>
                                     <div class="text-xs">Подразделение:
