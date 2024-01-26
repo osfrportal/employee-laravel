@@ -1,5 +1,5 @@
 @if (count($personsBirthdays) > 0)
-    <div class="card">
+    <div class="card p-0">
         <div class="card-header">
             Дни рождения
         </div>
