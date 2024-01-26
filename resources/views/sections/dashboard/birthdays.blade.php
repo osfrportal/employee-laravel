@@ -4,7 +4,7 @@
             Дни рождения
         </div>
         <div class="card-body">
-            <div class="list-group list-group-flush list-group-hoverable">
+            <div class="list-group list-group-flush list-group-hoverable p-0">
                 @foreach ($personsBirthdays as $personBirthday)
                     <div class="list-group-item bg-opacity-25">
                         <div class="row align-items-center">
