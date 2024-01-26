@@ -29,7 +29,8 @@ class DashboardController extends Controller
     public function dashboardIndex2()
     {
         LiveUsersListAction::run();
-        GetPersonsBirthdaysAction::run();
+        $personsBirthdays = GetPersonsBirthdaysAction::run();
+        dump($personsBirthdays);
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
 
         $unreadNotifications = Auth::user()->unreadNotifications()->limit(10)->get()->toArray();
