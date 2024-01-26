@@ -1,10 +1,10 @@
 @if (count($personsBirthdays) > 0)
-    <div class="card p-0">
+    <div class="card bg-body rounded">
         <div class="card-header">
             Дни рождения
         </div>
-        <div class="card-body p-0">
-            <div class="list-group list-group-flush">
+        <div class="card-body">
+            <div class="list-group list-group-flush list-group-hoverable">
                 @foreach ($personsBirthdays as $personBirthday)
                     <div class="list-group-item bg-opacity-25">
                         <div class="row align-items-center">
