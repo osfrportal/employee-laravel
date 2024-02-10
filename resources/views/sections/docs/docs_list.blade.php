@@ -34,7 +34,7 @@
                                                 @if ($docFileSigns->doesntContain('sign_fileid', $docFile->fileid))
                                                     @switch($certToUse)
                                                         @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UKEP())
-                                                            <a class="btn btn-primary btn-sm" href="#" role="button"
+                                                            <a class="btn btn-primary btn-sm" role="button"
                                                                 id="sign-{{ $docFile->fileid }}"
                                                                 onclick="doSignDocFile('{{ $doc->docId }}', '{{ $docFile->fileid }}', '{{ $certToUse }}');">Ознакомиться
                                                                 (УКЭП)
@@ -42,18 +42,18 @@
                                                         @break
 
                                                         @case(Osfrportal\OsfrportalLaravel\Enums\CertsTypesEnum::UNEP())
-                                                            <a class="btn btn-primary btn-sm" href="#" role="button"
+                                                            <a class="btn btn-primary btn-sm" role="button"
                                                                 id="sign-{{ $docFile->fileid }}"
                                                                 onclick="doSignDocFile('{{ $doc->docId }}', '{{ $docFile->fileid }}', '{{ $certToUse }}');">Ознакомиться
                                                                 (УНЭП)</a>
                                                         @break
 
                                                         @default
-                                                            <a class="btn btn-sm btn-outline-danger disabled" href="#"
+                                                            <a class="btn btn-sm btn-outline-danger disabled"
                                                                 role="button">Отсуствует электронная подпись</a>
                                                     @endswitch
                                                 @else
-                                                    <a class="btn btn-sm btn-outline-success disabled" href="#"
+                                                    <a class="btn btn-sm btn-outline-success disabled"
                                                         role="button">Ознакомлен</a>
                                                 @endif
                                             </td>
