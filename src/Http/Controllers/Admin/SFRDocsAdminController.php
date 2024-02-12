@@ -207,6 +207,11 @@ class SFRDocsAdminController extends Controller
         if ($doc->isEditable()) {
             dump($request->all());
             dump($doc);
+            $docDataDTO = SFRDocData::forList($doc);
+            dump($docDataDTO);
+            foreach ($doc->SfrDocsFiles() as $docFile) {
+                dump($docFile);
+            }
         } else {
             $this->flasher_interface->addError('Документ не может быть удален. В базе имеются подписи об ознакомлении!');
             return back();
