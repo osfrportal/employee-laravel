@@ -20,7 +20,7 @@
             <h5 class="card-title">{{ $docData->docName ?? '' }} </h5>
             <div class="card-text">
                 @if ($docIsEditable)
-                    @include('osfrportal::dmin.docs.parts.editableDetailData')
+                    @include('osfrportal::admin.docs.parts.editableDetailData')
                 @else
                     @include('osfrportal::admin.docs.parts.detailData')
                 @endif
