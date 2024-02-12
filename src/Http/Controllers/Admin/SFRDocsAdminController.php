@@ -208,7 +208,7 @@ class SFRDocsAdminController extends Controller
             dump($doc);
             $docDataDTO = SFRDocData::forList($doc);
             dump($docDataDTO);
-            foreach ($doc->SfrDocsFiles() as $docFile) {
+            foreach ($doc->SfrDocsFiles as $docFile) {
                 dump($docFile);
             }
         } else {
