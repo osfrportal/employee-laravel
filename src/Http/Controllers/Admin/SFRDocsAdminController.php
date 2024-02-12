@@ -28,6 +28,8 @@ use Osfrportal\OsfrportalLaravel\Actions\Units\HierarchyUnitsListAction;
 use Osfrportal\OsfrportalLaravel\Http\Requests\ReportsMakeByUnitsRequest;
 use Osfrportal\OsfrportalLaravel\Http\Requests\DocDateEndSaveRequest;
 
+use Osfrportal\OsfrportalLaravel\Http\Requests\DocEditableSaveRequest;
+
 class SFRDocsAdminController extends Controller
 {
     private $apiDocsGroupsSelect2Collection;
@@ -126,7 +128,7 @@ class SFRDocsAdminController extends Controller
             $this->flasher_interface->addError('Раздел документа не найден!');
             return back();
         }
-        dump($docData->isEditable());
+
         return view('osfrportal::admin.docs.docs_detail', [
             'docid' => $docid,
             'docData' => $docDataDTO,
@@ -174,6 +176,23 @@ class SFRDocsAdminController extends Controller
 
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
         return redirect()->route('osfrportal.admin.docs.detail', ['docid' => $docid]);
+    }
+    public function docsSaveEditable(DocEditableSaveRequest $request)
+    {
+        $docid = $request->input('docid');
+        try {
+            $doc = SfrDocs::where('docid', $docid)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Документ не найден!');
+            return back();
+        }
+        if ($doc->isEditable()) {
+            dump($request);
+            dump($doc);
+        } else {
+            $this->flasher_interface->addError('Документ не может быть отредактирован. В базе имеются подписи об ознакомлении!');
+            return back();
+        }
     }
     //ТИПЫ ДОКУМЕНТОВ
     public function typesShowList()

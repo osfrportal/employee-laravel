@@ -137,6 +137,7 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::get('/add', 'docsAddForm')->name('add');
         Route::post('/add', 'docsAdd')->name('save');
         Route::post('/savedateend', 'docsSaveDateEnd')->name('savedateend');
+        Route::post('/saveeditable', 'docsSaveEditable')->name('saveeditable');
         Route::get('/', 'docsShowList')->name('all');
         Route::name('types.')->prefix('types')->group(function () {
             Route::get('/detail/{typeid}', 'typesShowDetail')->name('detail');
