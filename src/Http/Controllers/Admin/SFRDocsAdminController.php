@@ -135,6 +135,7 @@ class SFRDocsAdminController extends Controller
             'docGroupName' => $docGroup->group_name,
             'docTypeName' => $docType->type_name,
             'docFiles' => $docData->SfrDocsFiles,
+            'docIsEditable' => $docData->isEditable(),
         ]);
     }
     public function docsShowList()
