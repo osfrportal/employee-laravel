@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 use Yajra\DataTables\DataTables;
 
@@ -205,12 +206,13 @@ class SFRDocsAdminController extends Controller
             return back();
         }
         if ($doc->isEditable()) {
-            dump($doc);
-            $docDataDTO = SFRDocData::forList($doc);
-            dump($docDataDTO);
             foreach ($doc->SfrDocsFiles as $docFile) {
-                dump($docFile);
+                Storage::disk('docsfiles')->delete($docFile->file_name);
+                $docFile->forceDelete();
             }
+            $doc->forceDelete();
+            $this->flasher_interface->addSuccess('Данные успешно удалены');
+            return redirect()->route('osfrportal.admin.docs.all');
         } else {
             $this->flasher_interface->addError('Документ не может быть удален. В базе имеются подписи об ознакомлении!');
             return back();
