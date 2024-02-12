@@ -20,9 +20,9 @@
             <h5 class="card-title">{{ $docData->docName ?? '' }} </h5>
             <div class="card-text">
                 @if ($docIsEditable)
-                    @include('admin.docs.parts.editableDetailData')
+                    @include('osfrportal::dmin.docs.parts.editableDetailData')
                 @else
-                    @include('admin.docs.parts.detailData')
+                    @include('osfrportal::admin.docs.parts.detailData')
                 @endif
                 <form method="POST" action="{{ route('osfrportal.admin.docs.savedateend') }}"
                     enctype="multipart/form-data">
