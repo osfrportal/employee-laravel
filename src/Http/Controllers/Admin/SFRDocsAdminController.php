@@ -208,8 +208,8 @@ class SFRDocsAdminController extends Controller
         if ($doc->isEditable()) {
             foreach ($doc->SfrDocsFiles as $docFile) {
                 Storage::disk('docsfiles')->delete($docFile->file_name);
-                $docFile->forceDelete();
             }
+            $doc->SfrDocsFiles->forceDelete();
             $doc->forceDelete();
             $this->flasher_interface->addSuccess('Данные успешно удалены');
             return redirect()->route('osfrportal.admin.docs.all');
