@@ -27,8 +27,8 @@ use Osfrportal\OsfrportalLaravel\Actions\Units\HierarchyUnitsListAction;
 
 use Osfrportal\OsfrportalLaravel\Http\Requests\ReportsMakeByUnitsRequest;
 use Osfrportal\OsfrportalLaravel\Http\Requests\DocDateEndSaveRequest;
-
 use Osfrportal\OsfrportalLaravel\Http\Requests\DocEditableSaveRequest;
+use Osfrportal\OsfrportalLaravel\Http\Requests\DocEditableDeleteRequest;
 
 class SFRDocsAdminController extends Controller
 {
@@ -192,6 +192,23 @@ class SFRDocsAdminController extends Controller
             dump($doc);
         } else {
             $this->flasher_interface->addError('Документ не может быть отредактирован. В базе имеются подписи об ознакомлении!');
+            return back();
+        }
+    }
+    public function docsDeleteEditable(DocEditableDeleteRequest $request)
+    {
+        $docid = $request->input('docid');
+        try {
+            $doc = SfrDocs::where('docid', $docid)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            $this->flasher_interface->addError('Документ не найден!');
+            return back();
+        }
+        if ($doc->isEditable()) {
+            dump($request->all());
+            dump($doc);
+        } else {
+            $this->flasher_interface->addError('Документ не может быть удален. В базе имеются подписи об ознакомлении!');
             return back();
         }
     }
