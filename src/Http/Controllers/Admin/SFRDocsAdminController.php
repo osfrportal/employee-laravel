@@ -205,7 +205,6 @@ class SFRDocsAdminController extends Controller
             return back();
         }
         if ($doc->isEditable()) {
-            dump($request->all());
             dump($doc);
             $docDataDTO = SFRDocData::forList($doc);
             dump($docDataDTO);
