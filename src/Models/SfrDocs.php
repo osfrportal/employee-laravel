@@ -59,4 +59,10 @@ class SfrDocs extends Model
         return $this->hasOne(SfrDocTypes::class, 'typeid', 'doc_typeid');
     }
 
+    public function isEditable()
+    {
+        $countSigns = $this->hasMany(SfrSignatures::class, 'sign_docid', 'docid')->count();
+        return (bool) $countSigns;
+    }
+
 }
