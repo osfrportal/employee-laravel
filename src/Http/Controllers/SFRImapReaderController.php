@@ -77,7 +77,7 @@ class SFRImapReaderController extends Controller
         }
         try {
             $aMessage = $oFolder->query()->since(now()->subDays(10))->unseen()->get();
-
+            $msgCount = 0;
             foreach ($aMessage as $oMessage) {
                 $mailFrom = $oMessage->getFrom()[0]->mail;
                 $att_date = CarbonImmutable::parse($oMessage->getDate())->format('Y-m-d');
@@ -103,6 +103,7 @@ class SFRImapReaderController extends Controller
                             ], 'warning');
                         }
                     }
+                    $msgCount++;
                 } else {
                     LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'IMAP: письмо от {mailfrom} {att_date} не имеет вложений', [
                         'mailfrom' => $mailFrom,
@@ -114,6 +115,15 @@ class SFRImapReaderController extends Controller
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
                 $oMessage->setFlag('Seen');
+            }
+            if ($msgCount > 0) {
+                Arr::set($this->redisImapMessage, 'error', false);
+                Arr::set($this->redisImapMessage, 'message', 'Получение писем IMAP успешно завершено');
+                Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
+            } else {
+                Arr::set($this->redisImapMessage, 'error', true);
+                Arr::set($this->redisImapMessage, 'message', 'Отсуствуют письма подходящие для обработки');
+                Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
             }
         } catch (GetMessagesFailedException $exception) {
             Arr::set($this->redisImapMessage, 'error', true);
