@@ -1,5 +1,6 @@
 <div wire:poll.5s>
-    Message error: {{ $redismessage->error }} <br>
-    Message redis: {{ $redismessage->message }}<br>
-    Message date: {{ $redismessage->date }}
+    error: {{ $redismessage->error }} <br>
+    Message: {{ $redismessage->message }}<br>
+    tryAgain: {{ $redismessage->tryAgain }}<br>
+    date: {{ $redismessage->date }}
 </div>

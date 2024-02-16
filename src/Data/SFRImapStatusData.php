@@ -13,6 +13,7 @@ class SFRImapStatusData extends Data
     public function __construct(
         public bool $error = false,
         public ?string $message = '',
+        public bool $tryAgain = false,
     ) {
         $this->date = Carbon::now();
     }

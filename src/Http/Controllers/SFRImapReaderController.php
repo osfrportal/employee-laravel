@@ -27,7 +27,7 @@ class SFRImapReaderController extends Controller
 
     public function __construct()
     {
-        $this->redisMessage = ['error' => false, 'message' => ''];
+        $this->redisMessage = ['error' => false, 'message' => '', 'tryAgain' => false];
         Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
         $imapClientManager = new ImapClientManager($options = []);
@@ -53,6 +53,7 @@ class SFRImapReaderController extends Controller
         } catch (ConnectionFailedException $exception) {
             Arr::set($this->redisImapMessage, 'error', true);
             Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка подключения к IMAP: %s', $exception->getMessage()));
+            Arr::set($this->redisImapMessage, 'tryAgain', true);
             Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
@@ -65,12 +66,15 @@ class SFRImapReaderController extends Controller
             $oFolder = $this->oClient->getFolder('INBOX');
             Arr::set($this->redisImapMessage, 'error', false);
             Arr::set($this->redisImapMessage, 'message', 'Успешно подключились к IMAP');
+            Arr::set($this->redisImapMessage, 'tryAgain', false);
             Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Успешно подключились к IMAP');
         } catch (ConnectionFailedException $exception) {
             Arr::set($this->redisImapMessage, 'error', true);
             Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка подключения к IMAP: %s', $exception->getMessage()));
+            Arr::set($this->redisImapMessage, 'tryAgain', true);
+
             Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
@@ -112,6 +116,8 @@ class SFRImapReaderController extends Controller
                 }
                 Arr::set($this->redisImapMessage, 'error', false);
                 Arr::set($this->redisImapMessage, 'message', sprintf('Письмо от %s (%s) успешно обработано', $mailFrom, $att_date));
+                Arr::set($this->redisImapMessage, 'tryAgain', false);
+
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
                 $oMessage->setFlag('Seen');
@@ -119,15 +125,20 @@ class SFRImapReaderController extends Controller
             if ($msgCount > 0) {
                 Arr::set($this->redisImapMessage, 'error', false);
                 Arr::set($this->redisImapMessage, 'message', 'Получение писем IMAP успешно завершено');
+                Arr::set($this->redisImapMessage, 'tryAgain', false);
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
             } else {
                 Arr::set($this->redisImapMessage, 'error', true);
                 Arr::set($this->redisImapMessage, 'message', 'Отсуствуют письма подходящие для обработки');
+                Arr::set($this->redisImapMessage, 'tryAgain', true);
+
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
             }
         } catch (GetMessagesFailedException $exception) {
             Arr::set($this->redisImapMessage, 'error', true);
             Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка получения списка писем IMAP: %s', $exception->getMessage()));
+            Arr::set($this->redisImapMessage, 'tryAgain', true);
+
             Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка получения списка писем IMAP: {msg}', [
