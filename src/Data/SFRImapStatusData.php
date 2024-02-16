@@ -6,7 +6,7 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
 use Carbon\Carbon;
 
-class SFRMsgStatusData extends Data
+class SFRImapStatusData extends Data
 {
     public Carbon|Optional $date;
 

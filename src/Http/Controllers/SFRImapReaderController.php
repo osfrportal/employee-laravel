@@ -15,14 +15,20 @@ use Illuminate\Support\Facades\Redis;
 
 use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
+use Osfrportal\OsfrportalLaravel\Data\SFRImapStatusData;
 
 class SFRImapReaderController extends Controller
 {
     private $oClient;
-    public $redis_message;
+    private $redisImapMessage;
+
+    private $redisImapKey = 'mainterance:imap';
 
     public function __construct()
     {
+        $this->redisMessage = ['error' => false, 'message' => ''];
+        Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
+
         $imapClientManager = new ImapClientManager($options = []);
         $imapHost = config('osfrportal.imap_host');
         $imapPort = config('osfrportal.imap_port');
@@ -44,6 +50,9 @@ class SFRImapReaderController extends Controller
         try {
             $this->oClient->connect();
         } catch (ConnectionFailedException $exception) {
+            Arr::set($this->redisImapMessage, 'error', true);
+            Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка подключения к IMAP: %s', $exception->getMessage()));
+            Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
             dd($exception->getMessage());
@@ -53,8 +62,16 @@ class SFRImapReaderController extends Controller
     {
         try {
             $oFolder = $this->oClient->getFolder('INBOX');
+            Arr::set($this->redisImapMessage, 'error', false);
+            Arr::set($this->redisImapMessage, 'message', 'Успешно подключились к IMAP');
+            Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
+
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Успешно подключились к IMAP');
         } catch (ConnectionFailedException $exception) {
+            Arr::set($this->redisImapMessage, 'error', true);
+            Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка подключения к IMAP: %s', $exception->getMessage()));
+            Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
+
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
         }
         try {
@@ -91,9 +108,17 @@ class SFRImapReaderController extends Controller
                         'att_date' => $att_date,
                     ]);
                 }
+                Arr::set($this->redisImapMessage, 'error', false);
+                Arr::set($this->redisImapMessage, 'message', sprintf('Письмо от %s (%s) успешно обработано', $mailFrom, $att_date));
+                Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
+
                 $oMessage->setFlag('Seen');
             }
         } catch (GetMessagesFailedException $exception) {
+            Arr::set($this->redisImapMessage, 'error', true);
+            Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка получения списка писем IMAP: %s', $exception->getMessage()));
+            Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
+
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка получения списка писем IMAP: {msg}', [
                 'msg' => $exception->getMessage(),
             ], 'error');

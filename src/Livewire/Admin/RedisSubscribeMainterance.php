@@ -1,6 +1,7 @@
 <?php
 
 namespace Osfrportal\OsfrportalLaravel\Livewire\Admin;
+
 use Livewire\Component;
 
 use Illuminate\Support\Facades\Redis;
@@ -19,11 +20,13 @@ class RedisSubscribeMainterance extends Component
     }
     public function render()
     {
-        $userId = Auth::user()->userid;
-        $key = "admin:mainterance:{$userId}";
+        $key = 'mainterance:imap';
 
-        $msg = json_encode(array('time' => 'time_message', 'message' => 'text_message'));
-        Redis::setex($key, $this->durationInSeconds, $msg);
+        //$userId = Auth::user()->userid;
+        //$key = "admin:mainterance:{$userId}";
+
+        //$msg = json_encode(array('time' => 'time_message', 'message' => 'text_message'));
+        //Redis::setex($key, $this->durationInSeconds, $msg);
         //Redis::set($key, $msg, 'EX', 35);
         $this->redis_message = Redis::get($key);
         return view('osfrportal::livewire.admin.mainterance-messages', ['redis_message' => $this->redis_message]);

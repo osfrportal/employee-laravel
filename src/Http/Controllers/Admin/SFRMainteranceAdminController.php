@@ -2,14 +2,10 @@
 
 namespace Osfrportal\OsfrportalLaravel\Http\Controllers\Admin;
 
-use Osfrportal\OsfrportalLaravel\Data\SFRMsgStatusData;
 
-use Illuminate\Support\Facades\Redis;
 
 class SFRMainteranceAdminController extends Controller
 {
-    private $redisMKey = 'mainterance:test';
-
     public function mainteranceIndex()
     {
         $test = SFRMsgStatusData::from(['error' => false, 'message' => 'Тестовое сообщение']);
