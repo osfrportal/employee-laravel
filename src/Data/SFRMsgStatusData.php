@@ -11,7 +11,7 @@ class SFRMsgStatusData extends Data
     public Carbon|Optional $date;
 
     public function __construct(
-        public boolean $error = false,
+        public int $error = 0,
         public ?string $message = '',
     ) {
         $this->date = Carbon::now();
