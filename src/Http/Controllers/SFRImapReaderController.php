@@ -96,7 +96,7 @@ class SFRImapReaderController extends Controller
         } catch (GetMessagesFailedException $exception) {
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка получения списка писем IMAP: {msg}', [
                 'msg' => $exception->getMessage(),
-            ],'error');
+            ], 'error');
         }
     }
 }
