@@ -19,7 +19,7 @@ class SFRMainteranceAdminController extends Controller
         if (Redis::exists($this->redisKey)) {
             dump(Redis::get($this->redisKey));
         }
-        Redis::del($this->redisKey);
+        //Redis::del($this->redisKey);
         return view('osfrportal::admin.mainterance.index');
     }
 }
