@@ -23,7 +23,7 @@
                             {{ $docsSign['docName'] ?? '' }}</td>
                         <td>{{ $docsSign['docFileDescription'] ?? '' }}</td>
                         @if ($docsSign['docSigned'] === true)
-                            <td>{{ $docsSign['signDateTime'] ?? '' }}</td>
+                            <td>{{ \Carbon\Carbon::parse($docsSign['signDateTime'])->format('d.m.Y') ?? '' }}</td>
                             <td>
 
                                 <div class="stamp">
