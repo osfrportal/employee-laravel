@@ -8,6 +8,7 @@ class SFRMainteranceAdminController extends Controller
 {
     public function mainteranceIndex()
     {
+        /*
         $test = SFRMsgStatusData::from(['error' => false, 'message' => 'Тестовое сообщение']);
 
         dump($test->toJson());
@@ -16,6 +17,7 @@ class SFRMainteranceAdminController extends Controller
             dump(Redis::get($this->redisMKey));
         }
         //Redis::del($this->redisKey);
+        */
         return view('osfrportal::admin.mainterance.index');
     }
 }
