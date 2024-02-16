@@ -14,6 +14,7 @@ class SFRImapStatusData extends Data
         public bool $error = false,
         public ?string $message = '',
         public bool $tryAgain = false,
+        public bool $canRunImports = false,
     ) {
         $this->date = Carbon::now();
     }

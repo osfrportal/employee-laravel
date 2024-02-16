@@ -29,7 +29,7 @@ class SFRImapReaderController extends Controller
 
     public function __construct()
     {
-        $redisImapMessageBlank = ['error' => false, 'message' => '', 'tryAgain' => true];
+        $redisImapMessageBlank = ['error' => false, 'message' => '', 'tryAgain' => true, 'canRunImports' => false];
 
         if (Redis::exists($this->redisImapKey)) {
             $dateToday = Carbon::now();
@@ -41,7 +41,7 @@ class SFRImapReaderController extends Controller
                 if (!$keyData->tryAgain) {
                     unset($this);
                 } else {
-                    $this->redisImapMessage = ['error' => $keyData->error, 'message' => $keyData->message, 'tryAgain' => $keyData->tryAgain];
+                    $this->redisImapMessage = ['error' => $keyData->error, 'message' => $keyData->message, 'tryAgain' => $keyData->tryAgain, 'canRunImports' => $keyData->canRunImports];
                     $this->tryAgain = $keyData->tryAgain;
                 }
             } else {
@@ -155,6 +155,7 @@ class SFRImapReaderController extends Controller
                     Arr::set($this->redisImapMessage, 'error', false);
                     Arr::set($this->redisImapMessage, 'message', 'Получение писем IMAP успешно завершено');
                     Arr::set($this->redisImapMessage, 'tryAgain', false);
+                    Arr::set($this->redisImapMessage, 'canRunImports', true);
                     Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
                 } else {
                     Arr::set($this->redisImapMessage, 'error', true);
