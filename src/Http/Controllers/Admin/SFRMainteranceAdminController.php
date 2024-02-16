@@ -8,8 +8,9 @@ class SFRMainteranceAdminController extends Controller
 {
     public function mainteranceIndex()
     {
-        $test = SFRMsgStatusData::from([false, 'Тестовое сообщение']);
+        $test = SFRMsgStatusData::from(['error' => false, 'message' => 'Тестовое сообщение']);
         dump($test);
+        dump($test->toJson());
         return view('osfrportal::admin.mainterance.index');
     }
 }
