@@ -39,7 +39,7 @@ class SFRImapReaderController extends Controller
             dump($dateFromRedis->isCurrentDay());
             if ($dateToday->isSameDay($dateFromRedis)) {
                 if (!$keyData->tryAgain) {
-                    unset($this);
+                    exit(0);
                 } else {
                     $this->redisImapMessage = ['error' => $keyData->error, 'message' => $keyData->message, 'tryAgain' => $keyData->tryAgain, 'canRunImports' => $keyData->canRunImports];
                     $this->tryAgain = $keyData->tryAgain;
