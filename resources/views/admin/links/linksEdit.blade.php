@@ -81,6 +81,7 @@
                         $('#inputLinkGroup').select2({
                             placeholder: "Выберите группу",
                             allowClear: true,
+                            minimumInputLength: 2,
                             data: groupsdata,
                         });
                     })
