@@ -36,7 +36,7 @@ class SFRImapReaderController extends Controller
 
             $keyData = json_decode(Redis::get($this->redisImapKey));
             $dateFromRedis = Carbon::parse($keyData->date);
-
+            dump($dateFromRedis->isCurrentDay());
             if ($dateToday->isSameDay($dateFromRedis)) {
                 if (!$keyData->tryAgain) {
                     unset($this);
