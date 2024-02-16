@@ -11,6 +11,7 @@ use Webklex\PHPIMAP\Exceptions\ConnectionFailedException;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redis;
 
 use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
@@ -18,6 +19,8 @@ use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 class SFRImapReaderController extends Controller
 {
     private $oClient;
+    public $redis_message;
+
     public function __construct()
     {
         $imapClientManager = new ImapClientManager($options = []);
@@ -41,6 +44,7 @@ class SFRImapReaderController extends Controller
         try {
             $this->oClient->connect();
         } catch (ConnectionFailedException $exception) {
+
             LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
             dd($exception->getMessage());
         }

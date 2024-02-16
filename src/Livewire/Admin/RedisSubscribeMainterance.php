@@ -14,7 +14,7 @@ class RedisSubscribeMainterance extends Component
 
     public function __construct()
     {
-            $this->redis_message = '';
+        $this->redis_message = '';
         $this->durationInSeconds = 35;
     }
     public function render()
