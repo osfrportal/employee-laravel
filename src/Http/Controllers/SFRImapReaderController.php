@@ -37,8 +37,8 @@ class SFRImapReaderController extends Controller
 
             $keyData = json_decode(Redis::get($this->redisImapKey));
             $dateFromRedis = Carbon::parse($keyData->date);
-            dump($dateFromRedis->isCurrentDay());
-            dump($dateToday->isSameDay($dateFromRedis));
+            //dump($dateFromRedis->isCurrentDay());
+            //dump($dateToday->isSameDay($dateFromRedis));
             if ($dateToday->isSameDay($dateFromRedis)) {
                 if (!$keyData->tryAgain) {
                     exit(0);
@@ -83,6 +83,8 @@ class SFRImapReaderController extends Controller
                 Arr::set($this->redisImapMessage, 'error', true);
                 Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка подключения к IMAP: %s', $exception->getMessage()));
                 Arr::set($this->redisImapMessage, 'tryAgain', true);
+                Arr::set($this->redisImapMessage, 'canRunImports', false);
+
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
                 LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
@@ -98,6 +100,8 @@ class SFRImapReaderController extends Controller
                 Arr::set($this->redisImapMessage, 'error', false);
                 Arr::set($this->redisImapMessage, 'message', 'Успешно подключились к IMAP');
                 Arr::set($this->redisImapMessage, 'tryAgain', false);
+                Arr::set($this->redisImapMessage, 'canRunImports', false);
+
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
                 LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Успешно подключились к IMAP');
@@ -105,6 +109,7 @@ class SFRImapReaderController extends Controller
                 Arr::set($this->redisImapMessage, 'error', true);
                 Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка подключения к IMAP: %s', $exception->getMessage()));
                 Arr::set($this->redisImapMessage, 'tryAgain', true);
+                Arr::set($this->redisImapMessage, 'canRunImports', false);
 
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
@@ -148,6 +153,7 @@ class SFRImapReaderController extends Controller
                     Arr::set($this->redisImapMessage, 'error', false);
                     Arr::set($this->redisImapMessage, 'message', sprintf('Письмо от %s (%s) успешно обработано', $mailFrom, $att_date));
                     Arr::set($this->redisImapMessage, 'tryAgain', false);
+                    Arr::set($this->redisImapMessage, 'canRunImports', false);
 
                     Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
@@ -163,6 +169,7 @@ class SFRImapReaderController extends Controller
                     Arr::set($this->redisImapMessage, 'error', true);
                     Arr::set($this->redisImapMessage, 'message', 'Отсуствуют письма подходящие для обработки');
                     Arr::set($this->redisImapMessage, 'tryAgain', true);
+                    Arr::set($this->redisImapMessage, 'canRunImports', false);
 
                     Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
                 }
@@ -170,6 +177,7 @@ class SFRImapReaderController extends Controller
                 Arr::set($this->redisImapMessage, 'error', true);
                 Arr::set($this->redisImapMessage, 'message', sprintf('Ошибка получения списка писем IMAP: %s', $exception->getMessage()));
                 Arr::set($this->redisImapMessage, 'tryAgain', true);
+                Arr::set($this->redisImapMessage, 'canRunImports', false);
 
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
