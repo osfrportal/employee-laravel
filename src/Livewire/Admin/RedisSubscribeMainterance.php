@@ -10,17 +10,15 @@ use Osfrportal\OsfrportalLaravel\Data\SFRImapStatusData;
 
 class RedisSubscribeMainterance extends Component
 {
-    public $redis_message;
     public $durationInSeconds;
 
     public function __construct()
     {
-        $this->redis_message = '';
         $this->durationInSeconds = 35;
     }
     public function render()
     {
-        $key = 'mainterance:imap';
+        $keyImap = 'mainterance:imap';
 
         //$userId = Auth::user()->userid;
         //$key = "admin:mainterance:{$userId}";
@@ -28,8 +26,7 @@ class RedisSubscribeMainterance extends Component
         //$msg = json_encode(array('time' => 'time_message', 'message' => 'text_message'));
         //Redis::setex($key, $this->durationInSeconds, $msg);
         //Redis::set($key, $msg, 'EX', 35);
-        $this->redis_message = Redis::get($key);
-        $redisData = SFRImapStatusData::from($this->redis_message);
-        return view('osfrportal::livewire.admin.mainterance-messages', ['redismessage' => $redisData]);
+        $redisImapData = SFRImapStatusData::from(Redis::get($keyImap));
+        return view('osfrportal::livewire.admin.mainterance-messages', ['imapMessage' => $redisImapData]);
     }
 }

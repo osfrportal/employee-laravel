@@ -1,7 +1,7 @@
 <div wire:poll.5s>
-    error: {{ $redismessage->error }} <br>
-    Message: {{ $redismessage->message }}<br>
-    tryAgain: {{ $redismessage->tryAgain }}<br>
-    canRunImports: {{ $redismessage->canRunImports }}<br>
-    date: {{ $redismessage->date }}
+    error: {{ $imapMessage->error }} <br>
+    Message: {{ $imapMessage->message }}<br>
+    tryAgain: {{ $imapMessage->tryAgain }}<br>
+    canRunImports: {{ $imapMessage->canRunImports }}<br>
+    date: {{ $imapMessage->date }}
 </div>
