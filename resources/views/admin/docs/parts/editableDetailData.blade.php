@@ -1,4 +1,3 @@
-editable
 <form method="POST" action="{{ route('osfrportal.admin.docs.saveeditable') }}" enctype="multipart/form-data">
     <input type="hidden" name="docid" id="docid" value="{{ $docid ?? '' }}">
     <div class="mb-3">
@@ -87,3 +86,26 @@ editable
         </div>
     </div>
 </form>
+
+@push('footer-scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#docType').select2({
+                ajax: {
+                    dataType: 'json',
+                    url: function(params) {
+                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.types_all') }}";
+                    },
+                }
+            });
+            $('#docGroup').select2({
+                ajax: {
+                    dataType: 'json',
+                    url: function(params) {
+                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.groups_all') }}";
+                    },
+                }
+            });
+        });
+    </script>
+@endpush
