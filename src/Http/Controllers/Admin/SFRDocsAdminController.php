@@ -191,6 +191,7 @@ class SFRDocsAdminController extends Controller
         if ($doc->isEditable()) {
             dump($request->all());
             dump(SFRDocData::from($request));
+            dump(SFRDocData::from($doc));
         } else {
             $this->flasher_interface->addError('Документ не может быть отредактирован. В базе имеются подписи об ознакомлении!');
             return back();
