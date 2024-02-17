@@ -17,7 +17,9 @@
             Карточка документа
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ $docData->docName ?? '' }} </h5>
+            @if (!$docIsEditable)
+                <h5 class="card-title">{{ $docData->docName ?? '' }} </h5>
+            @endif
             <div class="card-text">
                 @if ($docIsEditable)
                     @include('osfrportal::admin.docs.parts.editableDetailData')
