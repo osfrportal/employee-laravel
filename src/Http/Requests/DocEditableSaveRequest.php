@@ -24,8 +24,14 @@ class DocEditableSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'docDateEnd' => 'nullable',
             'docid' => 'required|uuid',
+            'docName' => 'required|string',
+            'docNumber' => 'required',
+            'docDate' => 'required|date_format:Y-m-d',
+            'docDescription' => 'required',
+            'docNeedSign' => 'required|boolean',
+            'docGroup' => 'required|uuid',
+            'docType' => 'required|uuid',
         ];
     }
     /**
