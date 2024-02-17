@@ -1,6 +1,6 @@
 @if (count($personsBirthdays) > 0)
     <div class="card bg-body rounded">
-        <div class="card-header">
+        <div class="card-header fs-5">
             Дни рождения
         </div>
         <div class="card-body">
