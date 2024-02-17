@@ -44,6 +44,7 @@ class DocEditableSaveRequest extends FormRequest
         return [
             '*.required' => 'Поле должно быть заполнено',
             '*.uuid' => 'Некорректный формат идентификатора',
+            '*.boolean' => 'Не выбрано значение',
         ];
     }
 }
