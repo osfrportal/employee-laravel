@@ -12,6 +12,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\LoginController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SfrDocsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRx509Controller;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFROrionController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRIpController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\PermissionsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRSysconfigController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRPersonController;
@@ -184,6 +185,10 @@ Route::middleware('doNotCacheResponse')->controller(LoginController::class)->gro
     Route::get('/login', 'showloginform')->name('login');
     Route::post('/login', 'authenticate')->name('authenticate');
     Route::get('/logout', 'logout')->name('logout');
+});
+
+Route::middleware('doNotCacheResponse')->controller(SFRIpController::class)->group(function () {
+    Route::get('/showmyip', 'ipIndex')->name('showmyip');
 });
 
 Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->group(function () {
