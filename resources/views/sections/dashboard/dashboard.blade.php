@@ -1,9 +1,11 @@
 @extends('osfrportal::layout')
 @section('content')
     <div class="row">
-        <div class="col-sm-3">
-            @include('osfrportal::sections.docs.informers.unsigned_docs')
-        </div>
+        @if ($docsUnsignedCount > 0)
+            <div class="col-sm-3">
+                @include('osfrportal::sections.docs.informers.unsigned_docs')
+            </div>
+        @endif
         <div class="col-sm-3">
             @include('osfrportal::sections.dashboard.informers.myip')
         </div>
