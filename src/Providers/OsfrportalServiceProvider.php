@@ -200,6 +200,14 @@ class OsfrportalServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group([
+            'middleware' => 'web',
+            'namespace' => 'Osfrportal\OsfrportalLaravel\Http\Controllers',
+            'as' => 'osfrportalip.',
+        ], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/osfrportal_ip.php');
+        })->middleware('web');
+
+        Route::group([
             'prefix' => 'api/osfr/v1/osfrportal',
             'namespace' => 'Osfrportal\OsfrportalLaravel\Http\Controllers',
             'as' => 'osfrapi.osfrportal.',
@@ -249,7 +257,7 @@ class OsfrportalServiceProvider extends ServiceProvider
         config([
             'ldap.connections' => $adConnections,
         ]);
-        
+
         config([
             'ldap.default' => 'sfrAD',
         ]);
