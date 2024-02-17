@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 class SFRIpController extends Controller
 {
     public function ipIndex(Request $request) {
-        dump($request->ip());
-        dump($request->ips());
-        return view('osfrportal::sections.ip.showip');
+        return view('osfrportal::sections.ip.showip', ['myip' => $request->ip()]);
     }
 }

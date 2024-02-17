@@ -1,4 +1,4 @@
 @extends('osfrportal::layout')
 @section('content')
-    <h2>Ваш IP:</h2>
+    <h3>Ваш IP: {{ $myip ?? '' }}</h3>
 @endsection
