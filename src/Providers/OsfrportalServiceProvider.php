@@ -203,6 +203,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             'middleware' => 'web',
             'namespace' => 'Osfrportal\OsfrportalLaravel\Http\Controllers',
             'as' => 'osfrportalip.',
+            'domain' => 'ip.0058.pfr.ru',
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/../../routes/osfrportal_ip.php');
         })->middleware('web');
