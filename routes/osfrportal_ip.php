@@ -9,5 +9,5 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRIpController;
 //Route::middleware('doNotCacheResponse')->get('/', [SFRIpController::class, 'ipIndex']);
 
 Route::fallback(function (Request $req) {
-    return redirect()->route('osfrportal.showmyip');
-});
+    return redirect('https://start.0058.pfr.ru/showmyip');
+}
