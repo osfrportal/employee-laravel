@@ -10,4 +10,4 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRIpController;
 
 Route::fallback(function (Request $req) {
     return redirect('https://start.0058.pfr.ru/showmyip');
-}
+});
