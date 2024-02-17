@@ -42,7 +42,7 @@ class DocEditableSaveRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'docDateEnd.required' => 'Не указана дата окончания действия документа',
+            '*.required' => 'Поле должно быть заполнено',
             '*.uuid' => 'Некорректный формат идентификатора',
         ];
     }
