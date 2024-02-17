@@ -7,7 +7,6 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRIpController;
 
 //Route::middleware('doNotCacheResponse')->get('/', [SFRIpController::class, 'ipIndex']);
-
-Route::fallback(function (Request $req) {
+Route::middleware('doNotCacheResponse')->get('/', function () {
     return redirect('https://start.0058.pfr.ru/showmyip');
 });
