@@ -4,6 +4,9 @@
         <div class="col-sm-3">
             @include('osfrportal::sections.docs.informers.unsigned_docs')
         </div>
+        <div class="col-sm-3">
+            @include('osfrportal::sections.dashboard.informers.myip')
+        </div>
     </div>
     @if (count($unreadNotifications) > 0)
         <div class="row">

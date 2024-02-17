@@ -19,13 +19,14 @@ class DashboardController extends Controller
     {
         parent::__construct();
     }
-    public function dashboardIndex()
+    public function dashboardIndex(Request $request)
     {
         $docsUnsignedCount = CountUnsignedDocsByUserAction::run();
         $personsBirthdays = GetPersonsBirthdaysAction::run();
 
         $unreadNotifications = Auth::user()->unreadNotifications()->get()->toArray();
-        return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount, 'personsBirthdays' => $personsBirthdays]);
+        $myIp = $request->ip();
+        return view('osfrportal::sections.dashboard.dashboard', ['unreadNotifications' => $unreadNotifications, 'docsUnsignedCount' => $docsUnsignedCount, 'personsBirthdays' => $personsBirthdays, 'myIp' => $myIp]);
     }
     public function dashboardIndex2()
     {
