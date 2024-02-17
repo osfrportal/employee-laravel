@@ -13,11 +13,9 @@
                             </div>
                             <div class="col">
                                 <div class="ms-4">
-                                    <div class="text-xs">{{ $personBirthday->fullname ?? '' }}</div>
-                                    <div class="text-xs">Подразделение:
+                                    <div class="fs-6">{{ $personBirthday->fullname ?? '' }}</div>
+                                    <div class="text-xs text-muted">{{ $personBirthday->appointment ?? '' }} -
                                         {{ $personBirthday->unit ?? '' }}</div>
-                                    <div class="text-xs">Должность:
-                                        {{ $personBirthday->appointment ?? '' }}</div>
                                 </div>
                             </div>
                         </div>
