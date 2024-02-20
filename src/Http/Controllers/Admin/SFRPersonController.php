@@ -59,7 +59,8 @@ class SFRPersonController extends Controller
         $durationInSeconds = 1800;
         $redisKey = 'admin:persons:cache:listall';
         if (!Redis::exists($redisKey)) {
-            $sfrpersonsFromDB = SFRPersonData::collect(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
+            //$sfrpersonsFromDB = SFRPersonData::collect(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get())->toCollection();
+            $sfrpersonsFromDB = SFRPersonData::collect(SfrPerson::orderBy('psurname', 'ASC')->orderBy('pname', 'ASC')->with('SfrUser')->get());
             Redis::setex($redisKey, $durationInSeconds, json_encode($sfrpersonsFromDB));
         }
         //$this->authorize($this->permissionView);
