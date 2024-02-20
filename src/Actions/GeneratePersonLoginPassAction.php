@@ -24,6 +24,13 @@ class GeneratePersonLoginPassAction
                 $personpasswordnew = Str::password(10);
             }
             $userlogin = sprintf("%s%s.%s", Str::substr(Str::slug($SFRPersonData->persondata_pname), 0, 1), Str::substr(Str::slug($SFRPersonData->persondata_pmiddlename), 0, 1), Str::slug($SFRPersonData->persondata_psurname));
+            //Проверяем, есть ли такой логин
+            $checkLogin = SfrUser::where('username', $userlogin)->get();
+            $checkLoginNum = $checkLogin->count();
+            if ($checkLoginNum > 0) {
+                $loginAdd = $checkLoginNum + 1;
+                $userlogin = sprintf("%s%s.%s%s", Str::substr(Str::slug($SFRPersonData->persondata_pname), 0, 1), Str::substr(Str::slug($SFRPersonData->persondata_pmiddlename), 0, 1), Str::slug($SFRPersonData->persondata_psurname), $loginAdd);
+            }
             $userdata = new SfrUser;
             $userdata->username = $userlogin;
             //$userdata->password = bcrypt('12345');
