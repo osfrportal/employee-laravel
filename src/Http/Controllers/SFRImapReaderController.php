@@ -88,7 +88,8 @@ class SFRImapReaderController extends Controller
                 Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
 
                 LogAddAction::run(LogActionsEnum::LOG_IMAP(), 'Ошибка подключения к IMAP: {msg}', ['msg' => $exception->getMessage()], 'error');
-                dd($exception->getMessage());
+                //dd($exception->getMessage());
+                exit(0);
             }
         }
     }
@@ -166,7 +167,7 @@ class SFRImapReaderController extends Controller
                     Arr::set($this->redisImapMessage, 'canRunImports', true);
                     Redis::set($this->redisImapKey, SFRImapStatusData::from($this->redisImapMessage)->toJson());
                 } else {
-                    Arr::set($this->redisImapMessage, 'error', true);
+                    Arr::set($this->redisImapMessage, 'error', false);
                     Arr::set($this->redisImapMessage, 'message', 'Отсуствуют письма подходящие для обработки');
                     Arr::set($this->redisImapMessage, 'tryAgain', true);
                     Arr::set($this->redisImapMessage, 'canRunImports', false);
