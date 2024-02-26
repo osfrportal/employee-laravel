@@ -1,6 +1,6 @@
 <div wire:poll.15s>
-    <div class="my-3 p-3 bg-body rounded shadow-sm text-center text-primary" style="max-width: 25rem;">
-        <div class="card-header fs-4">
+    <div class="card bg-body rounded shadow-sm text-center text-primary" style="max-width: 25rem;">
+        <div class="card-header fs-4 bg-body">
             @if ($imapMessage->canRunImports)
                 <i class="ti ti-file-check"></i>
             @else
@@ -18,7 +18,7 @@
                 {{ $imapMessage->message ?? '' }}
             </div>
         </div>
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted bg-body">
             {{ $imapMessage->date }}
         </div>
     </div>
