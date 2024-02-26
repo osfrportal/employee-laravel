@@ -408,9 +408,10 @@ class SFR1cImportController extends Controller
                     $item->SfrPersonUnit()->detach();
                     $item->SfrPersonAppointment()->detach();
                     $item->SfrPersonContacts()->delete();
-                    $item->SfrPersonVacation()->delete();
-                    $item->SfrPersonDekret()->delete();
-                    $item->SfrPersonAbsence()->delete();
+                    // Отсутствия не удаляем.
+                    //$item->SfrPersonVacation()->delete();
+                    //$item->SfrPersonDekret()->delete();
+                    //$item->SfrPersonAbsence()->delete();
                     $item->SfrPersonTabNum()->delete();
                     $item->pworkstart = null;
                     //$item->SfrPersonCerts()->delete();

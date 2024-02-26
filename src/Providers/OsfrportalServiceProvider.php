@@ -83,7 +83,7 @@ class OsfrportalServiceProvider extends ServiceProvider
                 $schedule->command('queue:prune-batches')->daily();
                 $schedule->command('sfr:adocsync')->dailyAt('10:30');
                 //$schedule->command('sfr:imapget')->dailyAt(config('osfrportal.shedule_ImapDailyTime', '00:01'));
-                $schedule->command('sfr:imapget')->everyTenMinutes()->between('8:30', '14:00');
+                $schedule->command('sfr:imapget')->everyTenMinutes()->between('8:30', '16:00');
                 $schedule->command('sfr:sync1c')->dailyAt(config('osfrportal.shedule_Sync1CDailyTime', '00:10'));
                 $schedule->command('sfr:unepget')->dailyAt(config('osfrportal.shedule_HSMDailyTime', '00:50'));
                 $schedule->command('sfr:ukepget')->dailyAt(config('osfrportal.shedule_UKEPDailyTime', '01:20'));
