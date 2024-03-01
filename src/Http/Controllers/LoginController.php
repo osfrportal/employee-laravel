@@ -27,13 +27,10 @@ class LoginController extends Controller
     public function doRestorePass(RestorePassPostRequest $request)
     {
         $inn = $request->input('inn');
-        //$snils = preg_replace('/[-\s]/', '', $request->input('snils'));
-        //$sfrperson = SfrPerson::where('pinn', $inn)->where('psnils', $snils)->first();
         $sfrperson = SfrPerson::where('pinn', $inn)->first();
         if (!is_null($sfrperson)) {
             $SFRPhoneContactData = SFRPhoneContactData::from($sfrperson);
             if (!is_null($SFRPhoneContactData->email_ext)) {
-                //SendPasswordToUserAction::run($sfrperson);
                 SendPasswordToUserAction::dispatch($sfrperson);
                 return back()->with([
                     'passwordSended' => 'Учетные данные для входа на портал отправлены на контактный адрес электронной почты.',
@@ -69,7 +66,6 @@ class LoginController extends Controller
                 'personPid' => Auth::user()->SfrPerson->getPid(),
             ];
             LogAddAction::run(LogActionsEnum::LOG_AUTH(), 'Вход пользователя {personFullName}, pid: {personPid})', $logContext);
-            //return redirect()->intended('osfrportal.dashboard');
             return Redirect::intended(route('osfrportal.dashboard'));
         }
         LogAddAction::run(LogActionsEnum::LOG_AUTH(), 'ОШИБКА входа пользователя {username})', $credentials, 'warning');
