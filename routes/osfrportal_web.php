@@ -191,15 +191,14 @@ Route::middleware('doNotCacheResponse')->controller(SFRIpController::class)->gro
     Route::get('/showmyip', 'ipIndex')->name('showmyip');
 });
 
-Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->group(function () {
-    Route::get('/edit/{personid}', 'phoneShowEditForm')->name('editform')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
-    Route::get('/export/xlsx', 'exportPhonesToXLSX')->name('export.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
-    Route::get('/export/vipnet/xlsx', 'exportPhonesToXLSXWithVipNet')->name('export.vipnet.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
-    Route::post('/save', 'doUpdateContacts')->name('save')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
-    Route::get('/', 'phoneIndex')->name('index')->middleware('doNotCacheResponse');
-});
-
 Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
+    Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->group(function () {
+        Route::get('/edit/{personid}', 'phoneShowEditForm')->name('editform')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+        Route::get('/export/xlsx', 'exportPhonesToXLSX')->name('export.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
+        Route::get('/export/vipnet/xlsx', 'exportPhonesToXLSXWithVipNet')->name('export.vipnet.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
+        Route::post('/save', 'doUpdateContacts')->name('save')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+        Route::get('/', 'phoneIndex')->name('index')->middleware('doNotCacheResponse');
+    });
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
         Route::get('/dashboard2', 'dashboardIndex2')->name('dashboard2');
