@@ -27,8 +27,9 @@ class LoginController extends Controller
     public function doRestorePass(RestorePassPostRequest $request)
     {
         $inn = $request->input('inn');
-        $snils = preg_replace('/[-\s]/', '', $request->input('snils'));
-        $sfrperson = SfrPerson::where('pinn', $inn)->where('psnils', $snils)->first();
+        //$snils = preg_replace('/[-\s]/', '', $request->input('snils'));
+        //$sfrperson = SfrPerson::where('pinn', $inn)->where('psnils', $snils)->first();
+        $sfrperson = SfrPerson::where('pinn', $inn)->first();
         if (!is_null($sfrperson)) {
             $SFRPhoneContactData = SFRPhoneContactData::from($sfrperson);
             if (!is_null($SFRPhoneContactData->email_ext)) {
@@ -44,7 +45,7 @@ class LoginController extends Controller
             }
         } else {
             return back()->withErrors([
-                'personNotFound' => 'Не найден работник с указанными ИНН и СНИЛС! Проверьте данные!',
+                'personNotFound' => 'Не найден работник с указанным ИНН! Проверьте данные!',
             ])->withInput();
         }
     }

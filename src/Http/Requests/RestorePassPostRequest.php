@@ -16,7 +16,7 @@ class RestorePassPostRequest extends FormRequest
     {
         return [
             'inn' => 'required|digits:12',
-            'snils' => 'required|digits:11',
+            //'snils' => 'required|digits:11',
         ];
     }
     /**

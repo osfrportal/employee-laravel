@@ -4,7 +4,7 @@
         @error('personNotFound')
             <p class="alert alert-danger"><b>ОШИБКА! <br>{{ $message }}</b></p>
         @enderror
-        <p>Для получения логина и пароля введите свои ИНН и СНИЛС.</p>
+        <p>Для получения логина и пароля введите свой ИНН</p>
         <p>Пароль будет отправлен на адрес электронной почты, указанный в телефонном справочнике.</p>
     </div>
     <div class="mb-3">
@@ -13,14 +13,6 @@
             data-inputmask="'mask': '999999999999'">
 
         @error('inn')
-            <div class="text-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="mb-3">
-        <input type="text" placeholder="СНИЛС" id="snils"
-            class="form-control @error('snils') is-invalid @enderror" name="snils" value="{{ old('snils') }}"
-            required autocomplete="snils" data-inputmask="'mask': '999-999-999 99'">
-        @error('snils')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
