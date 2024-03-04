@@ -27,6 +27,6 @@ class UnitPersonsListAction
             $persons[] = SFRPersonData::fromModel($person);
         }
 
-        return SFRPersonData::collection($persons);
+        return SFRPersonData::collect($persons);
     }
 }

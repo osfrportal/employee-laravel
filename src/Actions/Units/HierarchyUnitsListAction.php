@@ -10,6 +10,7 @@ use Osfrportal\OsfrportalLaravel\Data\SFRUnitData;
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 
 use Osfrportal\OsfrportalLaravel\Actions\Units\UnitPersonsListAction;
+
 /**
  * Возврат иерархической структуры подразделений
  */
@@ -24,7 +25,7 @@ class HierarchyUnitsListAction
      * @param bool $withSfrPersonData Если параметр true - выводится информация по работникам подразделения
      * @return Collection
      */
-    public function handle($unitsIds = [], $withChildren = true, $withSfrPersonData = false) : Collection
+    public function handle($unitsIds = [], $withChildren = true, $withSfrPersonData = false): Collection
     {
         $unitsCollection = collect();
         if (is_array($unitsIds) && count($unitsIds) > 0) {
@@ -62,7 +63,7 @@ class HierarchyUnitsListAction
                             'unitpersons' => $unitChildPersons,
                         ];
                     }
-                    $unitData = Arr::prepend($unitData, SFRUnitData::collection($childUnits), 'childunits');
+                    $unitData = Arr::prepend($unitData, SFRUnitData::collect($childUnits), 'childunits');
                 }
             }
             $unitsCollection->push(SFRUnitData::from($unitData));
