@@ -365,12 +365,12 @@ class SFRDocsAdminController extends Controller
                     $signDTO = SFRSignData::fromXML($personSign);
                     $personSignsCollection[] = $signDTO;
                 }
-                $personSignsDTO = SFRSignData::collection($personSignsCollection);
+                $personSignsDTO = SFRSignData::collect($personSignsCollection);
                 $tmp[] = new SFRDocSignsByPersonData($person, $personSignsDTO);
             }
 
             $docDataDTO = SFRDocData::forList($doc);
-            $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collection($tmp);
+            $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collect($tmp);
             $allDocsArray[] = $docDataDTO;
         }
 
