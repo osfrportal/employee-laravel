@@ -7,6 +7,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 
 use Spatie\LaravelData\DataCollection;
+
 /**
  * Работники подразделения
  */
@@ -16,9 +17,9 @@ class UnitPersonsListAction
     /**
      * Работники подразделения
      * @param SfrUnits $unitData
-     * @return \Spatie\LaravelData\DataCollection
+     * @return \Spatie\LaravelData\DataCollection|array
      */
-    public function handle(SfrUnits $unitData) : DataCollection
+    public function handle(SfrUnits $unitData): DataCollection|array
     {
         $persons = [];
 
