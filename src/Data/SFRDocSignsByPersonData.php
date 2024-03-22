@@ -11,10 +11,12 @@ class SFRDocSignsByPersonData extends Data
     public function __construct(
         public ?SFRPersonData $personData = null,
         #[DataCollectionOf(SFRSignData::class)]
-        public ?DataCollection|array $signData = null,
-    ) {}
+        public ?DataCollection $signData = null,
+    ) {
+    }
 
-    public static function defValues(): SFRDocSignsByPersonData {
+    public static function defValues(): SFRDocSignsByPersonData
+    {
         return new self(
             null,
             null,
