@@ -19,6 +19,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Spatie\LaravelData\DataCollection;
 
 use Yajra\DataTables\DataTables;
 
@@ -367,13 +368,13 @@ class SFRDocsAdminController extends Controller
                     $personSignsCollection[] = $signDTO;
                 }
                 //dump($personSignsCollection);
-                $personSignsDTO = SFRSignData::collect($personSignsCollection, Collection::class);
+                $personSignsDTO = SFRSignData::collect($personSignsCollection, DataCollection::class);
                 dump($personSignsDTO);
                 $tmp[] = new SFRDocSignsByPersonData($person, $personSignsDTO);
             }
 
             $docDataDTO = SFRDocData::forList($doc);
-            $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collect($tmp);
+            $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collect($tmp, DataCollection::class);
             $allDocsArray[] = $docDataDTO;
         }
 
