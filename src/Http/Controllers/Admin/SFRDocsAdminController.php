@@ -340,7 +340,7 @@ class SFRDocsAdminController extends Controller
 
         $personsForReport = [];
         $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
-        //dump($htest);
+        dd($hierarchyUnits);
         foreach ($hierarchyUnits as $unit) {
             foreach ($unit->unitpersons as $unitRootPerson) {
                 $personsForReport[] = $unitRootPerson;
