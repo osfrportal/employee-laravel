@@ -365,7 +365,7 @@ class SFRDocsAdminController extends Controller
                 $personSignsCollection = [];
                 foreach ($personSigns as $personSign) {
                     $signDTO = SFRSignData::fromXML($personSign);
-                    dump($signDTO);
+                    //dump($signDTO);
                     $personSignsCollection[] = $signDTO;
                 }
                 //dump($personSignsCollection);

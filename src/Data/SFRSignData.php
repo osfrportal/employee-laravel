@@ -27,6 +27,7 @@ class SFRSignData extends Data
     {
         $xml = @simplexml_load_string(data: $sign->sign_data, options: LIBXML_NOCDATA);
         $x509 = new X509();
+        dump($xml);
         if (!is_null($xml->children('ds', true))) {
             $xmlSignatureKeyInfo = $xml->children('ds', true)->Signature->KeyInfo;
         }
