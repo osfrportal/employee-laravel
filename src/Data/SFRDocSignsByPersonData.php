@@ -11,7 +11,7 @@ class SFRDocSignsByPersonData extends Data
     public function __construct(
         public ?SFRPersonData $personData = null,
         #[DataCollectionOf(SFRSignData::class)]
-        public ?DataCollection $signData = null,
+        public ?DataCollection|array $signData = null,
     ) {}
 
     public static function defValues(): SFRDocSignsByPersonData {
