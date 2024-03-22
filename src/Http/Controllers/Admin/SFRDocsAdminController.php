@@ -369,7 +369,7 @@ class SFRDocsAdminController extends Controller
                 }
                 //dump($personSignsCollection);
                 $personSignsDTO = SFRSignData::collect($personSignsCollection, DataCollection::class);
-                dump($personSignsDTO);
+                //dump($personSignsDTO);
                 $tmp[] = new SFRDocSignsByPersonData($person, $personSignsDTO);
             }
 
