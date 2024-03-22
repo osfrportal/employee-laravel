@@ -50,7 +50,7 @@ class SFRSignData extends Data
                 Arr::get($cert_x509_issuerDN, 'CN'),
             );
         } else {
-            dump($xml);
+            dump($sign);
             return new self(
                 null,
                 null,
