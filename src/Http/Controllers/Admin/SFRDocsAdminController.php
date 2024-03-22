@@ -374,6 +374,7 @@ class SFRDocsAdminController extends Controller
             }
 
             $docDataDTO = SFRDocData::forList($doc);
+            dump($tmp);
             $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collect($tmp);
             $allDocsArray[] = $docDataDTO;
         }
