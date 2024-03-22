@@ -366,6 +366,7 @@ class SFRDocsAdminController extends Controller
                     $personSignsCollection[] = $signDTO;
                 }
                 $personSignsDTO = SFRSignData::collect($personSignsCollection);
+                dump($personSignsDTO);
                 $tmp[] = new SFRDocSignsByPersonData($person, $personSignsDTO);
             }
 
