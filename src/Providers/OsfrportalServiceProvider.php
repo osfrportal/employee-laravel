@@ -95,17 +95,14 @@ class OsfrportalServiceProvider extends ServiceProvider
 
         //if (config('osfrportal.enabled', false)) {
         $this->registerRoutes();
-        Route::pushMiddlewareToGroup('web', '\Spatie\ResponseCache\Middlewares\CacheResponse');
         Route::pushMiddlewareToGroup('web', '\Osfrportal\OsfrportalLaravel\Http\Middleware\LogUserActivity');
 
         Route::aliasMiddleware('auth.osfrportal', '\Osfrportal\OsfrportalLaravel\Http\Middleware\Authenticate');
-        Route::aliasMiddleware('cacheResponse', '\Spatie\ResponseCache\Middlewares\CacheResponse');
-        Route::aliasMiddleware('doNotCacheResponse', '\Spatie\ResponseCache\Middlewares\DoNotCacheResponse');
 
         //}
 
         foreach (glob(__DIR__ . '/../Support/Helpers/*.php') as $file) {
-            require_once($file);
+            require_once ($file);
         }
         $this->registerLiwevireComponents();
         $this->registerBladeDirectives();

@@ -96,7 +96,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::prefix('phone')->name('phone.')->group(function () {
     Route::controller(PhoneController::class)->group(function () {
-        Route::get('/all', 'apiPhonesData')->name('all')->middleware('cacheResponse:30000');
+        Route::get('/all', 'apiPhonesData')->name('all');
     });
 });
 

@@ -29,12 +29,11 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRInfoSystemsController
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRAdminDashboardController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRStorageController;
 use Illuminate\Support\Facades\Storage;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 /**
  * Административные маршруты
  */
-Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(function () {
     Route::controller(SFRCryptoAdminController::class)->name('crypto.')->prefix('crypto')->group(function () {
         Route::get('/new', 'addCryptoForm')->name('new');
 
@@ -44,17 +43,17 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::post('/deleteperson', 'cryptoRemovePerson')->name('person.remove');
         Route::post('/delete', 'removeCrypto')->name('delete');
         Route::get('/', 'cryptoShowList')->name('index');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRMainteranceAdminController::class)->name('mainterance.')->prefix('mainterance')->group(function () {
         Route::get('/', 'mainteranceIndex')->name('index');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRStorageController::class)->name('storage.')->prefix('storage')->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/', 'index')->name('index');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRInfoSystemsController::class)->name('infosystems.')->prefix('infosystems')->group(function () {
         Route::post('/save', 'saveInfoSystem')->name('save');
@@ -64,27 +63,27 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::get('/roles/add', 'showRolesAddForm')->name('roles.add');
         Route::post('/roles/save', 'saveInfoSystemRoles')->name('roles.save');
         Route::get('/', 'listInfoSystemsAll')->name('index');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFROtrsAdminController::class)->name('otrs.')->prefix('otrs')->group(function () {
         Route::view('/', 'osfrportal::admin.extsystems.otrsgraph')->name('all');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRLogsAdminController::class)->name('logs.')->prefix('logs')->group(function () {
         Route::get('/phoneupdates', 'logsPhoneUpdates')->name('logsphoneupdates');
         Route::get('/changelog/add', 'changelogAddForm')->name('changelog.add');
         Route::post('/changelog/save', 'changelogSaveNew')->name('changelog.save');
         Route::get('/changelog', 'changelogIndex')->name('changelog');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRSysconfigController::class)->name('sysconfig.')->prefix('sysconfig')->group(function () {
         Route::post('/save', 'saveConfigList')->name('save');
         Route::get('/', 'showConfigList')->name('all');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRCertsAdminController::class)->name('certs.')->prefix('certs')->group(function () {
-        Route::get('/api/all', 'apiCertsListAll')->name('api.all')->middleware(['auth.osfrportal', 'cacheResponse:30000']);
-        Route::get('/', 'certsShowList')->name('all')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+        Route::get('/api/all', 'apiCertsListAll')->name('api.all')->middleware(['auth.osfrportal']);
+        Route::get('/', 'certsShowList')->name('all')->middleware(['auth.osfrportal']);
     });
 
     Route::controller(SFRLinksAdminController::class)->name('links.')->prefix('links')->group(function () {
@@ -111,7 +110,7 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::post('/return', 'returnStamp')->name('stampreturn');
         Route::get('/journal', 'stampsJournalShow')->name('journal');
         Route::get('/', 'stampsShowList')->name('all');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRPhoneAdminController::class)->name('phone.')->prefix('phone')->group(function () {
         Route::get('/addr', 'ShowAddrList')->name('addresses');
@@ -122,7 +121,7 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::get('/dialplan', 'ShowDialPlanList')->name('dialplan');
         Route::post('/units/save', 'updateUnit')->name('units.save');
         Route::get('/units', 'ShowUnitsList')->name('units');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRPersonController::class)->name('persons.')->prefix('persons')->group(function () {
         Route::get('/movements/all', 'movementsAllShow')->name('movements.all');
@@ -131,7 +130,7 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::get('/detail/{personid}', 'ShowPersonDetail')->name('detail');
         Route::get('/print/docssigns/{personid}', 'genDocsSignListPrint')->name('print.docs.signlist');
         Route::get('/', 'ShowPersonsList')->name('all');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRDocsAdminController::class)->name('docs.')->prefix('docs')->group(function () {
         Route::get('/detail/{docid}', 'docsShowDetail')->name('detail');
@@ -146,19 +145,19 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
             Route::get('/add', 'typesAddForm')->name('add');
             Route::post('/save', 'typesSave')->name('save');
             Route::get('/', 'typesShowList')->name('all');
-        })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+        })->middleware(['auth.osfrportal']);
         Route::name('groups.')->prefix('groups')->group(function () {
             Route::get('/detail/{groupid}', 'groupsShowDetail')->name('detail');
             Route::get('/add', 'groupsAddForm')->name('add');
             Route::post('/save', 'groupsSave')->name('save');
             Route::get('/', 'groupsShowList')->name('all');
-        })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+        })->middleware(['auth.osfrportal']);
         Route::name('reports.')->prefix('reports')->group(function () {
             Route::get('/byunits', 'reportsShowByUnits')->name('byunits');
             Route::post('/byunits', 'reportsMakeByUnits')->name('byunits');
             Route::get('/', 'reportsShowList')->name('all');
-        })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+        })->middleware(['auth.osfrportal']);
+    })->middleware(['auth.osfrportal']);
     Route::controller(PermissionsController::class)->prefix('permissions')->group(function () {
         Route::post('/role/add', 'AddRole')->name('permissions.addrole');
         Route::get('/role/edit/{roleid}', 'EditRole')->name('permissions.editrole');
@@ -169,17 +168,17 @@ Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->prefix('admin')->n
         Route::get('/permission/showusers/{permissionid}', 'ShowPermissionUsersList')->name('permissions.showpermissionusers');
         Route::post('/permission/add', 'AddPermission')->name('permissions.addpermission');
         Route::get('/permission', 'ShowPermissionsList')->name('permissions');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRAdminDashboardController::class)->group(function () {
         Route::get('/', 'showDashboard')->name('dashboard');
-    })->middleware(['auth.osfrportal', 'doNotCacheResponse']);
+    })->middleware(['auth.osfrportal']);
 });
 
 
 
 
-Route::middleware('doNotCacheResponse')->controller(LoginController::class)->group(function () {
+Route::controller(LoginController::class)->group(function () {
     Route::get('/restorepass', 'showRestorePassForm')->name('restorepass');
     Route::post('/restorepass', 'doRestorePass')->name('dorestorepass');
     Route::get('/login', 'showloginform')->name('login');
@@ -187,17 +186,17 @@ Route::middleware('doNotCacheResponse')->controller(LoginController::class)->gro
     Route::get('/logout', 'logout')->name('logout');
 });
 
-Route::middleware('doNotCacheResponse')->controller(SFRIpController::class)->group(function () {
+Route::controller(SFRIpController::class)->group(function () {
     Route::get('/showmyip', 'ipIndex')->name('showmyip');
 });
 
-Route::middleware(['auth.osfrportal', 'doNotCacheResponse'])->group(function () {
+Route::middleware(['auth.osfrportal'])->group(function () {
     Route::controller(PhoneController::class)->prefix('phone')->name('phone.')->group(function () {
-        Route::get('/edit/{personid}', 'phoneShowEditForm')->name('editform')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
-        Route::get('/export/xlsx', 'exportPhonesToXLSX')->name('export.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
-        Route::get('/export/vipnet/xlsx', 'exportPhonesToXLSXWithVipNet')->name('export.vipnet.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd', 'doNotCacheResponse']);
-        Route::post('/save', 'doUpdateContacts')->name('save')->middleware(['auth.osfrportal', 'doNotCacheResponse']);
-        Route::get('/', 'phoneIndex')->name('index')->middleware('doNotCacheResponse');
+        Route::get('/edit/{personid}', 'phoneShowEditForm')->name('editform')->middleware(['auth.osfrportal']);
+        Route::get('/export/xlsx', 'exportPhonesToXLSX')->name('export.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd']);
+        Route::get('/export/vipnet/xlsx', 'exportPhonesToXLSXWithVipNet')->name('export.vipnet.xlsx')->middleware(['auth.osfrportal', 'can:export-phones-pd']);
+        Route::post('/save', 'doUpdateContacts')->name('save')->middleware(['auth.osfrportal']);
+        Route::get('/', 'phoneIndex')->name('index');
     });
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'dashboardIndex')->name('dashboard');
@@ -234,21 +233,20 @@ Route::get('/parsexml', function () {
         print($fio);
     });
 });
-Route::middleware('doNotCacheResponse')->get('/orion', function () {
+Route::get('/orion', function () {
     $ctrl = new SFROrionController;
     $ctrl->test();
 });
 
-Route::middleware('doNotCacheResponse')->get('/ddconfig', function () {
+Route::get('/ddconfig', function () {
     //dump(Auth::user()->SfrPerson);
     dd(config());
 });
-Route::middleware('doNotCacheResponse')->get('/testnotification', function () {
+Route::get('/testnotification', function () {
 
     Auth::user()->notify(new Osfrportal\OsfrportalLaravel\Notifications\NewDocs);
 });
-Route::middleware('doNotCacheResponse')->get('/test', function () {
-    ResponseCache::clear();
+Route::get('/test', function () {
     $pperson = SfrPerson::where('psnils', '12413082809')->first();
     $sfruser = new SfrUser;
     $sfruser->username = 'PleshkovPA';
@@ -257,15 +255,14 @@ Route::middleware('doNotCacheResponse')->get('/test', function () {
     $sfruser->save();
 });
 
-Route::middleware('doNotCacheResponse')->get('/assign-itstaff', function () {
-    ResponseCache::clear();
+Route::get('/assign-itstaff', function () {
     Auth::user()->assignRole('it-staff');
     dump('DONE');
 });
 
-Route::middleware('doNotCacheResponse')->get('/x509test', [SFRx509Controller::class, 'parceX509certs']);
+Route::get('/x509test', [SFRx509Controller::class, 'parceX509certs']);
 
-Route::middleware('doNotCacheResponse')->get('/', function () {
+Route::get('/', function () {
     return view('osfrportal::sections.mainpage.show');
 })->name('mainpage');
 

@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Process;
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrCerts;
@@ -33,7 +32,6 @@ class SFRx509Controller extends Controller
 {
     public function __construct()
     {
-        $this->middleware('doNotCacheResponse');
         set_time_limit(0);
     }
 
@@ -92,68 +90,68 @@ class SFRx509Controller extends Controller
         dump('done');
 */
         dump('None');
-/*
-        $x509crl = new X509();
-        $crl3 = $x509crl->loadCRL(Storage::get('ucfk_2023.x509_2'));
-        //$crl2 = $x509crl->loadCRL(Storage::get('ucfk_2023.x509_2'));
-        $crl2 = "";
-        dump([$crl3, $crl2]);
+        /*
+                $x509crl = new X509();
+                $crl3 = $x509crl->loadCRL(Storage::get('ucfk_2023.x509_2'));
+                //$crl2 = $x509crl->loadCRL(Storage::get('ucfk_2023.x509_2'));
+                $crl2 = "";
+                dump([$crl3, $crl2]);
 
-        //$cert = Storage::get('Опарина Светлана Юрьевна.cer');
-        $cert = Storage::disk('UKEPcerts')->get('ГОСУДАРСТВЕННОЕ УЧРЕЖДЕНИЕ - ОТДЕЛЕНИЕ ПЕНСИОННОГО ФОНДА РОССИЙСКОЙ ФЕДЕРАЦИИ ПО ЛИПЕЦКОЙ ОБЛАСТИ (3).cer');
-        $x509 = new X509();
+                //$cert = Storage::get('Опарина Светлана Юрьевна.cer');
+                $cert = Storage::disk('UKEPcerts')->get('ГОСУДАРСТВЕННОЕ УЧРЕЖДЕНИЕ - ОТДЕЛЕНИЕ ПЕНСИОННОГО ФОНДА РОССИЙСКОЙ ФЕДЕРАЦИИ ПО ЛИПЕЦКОЙ ОБЛАСТИ (3).cer');
+                $x509 = new X509();
 
 
-        $cert_509 = $x509->loadX509($cert);
-        $cert_x509_DN = $x509->getDN(X509::DN_OPENSSL);
-        $cert_x509_issuerDN = $x509->getIssuerDN(X509::DN_OPENSSL);
+                $cert_509 = $x509->loadX509($cert);
+                $cert_x509_DN = $x509->getDN(X509::DN_OPENSSL);
+                $cert_x509_issuerDN = $x509->getIssuerDN(X509::DN_OPENSSL);
 
-        //dump($cert_509);
-        //dump($x509->validateSignature(false));
+                //dump($cert_509);
+                //dump($x509->validateSignature(false));
 
-        $person = SfrPerson::where('psnils', Arr::get($cert_x509_DN, '1.2.643.100.3'))->firstOr(function () {
-            $person['pid'] = null;
-        });
-        $certdata_arr = [
-            'notBefore' => new CarbonImmutable($cert_509['tbsCertificate']['validity']['notBefore']['utcTime']),
-            'notAfter' => new CarbonImmutable($cert_509['tbsCertificate']['validity']['notAfter']['utcTime']),
-            'commonName' => Arr::get($cert_x509_DN, 'CN'),
-            'serialNumber' => Str::upper($cert_509['tbsCertificate']['serialNumber']->toHex()),
-            'Inn' => Arr::get($cert_x509_DN, '1.2.643.3.131.1.1'),
-            'Innle' => Arr::get($cert_x509_DN, '1.2.643.100.4'),
-            'Ogrn' => Arr::get($cert_x509_DN, '1.2.643.100.1'),
-            'Snils' => Arr::get($cert_x509_DN, '1.2.643.100.3'),
-            'Email' => Arr::get($cert_x509_DN, 'emailAddress'),
-            'countryName' => Arr::get($cert_x509_DN, 'C'),
-            'stateOrProvinceName' => Arr::get($cert_x509_DN, 'ST'),
-            'organizationName' => Arr::get($cert_x509_DN, 'O'),
-            'givenName' => Arr::get($cert_x509_DN, 'givenName'),
-            'surname' => Arr::get($cert_x509_DN, 'SN'),
-            'iss_INN' => Arr::get($cert_x509_issuerDN, '1.2.643.100.4'),
-            'iss_OGRN' => Arr::get($cert_x509_issuerDN, '1.2.643.100.1'),
-            'iss_Email' => Arr::get($cert_x509_issuerDN, 'emailAddress'),
-            'iss_countryName' => Arr::get($cert_x509_issuerDN, 'C'),
-            'iss_stateOrProvinceName' => Arr::get($cert_x509_issuerDN, 'ST'),
-            'iss_organizationName' => Arr::get($cert_x509_issuerDN, 'O'),
-            'iss_streetAddress' => Arr::get($cert_x509_issuerDN, 'streetAddress'),
-            'iss_localityName' => Arr::get($cert_x509_issuerDN, 'L'),
-            'iss_commonName' => Arr::get($cert_x509_issuerDN, 'CN'),
-        ];
-        $certdata = SFRCertData::from($certdata_arr);
-        dump($certdata);
+                $person = SfrPerson::where('psnils', Arr::get($cert_x509_DN, '1.2.643.100.3'))->firstOr(function () {
+                    $person['pid'] = null;
+                });
+                $certdata_arr = [
+                    'notBefore' => new CarbonImmutable($cert_509['tbsCertificate']['validity']['notBefore']['utcTime']),
+                    'notAfter' => new CarbonImmutable($cert_509['tbsCertificate']['validity']['notAfter']['utcTime']),
+                    'commonName' => Arr::get($cert_x509_DN, 'CN'),
+                    'serialNumber' => Str::upper($cert_509['tbsCertificate']['serialNumber']->toHex()),
+                    'Inn' => Arr::get($cert_x509_DN, '1.2.643.3.131.1.1'),
+                    'Innle' => Arr::get($cert_x509_DN, '1.2.643.100.4'),
+                    'Ogrn' => Arr::get($cert_x509_DN, '1.2.643.100.1'),
+                    'Snils' => Arr::get($cert_x509_DN, '1.2.643.100.3'),
+                    'Email' => Arr::get($cert_x509_DN, 'emailAddress'),
+                    'countryName' => Arr::get($cert_x509_DN, 'C'),
+                    'stateOrProvinceName' => Arr::get($cert_x509_DN, 'ST'),
+                    'organizationName' => Arr::get($cert_x509_DN, 'O'),
+                    'givenName' => Arr::get($cert_x509_DN, 'givenName'),
+                    'surname' => Arr::get($cert_x509_DN, 'SN'),
+                    'iss_INN' => Arr::get($cert_x509_issuerDN, '1.2.643.100.4'),
+                    'iss_OGRN' => Arr::get($cert_x509_issuerDN, '1.2.643.100.1'),
+                    'iss_Email' => Arr::get($cert_x509_issuerDN, 'emailAddress'),
+                    'iss_countryName' => Arr::get($cert_x509_issuerDN, 'C'),
+                    'iss_stateOrProvinceName' => Arr::get($cert_x509_issuerDN, 'ST'),
+                    'iss_organizationName' => Arr::get($cert_x509_issuerDN, 'O'),
+                    'iss_streetAddress' => Arr::get($cert_x509_issuerDN, 'streetAddress'),
+                    'iss_localityName' => Arr::get($cert_x509_issuerDN, 'L'),
+                    'iss_commonName' => Arr::get($cert_x509_issuerDN, 'CN'),
+                ];
+                $certdata = SFRCertData::from($certdata_arr);
+                dump($certdata);
 
-        $to_db = SfrCerts::updateOrCreate(
-            [
-                'certserial' => Str::upper($cert_509['tbsCertificate']['serialNumber']->toHex()),
-            ],
-            [
-                'certvalidfrom' => $cert_509['tbsCertificate']['validity']['notBefore']['utcTime'],
-                'certvalidto' => $cert_509['tbsCertificate']['validity']['notAfter']['utcTime'],
-                'certdata' => $certdata,
-                'certtype' => CertsTypesEnum::UKEP(),
-                'pid' => $person['pid'],
-            ]
-        );
-*/
+                $to_db = SfrCerts::updateOrCreate(
+                    [
+                        'certserial' => Str::upper($cert_509['tbsCertificate']['serialNumber']->toHex()),
+                    ],
+                    [
+                        'certvalidfrom' => $cert_509['tbsCertificate']['validity']['notBefore']['utcTime'],
+                        'certvalidto' => $cert_509['tbsCertificate']['validity']['notAfter']['utcTime'],
+                        'certdata' => $certdata,
+                        'certtype' => CertsTypesEnum::UKEP(),
+                        'pid' => $person['pid'],
+                    ]
+                );
+        */
     }
 }
