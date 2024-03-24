@@ -90,20 +90,72 @@
 @push('footer-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#docType').select2({
-                ajax: {
-                    dataType: 'json',
-                    url: function(params) {
-                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.types_all') }}";
-                    },
+            $.ajax({
+                url: "{{ route('osfrapi.osfrportal.admin.select2.docs.types_all') }}",
+                dataType: 'json',
+                success: function(json) {
+                    $('#docType').select2({
+                        data: json.results,
+                    });
+                    @if (!empty($docData->docType))
+                        var docTypeUrlDetailed =
+                            '{{ route('osfrapi.osfrportal.admin.select2.docs.detail.type.byid', ':slug') }}';
+                        docTypeUrlDetailed = docTypeUrlDetailed.replace(':slug',
+                            '{{ $docData->docType }}');
+                        var docTypeSelect = $('#docType');
+                        $.ajax({
+                            dataType: 'json',
+                            url: docTypeUrlDetailed
+                        }).then(function(data) {
+                            // create the option and append to Select2
+                            var option = new Option(data.results[0].text, data.results[0].id,
+                                true,
+                                true);
+                            docTypeSelect.append(option).trigger('change');
+
+                            // manually trigger the `select2:select` event
+                            docTypeSelect.trigger({
+                                type: 'select2:select',
+                                params: {
+                                    data: data.results
+                                }
+                            });
+                        });
+                    @endif
                 }
             });
-            $('#docGroup').select2({
-                ajax: {
-                    dataType: 'json',
-                    url: function(params) {
-                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.groups_all') }}";
-                    },
+            $.ajax({
+                url: "{{ route('osfrapi.osfrportal.admin.select2.docs.groups_all') }}",
+                dataType: 'json',
+                success: function(json) {
+                    $('#docGroup').select2({
+                        data: json.results,
+                    });
+                    @if (!empty($docData->docGroup))
+                        var docGroupUrlDetailed =
+                            '{{ route('osfrapi.osfrportal.admin.select2.docs.detail.group.byid', ':slug') }}';
+                        docGroupUrlDetailed = docGroupUrlDetailed.replace(':slug',
+                            '{{ $docData->docGroup }}');
+                        var docGroupSelect = $('#docGroup');
+                        $.ajax({
+                            dataType: 'json',
+                            url: docGroupUrlDetailed
+                        }).then(function(data) {
+                            // create the option and append to Select2
+                            var option = new Option(data.results[0].text, data.results[0].id,
+                                true,
+                                true);
+                            docGroupSelect.append(option).trigger('change');
+
+                            // manually trigger the `select2:select` event
+                            docGroupSelect.trigger({
+                                type: 'select2:select',
+                                params: {
+                                    data: data.results
+                                }
+                            });
+                        });
+                    @endif
                 }
             });
         });
