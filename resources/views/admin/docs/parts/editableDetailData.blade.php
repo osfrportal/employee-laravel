@@ -158,6 +158,24 @@
                     @endif
                 }
             });
+            /*
+            $('#docType').select2({
+                ajax: {
+                    dataType: 'json',
+                    url: function(params) {
+                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.types_all') }}";
+                    },
+                }
+            });
+            $('#docGroup').select2({
+                ajax: {
+                    dataType: 'json',
+                    url: function(params) {
+                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.groups_all') }}";
+                    },
+                }
+            });
+            */
         });
     </script>
 @endpush
