@@ -64,8 +64,8 @@
         <select class="form-select form-select-sm @error('docNeedSign') is-invalid @enderror" id="docNeedSign"
             name="docNeedSign">
             <option>Выберите...</option>
-            <option value="1" @selected(old('docNeedSign' ?? ($docData->docNeedSign ?? '')) == 1)>Требуется</option>
-            <option value="0" @selected(old('docNeedSign' ?? ($docData->docNeedSign ?? '')) == 0)>Не требуется</option>
+            <option value="1" @selected(old('docNeedSign', $docData->docNeedSign ?? '') == 1)>Требуется</option>
+            <option value="0" @selected(old('docNeedSign', $docData->docNeedSign ?? '') == 0)>Не требуется</option>
         </select>
         @error('docNeedSign')
             <div id="docNeedSignFeedback" class="invalid-feedback">{{ $message }}</div>
