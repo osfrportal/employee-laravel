@@ -50,6 +50,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', 'apiSelect2UnitsAll')->name('all');
         });
         Route::prefix('docs')->name('docs.')->controller(SFRApiController::class)->group(function () {
+            Route::get('/detail/type/{typeid}', 'apiSelect2DocTypeByID')->name('detail.type.byid');
+            Route::get('/detail/group/{groupid}', 'apiSelect2DocGroupByID')->name('detail.group.byid');
             Route::get('/allgrouped', 'apiSelect2DocsGroupedAll')->name('allgrouped');
         });
         Route::prefix('infosystems')->name('infosystems.')->controller(SFRApiController::class)->group(function () {

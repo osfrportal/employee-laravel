@@ -33,6 +33,8 @@ use Osfrportal\OsfrportalLaravel\Actions\Api\Select2UnitsAllAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocsAllGroupedAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2InfosystemsAllGroupedAction;
 use Osfrportal\OsfrportalLaravel\Actions\Api\Select2InfosystemByIDAction;
+use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocTypeByIDAction;
+use Osfrportal\OsfrportalLaravel\Actions\Api\Select2DocGroupByIDAction;
 use Osfrportal\OsfrportalLaravel\Actions\Orion\GetAccessPointsByCardIdAction;
 use Osfrportal\OsfrportalLaravel\Actions\Crypto\CryptoListAllAction;
 
@@ -51,6 +53,18 @@ class SFRApiController extends Controller
         $data = Select2DocsAllGroupedAction::run();
         return $data;
     }
+
+    public function apiSelect2DocTypeByID(Request $request)
+    {
+        $data = Select2DocTypeByIDAction::run();
+        return $data;
+    }
+    public function apiSelect2DocGroupByID(Request $request)
+    {
+        $data = Select2DocGroupByIDAction::run();
+        return $data;
+    }
+
 
     public function apiGetAccessPointsByCardId(int $cardid)
     {

@@ -130,7 +130,7 @@ class SFRDocsAdminController extends Controller
             $this->flasher_interface->addError('Раздел документа не найден!');
             return back();
         }
-
+        dump($docDataDTO);
         return view('osfrportal::admin.docs.docs_detail', [
             'docid' => $docid,
             'docData' => $docDataDTO,
