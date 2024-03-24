@@ -54,14 +54,14 @@ class SFRApiController extends Controller
         return $data;
     }
 
-    public function apiSelect2DocTypeByID(Request $request)
+    public function apiSelect2DocTypeByID($typeid)
     {
-        $data = Select2DocTypeByIDAction::run();
+        $data = Select2DocTypeByIDAction::run($typeid);
         return $data;
     }
-    public function apiSelect2DocGroupByID(Request $request)
+    public function apiSelect2DocGroupByID($groupid)
     {
-        $data = Select2DocGroupByIDAction::run();
+        $data = Select2DocGroupByIDAction::run($groupid);
         return $data;
     }
 
