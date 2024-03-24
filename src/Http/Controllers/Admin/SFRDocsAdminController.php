@@ -210,11 +210,12 @@ class SFRDocsAdminController extends Controller
             $doc->docGroup = $request->input('docGroup');
             */
             //dump($request->all());
-            dump(SFRDocData::from($request));
-            dump($docData);
-            dump(SFRDocData::forList($doc));
-            //$this->flasher_interface->addSuccess('Данные успешно сохранены!');
-            //return back();
+            //dump(SFRDocData::from($request));
+            //dump($docData);
+            //dump(SFRDocData::forList($doc));
+            $doc->save();
+            $this->flasher_interface->addSuccess('Данные успешно сохранены!');
+            return back();
         } else {
             $this->flasher_interface->addError('Документ не может быть отредактирован. В базе имеются подписи об ознакомлении!');
             return back();
