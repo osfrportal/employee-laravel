@@ -195,24 +195,10 @@ class SFRDocsAdminController extends Controller
             $doc->doc_date = $request->input('docDate');
             $doc->doc_typeid = $request->input('docType');
             $doc->doc_groupid = $request->input('docGroup');
-
             $docData = SFRDocData::forList($doc);
             $docData->docDescription = $request->input('docDescription');
             $docData->docNeedSign = $request->input('docNeedSign');
             $doc->doc_data = $docData->toJson();
-
-
-            /**
-            $doc->docName = $request->input('docName');
-            $doc->docNumber = $request->input('docNumber');
-            $doc->docDate = $request->input('docDate');
-            $doc->docType = $request->input('docType');
-            $doc->docGroup = $request->input('docGroup');
-            */
-            //dump($request->all());
-            //dump(SFRDocData::from($request));
-            //dump($docData);
-            //dump(SFRDocData::forList($doc));
             $doc->save();
             $this->flasher_interface->addSuccess('Данные успешно сохранены!');
             return back();

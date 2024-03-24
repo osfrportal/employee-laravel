@@ -107,14 +107,11 @@
                             dataType: 'json',
                             url: docTypeUrlDetailed
                         }).then(function(docTypeData) {
-                            // create the option and append to Select2
                             var docTypeDataOption = new Option(docTypeData.results[0].text,
                                 docTypeData.results[0].id,
                                 true,
                                 true);
                             docTypeSelect.append(docTypeDataOption).trigger('change');
-
-                            // manually trigger the `select2:select` event
                             docTypeSelect.trigger({
                                 type: 'select2:select',
                                 params: {
@@ -142,14 +139,11 @@
                             dataType: 'json',
                             url: docGroupUrlDetailed
                         }).then(function(docGroupData) {
-                            // create the option and append to Select2
                             var docGroupDataOption = new Option(docGroupData.results[0].text,
                                 docGroupData.results[0].id,
                                 true,
                                 true);
                             docGroupSelect.append(docGroupDataOption).trigger('change');
-
-                            // manually trigger the `select2:select` event
                             docGroupSelect.trigger({
                                 type: 'select2:select',
                                 params: {
@@ -160,24 +154,6 @@
                     @endif
                 }
             });
-            /*
-            $('#docType').select2({
-                ajax: {
-                    dataType: 'json',
-                    url: function(params) {
-                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.types_all') }}";
-                    },
-                }
-            });
-            $('#docGroup').select2({
-                ajax: {
-                    dataType: 'json',
-                    url: function(params) {
-                        return "{{ route('osfrapi.osfrportal.admin.select2.docs.groups_all') }}";
-                    },
-                }
-            });
-            */
         });
     </script>
 @endpush
