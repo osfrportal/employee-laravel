@@ -130,7 +130,6 @@ class SFRDocsAdminController extends Controller
             $this->flasher_interface->addError('Раздел документа не найден!');
             return back();
         }
-        dump($docDataDTO);
         return view('osfrportal::admin.docs.docs_detail', [
             'docid' => $docid,
             'docData' => $docDataDTO,
@@ -190,9 +189,32 @@ class SFRDocsAdminController extends Controller
             return back();
         }
         if ($doc->isEditable()) {
-            dump($request->all());
+
+            $doc->doc_name = $request->input('docName');
+            $doc->doc_number = $request->input('docNumber');
+            $doc->doc_date = $request->input('docDate');
+            $doc->doc_typeid = $request->input('docType');
+            $doc->doc_groupid = $request->input('docGroup');
+
+            $docData = SFRDocData::forList($doc);
+            $docData->docDescription = $request->input('docDescription');
+            $docData->docNeedSign = $request->input('docNeedSign');
+            $doc->doc_data = $docData;
+
+
+            /**
+            $doc->docName = $request->input('docName');
+            $doc->docNumber = $request->input('docNumber');
+            $doc->docDate = $request->input('docDate');
+            $doc->docType = $request->input('docType');
+            $doc->docGroup = $request->input('docGroup');
+            */
+            //dump($request->all());
             dump(SFRDocData::from($request));
+            dump($docData);
             dump(SFRDocData::forList($doc));
+            //$this->flasher_interface->addSuccess('Данные успешно сохранены!');
+            //return back();
         } else {
             $this->flasher_interface->addError('Документ не может быть отредактирован. В базе имеются подписи об ознакомлении!');
             return back();
