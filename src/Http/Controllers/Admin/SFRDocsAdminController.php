@@ -199,7 +199,7 @@ class SFRDocsAdminController extends Controller
             $docData = SFRDocData::forList($doc);
             $docData->docDescription = $request->input('docDescription');
             $docData->docNeedSign = $request->input('docNeedSign');
-            $doc->doc_data = $docData;
+            $doc->doc_data = $docData->toJson();
 
 
             /**
