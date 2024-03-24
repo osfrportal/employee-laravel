@@ -93,9 +93,9 @@
             $.ajax({
                 url: "{{ route('osfrapi.osfrportal.admin.select2.docs.types_all') }}",
                 dataType: 'json',
-                success: function(json) {
+                success: function(docTypeJson) {
                     $('#docType').select2({
-                        data: json.results,
+                        data: docTypeJson.results,
                     });
                     @if (!empty($docData->docType))
                         var docTypeUrlDetailed =
@@ -106,18 +106,19 @@
                         $.ajax({
                             dataType: 'json',
                             url: docTypeUrlDetailed
-                        }).then(function(data) {
+                        }).then(function(docTypeData) {
                             // create the option and append to Select2
-                            var option = new Option(data.results[0].text, data.results[0].id,
+                            var docTypeDataOption = new Option(docTypeData.results[0].text,
+                                docTypeData.results[0].id,
                                 true,
                                 true);
-                            docTypeSelect.append(option).trigger('change');
+                            docTypeSelect.append(docTypeDataOption).trigger('change');
 
                             // manually trigger the `select2:select` event
                             docTypeSelect.trigger({
                                 type: 'select2:select',
                                 params: {
-                                    data: data.results
+                                    data: docTypeData.results
                                 }
                             });
                         });
@@ -127,9 +128,9 @@
             $.ajax({
                 url: "{{ route('osfrapi.osfrportal.admin.select2.docs.groups_all') }}",
                 dataType: 'json',
-                success: function(json) {
+                success: function(docGroupJson) {
                     $('#docGroup').select2({
-                        data: json.results,
+                        data: docGroupJson.results,
                     });
                     @if (!empty($docData->docGroup))
                         var docGroupUrlDetailed =
@@ -140,18 +141,19 @@
                         $.ajax({
                             dataType: 'json',
                             url: docGroupUrlDetailed
-                        }).then(function(data) {
+                        }).then(function(docGroupData) {
                             // create the option and append to Select2
-                            var option = new Option(data.results[0].text, data.results[0].id,
+                            var docGroupDataOption = new Option(docGroupData.results[0].text,
+                                docGroupData.results[0].id,
                                 true,
                                 true);
-                            docGroupSelect.append(option).trigger('change');
+                            docGroupSelect.append(docGroupDataOption).trigger('change');
 
                             // manually trigger the `select2:select` event
                             docGroupSelect.trigger({
                                 type: 'select2:select',
                                 params: {
-                                    data: data.results
+                                    data: docGroupData.results
                                 }
                             });
                         });
