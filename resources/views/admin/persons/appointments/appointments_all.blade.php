@@ -4,7 +4,7 @@
         <table class="table table-sm dataTable no-footer" id="table-appointments">
             <thead>
                 <tr>
-                    <th>&nbsp;</th>
+                    <th></th>
                     <th>Должность</th>
                     <th>Порядок сортировки</th>
                     <th>Кол-во работников</th>
@@ -52,7 +52,7 @@
                         targets: 0,
                         orderable: false,
                         searchable: false,
-
+                        className: 'dt-left',
                         render: function(data, type, full, meta) {
                             var url =
                                 '{{ route('osfrportal.admin.persons.appointments.detail', ':slug') }}';
