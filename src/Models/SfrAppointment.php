@@ -17,4 +17,9 @@ class SfrAppointment extends Model
     protected $fillable = [
         'aname',
     ];
+
+    public function SfrPersons()
+    {
+        return $this->belongsToMany(SfrPerson::class, 'pempapp', 'aid', 'pid')->withTimestamps();
+    }
 }
