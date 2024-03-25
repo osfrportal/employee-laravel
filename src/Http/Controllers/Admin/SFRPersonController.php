@@ -268,6 +268,6 @@ class SFRPersonController extends Controller
         $this->authorize($this->permissionManage);
 
         dump($aid);
-        //return view('osfrportal::admin.persons.appointments.appointments_all');
+        return view('osfrportal::admin.persons.appointments.appointmentEditForm');
     }
 }

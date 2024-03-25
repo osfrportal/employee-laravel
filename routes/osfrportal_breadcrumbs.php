@@ -38,6 +38,10 @@ Breadcrumbs::for('osfrportal.admin.persons.appointments.all', function (Breadcru
     $trail->parent('osfrportal.admin');
     $trail->push('Настройка должностей', route('osfrportal.admin.persons.appointments.all'));
 });
+Breadcrumbs::for('osfrportal.admin.persons.appointments.detail', function (BreadcrumbTrail $trail, $aid): void {
+    $trail->parent('osfrportal.admin.persons.appointments.all');
+    $trail->push('Редактирование должности', route('osfrportal.admin.persons.appointments.detail', $aid));
+});
 
 Breadcrumbs::for('osfrportal.admin.persons.all', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin.persons');
