@@ -6,7 +6,6 @@
                 <tr>
                     <th>&nbsp;</th>
                     <th>Должность</th>
-                    <th>Код</th>
                     <th>Порядок сортировки</th>
                     <th>Кол-во работников</th>
                     <th>МОП</th>
@@ -34,10 +33,6 @@
                     {
                         data: 'aname',
                         name: 'aname'
-                    },
-                    {
-                        data: 'acode',
-                        name: 'acode',
                     },
                     {
                         data: 'asortorder',
@@ -89,12 +84,6 @@
                     },
                     {
                         targets: 4,
-                        orderable: true,
-                        searchable: false,
-                        className: 'dt-center',
-                    },
-                    {
-                        targets: 5,
                         orderable: true,
                         searchable: false,
                         className: 'dt-center',
