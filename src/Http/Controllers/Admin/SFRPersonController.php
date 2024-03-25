@@ -248,7 +248,7 @@ class SFRPersonController extends Controller
         }
     }
 
-    public function appointmentsAllShow()
+    public function appointmentsAllShow(Request $request)
     {
         $this->authorize($this->permissionManage);
         if ($request->ajax()) {
