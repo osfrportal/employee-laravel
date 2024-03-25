@@ -67,10 +67,10 @@
                         className: 'dt-body-center dt-head-center',
                         render: function(data, type, full, meta) {
                             console.log(data);
-                            if (Boolean(data) == true) {
-                                return 'МОП';
+                            if (Boolean(data) === true) {
+                                return '<i class="ti ti-square-check"></i>';
                             }
-                            return '---';
+                            return '<i class="ti ti-square"></i>';
                         },
                     },
                 ],
