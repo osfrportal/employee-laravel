@@ -254,7 +254,7 @@ class SFRPersonController extends Controller
         $this->authorize($this->permissionManage);
 
         if ($request->ajax()) {
-            $data = SfrAppointment::withCount('SfrPersons')->select('*');
+            $data = SfrAppointment::select('*')->withCount('sfrpersons');
             return Datatables::of($data)
                 ->setRowId('aid')
                 ->make(true);
