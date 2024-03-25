@@ -125,7 +125,7 @@ Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(f
 
     Route::controller(SFRPersonController::class)->name('persons.')->prefix('persons')->group(function () {
         Route::get('/movements/all', 'movementsAllShow')->name('movements.all');
-
+        Route::get('/appointments/all', 'appointmentsAllShow')->name('appointments.all');
         Route::post('/resetpassword', 'sendRandPassword')->name('resetpassword');
         Route::get('/detail/{personid}', 'ShowPersonDetail')->name('detail');
         Route::get('/print/docssigns/{personid}', 'genDocsSignListPrint')->name('print.docs.signlist');
@@ -230,7 +230,7 @@ Route::get('/parsexml', function () {
     $out1 = collect($out->Person);
     $out1->each(function ($person) {
         $fio = sprintf('%s %s %s <br>', $person->lastname, $person->firstname, $person->middlename);
-        print($fio);
+        print ($fio);
     });
 });
 Route::get('/orion', function () {

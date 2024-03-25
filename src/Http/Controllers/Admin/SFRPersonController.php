@@ -247,4 +247,19 @@ class SFRPersonController extends Controller
             return view('osfrportal::admin.persons.movements.movements_all');
         }
     }
+
+    public function appointmentsAllShow()
+    {
+        $this->authorize($this->permissionManage);
+        if ($request->ajax()) {
+            $data = SfrAppointment::select('*');
+            return Datatables::of($data)
+                ->setRowId('aid')
+                ->make(true);
+        } else {
+            return view('osfrportal::admin.persons.appointments.appointments_all');
+        }
+
+
+    }
 }

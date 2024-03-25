@@ -17,6 +17,11 @@
                             <li><a class="dropdown-item" href="{{ route('osfrportal.admin.persons.movements.all') }}">Кадровые
                                     перемещения</a></li>
                         @endcan
+                        @can('person-manage')
+                            <li><a class="dropdown-item"
+                                    href="{{ route('osfrportal.admin.persons.appointments.all') }}">Должности</a>
+                            </li>
+                        @endcan
                     </ul>
                 </div>
             </ul>
