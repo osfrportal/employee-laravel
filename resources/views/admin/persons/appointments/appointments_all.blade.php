@@ -46,7 +46,7 @@
                         targets: 0,
                         orderable: true,
                         searchable: true,
-                        className: 'dt-body-center dt-head-center',
+                        className: 'dt-body-left dt-head-center',
                     },
                     {
                         targets: 1,
@@ -66,7 +66,6 @@
                         searchable: false,
                         className: 'dt-body-center dt-head-center',
                         render: function(data, type, full, meta) {
-                            console.log(data);
                             if (Boolean(data) === true) {
                                 return '<i class="ti ti-square-check"></i>';
                             }
