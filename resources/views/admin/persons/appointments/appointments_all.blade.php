@@ -8,6 +8,7 @@
                     <th>Должность</th>
                     <th>Код</th>
                     <th>Порядок сортировки</th>
+                    <th>Кол-во работников</th>
                     <th>МОП</th>
                 </tr>
             </thead>
@@ -41,6 +42,10 @@
                     {
                         data: 'asortorder',
                         name: 'asortorder',
+                    },
+                    {
+                        data: 'SfrPersons_count',
+                        name: 'SfrPersons_count',
                     },
                     {
                         data: 'amop',
@@ -84,6 +89,12 @@
                     },
                     {
                         targets: 4,
+                        orderable: true,
+                        searchable: false,
+                        className: 'dt-center',
+                    },
+                    {
+                        targets: 5,
                         orderable: true,
                         searchable: false,
                         className: 'dt-center',
