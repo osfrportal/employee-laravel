@@ -53,7 +53,8 @@
                         searchable: false,
                         className: 'dt-body-center dt-head-center',
                         render: function(data, type, full, meta) {
-                            var url = '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
+                            var url =
+                                '{{ route('osfrportal.admin.persons.appointments.detail', ':slug') }}';
                             url = url.replace(':slug', data);
 
                             var linkView = "#";

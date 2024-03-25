@@ -261,7 +261,11 @@ class SFRPersonController extends Controller
         } else {
             return view('osfrportal::admin.persons.appointments.appointments_all');
         }
+    }
 
-
+    public function appointmentShow(string $aid)
+    {
+        dump($aid);
+        //return view('osfrportal::admin.persons.appointments.appointments_all');
     }
 }
