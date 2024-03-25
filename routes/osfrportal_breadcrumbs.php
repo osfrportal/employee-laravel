@@ -40,8 +40,9 @@ Breadcrumbs::for('osfrportal.admin.persons.appointments.all', function (Breadcru
     $trail->parent('osfrportal.admin');
     $trail->push('Настройка должностей', route('osfrportal.admin.persons.appointments.all'));
 });
-Breadcrumbs::for('osfrportal.admin.persons.appointments.detail', function (BreadcrumbTrail $trail, SfrAppointment $appointment): void {
+Breadcrumbs::for('osfrportal.admin.persons.appointments.detail', function (BreadcrumbTrail $trail, $aid): void {
     $trail->parent('osfrportal.admin.persons.appointments.all');
+    $appointment = SfrAppointment::where('aid', $aid)->first();
     $trail->push($appointment->aname, route('osfrportal.admin.persons.appointments.detail', $aid));
 });
 
