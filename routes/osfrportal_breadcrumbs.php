@@ -2,6 +2,8 @@
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
+use Osfrportal\OsfrportalLaravel\Models\SfrAppointment
+
 //https://github.com/diglactic/laravel-breadcrumbs
 
 
@@ -38,9 +40,9 @@ Breadcrumbs::for('osfrportal.admin.persons.appointments.all', function (Breadcru
     $trail->parent('osfrportal.admin');
     $trail->push('Настройка должностей', route('osfrportal.admin.persons.appointments.all'));
 });
-Breadcrumbs::for('osfrportal.admin.persons.appointments.detail', function (BreadcrumbTrail $trail, $aid): void {
+Breadcrumbs::for('osfrportal.admin.persons.appointments.detail', function (BreadcrumbTrail $trail, SfrAppointment $appointment): void {
     $trail->parent('osfrportal.admin.persons.appointments.all');
-    $trail->push('Редактирование должности', route('osfrportal.admin.persons.appointments.detail', $aid));
+    $trail->push($appointment->aname, route('osfrportal.admin.persons.appointments.detail', $aid));
 });
 
 Breadcrumbs::for('osfrportal.admin.persons.all', function (BreadcrumbTrail $trail): void {
