@@ -41,11 +41,10 @@
                     <button class="btn btn-danger btn-submit" type="submit">УДАЛИТЬ</button>
                 </form>
             @else
-                <div class="mb-3">
-                    <div class="font-italic text-muted mb-4">
-                        УДАЛЕНИЕ НЕВОЗМОЖНО. Количество работников с данной должностью -
-                        {{ $appointment->sfrpersons_count }}
-                    </div>
+                <div class="font-italic text-muted mb-4">
+                    <button class="btn btn-danger">УДАЛЕНИЕ НЕВОЗМОЖНО</button> Количество работников с данной
+                    должностью -
+                    {{ $appointment->sfrpersons_count }}
                 </div>
             @endif
         </div>
