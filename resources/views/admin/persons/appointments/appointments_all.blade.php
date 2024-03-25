@@ -4,6 +4,7 @@
         <table class="table table-sm dataTable no-footer" id="table-appointments">
             <thead>
                 <tr>
+                    <th>&nbsp;</th>
                     <th>Должность</th>
                     <th>Код</th>
                     <th>Порядок сортировки</th>
@@ -22,10 +23,14 @@
                 serverSide: true,
                 ordering: true,
                 order: [
-                    [2, 'asc'],
+                    [3, 'asc'],
                 ],
                 ajax: "{{ route('osfrportal.admin.persons.appointments.all') }}",
                 columns: [{
+                        data: 'aid',
+                        name: 'aid'
+                    },
+                    {
                         data: 'aname',
                         name: 'aname'
                     },
@@ -44,15 +49,25 @@
                 ],
                 columnDefs: [{
                         targets: 0,
-                        orderable: true,
-                        searchable: true,
-                        className: 'dt-body-left dt-head-center',
+                        orderable: false,
+                        searchable: false,
+                        className: 'dt-body-center dt-head-center',
+                        render: function(data, type, full, meta) {
+                            var url = '{{ route('osfrportal.admin.persons.detail', ':slug') }}';
+                            url = url.replace(':slug', data);
+
+                            var linkView = "#";
+                            return (
+                                '<a href="' + url +
+                                '"><i class="ti ti-edit"></i></a>'
+                            );
+                        },
                     },
                     {
                         targets: 1,
                         orderable: true,
-                        searchable: false,
-                        className: 'dt-body-center dt-head-center',
+                        searchable: true,
+                        className: 'dt-body-left dt-head-center',
                     },
                     {
                         targets: 2,
@@ -62,6 +77,12 @@
                     },
                     {
                         targets: 3,
+                        orderable: true,
+                        searchable: false,
+                        className: 'dt-body-center dt-head-center',
+                    },
+                    {
+                        targets: 4,
                         orderable: true,
                         searchable: false,
                         className: 'dt-body-center dt-head-center',
