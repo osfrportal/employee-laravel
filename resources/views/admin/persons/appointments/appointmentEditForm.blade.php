@@ -26,9 +26,18 @@
                         Чем меньше число, тем выше в списке
                     </div>
                 </div>
-                <button class="btn btn-primary btn-submit" type="submit"
-                    @if ($appointment->sfrpersons_count > 0) disabled @endif>Сохранить</button>
+                <button class="btn btn-primary btn-submit" type="submit">Сохранить</button>
             </div>
         </div>
     </form>
+    @if ($appointment->sfrpersons_count == 0)
+        <form method="POST" action="{{ route('osfrportal.admin.persons.appointments.detail', $appointment->aid) }}">
+            <input type="hidden" id="aid" name="aid" value="{{ $appointment->ai }}">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <button class="btn btn-danger btn-submit" type="submit">УДАЛИТЬ</button>
+                </div>
+            </div>
+        </form>
+    @endif
 @endsection
