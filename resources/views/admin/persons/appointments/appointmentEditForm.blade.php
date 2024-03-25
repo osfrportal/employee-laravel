@@ -20,11 +20,23 @@
                         name="asortorder" type="text" placeholder="Введите число"
                         value="{{ old('asortorder') ?? ($appointment->asortorder ?? '') }}">
                     @error('asortorder')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div id="asortorderFeedback" class="invalid-feedback">{{ $message }}</div>
                     @enderror
                     <div class="font-italic text-muted mb-4">
                         Чем меньше число, тем выше в списке
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label class="mb-1" for="amop">МОП</label>
+                    <select class="form-select form-select-sm @error('amop') is-invalid @enderror" id="amop"
+                        name="amop">
+                        <option>Выберите...</option>
+                        <option value="1" @selected(old('amop', $appointment->amop ?? '') == 1)>Да</option>
+                        <option value="0" @selected(old('amop', $appointment->amop ?? '') == 0)>Нет</option>
+                    </select>
+                    @error('amop')
+                        <div id="amopFeedback" class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button class="btn btn-primary btn-submit" type="submit">Сохранить</button>
             </div>
@@ -42,9 +54,8 @@
                 </form>
             @else
                 <div class="font-italic text-muted mb-4">
-                    <button class="btn btn-danger">УДАЛЕНИЕ НЕВОЗМОЖНО</button> Количество работников с данной
-                    должностью -
-                    {{ $appointment->sfrpersons_count }}
+                    <button class="btn btn-danger">УДАЛЕНИЕ НЕВОЗМОЖНО</button>
+                    <br>Количество работников с данной должностью - {{ $appointment->sfrpersons_count }}
                 </div>
             @endif
         </div>
