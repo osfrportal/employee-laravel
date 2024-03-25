@@ -2,7 +2,7 @@
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-use Osfrportal\OsfrportalLaravel\Models\SfrAppointment
+use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
 
 //https://github.com/diglactic/laravel-breadcrumbs
 
