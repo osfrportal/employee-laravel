@@ -22,7 +22,7 @@
                 serverSide: true,
                 ordering: true,
                 order: [
-                    [0, 'desc'],
+                    [2, 'desc'],
                 ],
                 ajax: "{{ route('osfrportal.admin.persons.appointments.all') }}",
                 columns: [{
