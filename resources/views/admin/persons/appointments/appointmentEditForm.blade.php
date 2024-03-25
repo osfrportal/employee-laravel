@@ -30,14 +30,24 @@
             </div>
         </div>
     </form>
-    @if ($appointment->sfrpersons_count == 0)
-        <form method="POST" action="{{ route('osfrportal.admin.persons.appointments.detail', $appointment->aid) }}">
-            <input type="hidden" id="aid" name="aid" value="{{ $appointment->ai }}">
-            <div class="card mb-4">
-                <div class="card-body">
+
+    <div class="card mb-4">
+        <div class="card-header">Удаление должности</div>
+        <div class="card-body">
+            @if ($appointment->sfrpersons_count == 0)
+                <form method="POST"
+                    action="{{ route('osfrportal.admin.persons.appointments.detail', $appointment->aid) }}">
+                    <input type="hidden" id="aid" name="aid" value="{{ $appointment->ai }}">
                     <button class="btn btn-danger btn-submit" type="submit">УДАЛИТЬ</button>
+                </form>
+            @else
+                <div class="mb-3">
+                    <div class="font-italic text-muted mb-4">
+                        УДАЛЕНИЕ НЕВОЗМОЖНО. Количество работников с данной должностью -
+                        {{ $appointment->sfrpersons_count }}
+                    </div>
                 </div>
-            </div>
-        </form>
-    @endif
+            @endif
+        </div>
+    </div>
 @endsection
