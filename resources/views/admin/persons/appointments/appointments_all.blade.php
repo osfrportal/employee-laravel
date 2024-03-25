@@ -44,8 +44,8 @@
                         name: 'asortorder',
                     },
                     {
-                        data: 'SfrPersons_count',
-                        name: 'SfrPersons_count',
+                        data: 'sfrpersons_count',
+                        name: 'sfrpersons_count',
                     },
                     {
                         data: 'amop',

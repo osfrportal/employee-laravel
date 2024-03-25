@@ -18,7 +18,7 @@ class SfrAppointment extends Model
         'aname',
     ];
 
-    public function SfrPersons()
+    public function sfrpersons()
     {
         return $this->belongsToMany(SfrPerson::class, 'pempapp', 'aid', 'pid')->withTimestamps();
     }
