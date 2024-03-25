@@ -52,7 +52,7 @@
                         targets: 0,
                         orderable: false,
                         searchable: false,
-                        className: 'dt-left',
+
                         render: function(data, type, full, meta) {
                             var url =
                                 '{{ route('osfrportal.admin.persons.appointments.detail', ':slug') }}';
