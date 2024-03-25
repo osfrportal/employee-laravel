@@ -27,7 +27,11 @@
         </div>
         <div class="row">
             <div class="col">Должность</div>
-            <div class="col">{{ $SFRPersonData->persondata_appointment ?? '' }}</div>
+            <div class="col">{{ $SFRPersonData->persondata_appointment ?? '' }}
+                @if ($SFRPersonData->persondata_appmop)
+                    (МОП)
+                @endif
+            </div>
         </div>
         <div class="row">
             <div class="col">Дата начала работы</div>

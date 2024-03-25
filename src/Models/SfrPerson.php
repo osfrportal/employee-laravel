@@ -330,6 +330,20 @@ class SfrPerson extends Model
     }
 
     /**
+     * Относится ли должность к МОП
+     * @return boolean
+     */
+    public function isAppointmentMOP()
+    {
+        $papp = $this->SfrPersonAppointment->first();
+        if (!is_null($papp)) {
+            return $papp->amop;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      *
      * @return string
      */
