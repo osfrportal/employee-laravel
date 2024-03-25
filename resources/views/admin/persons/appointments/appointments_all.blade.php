@@ -106,6 +106,12 @@
                         },
                     },
                 ],
+                createdRow: function(row, data, dataIndex) {
+                    //console.table(data);
+                    if (data.sfrpersons_count == 0) {
+                        $(row).addClass('table-danger');
+                    }
+                }
             });
         });
     </script>
