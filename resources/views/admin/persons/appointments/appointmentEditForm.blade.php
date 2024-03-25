@@ -1,6 +1,5 @@
 @extends('osfrportal::layout')
 @section('content')
-    @dump($appointment)
     <form method="POST" action="{{ route('osfrportal.admin.persons.appointments.detail', $appointment->aid) }}">
         <input type="hidden" id="aid" name="aid" value="{{ $appointment->ai }}">
         <div class="card mb-4">
