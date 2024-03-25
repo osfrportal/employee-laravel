@@ -16,7 +16,7 @@
 @push('footer-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#table-movements').DataTable({
+            var table = $('#table-appointments').DataTable({
                 dom: '<"top"flp<"clear">>rt<"bottom"ip<"clear">>',
                 processing: true,
                 serverSide: true,
