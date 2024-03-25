@@ -108,6 +108,9 @@
                 ],
                 createdRow: function(row, data, dataIndex) {
                     //console.table(data);
+                    if (Boolean(data.amop) === true) {
+                        $(row).addClass('table-secondary');
+                    }
                     if (data.sfrpersons_count == 0) {
                         $(row).addClass('table-danger');
                     }
