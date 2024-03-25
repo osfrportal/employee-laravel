@@ -265,6 +265,8 @@ class SFRPersonController extends Controller
 
     public function appointmentShow(string $aid)
     {
+        $this->authorize($this->permissionManage);
+
         dump($aid);
         //return view('osfrportal::admin.persons.appointments.appointments_all');
     }

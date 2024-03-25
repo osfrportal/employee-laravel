@@ -51,7 +51,7 @@
                         targets: 0,
                         orderable: false,
                         searchable: false,
-                        className: 'dt-body-center dt-head-center',
+                        className: 'dt-left',
                         render: function(data, type, full, meta) {
                             var url =
                                 '{{ route('osfrportal.admin.persons.appointments.detail', ':slug') }}';
@@ -74,19 +74,19 @@
                         targets: 2,
                         orderable: true,
                         searchable: false,
-                        className: 'dt-body-center dt-head-center',
+                        className: 'dt-center',
                     },
                     {
                         targets: 3,
                         orderable: true,
                         searchable: false,
-                        className: 'dt-body-center dt-head-center',
+                        className: 'dt-center',
                     },
                     {
                         targets: 4,
                         orderable: true,
                         searchable: false,
-                        className: 'dt-body-center dt-head-center',
+                        className: 'dt-center',
                         render: function(data, type, full, meta) {
                             if (Boolean(data) === true) {
                                 return '<i class="ti ti-square-check"></i>';
