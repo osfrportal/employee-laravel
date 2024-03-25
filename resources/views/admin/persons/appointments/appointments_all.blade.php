@@ -18,7 +18,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#table-appointments').DataTable({
-                stripeClasses: [],
                 dom: '<"top"flp<"clear">>rt<"bottom"ip<"clear">>',
                 processing: true,
                 serverSide: true,

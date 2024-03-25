@@ -18,6 +18,7 @@
 
     //default values for DataTables
     $.extend($.fn.dataTable.defaults, {
+        stripeClasses: [],
         language: {
             url: '/osfrportal/lang/datatables-ru.json',
         },
