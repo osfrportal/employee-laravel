@@ -25,6 +25,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrDocGroups;
 use Osfrportal\OsfrportalLaravel\Models\SfrSignatures;
 use Osfrportal\OsfrportalLaravel\Models\SfrPersonMovements;
 use Osfrportal\OsfrportalLaravel\Models\SfrDocs;
+use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
 use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
 use Osfrportal\OsfrportalLaravel\Data\Crypto\SFRCryptoData;
 use Osfrportal\OsfrportalLaravel\Data\SFRPhoneContactData;
@@ -251,6 +252,7 @@ class SFRPersonController extends Controller
     public function appointmentsAllShow(Request $request)
     {
         $this->authorize($this->permissionManage);
+
         if ($request->ajax()) {
             $data = SfrAppointment::select('*');
             return Datatables::of($data)
