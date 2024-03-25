@@ -28,6 +28,7 @@ class SFRPersonData extends Data
         public ?string $persondata_snils = null,
         public ?string $persondata_lastactivity = null,
         public ?string $persondata_workstartdate = null,
+        public ?bool $persondata_appmop = false,
         //public ?string $persondata_= null,
     ) {
     }
@@ -53,7 +54,8 @@ class SFRPersonData extends Data
             null,
             null,
             null,
-            null
+            null,
+            false
         );
     }
 
@@ -111,6 +113,7 @@ class SFRPersonData extends Data
             persondata_fullname: $person->getFullName(),
             persondata_lastactivity: $personLastActivity,
             persondata_workstartdate: $person->getWorkStartDate(),
+            persondata_appmop: $person->isAppointmentMOP(),
         );
     }
 }
