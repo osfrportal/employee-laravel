@@ -18,6 +18,7 @@ class UnitPersonsListAction
      * Работники подразделения
      * @param SfrUnits $unitData
      * @param bool $withoutAppMOP
+     * @param bool $withoutDekret
      * @return \Spatie\LaravelData\DataCollection|array
      */
     public function handle(SfrUnits $unitData, bool $withoutAppMOP = false, bool $withoutDekret = false): DataCollection|array
@@ -30,7 +31,7 @@ class UnitPersonsListAction
             if ($withoutAppMOP) {
                 if ($personDataModel->persondata_appmop === false) {
                     if ($withoutDekret) {
-                        if ($personDataModel->persondata_vacation === null) {
+                        if ($personDataModel->persondata_dekret === null) {
                             $persons[] = $personDataModel;
                         }
                     } else {
@@ -39,7 +40,7 @@ class UnitPersonsListAction
                 }
             } else {
                 if ($withoutDekret) {
-                    if ($personDataModel->persondata_vacation === null) {
+                    if ($personDataModel->persondata_dekret === null) {
                         $persons[] = $personDataModel;
                     }
                 } else {
