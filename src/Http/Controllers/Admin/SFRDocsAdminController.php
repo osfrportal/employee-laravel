@@ -31,6 +31,7 @@ use Osfrportal\OsfrportalLaravel\Http\Requests\ReportsMakeByUnitsRequest;
 use Osfrportal\OsfrportalLaravel\Http\Requests\DocDateEndSaveRequest;
 use Osfrportal\OsfrportalLaravel\Http\Requests\DocEditableSaveRequest;
 use Osfrportal\OsfrportalLaravel\Http\Requests\DocEditableDeleteRequest;
+use Carbon\Carbon;
 
 class SFRDocsAdminController extends Controller
 {
@@ -375,23 +376,29 @@ class SFRDocsAdminController extends Controller
         $allDocsArray = [];
         foreach ($allDocs as $doc) {
             //dump($doc);
+            $docDataDTO = SFRDocData::forList($doc);
+            $docDateEndCarbon = Carbon::parse($docDataDTO->docDateEnd);
+
             $tmp = [];
             foreach ($personsForReport as $person) {
-                $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
-                //dump($personSigns);
-                $personSignsCollection = [];
-                foreach ($personSigns as $personSign) {
-                    $signDTO = SFRSignData::fromXML($personSign);
-                    //dump($signDTO);
-                    $personSignsCollection[] = $signDTO;
+                $personWorkStartDate = $person->getWorkStartDateCarbon();
+                if ($docDateEndCarbon->gte($personWorkStartDate)) {
+                    $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
+                    //dump($personSigns);
+                    $personSignsCollection = [];
+                    foreach ($personSigns as $personSign) {
+                        $signDTO = SFRSignData::fromXML($personSign);
+                        //dump($signDTO);
+                        $personSignsCollection[] = $signDTO;
+                    }
+                    //dump($personSignsCollection);
+                    $personSignsDTO = SFRSignData::collect($personSignsCollection, DataCollection::class);
+                    //dump($personSignsDTO);
+                    $tmp[] = new SFRDocSignsByPersonData($person, $personSignsDTO);
                 }
-                //dump($personSignsCollection);
-                $personSignsDTO = SFRSignData::collect($personSignsCollection, DataCollection::class);
-                //dump($personSignsDTO);
-                $tmp[] = new SFRDocSignsByPersonData($person, $personSignsDTO);
             }
 
-            $docDataDTO = SFRDocData::forList($doc);
+
             //dump($tmp);
             $docDataDTO->docPersonSigns = SFRDocSignsByPersonData::collect($tmp, DataCollection::class);
             $allDocsArray[] = $docDataDTO;
