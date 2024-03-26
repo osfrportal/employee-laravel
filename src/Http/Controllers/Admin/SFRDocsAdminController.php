@@ -342,7 +342,7 @@ class SFRDocsAdminController extends Controller
             $withChildUnits = $request->input('withChildUnits') ? true : false;
         }
         if ($request->has('withoutAppMOP')) {
-            $withChildUnits = $request->input('withoutAppMOP') ? true : false;
+            $withoutAppMOP = $request->input('withoutAppMOP') ? true : false;
         }
 
         //получаем список документов для формирования ведомости
@@ -353,7 +353,7 @@ class SFRDocsAdminController extends Controller
         }
 
         $personsForReport = [];
-        $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData);
+        $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData, $withoutAppMOP);
         //dd($hierarchyUnits);
         foreach ($hierarchyUnits as $unit) {
             foreach ($unit->unitpersons as $unitRootPerson) {

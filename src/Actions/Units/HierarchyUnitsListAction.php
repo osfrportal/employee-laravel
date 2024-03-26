@@ -23,9 +23,10 @@ class HierarchyUnitsListAction
      * @param array $unitsIds Если параметр true - выводится информация по запрошенным юнитам.
      * @param bool $withChildren Если параметр true - выводится структура с дочерними подразделениями.
      * @param bool $withSfrPersonData Если параметр true - выводится информация по работникам подразделения
+     * @param bool $withoutAppMOP Если параметр true - в список НЕ включаются работники с должностями МОП
      * @return Collection
      */
-    public function handle($unitsIds = [], $withChildren = true, $withSfrPersonData = false): Collection
+    public function handle($unitsIds = [], $withChildren = true, $withSfrPersonData = false, $withoutAppMOP = false): Collection
     {
         $unitsCollection = collect();
         if (is_array($unitsIds) && count($unitsIds) > 0) {
@@ -34,7 +35,7 @@ class HierarchyUnitsListAction
             $allRootUnits = SfrUnits::whereNull('unitparentid')->orderBy('unitsortorder', 'ASC')->orderBy('unitname', 'ASC')->get();
         }
         foreach ($allRootUnits as $rootUnit) {
-            $unitRootPersons = ($withSfrPersonData ? UnitPersonsListAction::run($rootUnit) : []);
+            $unitRootPersons = ($withSfrPersonData ? UnitPersonsListAction::run($rootUnit, $withoutAppMOP) : []);
 
             $unitData = [
                 'unitid' => $rootUnit->unitid,
@@ -50,7 +51,7 @@ class HierarchyUnitsListAction
                 $childUnits = [];
                 if (count($rootUnit->children) > 0) {
                     foreach ($rootUnit->children as $childUnit) {
-                        $unitChildPersons = ($withSfrPersonData ? UnitPersonsListAction::run($childUnit) : []);
+                        $unitChildPersons = ($withSfrPersonData ? UnitPersonsListAction::run($childUnit, $withoutAppMOP) : []);
 
                         $childUnits[] = [
                             'unitid' => $childUnit->unitid,
