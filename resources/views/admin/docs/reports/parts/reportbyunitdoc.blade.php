@@ -31,7 +31,8 @@
                                         <td>{{ $person->personData->persondata_unit_name }}</td>
                                         <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}
                                         </td>
-                                        <td>{{ $personSign->signDateTime ?? '' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($personSign->signDateTime)->format('d.m.Y') ?? '' }}
+                                        </td>
                                         <td>
                                             <div class="stamp">
                                                 <div class="d-flex justify-content-start stampmain">
