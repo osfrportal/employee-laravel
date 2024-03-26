@@ -35,6 +35,13 @@
             </div>
         </div>
         <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="withoutDekret" name="withoutDekret"
+                    value="1" checked>
+                <label class="form-check-label" for="withoutDekret">Не включать работников, находящихся в декрете</label>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="js-all-sfrdocs-ajax" class="form-label">Документы</label>
             @include('osfrportal::admin.docs.reports.select2docs')
             <div class="form-text">Если не выбран документ - отбор идет по всем документам.</div>

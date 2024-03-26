@@ -329,6 +329,7 @@ class SFRDocsAdminController extends Controller
         $sfrdocs = [];
         $withChildUnits = false;
         $withoutAppMOP = false;
+        $withoutDekret = false;
 
 
 
@@ -344,6 +345,9 @@ class SFRDocsAdminController extends Controller
         if ($request->has('withoutAppMOP')) {
             $withoutAppMOP = $request->input('withoutAppMOP') ? true : false;
         }
+        if ($request->has('withoutDekret')) {
+            $withoutDekret = $request->input('withoutDekret') ? true : false;
+        }
 
         //получаем список документов для формирования ведомости
         if (is_array($sfrdocs) && count($sfrdocs) > 0) {
@@ -353,7 +357,7 @@ class SFRDocsAdminController extends Controller
         }
 
         $personsForReport = [];
-        $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData, $withoutAppMOP);
+        $hierarchyUnits = HierarchyUnitsListAction::run($sfrunits, $withChildUnits, $withSfrPersonData, $withoutAppMOP, $withoutDekret);
         //dd($hierarchyUnits);
         foreach ($hierarchyUnits as $unit) {
             foreach ($unit->unitpersons as $unitRootPerson) {

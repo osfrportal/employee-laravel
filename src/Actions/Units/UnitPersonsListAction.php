@@ -20,7 +20,7 @@ class UnitPersonsListAction
      * @param bool $withoutAppMOP
      * @return \Spatie\LaravelData\DataCollection|array
      */
-    public function handle(SfrUnits $unitData, bool $withoutAppMOP = false): DataCollection|array
+    public function handle(SfrUnits $unitData, bool $withoutAppMOP = false, bool $withoutDekret = false): DataCollection|array
     {
         $persons = [];
 
@@ -29,10 +29,22 @@ class UnitPersonsListAction
             $personDataModel = SFRPersonData::fromModel($person);
             if ($withoutAppMOP) {
                 if ($personDataModel->persondata_appmop === false) {
-                    $persons[] = $personDataModel;
+                    if ($withoutDekret) {
+                        if ($personDataModel->persondata_vacation === null) {
+                            $persons[] = $personDataModel;
+                        }
+                    } else {
+                        $persons[] = $personDataModel;
+                    }
                 }
             } else {
-                $persons[] = $personDataModel;
+                if ($withoutDekret) {
+                    if ($personDataModel->persondata_vacation === null) {
+                        $persons[] = $personDataModel;
+                    }
+                } else {
+                    $persons[] = $personDataModel;
+                }
             }
         }
 
