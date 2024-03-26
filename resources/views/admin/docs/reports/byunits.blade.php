@@ -21,8 +21,17 @@
         </div>
         <div class="mb-3">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="withChildUnits" name="withChildUnits" value="1">
+                <input class="form-check-input" type="checkbox" role="switch" id="withChildUnits" name="withChildUnits"
+                    value="1">
                 <label class="form-check-label" for="withChildUnits">Включая подчиненные подразделения</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="withoutAppMOP" name="withoutAppMOP"
+                    value="1">
+                <label class="form-check-label" for="withoutAppMOP">Не включать должности МОП (младший обслуживающий
+                    персонал) в отчет</label>
             </div>
         </div>
         <div class="mb-3">

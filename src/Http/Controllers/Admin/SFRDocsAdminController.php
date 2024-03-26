@@ -328,6 +328,7 @@ class SFRDocsAdminController extends Controller
         $sfrunits = [];
         $sfrdocs = [];
         $withChildUnits = false;
+        $withoutAppMOP = false;
 
 
 
@@ -339,6 +340,9 @@ class SFRDocsAdminController extends Controller
         }
         if ($request->has('withChildUnits')) {
             $withChildUnits = $request->input('withChildUnits') ? true : false;
+        }
+        if ($request->has('withoutAppMOP')) {
+            $withChildUnits = $request->input('withoutAppMOP') ? true : false;
         }
 
         //получаем список документов для формирования ведомости
