@@ -36,7 +36,6 @@
                                 №{{ $doc->docNumber }} от {{ \Carbon\Carbon::parse($doc->docDate)->format('d.m.Y') }}
                                 {{ $doc->docName }}</td>
                         </tr>
-                        @dump($doc->docPersonSigns)
                         @foreach ($doc->docPersonSigns as $person)
                             @if ($person->signData->count() > 0)
                                 @if (!$withoutSigns)
