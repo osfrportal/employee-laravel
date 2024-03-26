@@ -92,7 +92,6 @@
                             if (Boolean(data) === true) {
                                 return '<i class="ti ti-square-check"></i>';
                             }
-                            return '<i class="ti ti-square"></i>';
                         },
                     },
                 ],
