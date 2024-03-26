@@ -276,7 +276,7 @@ class SFRPersonController extends Controller
 
     public function appointmentSave(AppointmentSaveRequest $request)
     {
-        $appointment = SfrAppointment::where('aid', $aid)->first();
+        $appointment = SfrAppointment::where('aid', $request->input('aid'))->first();
 
         $appointment->asortorder = $request->input('asortorder', 9999);
         $appointment->amop = $request->input('amop', false);
