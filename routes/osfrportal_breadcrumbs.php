@@ -148,7 +148,14 @@ Breadcrumbs::for('osfrportal.admin.docs.all', function (BreadcrumbTrail $trail):
     $trail->parent('osfrportal.admin');
     $trail->push('Управление документами', route('osfrportal.admin.docs.all'));
 });
-
+Breadcrumbs::for('osfrportal.admin.docs.reports.all', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.docs.all');
+    $trail->push('Отчеты', route('osfrportal.admin.docs.reports.all'));
+});
+Breadcrumbs::for('osfrportal.admin.docs.reports.byunits', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.docs.reports.all');
+    $trail->push('Ознакомление по подразделениям', route('osfrportal.admin.docs.reports.byunits'));
+});
 /**
  * Пользовательский раздел
  */
