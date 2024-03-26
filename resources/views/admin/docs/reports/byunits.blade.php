@@ -47,6 +47,13 @@
             <div class="form-text">Если не выбран документ - отбор идет по всем документам.</div>
         </div>
 
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="withoutSigns" name="withoutSigns"
+                    value="1">
+                <label class="form-check-label" for="withoutSigns">Отобразить только не ознакомившихся</label>
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">Сформировать ведомость</button>
     </form>
 @endsection

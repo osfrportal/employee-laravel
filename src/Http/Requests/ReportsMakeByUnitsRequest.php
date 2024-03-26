@@ -27,6 +27,9 @@ class ReportsMakeByUnitsRequest extends FormRequest
             'sfrunits' => 'nullable|array',
             'sfrdocs' => 'nullable|array',
             'withChildUnits' => 'nullable|boolean',
+            'withoutAppMOP' => 'nullable|boolean',
+            'withoutDekret' => 'nullable|boolean',
+            'withoutSigns' => 'nullable|boolean',
         ];
     }
     /**

@@ -331,6 +331,7 @@ class SFRDocsAdminController extends Controller
         $withChildUnits = false;
         $withoutAppMOP = false;
         $withoutDekret = false;
+        $withoutSigns = false;
 
 
 
@@ -348,6 +349,9 @@ class SFRDocsAdminController extends Controller
         }
         if ($request->has('withoutDekret')) {
             $withoutDekret = $request->input('withoutDekret') ? true : false;
+        }
+        if ($request->has('withoutSigns')) {
+            $withoutSigns = $request->input('withoutSigns') ? true : false;
         }
 
         //получаем список документов для формирования ведомости
@@ -407,6 +411,6 @@ class SFRDocsAdminController extends Controller
 
         //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
         //return back();
-        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc', ['allDocsArray' => $allDocsArray]);
+        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc', ['allDocsArray' => $allDocsArray, 'withoutSigns' => $withoutSigns]);
     }
 }
