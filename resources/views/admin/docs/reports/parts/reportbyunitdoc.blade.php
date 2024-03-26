@@ -38,7 +38,7 @@
                         </tr>
                         @foreach ($doc->docPersonSigns as $person)
                             @if ($person->signData->count() > 0)
-                                @if ($withoutSigns)
+                                @if (!$withoutSigns)
                                     @foreach ($person->signData as $personSign)
                                         <tr class="align-middle">
                                             <td>{{ $person->personData->persondata_unit_name }}</td>
