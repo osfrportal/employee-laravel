@@ -389,12 +389,15 @@ class SFRDocsAdminController extends Controller
                 if ($docDateEndCarbon->gte($personWorkStartDate)) {
                     $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                     dump($personSigns->count());
+
                     //dump($personSigns);
                     $personSignsCollection = [];
-                    foreach ($personSigns as $personSign) {
-                        $signDTO = SFRSignData::fromXML($personSign);
-                        //dump($signDTO);
-                        $personSignsCollection[] = $signDTO;
+                    if (($withoutSigns === false) && ($personSigns->count() > 0)) {
+                        foreach ($personSigns as $personSign) {
+                            $signDTO = SFRSignData::fromXML($personSign);
+                            //dump($signDTO);
+                            $personSignsCollection[] = $signDTO;
+                        }
                     }
                     //dump($personSignsCollection);
                     $personSignsDTO = SFRSignData::collect($personSignsCollection, DataCollection::class);
@@ -412,6 +415,6 @@ class SFRDocsAdminController extends Controller
 
         //$this->flasher_interface->addSuccess('Формирование ведомости запущено. Перейдите в раздел Отчеты для просмотра.');
         //return back();
-        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc', ['allDocsArray' => $allDocsArray, 'withoutSigns' => $withoutSigns]);
+        return view('osfrportal::admin.docs.reports.parts.reportbyunitdoc', ['allDocsArray' => $allDocsArray]);
     }
 }

@@ -38,48 +38,45 @@
                         </tr>
                         @foreach ($doc->docPersonSigns as $person)
                             @if ($person->signData->count() > 0)
-                                @if (!$withoutSigns)
-                                    @foreach ($person->signData as $personSign)
-                                        <tr class="align-middle">
-                                            <td>{{ $person->personData->persondata_unit_name }}</td>
-                                            <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}
-                                            </td>
-                                            <td>{{ $personSign->signDateTime ?? '' }}</td>
-                                            <td>
-                                                <div class="stamp">
-                                                    <div class="d-flex justify-content-start stampmain">
-                                                        <div class="p2"><img
-                                                                src="{{ asset('osfrportal/images/logo.svg') }}"
-                                                                alt=""></div>
-                                                        <div class="p2">&nbsp;</div>
-                                                        <div class="align-self-center p2">Документ подписан электронной
-                                                            подписью
-                                                            ({{ $personSign->signLabel ?? '' }})
-                                                        </div>
+                                @foreach ($person->signData as $personSign)
+                                    <tr class="align-middle">
+                                        <td>{{ $person->personData->persondata_unit_name }}</td>
+                                        <td>{{ $person->personData->persondata_fullname }}<br>{{ $person->personData->persondata_appointment }}
+                                        </td>
+                                        <td>{{ $personSign->signDateTime ?? '' }}</td>
+                                        <td>
+                                            <div class="stamp">
+                                                <div class="d-flex justify-content-start stampmain">
+                                                    <div class="p2"><img src="{{ asset('osfrportal/images/logo.svg') }}"
+                                                            alt=""></div>
+                                                    <div class="p2">&nbsp;</div>
+                                                    <div class="align-self-center p2">Документ подписан электронной
+                                                        подписью
+                                                        ({{ $personSign->signLabel ?? '' }})
                                                     </div>
-                                                    <table class="stampbottom">
-                                                        <tr>
-                                                            <td>Сертификат:</td>
-                                                            <td>{{ $personSign->signCertHash ?? '' }}</td>
-                                                        </tr>
-                                                        <tr class="stampbold">
-                                                            <td>Владелец:</td>
-                                                            <td>{{ $personSign->signCertCN ?? '' }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Действителен:</td>
-                                                            <td>{{ $personSign->signCertValidDates ?? '' }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Выдан:</td>
-                                                            <td>{{ $personSign->signIssuerCN ?? '' }}</td>
-                                                        </tr>
-                                                    </table>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
+                                                <table class="stampbottom">
+                                                    <tr>
+                                                        <td>Сертификат:</td>
+                                                        <td>{{ $personSign->signCertHash ?? '' }}</td>
+                                                    </tr>
+                                                    <tr class="stampbold">
+                                                        <td>Владелец:</td>
+                                                        <td>{{ $personSign->signCertCN ?? '' }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Действителен:</td>
+                                                        <td>{{ $personSign->signCertValidDates ?? '' }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Выдан:</td>
+                                                        <td>{{ $personSign->signIssuerCN ?? '' }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @else
                                 <tr class="align-middle alert alert-danger">
                                     <td>{{ $person->personData->persondata_unit_name }}</td>
