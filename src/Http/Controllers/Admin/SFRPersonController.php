@@ -277,9 +277,11 @@ class SFRPersonController extends Controller
     public function appointmentSave(AppointmentSaveRequest $request)
     {
         $appointment = SfrAppointment::where('aid', $aid)->first();
+
         $appointment->asortorder = $request->input('asortorder', 9999);
         $appointment->amop = $request->input('amop', false);
         $appointment->save();
+
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
         return redirect()->route('osfrportal.admin.persons.appointments.appointments_all');
 
