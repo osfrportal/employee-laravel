@@ -46,6 +46,7 @@ use Osfrportal\OsfrportalLaravel\Actions\Ldap\FindByFullFIOAction;
 
 
 use Osfrportal\OsfrportalLaravel\Http\Requests\AppointmentSaveRequest;
+use Osfrportal\OsfrportalLaravel\Http\Requests\AppointmentDeleteRequest;
 
 class SFRPersonController extends Controller
 {
@@ -285,5 +286,12 @@ class SFRPersonController extends Controller
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
         return redirect()->route('osfrportal.admin.persons.appointments.all');
 
+    }
+    public function appointmentDelete(AppointmentDeleteRequest $request)
+    {
+        $appointment = SfrAppointment::where('aid', $request->input('aid'))->delete();
+
+        $this->flasher_interface->addSuccess('Данные успешно удалены');
+        return redirect()->route('osfrportal.admin.persons.appointments.all');
     }
 }

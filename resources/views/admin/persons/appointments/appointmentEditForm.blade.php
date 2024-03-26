@@ -46,9 +46,11 @@
         <div class="card-header">Удаление должности</div>
         <div class="card-body">
             @if ($appointment->sfrpersons_count == 0)
-                <form method="POST"
-                    action="{{ route('osfrportal.admin.persons.appointments.detail', $appointment->aid) }}">
-                    <input type="hidden" id="aid" name="aid" value="{{ $appointment->ai }}">
+                <form method="POST" action="{{ route('osfrportal.admin.persons.appointments.detail.delete') }}">
+                    <input type="hidden" id="aid" name="aid" value="{{ $appointment->aid }}">
+                    @error('aid')
+                        <div id="aidDeleteFeedback" class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                     <button class="btn btn-danger btn-submit" type="submit">УДАЛИТЬ</button>
                 </form>
             @else

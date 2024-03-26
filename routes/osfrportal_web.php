@@ -128,6 +128,7 @@ Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(f
         Route::get('/appointments/all', 'appointmentsAllShow')->name('appointments.all');
         Route::get('/appointments/detail/{aid}', 'appointmentShow')->name('appointments.detail');
         Route::post('/appointments/detail/save', 'appointmentSave')->name('appointments.detail.save');
+        Route::post('/appointments/detail/delete', 'appointmentDelete')->name('appointments.detail.delete');
         Route::post('/resetpassword', 'sendRandPassword')->name('resetpassword');
         Route::get('/detail/{personid}', 'ShowPersonDetail')->name('detail');
         Route::get('/print/docssigns/{personid}', 'genDocsSignListPrint')->name('print.docs.signlist');
