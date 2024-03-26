@@ -1,6 +1,6 @@
 @extends('osfrportal::layout')
 @section('content')
-    <form method="POST" action="{{ route('osfrportal.admin.persons.appointments.detail', $appointment->aid) }}">
+    <form method="POST" action="{{ route('osfrportal.admin.persons.appointments.detail.save') }}">
         <input type="hidden" id="aid" name="aid" value="{{ $appointment->ai }}">
         <div class="card mb-4">
             <div class="card-header">Редактирование должности</div>

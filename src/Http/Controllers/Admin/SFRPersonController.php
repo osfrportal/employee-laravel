@@ -44,6 +44,9 @@ use Osfrportal\OsfrportalLaravel\Actions\SendPasswordToUserAction;
 
 use Osfrportal\OsfrportalLaravel\Actions\Ldap\FindByFullFIOAction;
 
+
+use Osfrportal\OsfrportalLaravel\Http\Requests\AppointmentSaveRequest;
+
 class SFRPersonController extends Controller
 {
     private $permissionManage = 'person-manage';
@@ -269,5 +272,16 @@ class SFRPersonController extends Controller
         $appointment = SfrAppointment::where('aid', $aid)->withCount(['sfrpersons'])->first();
 
         return view('osfrportal::admin.persons.appointments.appointmentEditForm', ['appointment' => $appointment]);
+    }
+
+    public function appointmentSave(AppointmentSaveRequest $request)
+    {
+        $appointment = SfrAppointment::where('aid', $aid)->first();
+        $appointment->asortorder = $request->input('asortorder', 9999);
+        $appointment->amop = $request->input('amop', false);
+        $appointment->save();
+        $this->flasher_interface->addSuccess('Данные успешно сохранены');
+        return redirect()->route('osfrportal.admin.persons.appointments.appointments_all');
+
     }
 }
