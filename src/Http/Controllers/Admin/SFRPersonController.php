@@ -283,7 +283,7 @@ class SFRPersonController extends Controller
         $appointment->save();
 
         $this->flasher_interface->addSuccess('Данные успешно сохранены');
-        return redirect()->route('osfrportal.admin.persons.appointments.appointments_all');
+        return redirect()->route('osfrportal.admin.persons.appointments.all');
 
     }
 }
