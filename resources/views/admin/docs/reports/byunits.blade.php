@@ -29,9 +29,9 @@
         <div class="mb-3">
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="withoutAppMOP" name="withoutAppMOP"
-                    value="1">
+                    value="1" checked>
                 <label class="form-check-label" for="withoutAppMOP">Не включать должности МОП (младший обслуживающий
-                    персонал) в отчет</label>
+                    персонал)</label>
             </div>
         </div>
         <div class="mb-3">
