@@ -381,7 +381,7 @@ class SFRDocsAdminController extends Controller
 
             $tmp = [];
             foreach ($personsForReport as $person) {
-                $personWorkStartDate = $person->getWorkStartDateCarbon();
+                $personWorkStartDate = Carbon::parse($person->persondata_workstartdate);
                 if ($docDateEndCarbon->gte($personWorkStartDate)) {
                     $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                     //dump($personSigns);
