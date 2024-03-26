@@ -102,7 +102,7 @@ class SFRPersonController extends Controller
         return view('osfrportal::admin.persons.list_all');
     }
 
-    private function getPersonDocsSigns(string $personId)
+    private function getPersonDocsSigns(string $personId, SfrPerson $sfrperson)
     {
 
 
@@ -117,44 +117,49 @@ class SFRPersonController extends Controller
             'signDateTime',
         ];
         $collectionDocs = collect();
+        $personWorkStartDate = $sfrperson->getWorkStartDateCarbon();
 
         $allDocs = SfrDocs::where('doc_data->docNeedSign', true)->with(['SfrDocsFiles'])->get();
         foreach ($allDocs as $doc) {
 
             $docDataDTO = SFRDocData::forList($doc);
-            $docType = SfrDocTypes::where('typeid', $docDataDTO->docType)->firstOrFail('type_name');
-            $docGroup = SfrDocGroups::where('groupid', $docDataDTO->docGroup)->firstOrFail('group_name');
-            $docDataDTO->docTypeName = $docType->type_name;
-            $docDataDTO->docGroupName = $docGroup->group_name;
-            $docDataDTO->docDate = Carbon::parse($docDataDTO->docDate)->format('d.m.Y');
+            $docDateEndCarbon = Carbon::parse($docDataDTO->docDateEnd);
 
-            $docDateNumber = sprintf("№%s от %s", $docDataDTO->docNumber, $docDataDTO->docDate);
+            if ($docDateEndCarbon->gte($personWorkStartDate)) {
+                $docType = SfrDocTypes::where('typeid', $docDataDTO->docType)->firstOrFail('type_name');
+                $docGroup = SfrDocGroups::where('groupid', $docDataDTO->docGroup)->firstOrFail('group_name');
+                $docDataDTO->docTypeName = $docType->type_name;
+                $docDataDTO->docGroupName = $docGroup->group_name;
+                $docDataDTO->docDate = Carbon::parse($docDataDTO->docDate)->format('d.m.Y');
 
-            $docDataDTO->docFiles = $doc->SfrDocsFiles;
+                $docDateNumber = sprintf("№%s от %s", $docDataDTO->docNumber, $docDataDTO->docDate);
 
-            foreach ($doc->SfrDocsFiles as $docFile) {
-                $sign = SfrSignatures::where('sign_fileid', $docFile->fileid)->where('sign_pid', $personId)->first();
+                $docDataDTO->docFiles = $doc->SfrDocsFiles;
 
-                if (!is_null($sign)) {
-                    $signDTO = SFRSignData::fromXML($sign);
-                    $filesList_tmp = [
-                        'docDateNumber' => $docDateNumber,
-                        'docName' => $docDataDTO->docName,
-                        'docTypeName' => $docDataDTO->docTypeName,
-                        'docFileDescription' => $docFile->file_description,
-                        'docSigned' => true,
-                    ];
-                    $filesList = Arr::collapse([$filesList_tmp, $signDTO->toArray()]);
-                } else {
-                    $filesList = [
-                        'docDateNumber' => $docDateNumber,
-                        'docName' => $docDataDTO->docName,
-                        'docTypeName' => $docDataDTO->docTypeName,
-                        'docFileDescription' => $docFile->file_description,
-                        'docSigned' => false,
-                    ];
+                foreach ($doc->SfrDocsFiles as $docFile) {
+                    $sign = SfrSignatures::where('sign_fileid', $docFile->fileid)->where('sign_pid', $personId)->first();
+
+                    if (!is_null($sign)) {
+                        $signDTO = SFRSignData::fromXML($sign);
+                        $filesList_tmp = [
+                            'docDateNumber' => $docDateNumber,
+                            'docName' => $docDataDTO->docName,
+                            'docTypeName' => $docDataDTO->docTypeName,
+                            'docFileDescription' => $docFile->file_description,
+                            'docSigned' => true,
+                        ];
+                        $filesList = Arr::collapse([$filesList_tmp, $signDTO->toArray()]);
+                    } else {
+                        $filesList = [
+                            'docDateNumber' => $docDateNumber,
+                            'docName' => $docDataDTO->docName,
+                            'docTypeName' => $docDataDTO->docTypeName,
+                            'docFileDescription' => $docFile->file_description,
+                            'docSigned' => false,
+                        ];
+                    }
+                    $collectionDocs->push($filesList);
                 }
-                $collectionDocs->push($filesList);
             }
 
 
@@ -180,7 +185,7 @@ class SFRPersonController extends Controller
         $SFRPersonDekret = $sfrperson->SfrPersonDekret()->get()->sortByDesc('dekretend');
 
 
-        $docsSignsUser = $this->getPersonDocsSigns($personid);
+        $docsSignsUser = $this->getPersonDocsSigns($personid, $sfrperson);
 
         $SFRPersonStamps = $sfrperson->SfrPersonStamps;
         $logContext = [
@@ -211,7 +216,7 @@ class SFRPersonController extends Controller
         $sfrperson = SfrPerson::where('pid', $personid)->first();
         $SFRPersonData = SFRPersonData::from($sfrperson);
 
-        $docsSignsUser = $this->getPersonDocsSigns($personid);
+        $docsSignsUser = $this->getPersonDocsSigns($personid, $sfrperson);
         return view('osfrportal::print.tmpl.docssigns', [
             'docsSignsUser' => $docsSignsUser,
             'SFRPersonData' => $SFRPersonData,
