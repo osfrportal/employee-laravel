@@ -390,13 +390,13 @@ class SFRDocsAdminController extends Controller
                     $personSigns = $doc->SfrDocsUserSigns($person->persondata_pid)->get();
                     //dump($personSigns);
                     $personSignsCollection = [];
-                    if (($withoutSigns === false) && ($personSigns->count() > 0)) {
-                        foreach ($personSigns as $personSign) {
-                            $signDTO = SFRSignData::fromXML($personSign);
-                            //dump($signDTO);
-                            $personSignsCollection[] = $signDTO;
-                        }
+                    //if (($withoutSigns === false) && ($personSigns->count() > 0)) {
+                    foreach ($personSigns as $personSign) {
+                        $signDTO = SFRSignData::fromXML($personSign);
+                        //dump($signDTO);
+                        $personSignsCollection[] = $signDTO;
                     }
+                    //}
                     //dump($personSignsCollection);
                     $personSignsDTO = SFRSignData::collect($personSignsCollection, DataCollection::class);
                     //dump($personSignsDTO);
