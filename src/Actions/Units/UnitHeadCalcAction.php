@@ -19,7 +19,7 @@ class UnitHeadCalcAction
     {
         //9a06e58a-6aa3-40ba-bc80-0f0b74280f66
         //выбираем работников подразделения с признаком aheadofunit в таблице должностей
-        $persons = SfrPerson::whereRelation('SfrPersonUnit', 'unitid', $unitId)->whereRelation('SfrPersonAppointment', 'aheadofunit', true)->get();
+        $persons = SfrPerson::whereRelation('SfrPersonUnit', 'punits.unitid', $unitId)->whereRelation('SfrPersonAppointment', 'pappointment.aheadofunit', true)->get();
         dump($persons);
     }
 }
