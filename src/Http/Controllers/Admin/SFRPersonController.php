@@ -104,14 +104,14 @@ class SFRPersonController extends Controller
     {
         $this->authorize($this->permissionView);
         if ($request->ajax()) {
-            /*
-            $data = SfrAppointment::select('*')->withCount('sfrpersons');
+            $data = SfrPerson::select('*')->with(['SfrPersonUnit', 'SfrPersonAppointment', 'SfrPersonTabNum']);
             return Datatables::of($data)
-                ->setRowId('aid')
+                ->setRowId('pid')
                 ->make(true);
-                */
         } else {
-            return view('osfrportal::admin.persons.list_all');
+            $data = SfrPerson::select('*')->with(['SfrPersonUnit', 'SfrPersonAppointment', 'SfrPersonTabNum']);
+            dump($data);
+            return view('osfrportal::admin.persons.table_all');
         }
     }
     private function getPersonDocsSigns(string $personId, SfrPerson $sfrperson)
