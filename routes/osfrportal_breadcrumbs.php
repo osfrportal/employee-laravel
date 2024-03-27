@@ -32,6 +32,7 @@ Breadcrumbs::for('osfrportal.admin.persons', function (BreadcrumbTrail $trail): 
     $trail->push('Работники');
 });
 
+
 Breadcrumbs::for('osfrportal.admin.persons.movements.all', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin');
     $trail->push('Кадровые перемещения', route('osfrportal.admin.persons.movements.all'));
@@ -50,6 +51,11 @@ Breadcrumbs::for('osfrportal.admin.persons.appointments.detail', function (Bread
 Breadcrumbs::for('osfrportal.admin.persons.all', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin.persons');
     $trail->push('Просмотр, управление', route('osfrportal.admin.persons.all'));
+});
+
+Breadcrumbs::for('osfrportal.admin.persons.show.all', function (BreadcrumbTrail $trail): void {
+    $trail->parent('osfrportal.admin.persons');
+    $trail->push('Работники v2', route('osfrportal.admin.persons.show.all'));
 });
 
 Breadcrumbs::for('osfrportal.admin.persons.detail', function (BreadcrumbTrail $trail, $personname): void {

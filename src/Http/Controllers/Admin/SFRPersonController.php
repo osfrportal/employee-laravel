@@ -98,10 +98,22 @@ class SFRPersonController extends Controller
     public function ShowPersonsList()
     {
         $this->authorize($this->permissionView);
-
         return view('osfrportal::admin.persons.list_all');
     }
-
+    public function ShowPersonsTable(Request $request)
+    {
+        $this->authorize($this->permissionView);
+        if ($request->ajax()) {
+            /*
+            $data = SfrAppointment::select('*')->withCount('sfrpersons');
+            return Datatables::of($data)
+                ->setRowId('aid')
+                ->make(true);
+                */
+        } else {
+            return view('osfrportal::admin.persons.list_all');
+        }
+    }
     private function getPersonDocsSigns(string $personId, SfrPerson $sfrperson)
     {
 
