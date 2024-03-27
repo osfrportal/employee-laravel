@@ -4,6 +4,9 @@ namespace Osfrportal\OsfrportalLaravel\Actions\Units;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 
+use Osfrportal\OsfrportalLaravel\Data\SFRPersonData;
+use Spatie\LaravelData\DataCollection;
+
 /**
  * Вычисление линейных руководителей и заместителей для подразделения
  */
@@ -13,13 +16,18 @@ class UnitHeadCalcAction
     /**
      * Возвращает список руководителей подразделения по ID
      * @param string $unitId
-     * @return void
+     * @return \Spatie\LaravelData\DataCollection|array
      */
     public function handle(string $unitId)
     {
-        //9a06e58a-6aa3-40ba-bc80-0f0b74280f66
+        $personsOut = [];
+
         //выбираем работников подразделения с признаком aheadofunit в таблице должностей
         $persons = SfrPerson::whereRelation('SfrPersonUnit', 'punits.unitid', $unitId)->whereRelation('SfrPersonAppointment', 'pappointment.aheadofunit', true)->get();
-        dump($persons);
+        foreach ($persons as $person) {
+            $personDataModel = SFRPersonData::fromModel($person);
+            $personsOut[] = $personDataModel;
+        }
+        return SFRPersonData::collect($personsOut);
     }
 }
