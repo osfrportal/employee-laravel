@@ -344,6 +344,20 @@ class SfrPerson extends Model
     }
 
     /**
+     * Является ли должность руководящей
+     * @return boolean
+     */
+    public function isAppointmentHead()
+    {
+        $papp = $this->SfrPersonAppointment->first();
+        if (!is_null($papp)) {
+            return $papp->aheadofunit;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      *
      * @return string
      */
