@@ -104,7 +104,7 @@ class SFRPersonController extends Controller
     {
         $this->authorize($this->permissionView);
         if ($request->ajax()) {
-            $data = SfrPerson::select('psurname', 'pname', 'pmiddlename');
+            $data = SfrPerson::select('*');
             return Datatables::of($data)
                 ->addColumn('tabnumber', function (SfrPerson $person) {
                     return $person->getTabNum();
