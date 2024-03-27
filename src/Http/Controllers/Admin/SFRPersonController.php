@@ -109,7 +109,7 @@ class SFRPersonController extends Controller
                 ->setRowId('pid')
                 ->make(true);
         } else {
-            $data = SfrPerson::select('*')->with(['SfrPersonUnit', 'SfrPersonAppointment', 'SfrPersonTabNum']);
+            $data = SfrPerson::select('*')->with(['getUnit', 'getAppointment', 'getTabNum']);
             dump(Datatables::of($data)->setRowId('pid')->make(true));
             return view('osfrportal::admin.persons.table_all');
         }
