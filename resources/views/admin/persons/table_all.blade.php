@@ -53,7 +53,7 @@
                         }
                     },
                     {
-                        data: 'persondata_tabnum',
+                        data: 'tabnumber',
                         className: 'dt-center',
                     },
                     {
@@ -75,21 +75,21 @@
                         className: 'dt-left',
                     },
                     {
-                        data: 'persondata_appointment',
+                        data: 'appointment_name',
                         targets: 5,
                         orderable: true,
                         searchable: true,
                         className: 'dt-left',
                     },
                     {
-                        data: 'persondata_unit_name',
+                        data: 'unit_name',
                         targets: 5,
                         orderable: true,
                         searchable: true,
                         className: 'dt-left',
                     },
                     {
-                        data: 'persondata_lastactivity',
+                        data: 'lastactivity',
                         orderable: true,
                         searchable: false,
                         className: 'dt-left',

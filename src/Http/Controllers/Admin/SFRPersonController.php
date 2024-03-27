@@ -109,8 +109,23 @@ class SFRPersonController extends Controller
                 ->setRowId('pid')
                 ->make(true);
         } else {
-            $data = SfrPerson::select('*')->with(['getUnit', 'getAppointment', 'getTabNum']);
-            dump(Datatables::of($data)->setRowId('pid')->make(true));
+            $data = SfrPerson::select('*');
+            $dt = Datatables::of($data)
+                ->addColumn('tabnumber', function (SfrPerson $person) {
+                    return $person->getTabNum();
+                })
+                ->addColumn('unit_name', function (SfrPerson $person) {
+                    return $person->getUnit();
+                })
+                ->addColumn('appointment_name', function (SfrPerson $person) {
+                    return $person->getAppointment();
+                })
+                ->addColumn('lastactivity', function (SfrPerson $person) {
+                    return $person->getLastActivity();
+                })
+                ->setRowId('pid')
+                ->make(true);
+            dump($dt);
             return view('osfrportal::admin.persons.table_all');
         }
     }
