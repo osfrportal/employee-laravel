@@ -11,7 +11,6 @@
                     <th>Отчество</th>
                     <th>Должность</th>
                     <th>Поразделение</th>
-                    <th>Активность на портале</th>
                     <th>Дата начала работы</th>
                 </tr>
             </thead>
@@ -83,12 +82,6 @@
                     },
                     {
                         data: 'unit_name',
-                        orderable: false,
-                        searchable: false,
-                        className: 'dt-left',
-                    },
-                    {
-                        data: 'lastactivity',
                         orderable: false,
                         searchable: false,
                         className: 'dt-left',

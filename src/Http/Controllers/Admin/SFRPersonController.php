@@ -115,11 +115,13 @@ class SFRPersonController extends Controller
                 ->addColumn('appointment_name', function (SfrPerson $person) {
                     return $person->getAppointment();
                 })
-                ->addColumn('lastactivity', function (SfrPerson $person) {
-                    return $person->getLastActivity();
-                })
                 ->addColumn('pworkstart', function (SfrPerson $person) {
                     return $person->getWorkStartDate();
+                })
+                ->setRowClass(function (SfrPerson $person) {
+                    if ($person->getAppointmentID() === null) {
+                        return 'table-danger';
+                    }
                 })
                 ->setRowId('pid')
                 ->make(true);
