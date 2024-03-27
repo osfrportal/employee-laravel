@@ -284,6 +284,7 @@ class SFRPersonController extends Controller
     {
         $appointment = SfrAppointment::where('aid', $request->input('aid'))->first();
 
+        $appointment->aheadofunit = $request->input('aheadofunit', false);
         $appointment->asortorder = $request->input('asortorder', 9999);
         $appointment->amop = $request->input('amop', false);
         $appointment->save();

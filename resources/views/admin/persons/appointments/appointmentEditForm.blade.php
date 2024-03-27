@@ -14,6 +14,18 @@
                     </div>
                 </div>
                 <div class="mb-3">
+                    <label class="mb-1" for="aheadofunit">Является руководителем (или заместителем) подразделения</label>
+                    <select class="form-select form-select-sm @error('aheadofunit') is-invalid @enderror" id="aheadofunit"
+                        name="aheadofunit">
+                        <option>Выберите...</option>
+                        <option value="1" @selected(old('aheadofunit', $appointment->aheadofunit ?? '') == 1)>Да</option>
+                        <option value="0" @selected(old('aheadofunit', $appointment->aheadofunit ?? '') == 0)>Нет</option>
+                    </select>
+                    @error('aheadofunit')
+                        <div id="aheadofunitFeedback" class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label class="mb-1" for="asortorder">Порядок сортировки:</label>
                     <input class="form-control form-control-sm @error('asortorder') is-invalid @enderror" id="asortorder"
                         name="asortorder" type="text" placeholder="Введите число"

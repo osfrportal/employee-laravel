@@ -27,6 +27,7 @@ class AppointmentSaveRequest extends FormRequest
             'aid' => 'required|uuid',
             'asortorder' => 'required|integer',
             'amop' => 'required|boolean',
+            'aheadofunit' => 'required|boolean',
         ];
     }
     /**

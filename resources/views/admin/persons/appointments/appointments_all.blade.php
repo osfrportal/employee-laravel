@@ -6,6 +6,7 @@
                 <tr>
                     <th></th>
                     <th>Должность</th>
+                    <th>Руководитель<br>(заместитель)</th>
                     <th>Порядок сортировки</th>
                     <th>Кол-во работников</th>
                     <th>МОП</th>
@@ -23,7 +24,7 @@
                 serverSide: true,
                 ordering: true,
                 order: [
-                    [2, 'asc'],
+                    [3, 'asc'],
                     [1, 'asc'],
                 ],
                 ajax: "{{ route('osfrportal.admin.persons.appointments.all') }}",
@@ -34,6 +35,10 @@
                     {
                         data: 'aname',
                         name: 'aname'
+                    },
+                    {
+                        data: 'aheadofunit',
+                        name: 'aheadofunit',
                     },
                     {
                         data: 'asortorder',
@@ -76,6 +81,12 @@
                         orderable: true,
                         searchable: false,
                         className: 'dt-center',
+                        render: function(data, type, full, meta) {
+                            if (Boolean(data) === true) {
+                                return '<i class="ti ti-square-check"></i>';
+                            }
+                            return '';
+                        },
                     },
                     {
                         targets: 3,
@@ -85,6 +96,12 @@
                     },
                     {
                         targets: 4,
+                        orderable: true,
+                        searchable: false,
+                        className: 'dt-center',
+                    },
+                    {
+                        targets: 5,
                         orderable: true,
                         searchable: false,
                         className: 'dt-center',
@@ -100,6 +117,9 @@
                     //console.table(data);
                     if (Boolean(data.amop) === true) {
                         $(row).addClass('table-secondary');
+                    }
+                    if (Boolean(data.aheadofunit) === true) {
+                        $(row).addClass('table-success');
                     }
                     if (data.sfrpersons_count == 0) {
                         $(row).addClass('table-danger');
