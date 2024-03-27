@@ -113,7 +113,7 @@ class SFRPersonData extends Data
             persondata_snils: $person->getSNILS(),
             persondata_birthday: $person->getBirthDate(),
             persondata_fullname: $person->getFullName(),
-            persondata_lastactivity: $personLastActivity,
+            persondata_lastactivity: $person->getLastActivity(),
             persondata_workstartdate: $person->getWorkStartDate(),
             persondata_appmop: $person->isAppointmentMOP(),
             persondata_aheadofunit: $person->isAppointmentHead(),
