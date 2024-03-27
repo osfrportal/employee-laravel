@@ -110,7 +110,7 @@ class SFRPersonController extends Controller
                 ->make(true);
         } else {
             $data = SfrPerson::select('*')->with(['SfrPersonUnit', 'SfrPersonAppointment', 'SfrPersonTabNum']);
-            dump($data);
+            dump(Datatables::of($data)->setRowId('pid')->make(true));
             return view('osfrportal::admin.persons.table_all');
         }
     }
