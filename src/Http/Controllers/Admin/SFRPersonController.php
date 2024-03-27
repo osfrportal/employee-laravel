@@ -94,13 +94,7 @@ class SFRPersonController extends Controller
      * Основные функции
      * ----------------------------
      */
-
-    public function ShowPersonsList()
-    {
-        $this->authorize($this->permissionView);
-        return view('osfrportal::admin.persons.list_all');
-    }
-    public function ShowPersonsTable(Request $request)
+    public function ShowPersonsList(Request $request)
     {
         $this->authorize($this->permissionView);
         if ($request->ajax()) {

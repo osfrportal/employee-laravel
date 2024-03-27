@@ -19,7 +19,7 @@
 @endsection
 @push('footer-scripts')
     <?php
-    $route_api_persons_all = route('osfrportal.admin.persons.show.all');
+    $route_api_persons_all = route('osfrportal.admin.persons.all');
     ?>
     <script type="text/javascript">
         $(document).ready(function() {

@@ -70,11 +70,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/permissions/users/{permissionid}', 'APIShowPermissionUsersList')->name('permission_users_all');
         Route::get('/permissions', 'APIShowPermissionsList')->name('permissions_all');
     });
+    /*
     Route::prefix('persons')->name('persons.')->group(function () {
         Route::controller(SFRPersonController::class)->group(function () {
             Route::get('/all', 'APIPersonsList')->name('all');
         });
     });
+    */
     Route::prefix('phone')->name('phone.')->group(function () {
         Route::controller(SFRPhoneAdminController::class)->group(function () {
             Route::get('/addr', 'APIAddrList')->name('addresses');

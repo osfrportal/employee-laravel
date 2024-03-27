@@ -132,7 +132,6 @@ Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(f
         Route::post('/resetpassword', 'sendRandPassword')->name('resetpassword');
         Route::get('/detail/{personid}', 'ShowPersonDetail')->name('detail');
         Route::get('/print/docssigns/{personid}', 'genDocsSignListPrint')->name('print.docs.signlist');
-        Route::get('/all', 'ShowPersonsTable')->name('show.all');
         Route::get('/', 'ShowPersonsList')->name('all');
     })->middleware(['auth.osfrportal']);
 
