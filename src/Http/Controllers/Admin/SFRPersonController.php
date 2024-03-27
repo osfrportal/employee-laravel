@@ -104,7 +104,7 @@ class SFRPersonController extends Controller
     {
         $this->authorize($this->permissionView);
         if ($request->ajax()) {
-            $data = SfrPerson::select('*');
+            $data = SfrPerson::select(['psurname', 'pname', 'pmiddlename']);
             return Datatables::of($data)
                 ->addColumn('tabnumber', function (SfrPerson $person) {
                     return $person->getTabNum();
@@ -117,6 +117,9 @@ class SFRPersonController extends Controller
                 })
                 ->addColumn('lastactivity', function (SfrPerson $person) {
                     return $person->getLastActivity();
+                })
+                ->addColumn('pworkstart', function (SfrPerson $person) {
+                    return $person->getWorkStartDate();
                 })
                 ->setRowId('pid')
                 ->make(true);

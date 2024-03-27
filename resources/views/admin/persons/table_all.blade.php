@@ -54,6 +54,8 @@
                     {
                         data: 'tabnumber',
                         className: 'dt-center',
+                        orderable: false,
+                        searchable: false,
                     },
                     {
                         data: 'psurname',
@@ -75,21 +77,19 @@
                     },
                     {
                         data: 'appointment_name',
-                        targets: 5,
-                        orderable: true,
+                        orderable: false,
                         searchable: false,
                         className: 'dt-left',
                     },
                     {
                         data: 'unit_name',
-                        targets: 5,
-                        orderable: true,
+                        orderable: false,
                         searchable: false,
                         className: 'dt-left',
                     },
                     {
                         data: 'lastactivity',
-                        orderable: true,
+                        orderable: false,
                         searchable: false,
                         className: 'dt-left',
                     },
