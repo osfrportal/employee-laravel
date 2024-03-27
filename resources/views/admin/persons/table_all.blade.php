@@ -12,7 +12,6 @@
                     <th>Должность</th>
                     <th>Поразделение</th>
                     <th>Активность на портале</th>
-                    <th>Отпуск</th>
                     <th>Дата начала работы</th>
                 </tr>
             </thead>
@@ -21,7 +20,7 @@
 @endsection
 @push('footer-scripts')
     <?php
-    $route_api_persons_all = route('osfrapi.osfrportal.admin.persons.show.all');
+    $route_api_persons_all = route('osfrportal.admin.persons.show.all');
     ?>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -78,25 +77,19 @@
                         data: 'appointment_name',
                         targets: 5,
                         orderable: true,
-                        searchable: true,
+                        searchable: false,
                         className: 'dt-left',
                     },
                     {
                         data: 'unit_name',
                         targets: 5,
                         orderable: true,
-                        searchable: true,
+                        searchable: false,
                         className: 'dt-left',
                     },
                     {
                         data: 'lastactivity',
                         orderable: true,
-                        searchable: false,
-                        className: 'dt-left',
-                    },
-                    {
-                        data: 'persondata_vacation',
-                        orderable: false,
                         searchable: false,
                         className: 'dt-left',
                     },

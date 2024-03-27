@@ -104,13 +104,8 @@ class SFRPersonController extends Controller
     {
         $this->authorize($this->permissionView);
         if ($request->ajax()) {
-            $data = SfrPerson::select('*')->with(['SfrPersonUnit', 'SfrPersonAppointment', 'SfrPersonTabNum']);
-            return Datatables::of($data)
-                ->setRowId('pid')
-                ->make(true);
-        } else {
             $data = SfrPerson::select('*');
-            $dt = Datatables::of($data)
+            return Datatables::of($data)
                 ->addColumn('tabnumber', function (SfrPerson $person) {
                     return $person->getTabNum();
                 })
@@ -125,7 +120,7 @@ class SFRPersonController extends Controller
                 })
                 ->setRowId('pid')
                 ->make(true);
-            dump($dt);
+        } else {
             return view('osfrportal::admin.persons.table_all');
         }
     }
