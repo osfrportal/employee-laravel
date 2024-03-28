@@ -28,10 +28,11 @@
                 dom: '<"top"flp<"clear">>rt<"bottom"ip<"clear">>',
                 ordering: true,
                 serverSide: true,
-                processing: true,
+
                 language: {
                     'loadingRecords': '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Загрузка записей...</span></div><span class="sr-only">Загрузка записей...</span>'
                 },
+                processing: true,
                 order: [
                     [2, 'asc'],
                     [3, 'asc']
