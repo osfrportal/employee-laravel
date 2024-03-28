@@ -30,7 +30,7 @@
                 serverSide: true,
                 processing: true,
                 language: {
-                    'processing': '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Загрузка...</span></div><span class="sr-only">Загрузка...</span>'
+                    'loadingRecords': '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Загрузка записей...</span></div><span class="sr-only">Загрузка записей...</span>'
                 },
                 order: [
                     [2, 'asc'],
