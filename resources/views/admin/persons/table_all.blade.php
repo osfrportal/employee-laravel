@@ -29,6 +29,9 @@
                 ordering: true,
                 serverSide: true,
                 processing: true,
+                language: {
+                    'processing': '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Загрузка...</span></div><span class="sr-only">Загрузка...</span>'
+                },
                 order: [
                     [2, 'asc'],
                     [3, 'asc']
