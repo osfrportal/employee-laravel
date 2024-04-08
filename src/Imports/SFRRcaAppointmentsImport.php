@@ -21,9 +21,7 @@ class SFRRcaAppointmentsImport
             $appointments = $xmlData->xpath('//Post/Post');
             foreach ($appointments as $appointment) {
                 $appointmentID = (string) $appointment->id;
-                $appointmentID = Str::trim($appointmentID);
                 $appointmentName = (string) $appointment->Name;
-                $appointmentName = Str::trim($appointmentName);
                 $modelAppointment = SfrAppointment::withTrashed()->where('aname', $appointmentName)->first();
                 if (!is_null($modelAppointment)) {
                     if ($modelAppointment->trashed()) {
