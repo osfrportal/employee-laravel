@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Carbon\Carbon;
 
-
-use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
+use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 
 class SFRRcaUnitsImport
 {
@@ -24,7 +23,16 @@ class SFRRcaUnitsImport
                     $unitID = Str::of(trim($unit->id[0]))->afterLast('-');
                     $unitName = trim($unit->Name[0]);
                     $unitParentID = Str::of(trim($unit->ParentCode[0]))->afterLast('-');
-                    $strout = sprintf('"%s" - "%s" - "%s"', $unitID, $unitName, $unitParentID);
+                    $modelUnit = SfrUnits::withTrashed()->where('unitname', $unitName)->first();
+                    if (!is_null($modelUnit)) {
+                        if ($modelUnit->trashed()) {
+                            $strout = sprintf('TRASHED! Name: "%s" - Found: %s', $unitName, $modelAppointment->unitid);
+                        } else {
+                            $strout = sprintf('Name: "%s" - Found: %s', $unitName, $modelAppointment->unitid);
+                        }
+                    } else {
+                        $strout = sprintf('NOT FOUND: "%s" - %s', $unitName, $unitID);
+                    }
                     dump($strout);
                 }
             }
