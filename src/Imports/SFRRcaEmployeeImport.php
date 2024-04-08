@@ -24,8 +24,10 @@ class SFRRcaEmployeeImport
             foreach ($persons as $person) {
                 $snils = preg_replace('/[-\s]/', '', $person->id[0]->__toString());
                 $birthDate = Carbon::parse($person->dateofbirth[0]->__toString())->format('Y-m-d');
-                $tabNumber = trim($person->Tab_id[0]->__toString());
-                $unitCode = Str::of(trim($person->section[0]->__toString()))->afterLast('-');
+                $tabNumber = Str::remove('0000-', trim($person->Tab_id[0]->__toString()));
+                //$unitCode = Str::of(trim($person->section[0]->__toString()))->afterLast('-');
+                $unitCode = Str::afterLast(trim($person->section[0]->__toString()), '-');
+                dump($unitCode);
                 $appointmentCode = trim($person->position[0]->__toString());
 
                 $psurname = trim($person->lastname[0]->__toString());
@@ -44,7 +46,7 @@ class SFRRcaEmployeeImport
                 $appointment = SfrAppointment::where('acode', $appointmentCode)->firstOr(function () {
                     return null;
                 });
-
+                /*
                 //Ищем по совпадению СНИЛС. Если СНИЛС не найден в базе - создаем.
                 $sfrperson = SfrPerson::updateOrCreate(
                     ['psnils' => $snils],
@@ -106,7 +108,9 @@ class SFRRcaEmployeeImport
                     Log::info('Удалены записи из таблицы должностей, контакты, табельный номер для работника', $log_context);
                     $fired++;
                 }
+                */
             }
+
             $log_context = [
                 'action' => LogActionsEnum::LOG_IMPORT_PD(),
                 'fired' => $fired,
@@ -114,6 +118,7 @@ class SFRRcaEmployeeImport
             ];
             Log::info('Обработка файла РСУД импорта работников завершена.', $log_context);
             dump($worked, $fired);
+
         }
     }
 }
