@@ -16,6 +16,7 @@ class SfrAppointment extends Model
     public $timestamps = false;
     protected $fillable = [
         'aname',
+        'acode',
         'deleted_at',
     ];
 
