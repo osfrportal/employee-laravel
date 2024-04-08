@@ -1,6 +1,8 @@
 <?php
 namespace Osfrportal\OsfrportalLaravel\Imports;
 
+use Illuminate\Support\Facades\Storage;
+
 class SFRRcaEmployeeImport
 {
     public function import($filename, $storage)
