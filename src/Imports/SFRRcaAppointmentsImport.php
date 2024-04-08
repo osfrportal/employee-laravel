@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Storage;
 
 use Carbon\Carbon;
 
+
+use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
+
 class SFRRcaAppointmentsImport
 {
     public function import($filename, $storage)
@@ -20,8 +23,9 @@ class SFRRcaAppointmentsImport
             {
                 $appointmentID = (string)$appointment->id;
                 $appointmentName = (string)$appointment->Name;
-                dump($appointmentID);
-                dump($appointmentName);
+                $modelAppointment = SfrAppointment::where('aname',$appointmentName)->firstOrFail();
+                $strout = sprintf('Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
+                dump($strout);
             }
         }
     }
