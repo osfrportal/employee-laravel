@@ -20,9 +20,9 @@ class SFRRcaUnitsImport
             $xmlData = simplexml_load_string($xmlString);
             $units = $xmlData->xpath('//Org/ORG');
             foreach ($units as $unit) {
-                $unitID = Str::of(Str::trim((string) $unit->id))->afterLast('-');
-                $unitName = Str::trim((string) $unit->Name);
-                $unitParentID = Str::of(Str::trim((string) $unit->ParentCode))->afterLast('-');
+                $unitID = Str::of((string) $unit->id)->afterLast('-');
+                $unitName = (string) $unit->Name;
+                $unitParentID = Str::of((string) $unit->ParentCode)->afterLast('-');
                 $strout = sprintf('%s - %s - %s', $unitID, $unitName, $unitParentID);
                 dump($strout);
             }
