@@ -19,8 +19,8 @@ class SFRRcaAppointmentsImport
             dump($appointments);
             foreach ($appointments as $appointment)
             {
-                $appointmentID = (string)$appointment->attributes()->id;
-                $appointmentName = $appointment->attributes()->Name;
+                $appointmentID = (string)$appointment->id;
+                $appointmentName = $appointment->Name;
                 dump($appointmentID);
                 dump($appointmentName);
             }
