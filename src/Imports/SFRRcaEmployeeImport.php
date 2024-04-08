@@ -27,7 +27,7 @@ class SFRRcaEmployeeImport
                 }
                 if (Str::is($person->state[0]->__toString(), 'Уволен')) {
                     $sfrperson = SfrPerson::where('psnils', $snils)->first();
-                    dump($sfrperson);
+                    dump($sfrperson->getFullName(), $sfrperson->getUnit());
                     $fired++;
                 }
                 //dump($person);
