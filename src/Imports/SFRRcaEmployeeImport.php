@@ -69,7 +69,7 @@ class SFRRcaEmployeeImport
 
 
                 if (Str::is($workState, 'Работает')) {
-                    $tn = $sfrperson->SfrPersonTabNum()->firstOrCreate(
+                    $tn = $sfrperson->SfrPersonTabNum()->updateOrCreate(
                         ['etabnumber' => $tabNumber],
                         ['updated_at' => Carbon::now()]
                     );
