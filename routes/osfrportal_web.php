@@ -28,6 +28,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFROtrsAdminController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRInfoSystemsController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRAdminDashboardController;
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRStorageController;
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRRcaImportController;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -47,6 +48,10 @@ Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(f
 
     Route::controller(SFRMainteranceAdminController::class)->name('mainterance.')->prefix('mainterance')->group(function () {
         Route::get('/', 'mainteranceIndex')->name('index');
+    })->middleware(['auth.osfrportal']);
+
+    Route::controller(SFRRcaImportController::class)->name('rcaimport.')->prefix('rcaimport')->group(function () {
+        Route::get('/', 'runAppointmentsImport')->name('index');
     })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRStorageController::class)->name('storage.')->prefix('storage')->group(function () {
