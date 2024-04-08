@@ -16,11 +16,10 @@ class SFRRcaEmployeeImport
             $xmlData = simplexml_load_string($xmlString);
             $persons = $xmlData->xpath('//Persons/Person');
             foreach ($persons as $person) {
-                dump($person->state->__toString());
-                if (Str::is($person->state[0], 'Работает')) {
+                if (Str::is($person->state[0]->__toString(), 'Работает')) {
                     $worked++;
                 }
-                if (Str::is($person->state[0], 'Уволен')) {
+                if (Str::is($person->state[0]->__toString(), 'Уволен')) {
                     $fired++;
                 }
                 //dump($person);
