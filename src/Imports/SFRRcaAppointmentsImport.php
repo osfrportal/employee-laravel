@@ -47,6 +47,7 @@ class SFRRcaAppointmentsImport
 
             }
             Log::info('Обработка файла РСУД импорта должностей завершена.');
+            dump('DONE');
         }
     }
 }

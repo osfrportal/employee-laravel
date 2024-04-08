@@ -50,6 +50,7 @@ class SFRRcaUnitsImport
                 }
             }
             Log::info('Обработка файла РСУД импорта подразделений завершена.');
+            dump('DONE');
         }
     }
 }
