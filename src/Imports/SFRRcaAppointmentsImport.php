@@ -25,7 +25,7 @@ class SFRRcaAppointmentsImport
                 $appointmentName = (string)$appointment->Name;
                 $modelAppointment = SfrAppointment::withTrashed()->where('aname',$appointmentName)->first();
                 if (!is_null($modelAppointment)) {
-                    if ($$modelAppointment->trashed()) {
+                    if ($modelAppointment->trashed()) {
                         $strout = sprintf('TRASHED! Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
                     } else {
                         $strout = sprintf('Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
