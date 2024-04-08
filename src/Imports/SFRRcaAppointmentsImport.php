@@ -15,7 +15,15 @@ class SFRRcaAppointmentsImport
         if (Storage::disk($storage)->exists($filename)) {
             $xmlString = Storage::disk($storage)->get($filename);
             $xmlData = simplexml_load_string($xmlString);
-            dump($xmlData);
+            $appointments = $xmlData->xpath('//Post');
+            dump($posts);
+            foreach ($appointments as $appointment)
+            {
+                $appointmentID = (string)$appointment->attributes()->id;
+                $appointmentName = $appointment->attributes()->Name;
+                dump($appointmentID);
+                dump($appointmentName);
+            }
         }
     }
 }
