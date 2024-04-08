@@ -14,10 +14,9 @@ class SFRRcaImportController extends Controller
     {
         $filename = '000_20240408post.xml';
         $storage = 'imports';
-        if (Storage::disk($storage)->exists($filename)) {
-            //$path = Storage::disk($storage)->path($filename);
+
             $import = new SFRRcaAppointmentsImport();
-            $import->import($filename, $storage, \Maatwebsite\Excel\Excel::XML);
-        }
+            $import->import($filename, $storage);
+
     }
 }
