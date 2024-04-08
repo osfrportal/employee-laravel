@@ -26,9 +26,9 @@ class SFRRcaUnitsImport
                     $modelUnit = SfrUnits::withTrashed()->where('unitname', $unitName)->first();
                     if (!is_null($modelUnit)) {
                         if ($modelUnit->trashed()) {
-                            $strout = sprintf('TRASHED! Name: "%s" - Found: %s', $unitName, $modelAppointment->unitid);
+                            $strout = sprintf('TRASHED! Name: "%s" - Found: %s', $unitName, $modelUnit->unitid);
                         } else {
-                            $strout = sprintf('Name: "%s" - Found: %s', $unitName, $modelAppointment->unitid);
+                            $strout = sprintf('Name: "%s" - Found: %s', $unitName, $modelUnit->unitid);
                         }
                     } else {
                         $strout = sprintf('NOT FOUND: "%s" - %s', $unitName, $unitID);
