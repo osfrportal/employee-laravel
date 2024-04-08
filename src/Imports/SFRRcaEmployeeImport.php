@@ -16,7 +16,7 @@ class SFRRcaEmployeeImport
             $xmlData = simplexml_load_string($xmlString);
             $persons = $xmlData->xpath('//Persons/Person');
             foreach ($persons as $person) {
-                dump($person->state[0]);
+                dump($person->state[0]->__toString());
                 if (Str::is($person->state[0], 'Работает')) {
                     $worked++;
                 }
