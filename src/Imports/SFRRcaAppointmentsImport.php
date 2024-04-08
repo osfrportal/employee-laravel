@@ -24,7 +24,7 @@ class SFRRcaAppointmentsImport
                 $appointmentID = (string)$appointment->id;
                 $appointmentName = (string)$appointment->Name;
                 $modelAppointment = SfrAppointment::where('aname',$appointmentName)->first();
-                if ($modelAppointment->count() > 0) {
+                if (!is_null($modelAppointment)) {
                     $strout = sprintf('Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
                 } else {
                     $strout = sprintf('NOT FOUND: %s - %s', $appointmentName,  $appointmentID);
