@@ -26,9 +26,9 @@ class SFRRcaUnitsImport
             foreach ($units as $unit) {
                 $uid = trim($unit->id[0]->__toString());
                 if ((!Str::is($uid, '058')) && (!Str::is($uid, '058-000'))) {
-                    $unitID = Str::of($uid)->afterLast('-');
+                    $unitID = Str::afterLast($uid, '-');
                     $unitName = trim($unit->Name[0]->__toString());
-                    $unitParentID = Str::of(trim($unit->ParentCode[0]->__toString()))->afterLast('-');
+                    $unitParentID = Str::afterLast(trim($unit->ParentCode[0]->__toString()), '-');
                     $log_context = [
                         'unitname' => $unitName,
                         'unitcode' => $unitID,
