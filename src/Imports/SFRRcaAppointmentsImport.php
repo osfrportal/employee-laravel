@@ -16,7 +16,7 @@ class SFRRcaAppointmentsImport
             $xmlString = Storage::disk($storage)->get($filename);
             $xmlData = simplexml_load_string($xmlString);
             $appointments = $xmlData->xpath('//Post');
-            dump($posts);
+            dump($appointments);
             foreach ($appointments as $appointment)
             {
                 $appointmentID = (string)$appointment->attributes()->id;
