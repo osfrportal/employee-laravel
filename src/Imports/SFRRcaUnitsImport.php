@@ -31,7 +31,7 @@ class SFRRcaUnitsImport
                             $strout = sprintf('Name: "%s" - Found: %s', $unitName, $modelUnit->unitid);
                         }
                     } else {
-                        $strout = sprintf('NOT FOUND: "%s" - %s', $unitName, $unitID);
+                        $strout = sprintf('NOT FOUND: "%s" - %s - PARENT: %s', $unitName, $unitID, $unitParentID);
                     }
                     dump($strout);
                 }
