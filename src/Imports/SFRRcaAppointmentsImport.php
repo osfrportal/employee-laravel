@@ -20,17 +20,17 @@ class SFRRcaAppointmentsImport
             $xmlData = simplexml_load_string($xmlString);
             $appointments = $xmlData->xpath('//Post/Post');
             foreach ($appointments as $appointment) {
-                $appointmentID = (string) $appointment->id;
-                $appointmentName = (string) $appointment->Name;
+                $appointmentID = trim($appointment->id[0]);
+                $appointmentName = trim($appointment->Name[0]);
                 $modelAppointment = SfrAppointment::withTrashed()->where('aname', $appointmentName)->first();
                 if (!is_null($modelAppointment)) {
                     if ($modelAppointment->trashed()) {
-                        $strout = sprintf('TRASHED! Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
+                        $strout = sprintf('TRASHED! Name: "%s" - Found: %s', $appointmentName, $modelAppointment->aid);
                     } else {
-                        $strout = sprintf('Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
+                        $strout = sprintf('Name: "%s" - Found: %s', $appointmentName, $modelAppointment->aid);
                     }
                 } else {
-                    $strout = sprintf('NOT FOUND: %s - %s', $appointmentName, $appointmentID);
+                    $strout = sprintf('NOT FOUND: "%s" - %s', $appointmentName, $appointmentID);
                 }
                 dump($strout);
             }
