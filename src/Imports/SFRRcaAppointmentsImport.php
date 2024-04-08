@@ -23,9 +23,13 @@ class SFRRcaAppointmentsImport
             {
                 $appointmentID = (string)$appointment->id;
                 $appointmentName = (string)$appointment->Name;
-                $modelAppointment = SfrAppointment::where('aname',$appointmentName)->first();
+                $modelAppointment = SfrAppointment::withTrashed()->where('aname',$appointmentName)->first();
                 if (!is_null($modelAppointment)) {
-                    $strout = sprintf('Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
+                    if ($$modelAppointment->trashed()) {
+                        $strout = sprintf('TRASHED! Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
+                    } else {
+                        $strout = sprintf('Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
+                    }
                 } else {
                     $strout = sprintf('NOT FOUND: %s - %s', $appointmentName,  $appointmentID);
                 }
