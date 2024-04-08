@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Osfrportal\OsfrportalLaravel\Imports\SFRRcaAppointmentsImport;
 use Osfrportal\OsfrportalLaravel\Imports\SFRRcaUnitsImport;
+use Osfrportal\OsfrportalLaravel\Imports\SFRRcaEmployeeImport;
 
 class SFRRcaImportController extends Controller
 {
@@ -15,8 +16,8 @@ class SFRRcaImportController extends Controller
         $filename = '000_20240408post.xml';
         $storage = 'imports';
 
-            $import = new SFRRcaAppointmentsImport();
-            $import->import($filename, $storage);
+        $import = new SFRRcaAppointmentsImport();
+        $import->import($filename, $storage);
 
     }
     public function runUnitsImport()
@@ -24,8 +25,18 @@ class SFRRcaImportController extends Controller
         $filename = '000_20240408org.xml';
         $storage = 'imports';
 
-            $import = new SFRRcaUnitsImport();
-            $import->import($filename, $storage);
+        $import = new SFRRcaUnitsImport();
+        $import->import($filename, $storage);
+
+    }
+
+    public function runEmployeeImport()
+    {
+        $filename = '000_20240408employee.xml';
+        $storage = 'imports';
+
+        $import = new SFRRcaEmployeeImport();
+        $import->import($filename, $storage);
 
     }
 }
