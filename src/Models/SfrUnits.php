@@ -17,7 +17,8 @@ class SfrUnits extends Model
     protected $fillable = [
         'unitname',
         'unitcode',
-        'unitparentid'
+        'unitparentid',
+        'deleted_at',
     ];
     protected $withCount = ['persons'];
 
