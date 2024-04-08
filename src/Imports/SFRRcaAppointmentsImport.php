@@ -23,9 +23,13 @@ class SFRRcaAppointmentsImport
             {
                 $appointmentID = (string)$appointment->id;
                 $appointmentName = (string)$appointment->Name;
-                $modelAppointment = SfrAppointment::where('aname',$appointmentName)->firstOrFail();
+                $modelAppointment = SfrAppointment::where('aname',$appointmentName)->firstOr(function ($appointmentName,  $appointmentID) {
+                    dump($appointmentName,  $appointmentID);
+                });
+                if ($modelAppointment->count() > 0) {
                 $strout = sprintf('Name: %s - Found: %s', $appointmentName, $modelAppointment->aid);
                 dump($strout);
+                }
             }
         }
     }
