@@ -58,7 +58,7 @@ class SFRRcaEmployeeImport
                         'pmiddlename' => $pmiddlename,
                         'pbirthdate' => $birthDate,
                         'pworkstart' => $pworkstart,
-                        'pcreatedon' = Carbon::now('Europe/Moscow')->toDateTimeString();
+                        'pcreatedon' => Carbon::now('Europe/Moscow')->toDateTimeString(),
                     ]
                 );
                 //если только создан:
