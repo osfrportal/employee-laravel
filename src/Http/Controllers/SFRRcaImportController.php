@@ -45,7 +45,10 @@ class SFRRcaImportController extends Controller
         $storageRO = 'RCAimportRO';
         $folderRO = 'oim_arch';
         $filesRO = Storage::disk($storageRO)->files($folderRO);
-        $matchingFiles = preg_grep('/^(oim_arch\/000_20240409)(post|org|employee)_(.*)/i', $filesRO);
+        $dt = Carbon::now()->format('Ymd');
+        dump($dt);
+        $pregstring = sprintf('/^(oim_arch\/000_%s)(post|org|employee)_(.*)/i', $dt);
+        $matchingFiles = preg_grep($pregstring, $filesRO);
         dump($matchingFiles);
         $storageRW = 'imports';
         $folderRW = '';
