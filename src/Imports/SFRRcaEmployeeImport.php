@@ -58,11 +58,12 @@ class SFRRcaEmployeeImport
                         'pmiddlename' => $pmiddlename,
                         'pbirthdate' => $birthDate,
                         'pworkstart' => $pworkstart,
+                        'pcreatedon' = Carbon::now('Europe/Moscow')->toDateTimeString();
                     ]
                 );
                 //если только создан:
                 if ($sfrperson->wasRecentlyCreated) {
-                    $sfrperson->pcreatedon = Carbon::now('Europe/Moscow')->toDateTimeString();
+
                     $log_context = [
                         'sfrperson' => $sfrperson,
                         'fio' => $fullFIO,
