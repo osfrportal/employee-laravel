@@ -54,6 +54,7 @@ Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(f
         Route::get('/appointments', 'runAppointmentsImport')->name('appointments');
         Route::get('/units', 'runUnitsImport')->name('units');
         Route::get('/employee', 'runEmployeeImport')->name('employee');
+        Route::get('/files', 'runRcaFilesGet')->name('files');
     })->middleware(['auth.osfrportal']);
 
     Route::controller(SFRStorageController::class)->name('storage.')->prefix('storage')->group(function () {

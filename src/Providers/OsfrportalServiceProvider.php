@@ -297,6 +297,12 @@ class OsfrportalServiceProvider extends ServiceProvider
                 'read-only' => true,
                 'throw' => false,
             ],
+            'RCAimportRO' => [
+                'driver' => 'local',
+                'root' => '/mnt/rca',
+                'read-only' => true,
+                'throw' => false,
+            ],
         ];
 
         $filesystemsLinksConfig = [

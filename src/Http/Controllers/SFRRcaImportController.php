@@ -39,4 +39,14 @@ class SFRRcaImportController extends Controller
         $import->import($filename, $storage);
 
     }
+
+    public function runRcaFilesGet()
+    {
+        $storageRO = 'RCAimportRO';
+        $folderRO = 'oim_arch';
+        $filesRO = Storage::disk($storageRO)->files($folderRO);
+        dump($filesRO);
+        $storageRW = 'imports';
+        $folderRW = '';
+    }
 }
