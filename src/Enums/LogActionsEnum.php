@@ -11,6 +11,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self LOG_IMPORT_DEPARTMENTS()
  * @method static self LOG_IMPORT_PERSONWORKSTART()
  * @method static self LOG_IMPORT_DIALPLAN()
+ * @method static self LOG_IMPORT_RCA()
  * @method static self LOG_IMPORT_VACATION()
  * @method static self LOG_IMPORT_ABSENCE()
  * @method static self LOG_IMPORT_EMPLOYEE()
@@ -60,6 +61,7 @@ final class LogActionsEnum extends Enum
             'LOG_PERSON_ADD' => 2,
             'LOG_IMPORT_DEPARTMENTS' => 3,
             'LOG_IMPORT_DIALPLAN' => 4,
+            'LOG_IMPORT_RCA' => 5,
             'LOG_IMPORT_VACATION' => 10,
             'LOG_IMPORT_ABSENCE' => 15,
             'LOG_IMPORT_EMPLOYEE' => 20,

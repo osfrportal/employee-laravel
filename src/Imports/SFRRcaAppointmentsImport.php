@@ -18,9 +18,10 @@ class SFRRcaAppointmentsImport
     public function import($filename, $storage)
     {
         Log::withContext([
-            'action' => LogActionsEnum::LOG_IMPORT_DEPARTMENTS(),
+            'action' => LogActionsEnum::LOG_IMPORT_RCA(),
         ]);
         if (Storage::disk($storage)->exists($filename)) {
+            $appointmentsCount = 0;
             $xmlString = Storage::disk($storage)->get($filename);
             $xmlData = simplexml_load_string($xmlString);
             $appointments = $xmlData->xpath('//Post/Post');
@@ -44,10 +45,19 @@ class SFRRcaAppointmentsImport
                 if ($modelAppointment->wasChanged('deleted_at')) {
                     Log::info('Должность восстановлена из удаленных', $log_context);
                 }
+                $appointmentsCount++;
 
             }
-            Log::info('Обработка файла РСУД импорта должностей завершена.');
-            dump('DONE');
+            $log_context = [
+                'appointmentsCount' => $appointmentsCount,
+            ];
+            Log::info('Обработка файла РСУД импорта должностей завершена.', $log_context);
+            return true;
+        } else {
+            Log::error('Не найден файл РСУД импорта должностей.');
+            return false;
         }
+        Log::error('При обработке файла РСУД импорта должностей произошла ошибка.');
+        return false;
     }
 }

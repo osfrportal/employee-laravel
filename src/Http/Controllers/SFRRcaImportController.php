@@ -12,37 +12,16 @@ use Osfrportal\OsfrportalLaravel\Imports\SFRRcaEmployeeImport;
 
 class SFRRcaImportController extends Controller
 {
-    public function runAppointmentsImport()
-    {
-        $filename = '000_20240408post.xml';
-        $storage = 'imports';
-
-        $import = new SFRRcaAppointmentsImport();
-        $import->import($filename, $storage);
-
-    }
-    public function runUnitsImport()
-    {
-        $filename = '000_20240408org.xml';
-        $storage = 'imports';
-
-        $import = new SFRRcaUnitsImport();
-        $import->import($filename, $storage);
-
-    }
-
-    public function runEmployeeImport()
-    {
-        $filename = '000_20240408employee.xml';
-        $storage = 'imports';
-
-        $import = new SFRRcaEmployeeImport();
-        $import->import($filename, $storage);
-
-    }
-
     public function runRcaFilesGet()
     {
+        $statusImportPost = false;
+        $statusImportOrg = false;
+        $statusImportEmployee = false;
+
+        $fileImportPost = null;
+        $fileImportOrg = null;
+        $fileImportEmployee = null;
+
         $storageRO = 'RCAimportRO';
         $folderRO = 'oim_arch';
         $filesRO = Storage::disk($storageRO)->files($folderRO);
@@ -53,15 +32,28 @@ class SFRRcaImportController extends Controller
         if ($countFiles == 3) {
             foreach ($matchingFiles as $matchingFile) {
                 if (preg_match(sprintf('/^(oim_arch\/000_%s)post_(.*)/i', $dt), $matchingFile)) {
-                    dump('post', $matchingFile);
+                    $fileImportPost = $matchingFile;
                 }
                 if (preg_match(sprintf('/^(oim_arch\/000_%s)org_(.*)/i', $dt), $matchingFile)) {
-                    dump('org', $matchingFile);
+                    $fileImportOrg = $matchingFile;
                 }
                 if (preg_match(sprintf('/^(oim_arch\/000_%s)employee_(.*)/i', $dt), $matchingFile)) {
-                    dump('employee', $matchingFile);
+                    $fileImportEmployee = $matchingFile;
                 }
             }
+            if (!is_null($fileImportPost)) {
+                $importAppointments = new SFRRcaAppointmentsImport();
+                $statusImportPost = $importAppointments->import($fileImportPost, $storageRO);
+            }
+            if (!is_null($fileImportOrg)&&($statusImportPost === true)) {
+                $importUnits = new SFRRcaUnitsImport();
+                $statusImportOrg = $importUnits->import($fileImportOrg, $storageRO);
+            }
+            if (!is_null($fileImportOrg)&&($statusImportPost === true)&&($statusImportOrg === true)) {
+                $importEmployee = new SFRRcaEmployeeImport();
+                $statusImportEmployee = $importEmployee->import($fileImportEmployee, $storageRO);
+            }
+            dump('DONE');
         }
     }
 }

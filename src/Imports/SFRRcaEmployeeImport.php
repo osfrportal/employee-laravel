@@ -15,6 +15,10 @@ class SFRRcaEmployeeImport
 {
     public function import($filename, $storage)
     {
+        Log::withContext([
+            'action' => LogActionsEnum::LOG_IMPORT_RCA(),
+        ]);
+
         $worked = 0;
         $fired = 0;
         if (Storage::disk($storage)->exists($filename)) {
@@ -60,7 +64,6 @@ class SFRRcaEmployeeImport
                 if ($sfrperson->wasRecentlyCreated) {
                     $sfrperson->pcreatedon = Carbon::now('Europe/Moscow')->toDateTimeString();
                     $log_context = [
-                        'action' => LogActionsEnum::LOG_PERSON_ADD(),
                         'sfrperson' => $sfrperson,
                         'fio' => $fullFIO,
                     ];
@@ -98,7 +101,6 @@ class SFRRcaEmployeeImport
                     $sfrperson->save();
 
                     $log_context = [
-                        'action' => LogActionsEnum::LOG_IMPORT_KADRY(),
                         'pid' => $sfrperson->pid,
                         'fio' => $fullFIO,
                         'snils' => $snils,
@@ -110,13 +112,16 @@ class SFRRcaEmployeeImport
             }
 
             $log_context = [
-                'action' => LogActionsEnum::LOG_IMPORT_PD(),
                 'fired' => $fired,
                 'worked' => $worked,
             ];
             Log::info('Обработка файла РСУД импорта работников завершена.', $log_context);
-            dump($worked, $fired);
-
+            return true;
+        } else {
+            Log::error('Не найден файл РСУД импорта работников.');
+            return false;
         }
+        Log::error('При обработке файла РСУД импорта работников произошла ошибка.');
+        return false;
     }
 }
