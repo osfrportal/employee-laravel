@@ -47,11 +47,21 @@ class SFRRcaImportController extends Controller
         $folderRO = 'oim_arch';
         $filesRO = Storage::disk($storageRO)->files($folderRO);
         $dt = Carbon::now()->format('Ymd');
-        dump($dt);
         $pregstring = sprintf('/^(oim_arch\/000_%s)(post|org|employee)_(.*)/i', $dt);
         $matchingFiles = preg_grep($pregstring, $filesRO);
-        dump($matchingFiles);
-        $storageRW = 'imports';
-        $folderRW = '';
+        $countFiles = count($matchingFiles);
+        if ($countFiles == 3) {
+            foreach ($matchingFiles as $matchingFile) {
+                if (preg_grep(sprintf('/^(oim_arch\/000_%s)post_(.*)/i', $dt), $matchingFile)) {
+                    dump('post', $matchingFile);
+                }
+                if (preg_grep(sprintf('/^(oim_arch\/000_%s)org_(.*)/i', $dt), $matchingFile)) {
+                    dump('org', $matchingFile);
+                }
+                if (preg_grep(sprintf('/^(oim_arch\/000_%s)employee_(.*)/i', $dt), $matchingFile)) {
+                    dump('employee', $matchingFile);
+                }
+            }
+        }
     }
 }
