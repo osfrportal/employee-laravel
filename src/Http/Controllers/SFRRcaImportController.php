@@ -10,8 +10,22 @@ use Osfrportal\OsfrportalLaravel\Imports\SFRRcaAppointmentsImport;
 use Osfrportal\OsfrportalLaravel\Imports\SFRRcaUnitsImport;
 use Osfrportal\OsfrportalLaravel\Imports\SFRRcaEmployeeImport;
 
+use Illuminate\Support\Facades\Notification;
+use Osfrportal\OsfrportalLaravel\Notifications\SFRRcaSync;
+use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+use Illuminate\Support\Facades\Redis;
+
 class SFRRcaImportController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $redisKeyRCA = 'mainterance:rcaimport';
+        $this->usersToNotify = SfrUser::permission('system-notifications')->get();
+
+    }
     public function runRcaFilesGet()
     {
         $statusImportPost = false;
