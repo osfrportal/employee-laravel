@@ -52,13 +52,13 @@ class SFRRcaImportController extends Controller
         $countFiles = count($matchingFiles);
         if ($countFiles == 3) {
             foreach ($matchingFiles as $matchingFile) {
-                if (preg_grep(sprintf('/^(oim_arch\/000_%s)post_(.*)/i', $dt), $matchingFile)) {
+                if (preg_match(sprintf('/^(oim_arch\/000_%s)post_(.*)/i', $dt), $matchingFile)) {
                     dump('post', $matchingFile);
                 }
-                if (preg_grep(sprintf('/^(oim_arch\/000_%s)org_(.*)/i', $dt), $matchingFile)) {
+                if (preg_match(sprintf('/^(oim_arch\/000_%s)org_(.*)/i', $dt), $matchingFile)) {
                     dump('org', $matchingFile);
                 }
-                if (preg_grep(sprintf('/^(oim_arch\/000_%s)employee_(.*)/i', $dt), $matchingFile)) {
+                if (preg_match(sprintf('/^(oim_arch\/000_%s)employee_(.*)/i', $dt), $matchingFile)) {
                     dump('employee', $matchingFile);
                 }
             }
