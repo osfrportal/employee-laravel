@@ -22,4 +22,27 @@
             {{ $imapMessage->date }}
         </div>
     </div>
+    <div class="card bg-body rounded shadow-sm text-center text-primary" style="max-width: 25rem;">
+        <div class="card-header fs-4 bg-body">
+            @if ($rcaMessage->canRunImports)
+                <i class="ti ti-file-check"></i>
+            @else
+                @if ($rcaMessage->error)
+                    <i class="ti ti-file-x"></i>
+                @endif
+                @if ($rcaMessage->tryAgain)
+                    <i class="ti ti-file-infinity"></i>
+                @endif
+            @endif
+            Загрузка файлов импорта RS:УД
+        </div>
+        <div class="card-body">
+            <div class="card-text fs-6">
+                {{ $rcaMessage->message ?? '' }}
+            </div>
+        </div>
+        <div class="card-footer text-muted bg-body">
+            {{ $rcaMessage->date }}
+        </div>
+    </div>
 </div>

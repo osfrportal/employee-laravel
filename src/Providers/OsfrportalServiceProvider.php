@@ -31,6 +31,7 @@ use Osfrportal\OsfrportalLaravel\Console\Commands\SFRUkepGetAllCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRCrlsLoadCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFROrionSyncCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFR1cImportCommand;
+use Osfrportal\OsfrportalLaravel\Console\Commands\SFRRcaImportCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRADOCSyncCommand;
 use Osfrportal\OsfrportalLaravel\Console\Commands\SFRVipnetImportCommand;
 
@@ -73,6 +74,7 @@ class OsfrportalServiceProvider extends ServiceProvider
                 SFRCrlsLoadCommand::class,
                 SFROrionSyncCommand::class,
                 SFR1cImportCommand::class,
+                SFRRcaImportCommand::class,
                 SFRADOCSyncCommand::class,
                 SFRVipnetImportCommand::class,
                 //::class,
@@ -82,7 +84,7 @@ class OsfrportalServiceProvider extends ServiceProvider
             $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
                 $schedule->command('queue:prune-batches')->daily();
                 $schedule->command('sfr:adocsync')->dailyAt('10:30');
-                //$schedule->command('sfr:imapget')->dailyAt(config('osfrportal.shedule_ImapDailyTime', '00:01'));
+                //$schedule->command('sfr:syncrca')->everyTenMinutes()->between('6:00', '09:00');
                 $schedule->command('sfr:imapget')->everyTenMinutes()->between('8:30', '16:00');
                 $schedule->command('sfr:sync1c')->dailyAt(config('osfrportal.shedule_Sync1CDailyTime', '00:10'));
                 $schedule->command('sfr:unepget')->dailyAt(config('osfrportal.shedule_HSMDailyTime', '00:50'));

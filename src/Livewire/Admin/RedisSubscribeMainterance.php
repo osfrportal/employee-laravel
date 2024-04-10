@@ -7,6 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Auth;
 use Osfrportal\OsfrportalLaravel\Data\SFRImapStatusData;
+use Osfrportal\OsfrportalLaravel\Data\SFRRcaImportStatusData;
 
 class RedisSubscribeMainterance extends Component
 {
@@ -19,6 +20,7 @@ class RedisSubscribeMainterance extends Component
     public function render()
     {
         $keyImap = 'mainterance:imap';
+        $keyRCA = 'mainterance:rcaimport';
 
         //$userId = Auth::user()->userid;
         //$key = "admin:mainterance:{$userId}";
@@ -27,6 +29,7 @@ class RedisSubscribeMainterance extends Component
         //Redis::setex($key, $this->durationInSeconds, $msg);
         //Redis::set($key, $msg, 'EX', 35);
         $redisImapData = SFRImapStatusData::from(Redis::get($keyImap));
-        return view('osfrportal::livewire.admin.mainterance-messages', ['imapMessage' => $redisImapData]);
+        $redisRCAData = SFRRcaImportStatusData::from(Redis::get($keyRCA));
+        return view('osfrportal::livewire.admin.mainterance-messages', ['imapMessage' => $redisImapData, 'rcaMessage' => $redisRCAData]);
     }
 }

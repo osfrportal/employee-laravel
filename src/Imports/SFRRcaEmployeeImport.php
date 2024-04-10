@@ -15,10 +15,18 @@ use Illuminate\Support\Facades\Notification;
 use Osfrportal\OsfrportalLaravel\Notifications\SFRRcaSync;
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 
+
+use Osfrportal\OsfrportalLaravel\Data\SFRRcaImportStatusData;
+
 class SFRRcaEmployeeImport
 {
     protected $usersToNotify;
+    public function __construct()
+    {
+        $redisKeyRCA = 'mainterance:rcaimport';
+        $this->usersToNotify = SfrUser::permission('system-notifications')->get();
 
+    }
     public function import($filename, $storage)
     {
         Log::withContext([
@@ -106,13 +114,14 @@ class SFRRcaEmployeeImport
                     $sfrperson->SfrPersonTabNum()->delete();
                     $sfrperson->pworkstart = null;
                     $sfrperson->save();
-
+                    /*
                     $log_context = [
                         'pid' => $sfrperson->pid,
                         'fio' => $fullFIO,
                         'snils' => $snils,
                     ];
                     Log::info('Удалены записи из таблицы должностей, контакты, табельный номер для работника', $log_context);
+                    */
                     $fired++;
                 }
 
