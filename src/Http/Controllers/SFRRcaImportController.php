@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Redis;
 
 class SFRRcaImportController extends Controller
 {
+    protected $usersToNotify;
+
     public function __construct()
     {
         parent::__construct();
@@ -59,11 +61,11 @@ class SFRRcaImportController extends Controller
                 $importAppointments = new SFRRcaAppointmentsImport();
                 $statusImportPost = $importAppointments->import($fileImportPost, $storageRO);
             }
-            if (!is_null($fileImportOrg)&&($statusImportPost === true)) {
+            if (!is_null($fileImportOrg) && ($statusImportPost === true)) {
                 $importUnits = new SFRRcaUnitsImport();
                 $statusImportOrg = $importUnits->import($fileImportOrg, $storageRO);
             }
-            if (!is_null($fileImportOrg)&&($statusImportPost === true)&&($statusImportOrg === true)) {
+            if (!is_null($fileImportOrg) && ($statusImportPost === true) && ($statusImportOrg === true)) {
                 $importEmployee = new SFRRcaEmployeeImport();
                 $statusImportEmployee = $importEmployee->import($fileImportEmployee, $storageRO);
             }

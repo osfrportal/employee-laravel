@@ -11,8 +11,14 @@ use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Models\SfrUnits;
 use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
 
+use Illuminate\Support\Facades\Notification;
+use Osfrportal\OsfrportalLaravel\Notifications\SFRRcaSync;
+use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+
 class SFRRcaEmployeeImport
 {
+    protected $usersToNotify;
+
     public function import($filename, $storage)
     {
         Log::withContext([
@@ -117,6 +123,7 @@ class SFRRcaEmployeeImport
                 'worked' => $worked,
             ];
             Log::info('Обработка файла РСУД импорта работников завершена.', $log_context);
+            Notification::send($this->usersToNotify, new SFRRcaSync(sprintf('Обработка файла РСУД импорта работников завершена. fired: %s, worked: %s', $fired, $worked)));
             return true;
         } else {
             Log::error('Не найден файл РСУД импорта работников.');
