@@ -24,7 +24,7 @@
     </div>
     <div class="card bg-body rounded shadow-sm text-center text-primary" style="max-width: 25rem;">
         <div class="card-header fs-4 bg-body">
-            @if ($rcaMessage->canRunImports)
+            @if ($rcaMessage->importsStatus)
                 <i class="ti ti-file-check"></i>
             @else
                 @if ($rcaMessage->error)

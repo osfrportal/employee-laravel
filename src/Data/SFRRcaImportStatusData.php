@@ -14,7 +14,7 @@ class SFRRcaImportStatusData extends Data
         public bool $error = false,
         public ?string $message = '',
         public bool $tryAgain = false,
-        public bool $canRunImports = false,
+        public bool $importsStatus = false,
     ) {
         $this->date = Carbon::now();
     }
