@@ -199,10 +199,13 @@ class SFRPersonController extends Controller
         $ad = FindByFullFIOAction::run($sfrperson);
 
         foreach ($ad as $adUser) {
-            if ($adUser->accountControl()->hasFlag(AccountControl::ACCOUNTDISABLE)) {
+            $uac = new AccountControl(
+                $adUser->getFirstAttribute('userAccountControl')
+            );
+            if ($uac->hasFlag(AccountControl::ACCOUNTDISABLE)) {
                 dump('ACCOUNTDISABLE');
             }
-            if ($adUser->accountControl()->hasFlag(AccountControl::SMARTCARD_REQUIRED)) {
+            if ($uac->hasFlag(AccountControl::SMARTCARD_REQUIRED)) {
                 dump('SMARTCARD_REQUIRED');
             }
         }
