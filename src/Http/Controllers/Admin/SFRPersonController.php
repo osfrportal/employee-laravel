@@ -208,6 +208,8 @@ class SFRPersonController extends Controller
             if ($uac->hasFlag(AccountControl::SMARTCARD_REQUIRED)) {
                 dump('SMARTCARD_REQUIRED');
             }
+            $guid = $adUser->getGuidKey();
+            dump($guid);
         }
         $SFRPersonData = SFRPersonData::from($sfrperson);
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
