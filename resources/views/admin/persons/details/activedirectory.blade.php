@@ -3,4 +3,5 @@
     @if (!is_null($ad))
         @dump($ad->getConvertedGuid())
     @endif
+    @dump($SFRPersonData->persondata_adguid)
 </div>
