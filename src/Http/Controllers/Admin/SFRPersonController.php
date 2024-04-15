@@ -199,12 +199,6 @@ class SFRPersonController extends Controller
         $ad = FindByFullFIOAction::run($sfrperson);
 
         foreach ($ad as $adUser) {
-            if ($adUser->isDisabled()) {
-                dump('isDisabled');
-            }
-            if ($adUser->isEnabled()) {
-                dump('isEnabled');
-            }
             if ($adUser->accountControl()->hasFlag(AccountControl::ACCOUNTDISABLE)) {
                 dump('ACCOUNTDISABLE');
             }
