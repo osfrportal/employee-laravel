@@ -151,6 +151,22 @@ class SfrPerson extends Model
         }
     }
 
+     /**
+     * GUID работника в AD
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function SfrPersonAD()
+    {
+        return $this->hasOne(SfrEmployeeAD::class, 'pid', 'pid');
+    }
+    public function getPersonADGuid()
+    {
+        if (!is_null($this->SfrPersonAD)) {
+            return $this->SfrPersonAD->adguid;
+        } else {
+            return null;
+        }
+    }
 
     /**
      * ID работника в системе Орион ПРО
