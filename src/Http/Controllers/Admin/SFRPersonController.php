@@ -197,19 +197,20 @@ class SFRPersonController extends Controller
 
         $sfrperson = SfrPerson::where('pid', $personid)->with('SfrUser')->first();
         $ad = FindByFullFIOAction::run($sfrperson);
-        $adUAC = UserAccountControlDecodeAction::run($ad->getFirstAttribute('userAccountControl'));
-        dump($adUAC);
 
-        $uac = new AccountControl(
-            $ad->getFirstAttribute('userAccountControl')
-        );
-        if ($uac->hasFlag(AccountControl::ACCOUNTDISABLE)) {
-            dump('ACCOUNTDISABLE');
+        foreach ($ad as $adUser) {
+            $adUAC = UserAccountControlDecodeAction::run($adUser->getFirstAttribute('userAccountControl'));
+            dump($adUAC);
+            $uac = new AccountControl(
+                $ad->getFirstAttribute('userAccountControl')
+            );
+            if ($uac->hasFlag(AccountControl::ACCOUNTDISABLE)) {
+                dump('ACCOUNTDISABLE');
+            }
+            if ($uac->hasFlag(AccountControl::SMARTCARD_REQUIRED)) {
+                dump('SMARTCARD_REQUIRED');
+            }
         }
-        if ($uac->hasFlag(AccountControl::SMARTCARD_REQUIRED)) {
-            dump('SMARTCARD_REQUIRED');
-        }
-
         $SFRPersonData = SFRPersonData::from($sfrperson);
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
         $SFRUserData = $sfrperson->SfrUser;
