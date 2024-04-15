@@ -202,7 +202,7 @@ class SFRPersonController extends Controller
             $adUAC = UserAccountControlDecodeAction::run($adUser->getFirstAttribute('userAccountControl'));
             dump($adUAC);
             $uac = new AccountControl(
-                $ad->getFirstAttribute('userAccountControl')
+                $adUser->getFirstAttribute('userAccountControl')
             );
             if ($uac->hasFlag(AccountControl::ACCOUNTDISABLE)) {
                 dump('ACCOUNTDISABLE');
