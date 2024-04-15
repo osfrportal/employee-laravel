@@ -43,10 +43,13 @@ use Osfrportal\OsfrportalLaravel\Actions\GeneratePersonLoginPassAction;
 use Osfrportal\OsfrportalLaravel\Actions\SendPasswordToUserAction;
 
 use Osfrportal\OsfrportalLaravel\Actions\Ldap\FindByFullFIOAction;
+use Osfrportal\OsfrportalLaravel\Actions\Ldap\UserAccountControlDecodeAction;
 
 
 use Osfrportal\OsfrportalLaravel\Http\Requests\AppointmentSaveRequest;
 use Osfrportal\OsfrportalLaravel\Http\Requests\AppointmentDeleteRequest;
+
+use LdapRecord\Models\Attributes\AccountControl;
 
 class SFRPersonController extends Controller
 {
@@ -194,6 +197,19 @@ class SFRPersonController extends Controller
 
         $sfrperson = SfrPerson::where('pid', $personid)->with('SfrUser')->first();
         $ad = FindByFullFIOAction::run($sfrperson);
+        $adUAC = UserAccountControlDecodeAction::run($sfrperson->getFirstAttribute('userAccountControl'));
+        dump($adUAC);
+
+        $uac = new AccountControl(
+            $sfrperson->getFirstAttribute('userAccountControl')
+        );
+        if ($uac->hasFlag(AccountControl::ACCOUNTDISABLE)) {
+            dump('ACCOUNTDISABLE');
+        }
+        if ($uac->hasFlag(AccountControl::SMARTCARD_REQUIRED)) {
+            dump('SMARTCARD_REQUIRED');
+        }
+
         $SFRPersonData = SFRPersonData::from($sfrperson);
         $userlogin = GeneratePersonLoginPassAction::run($sfrperson);
         $SFRUserData = $sfrperson->SfrUser;
