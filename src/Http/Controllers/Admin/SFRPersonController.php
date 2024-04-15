@@ -197,11 +197,11 @@ class SFRPersonController extends Controller
 
         $sfrperson = SfrPerson::where('pid', $personid)->with('SfrUser')->first();
         $ad = FindByFullFIOAction::run($sfrperson);
-        $adUAC = UserAccountControlDecodeAction::run($sfrperson->getFirstAttribute('userAccountControl'));
+        $adUAC = UserAccountControlDecodeAction::run($ad->getFirstAttribute('userAccountControl'));
         dump($adUAC);
 
         $uac = new AccountControl(
-            $sfrperson->getFirstAttribute('userAccountControl')
+            $ad->getFirstAttribute('userAccountControl')
         );
         if ($uac->hasFlag(AccountControl::ACCOUNTDISABLE)) {
             dump('ACCOUNTDISABLE');
