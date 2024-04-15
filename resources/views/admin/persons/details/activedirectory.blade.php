@@ -1,4 +1,6 @@
 <div class="container-fluid px-4 mt-4">
     @dump($ad)
-    @dump($ad->getConvertedGuid())
+    @if (!is_null($ad))
+        @dump($ad->getConvertedGuid())
+    @endif
 </div>
