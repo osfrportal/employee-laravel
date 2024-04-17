@@ -67,7 +67,6 @@ class SFROrionController extends Controller
     }
     public function addOrionPerson()
     {
-        dump(Carbon::now()->format('Y-m-d\TH:i:s.uP'));
         $personData = TPersonData::from([
             'LastName' => 'LastName',
             'FirstName' => 'FirstName',
@@ -83,6 +82,7 @@ class SFROrionController extends Controller
             'DocumentIssueDate' => '1899-12-30T00:00:00.000+03:00',
             'DocumentEndingDate' => '1899-12-30T00:00:00.000+03:00',
             'ArchivingTimeStamp' => '1899-12-30T00:00:00.000+03:00',
+            'ChangeTime' => Carbon::now()->format('Y-m-d\TH:i:s.uP'),
         ]);
         dump($personData);
 
