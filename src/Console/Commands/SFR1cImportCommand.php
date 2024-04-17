@@ -51,27 +51,27 @@ class SFR1cImportCommand extends Command
         /**
          * Import vacation +
          */
-        /*
+
         $this->output->info('Starting vacation import');
         $Sfr1cImportController->SFRVacationsImportFromCSV(true);
         $this->output->success('Import vacation successful');
-        */
+
         /**
          * Import dekret +
          */
-        /*
+
         $this->output->info('Starting dekret import');
         $Sfr1cImportController->SFRDekretImportFromCSV(true);
         $this->output->success('Import dekret successful');
-        */
+
         /**
          * Import absence +
          */
-        /*
-         $this->output->info('Starting absence import');
+
+        $this->output->info('Starting absence import');
         $Sfr1cImportController->SFRAbsenceImportFromCSV(true);
         $this->output->success('Import absence successful');
-        */
+
         /**
          * Import workdates
          */

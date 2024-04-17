@@ -67,7 +67,17 @@ class SFROrionController extends Controller
     }
     public function addOrionPerson()
     {
-
+        $personData = TPersonData::empty();
+        dump($personData);
+        /*
+        $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $personData]);
+        if ($orionAddPerson->Success && is_null($orionAddPerson->ServiceError)) {
+            $orionAddPersonResult = $orionAddPerson->OperationResult;
+            dump($orionAddPersonResult);
+        } else {
+            dump($orionAddPerson->ServiceError);
+        }
+        */
     }
     public function syncEntryPointsToDB()
     {
