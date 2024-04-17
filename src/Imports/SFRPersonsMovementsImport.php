@@ -67,8 +67,7 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             if ($personDB) {
                 $movementPid = $personDB->pid;
                 $personDB->pinn = $personINN;
-                dump($personDB);
-                //$personDB->save();
+                $personDB->save();
             }
             if ($appointmentDBfromFile) {
                 $movementAppointmentNewID = $appointmentDBfromFile->aid;
@@ -137,6 +136,7 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             if ($movementExists->count() == 0) {
                 //$movementToDBModel->save();
             }
+            dump($personDB);
         });
 
     }
