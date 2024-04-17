@@ -67,7 +67,7 @@ class SFROrionController extends Controller
     }
     public function addOrionPerson()
     {
-        $personData = TPersonData::empty([
+        $personData = TPersonData::from([
             'LastName' => 'LastName',
             'FirstName' => 'FirstName',
             'MiddleName' => 'MiddleName',
@@ -79,7 +79,6 @@ class SFROrionController extends Controller
             'Status' => 5,
             'Itn' => '123123123',
         ]);
-        $personData = new TPersonData;
         dump($personData);
         /*
         $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $personData]);
