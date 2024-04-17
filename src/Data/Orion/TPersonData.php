@@ -18,7 +18,7 @@ class TPersonData extends Data
         public ?string $FirstName = null,
         public ?string $MiddleName = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public ?Carbon|Optional $BirthDate = null,
+        public Carbon|Optional $BirthDate = null,
         public ?string $Company = null,
         public ?string $Department = null,
         public ?string $Position = null,
@@ -41,16 +41,16 @@ class TPersonData extends Data
         public ?string $DocumentSerials = null,
         public ?string $DocumentNumber = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public ?Carbon|Optional $DocumentIssueDate = null,
+        public Carbon|Optional $DocumentIssueDate = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public ?Carbon|Optional $DocumentEndingDate = null,
+        public Carbon|Optional $DocumentEndingDate = null,
         public ?string $DocumentIsser = null,
         public ?string $DocumentIsserCode = null,
         public ?int $Sex = 0,
         public ?string $Birthplace = null,
         public ?string $EmailList = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public ?Carbon|Optional $ArchivingTimeStamp = null,
+        public Carbon|Optional $ArchivingTimeStamp = null,
         public ?bool $IsInBlackList = false,
         public ?bool $IsDismissed = false,
         public ?string $BlackListComment = null,
