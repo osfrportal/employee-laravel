@@ -79,12 +79,12 @@ class SFROrionController extends Controller
             'AccessLevelId' => 0,
             'Status' => 5,
             'Itn' => '123123123',
-            //'DocumentIssueDate' => '1899-12-30T00:00:00.000+03:00',
-            //'DocumentEndingDate' => '1899-12-30T00:00:00.000+03:00',
-            //'ArchivingTimeStamp' => '1899-12-30T00:00:00.000+03:00',
+            'DocumentIssueDate' => '1899-12-30T00:00:00.000+03:00',
+            'DocumentEndingDate' => '1899-12-30T00:00:00.000+03:00',
+            'ArchivingTimeStamp' => '1899-12-30T00:00:00.000+03:00',
             'ChangeTime' => Carbon::now()->format('Y-m-d\TH:i:s.000O'),
         ]);
-        $pDataArr = $personData->toArray();
+        $pDataArr = Arr::except($personData->toArray(), ['DocumentIssueDate', 'DocumentEndingDate', 'ArchivingTimeStamp', 'BirthDate']);
         dump($pDataArr);
 
         $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $pDataArr]);

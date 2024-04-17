@@ -6,7 +6,7 @@ namespace Osfrportal\OsfrportalLaravel\Data\Orion;
  * 'date_format' => [DATE_ATOM, 'Y-m-d\TH:i:s.000O'],
  */
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Optional;
+
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Carbon\Carbon;
 
@@ -18,7 +18,7 @@ class TPersonData extends Data
         public ?string $FirstName = null,
         public ?string $MiddleName = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon|Optional $BirthDate = null,
+        public ?Carbon $BirthDate = null,
         public ?string $Company = null,
         public ?string $Department = null,
         public ?string $Position = null,
@@ -41,16 +41,16 @@ class TPersonData extends Data
         public ?string $DocumentSerials = null,
         public ?string $DocumentNumber = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon|Optional $DocumentIssueDate = null,
+        public ?Carbon $DocumentIssueDate = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon|Optional $DocumentEndingDate = null,
+        public ?Carbon $DocumentEndingDate = null,
         public ?string $DocumentIsser = null,
         public ?string $DocumentIsserCode = null,
         public ?int $Sex = 0,
         public ?string $Birthplace = null,
         public ?string $EmailList = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon|Optional $ArchivingTimeStamp = null,
+        public ?Carbon $ArchivingTimeStamp = null,
         public ?bool $IsInBlackList = false,
         public ?bool $IsDismissed = false,
         public ?string $BlackListComment = null,
