@@ -44,6 +44,6 @@ class SFROrionSyncCommand extends Command
         $orionController->syncAllOrionPersonsToDB();
         $this->output->success('Import persons successful');
         */
-        $orionController->addOrionPerson();
+        $orionController->syncNewPersonsToOrion();
     }
 }
