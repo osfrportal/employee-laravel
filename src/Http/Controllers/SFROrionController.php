@@ -68,9 +68,12 @@ class SFROrionController extends Controller
     public function syncNewPersonsToOrion()
     {
         $personsWithoutOrion = SfrPerson::doesntHave('SfrPersonOrion')->get();
-        $allWorkedPersons = SfrPerson::has('SfrPersonUnit')->get();
-        dump($allWorkedPersons->count());
+        $personsWithoutOrionWorked = SfrPerson::has('SfrPersonUnit')->doesntHave('SfrPersonOrion')->get();
+        dump($personsWithoutOrionWorked->count());
         dump($personsWithoutOrion->count());
+        foreach ($personsWithoutOrion as $persWithoutOrion) {
+            dump($persWithoutOrion);
+        }
         /*
         $personData = TPersonData::from([
             'LastName' => 'LastName',
