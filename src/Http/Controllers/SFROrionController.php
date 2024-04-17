@@ -72,7 +72,8 @@ class SFROrionController extends Controller
         dump($personsWithoutOrionWorked->count());
         dump($personsWithoutOrion->count());
         foreach ($personsWithoutOrion as $persWithoutOrion) {
-            dump($persWithoutOrion);
+            $l = sprintf('%s - %s', $persWithoutOrion->getFullName, $persWithoutOrion->pinn);
+            dump($l);
         }
         /*
         $personData = TPersonData::from([
