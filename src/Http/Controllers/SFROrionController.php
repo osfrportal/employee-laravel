@@ -65,6 +65,10 @@ class SFROrionController extends Controller
         //$this->syncAllOrionPersonsToDB();
 
     }
+    public function addOrionPerson()
+    {
+
+    }
     public function syncEntryPointsToDB()
     {
         $orionEntryPointsCount = $this->soapWrapper->call('IOrionPro.GetEntryPointsCount', []);

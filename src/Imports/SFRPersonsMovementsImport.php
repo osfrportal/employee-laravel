@@ -42,6 +42,7 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
             'dolznost' => 'required',
             'vid_sobytiia' => 'required',
             'period' => 'required:date',
+            'fiziceskoe_licoinn' => 'required',
         ];
     }
 
@@ -50,6 +51,8 @@ class SFRPersonsMovementsImport implements ToCollection, WithCustomCsvSettings, 
         $collection->each(function ($item) {
             $sotrudnikfiziceskoe_lico_snils = explode(",", $item['sotrudnikfiziceskoe_lico_snils']);
             $personFullFIO = $sotrudnikfiziceskoe_lico_snils[0];
+            $personINN = trim($item['fiziceskoe_licoinn']);
+            dump($personINN);
             $personSnils = trim(preg_replace('/[-\s]/', '', $sotrudnikfiziceskoe_lico_snils[1]));
             $personDepartmentNew = trim($item['podrazdelenie']);
             $personAppointmentNew = trim($item['dolznost']);
