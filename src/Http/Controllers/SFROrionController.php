@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Notification;
 use Osfrportal\OsfrportalLaravel\Notifications\OrionSync;
 
+use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
+use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
+
 class SFROrionController extends Controller
 {
     protected $soapWrapper;
@@ -70,6 +73,9 @@ class SFROrionController extends Controller
         $personsWithoutOrionWorked = SfrPerson::has('SfrPersonUnit')->doesntHave('SfrPersonOrion')->get();
         dump($personsWithoutOrionWorked->count());
         foreach ($personsWithoutOrionWorked as $persWithoutOrion) {
+            $pid = $persWithoutOrion->getPid();
+            $personINN = $persWithoutOrion->getINN();
+            $personFullName = $persWithoutOrion->getFullName();
             $newPersonData = TPersonData::from([
                 'LastName' => $persWithoutOrion->psurname,
                 'FirstName' => $persWithoutOrion->pname,
@@ -77,26 +83,39 @@ class SFROrionController extends Controller
                 'CompanyId' => -1,
                 'DepartmentId' => -1,
                 'PositionId' => -1,
-                'TabNum' => $persWithoutOrion->getINN(),
+                'TabNum' => $personINN,
                 'AccessLevelId' => 0,
                 'Status' => 5,
-                'Itn' => $persWithoutOrion->getINN(),
+                'Itn' => $personINN,
             ]);
             $pDataArr = $newPersonData->toArray();
-            dump($pDataArr);
-            /*
+
             $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $pDataArr]);
             if ($orionAddPerson->Success && is_null($orionAddPerson->ServiceError)) {
                 $orionAddPersonResult = $orionAddPerson->OperationResult;
                 //после получения успешного ответа добавить информацию о персоне в привязку к работнику.
-                $pid = $persWithoutOrion->getPid();
                 $returnedPersonData = TPersonData::from($orionAddPersonResult);
                 dump($returnedPersonData);
+                $jobData = [
+                    'pid' => $pid,
+                    'inn' => $personINN,
+                    'personfullname' => $personFullName,
+                ];
+                LogAddAction::run(LogActionsEnum::LOG_SYNC_SKUD(), 'В базу ОрионПро добавлен работник {personfullname} (ИНН: {inn}, pid: {pid})', $jobData);
                 //SfrOrionSyncPersonsJob::dispatch($returnedPersonData, $returnedPersonData->Id, $pid);
             } else {
                 dump($orionAddPerson->ServiceError);
+                $jobData = [
+                    'pid' => $pid,
+                    'inn' => $personINN,
+                    'personfullname' => $personFullName,
+                    'ErrorCode' => $orionAddPerson->ServiceError->ErrorCode,
+                    'ErrorDescription' => $orionAddPerson->ServiceError->Description,
+                    'InnerExceptionMessage' => $orionAddPerson->ServiceError->InnerExceptionMessage,
+                ];
+                LogAddAction::run(LogActionsEnum::LOG_SYNC_SKUD(), 'ОШИБКА добавления в базу ОрионПро работника {personfullname} (ИНН: {inn}, pid: {pid}). Код ошибки: {ErrorCode}, Описание: {ErrorDescription}, InnerExceptionMessage: {InnerExceptionMessage}', $jobData, 'error');
             }
-            */
+
         }
 
     }
