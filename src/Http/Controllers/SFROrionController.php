@@ -71,7 +71,11 @@ class SFROrionController extends Controller
     public function syncNewPersonsToOrion()
     {
         $personsWithoutOrionWorked = SfrPerson::has('SfrPersonUnit')->doesntHave('SfrPersonOrion')->get();
-        dump($personsWithoutOrionWorked->count());
+        $jobData = [
+            'newPersonsCount' => $personsWithoutOrionWorked->count(),
+        ];
+        LogAddAction::run(LogActionsEnum::LOG_SYNC_SKUD(), 'Количество работников для добавления: {newPersonsCount}', $jobData);
+
         foreach ($personsWithoutOrionWorked as $persWithoutOrion) {
             $pid = $persWithoutOrion->getPid();
             $personINN = $persWithoutOrion->getINN();
@@ -95,16 +99,15 @@ class SFROrionController extends Controller
                 $orionAddPersonResult = $orionAddPerson->OperationResult;
                 //после получения успешного ответа добавить информацию о персоне в привязку к работнику.
                 $returnedPersonData = TPersonData::from($orionAddPersonResult);
-                dump($returnedPersonData);
+
                 $jobData = [
                     'pid' => $pid,
                     'inn' => $personINN,
                     'personfullname' => $personFullName,
                 ];
                 LogAddAction::run(LogActionsEnum::LOG_SYNC_SKUD(), 'В базу ОрионПро добавлен работник {personfullname} (ИНН: {inn}, pid: {pid})', $jobData);
-                //SfrOrionSyncPersonsJob::dispatch($returnedPersonData, $returnedPersonData->Id, $pid);
+                SfrOrionSyncPersonsJob::dispatch($returnedPersonData, $returnedPersonData->Id, $pid);
             } else {
-                dump($orionAddPerson->ServiceError);
                 $jobData = [
                     'pid' => $pid,
                     'inn' => $personINN,
