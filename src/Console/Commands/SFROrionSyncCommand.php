@@ -29,7 +29,7 @@ class SFROrionSyncCommand extends Command
      */
     public function handle(SFROrionController $orionController): void
     {
-
+        /*
         $this->output->title('Starting sync with Orion');
 
         $this->output->info('Starting entry points import');
@@ -43,7 +43,7 @@ class SFROrionSyncCommand extends Command
         $this->output->info('Starting persons sync');
         $orionController->syncAllOrionPersonsToDB();
         $this->output->success('Import persons successful');
-
-        //$orionController->syncNewPersonsToOrion();
+        */
+        $orionController->syncNewPersonsToOrion();
     }
 }
