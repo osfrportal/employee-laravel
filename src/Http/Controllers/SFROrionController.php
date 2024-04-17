@@ -70,7 +70,7 @@ class SFROrionController extends Controller
         $personsWithoutOrionWorked = SfrPerson::has('SfrPersonUnit')->doesntHave('SfrPersonOrion')->get();
         dump($personsWithoutOrionWorked->count());
         foreach ($personsWithoutOrionWorked as $persWithoutOrion) {
-            $l = sprintf('%s - %s', $persWithoutOrion->getFullName(), $persWithoutOrion->pinn);
+            $l = sprintf('%s - %s - %s', $persWithoutOrion->getFullName(), $persWithoutOrion->pinn, $persWithoutOrion->getWorkStartDate());
             dump($l);
         }
         /*
