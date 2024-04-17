@@ -59,6 +59,10 @@ class TPersonData extends Data
         public ?string $Itn = null,
         public ?string $DismissedComment = null,
     ) {
-        $this->ChangeTime = Carbon::now()->format('Y-m-d\TH:i:s.000O');
+        $this->BirthDate = Carbon::create(1899, 12, 30);
+        $this->DocumentIssueDate = Carbon::create(1899, 12, 30);
+        $this->DocumentEndingDate = Carbon::create(1899, 12, 30);
+        $this->ArchivingTimeStamp = Carbon::create(1899, 12, 30);
+        $this->ChangeTime = Carbon::now();
     }
 }

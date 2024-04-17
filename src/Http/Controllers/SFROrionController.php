@@ -71,7 +71,7 @@ class SFROrionController extends Controller
             'LastName' => 'LastName',
             'FirstName' => 'FirstName',
             'MiddleName' => 'MiddleName',
-            'BirthDate' => '1899-12-30T00:00:00.000+03:00',
+            //'BirthDate' => '1899-12-30T00:00:00.000+03:00',
             'CompanyId' => -1,
             'DepartmentId' => -1,
             'PositionId' => -1,
@@ -79,9 +79,9 @@ class SFROrionController extends Controller
             'AccessLevelId' => 0,
             'Status' => 5,
             'Itn' => '123123123',
-            'DocumentIssueDate' => '1899-12-30T00:00:00.000+03:00',
-            'DocumentEndingDate' => '1899-12-30T00:00:00.000+03:00',
-            'ArchivingTimeStamp' => '1899-12-30T00:00:00.000+03:00',
+            //'DocumentIssueDate' => '1899-12-30T00:00:00.000+03:00',
+            //'DocumentEndingDate' => '1899-12-30T00:00:00.000+03:00',
+            //'ArchivingTimeStamp' => '1899-12-30T00:00:00.000+03:00',
             //'ChangeTime' => Carbon::now()->format('Y-m-d\TH:i:s.000O'),
         ]);
         $pDataArr = $personData->toArray();
