@@ -79,6 +79,7 @@ class SFROrionController extends Controller
             'Status' => 5,
             'Itn' => '123123123',
         ]);
+        $personData = new TPersonData;
         dump($personData);
         /*
         $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $personData]);
