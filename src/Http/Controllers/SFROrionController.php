@@ -71,7 +71,7 @@ class SFROrionController extends Controller
             'LastName' => 'LastName',
             'FirstName' => 'FirstName',
             'MiddleName' => 'MiddleName',
-            'BirthDate' => '1899-12-30T00:00:00.000+03:00',
+            'BirthDate' => '30.12.1899',
             'CompanyId' => -1,
             'DepartmentId' => -1,
             'PositionId' => -1,
@@ -84,9 +84,10 @@ class SFROrionController extends Controller
             'ArchivingTimeStamp' => '1899-12-30T00:00:00.000+03:00',
             'ChangeTime' => Carbon::now()->format('Y-m-d\TH:i:s.000O'),
         ]);
-        dump($personData->toArray());
+        $pDataArr = $personData->toArray();
+        dump($pDataArr);
 
-        $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $personData]);
+        $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $pDataArr]);
         if ($orionAddPerson->Success && is_null($orionAddPerson->ServiceError)) {
             $orionAddPersonResult = $orionAddPerson->OperationResult;
             dump($orionAddPersonResult);
