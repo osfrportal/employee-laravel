@@ -72,7 +72,7 @@ class SFROrionController extends Controller
         dump($personsWithoutOrionWorked->count());
         dump($personsWithoutOrion->count());
         foreach ($personsWithoutOrion as $persWithoutOrion) {
-            $l = sprintf('%s - %s', $persWithoutOrion->getFullName, $persWithoutOrion->pinn);
+            $l = sprintf('%s - %s', $persWithoutOrion->getFullName(), $persWithoutOrion->pinn);
             dump($l);
         }
         /*
