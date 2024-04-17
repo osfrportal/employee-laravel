@@ -55,8 +55,10 @@ class TPersonData extends Data
         public ?bool $IsDismissed = false,
         public ?string $BlackListComment = null,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public ?Carbon $ChangeTime = Carbon::now()->format('Y-m-d\TH:i:s.000O'),
+        public ?Carbon $ChangeTime = null,
         public ?string $Itn = null,
         public ?string $DismissedComment = null,
-    ) {}
+    ) {
+        $this->ChangeTime = Carbon::now()->format('Y-m-d\TH:i:s.000O');
+    }
 }
