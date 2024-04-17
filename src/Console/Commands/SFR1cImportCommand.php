@@ -33,9 +33,9 @@ class SFR1cImportCommand extends Command
         /**
          * Import persons
          */
-        $this->output->info('Starting persons import');
-        $Sfr1cImportController->SFRPersonsImportFromCSV(true);
-        $this->output->success('Import persons successful');
+        //$this->output->info('Starting persons import');
+        //$Sfr1cImportController->SFRPersonsImportFromCSV(true);
+        //$this->output->success('Import persons successful');
         /**
          * Import persons movements
          */
@@ -45,33 +45,38 @@ class SFR1cImportCommand extends Command
         /**
          * Import departments
          */
-        $this->output->info('Starting persons departments import');
-        $Sfr1cImportController->SFRDepatmentsImportFromCSV(true);
-        $this->output->success('Import persons departments successful');
+        //$this->output->info('Starting persons departments import');
+        //$Sfr1cImportController->SFRDepatmentsImportFromCSV(true);
+        //$this->output->success('Import persons departments successful');
         /**
-         * Import vacation
+         * Import vacation +
          */
+        /*
         $this->output->info('Starting vacation import');
         $Sfr1cImportController->SFRVacationsImportFromCSV(true);
         $this->output->success('Import vacation successful');
+        */
         /**
-         * Import dekret
+         * Import dekret +
          */
+        /*
         $this->output->info('Starting dekret import');
         $Sfr1cImportController->SFRDekretImportFromCSV(true);
         $this->output->success('Import dekret successful');
+        */
         /**
-         * Import absence
+         * Import absence +
          */
-        $this->output->info('Starting absence import');
+        /*
+         $this->output->info('Starting absence import');
         $Sfr1cImportController->SFRAbsenceImportFromCSV(true);
         $this->output->success('Import absence successful');
-
+        */
         /**
          * Import workdates
          */
-        $this->output->info('Starting work dates import');
-        $Sfr1cImportController->SFRWorkDatesImportFromCSV(true);
-        $this->output->success('Import work dates successful');
+        //$this->output->info('Starting work dates import');
+        //$Sfr1cImportController->SFRWorkDatesImportFromCSV(true);
+        //$this->output->success('Import work dates successful');
     }
 }
