@@ -70,38 +70,29 @@ class SFROrionController extends Controller
         $personsWithoutOrionWorked = SfrPerson::has('SfrPersonUnit')->doesntHave('SfrPersonOrion')->get();
         dump($personsWithoutOrionWorked->count());
         foreach ($personsWithoutOrionWorked as $persWithoutOrion) {
-            $l = sprintf('%s - %s - %s', $persWithoutOrion->getFullName(), $persWithoutOrion->pinn, $persWithoutOrion->getWorkStartDate());
-            dump($l);
-            $personData = TPersonData::from($persWithoutOrion);
-            dump($personData->toArray());
-            /*
-            $personData = TPersonData::from([
-                'LastName' => 'LastName',
-                'FirstName' => 'FirstName',
-                'MiddleName' => 'MiddleName',
-                'ExternalId' => '',
+            $newPersonData = TPersonData::from([
+                'LastName' => $persWithoutOrion->psurname,
+                'FirstName' => $persWithoutOrion->pname,
+                'MiddleName' => $persWithoutOrion->pmiddlename,
                 'CompanyId' => -1,
                 'DepartmentId' => -1,
                 'PositionId' => -1,
-                'TabNum' => '123123123',
+                'TabNum' => $persWithoutOrion->getINN(),
                 'AccessLevelId' => 0,
                 'Status' => 5,
-                'Itn' => '123123123',
+                'Itn' => $persWithoutOrion->getINN(),
             ]);
-            $pDataArr = $personData->toArray();
-            //dump($pDataArr);
-            
+            $pDataArr = $newPersonData->toArray();
+            dump($pDataArr);
+            /*
             $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $pDataArr]);
             if ($orionAddPerson->Success && is_null($orionAddPerson->ServiceError)) {
                 $orionAddPersonResult = $orionAddPerson->OperationResult;
-                dump($orionAddPersonResult);
-                $personData = TPersonData::from($orionAddPersonResult);
-                dump($personData, $personData->Id);
                 //после получения успешного ответа добавить информацию о персоне в привязку к работнику.
-                //$pid = .....
-                //$returnedPersonData = .....
-
-                //SfrOrionSyncPersonsJob::dispatch($personData, $orionPerson->Id, $pid);
+                $pid = $persWithoutOrion->getPid();
+                $returnedPersonData = TPersonData::from($orionAddPersonResult);
+                dump($returnedPersonData);
+                //SfrOrionSyncPersonsJob::dispatch($returnedPersonData, $returnedPersonData->Id, $pid);
             } else {
                 dump($orionAddPerson->ServiceError);
             }
