@@ -79,8 +79,8 @@ class SFROrionController extends Controller
             'Status' => 5,
             'Itn' => '123123123',
         ]);
-        dump($personData);
-        /*
+        //dump($personData);
+
         $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $personData]);
         if ($orionAddPerson->Success && is_null($orionAddPerson->ServiceError)) {
             $orionAddPersonResult = $orionAddPerson->OperationResult;
@@ -88,7 +88,7 @@ class SFROrionController extends Controller
         } else {
             dump($orionAddPerson->ServiceError);
         }
-        */
+
     }
     public function syncEntryPointsToDB()
     {
