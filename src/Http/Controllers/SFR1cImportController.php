@@ -58,7 +58,8 @@ class SFR1cImportController extends Controller
         $this->dekret_file_name = sprintf('dekret_058 %s.txt', $this->now_date_for_import);
         $this->otdel_file_name = sprintf('otdel_058 %s.txt', $this->now_date_for_import);
         $this->pd_file_name = sprintf('pd_058 %s.txt', $this->now_date_for_import);
-        $this->movements_file_name = sprintf('kadry_058 %s.txt', $this->now_date_for_import);
+        //$this->movements_file_name = sprintf('kadry_058 %s.txt', $this->now_date_for_import);
+        $this->movements_file_name = sprintf('kadry_inn_058 %s.txt', $this->now_date_for_import);
         $this->workstartdates_file_name = sprintf('work_058 %s.txt', $this->now_date_for_import);
 
         $this->usersToNotify = SfrUser::permission('system-notifications')->get();
