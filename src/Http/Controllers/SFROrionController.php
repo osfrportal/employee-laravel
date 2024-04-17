@@ -81,12 +81,19 @@ class SFROrionController extends Controller
             'Itn' => '123123123',
         ]);
         $pDataArr = $personData->toArray();
-        dump($pDataArr);
+        //dump($pDataArr);
 
         $orionAddPerson = $this->soapWrapper->call('IOrionPro.AddPerson', ['personData' => $pDataArr]);
         if ($orionAddPerson->Success && is_null($orionAddPerson->ServiceError)) {
             $orionAddPersonResult = $orionAddPerson->OperationResult;
             dump($orionAddPersonResult);
+            $personData = TPersonData::from($orionAddPersonResult);
+            dump($personData, $personData->Id);
+            //после получения успешного ответа добавить информацию о персоне в привязку к работнику.
+            //$pid = .....
+            //$returnedPersonData = .....
+
+            //SfrOrionSyncPersonsJob::dispatch($personData, $orionPerson->Id, $pid);
         } else {
             dump($orionAddPerson->ServiceError);
         }
