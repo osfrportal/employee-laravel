@@ -38,7 +38,11 @@ class SFRBIUDController extends Controller
     public function getAllOperators()
     {
         $operators = $this->soapWrapper->call('BiudAPISoapBinding.getAllOperators', []);
-        dump($operators);
+        //dump($operators);
+        foreach ($operators->getAllOperatorsReturn as $biudOperator) {
+            $s = sprintf('%s - %s %s %s - %s', $biudOperator->blocked, $biudOperator->fa, $biudOperator->im, $biudOperator->ot, $biudOperator->login);
+            dump($s);
+        }
     }
 
 }
