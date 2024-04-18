@@ -1,6 +1,6 @@
 <?php
 
-namespace Osfrportal\OsfrportalLaravel\Data;
+namespace Osfrportal\OsfrportalLaravel\Data\Infosystem;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;

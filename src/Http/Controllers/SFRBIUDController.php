@@ -18,7 +18,7 @@ use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 
-use Osfrportal\OsfrportalLaravel\Data\SFRInfosystemRoleData;
+use Osfrportal\OsfrportalLaravel\Data\Infosystem\SFRInfosystemRoleData;
 
 class SFRBIUDController extends Controller
 {
