@@ -29,13 +29,6 @@ class SFRBIUDController extends Controller
                 ->options([
                     'login' => 'adminwf',
                     'password' => 'rulez058',
-                    'verify' => false,
-                    'verify_peer' => false,
-                    'ssl' => [
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    ],
                 ]);
         });
         $this->usersToNotify = SfrUser::permission('system-notifications')->get();
