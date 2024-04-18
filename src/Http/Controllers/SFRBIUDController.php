@@ -18,6 +18,8 @@ use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 
+use Osfrportal\OsfrportalLaravel\Data\SFRInfosystemRoleData;
+
 class SFRBIUDController extends Controller
 {
     protected $soapWrapper;
@@ -100,7 +102,8 @@ class SFRBIUDController extends Controller
         $systemsArray = Str::of($systems)->explode(',');
         foreach ($systemsArray as $system) {
             foreach ($this->getRolesBySystem(trim($system)) as $role) {
-                $rolesCollection->push($role);
+                $r = new SFRInfosystemRoleData(roleData: $role);
+                $rolesCollection->push($r);
             }
         }
         $rolesCollection->dump();

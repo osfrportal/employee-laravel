@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class SFRInfosystemData extends Data
 {
     /**
-     * Конструктор DTO
+     * Конструктор DTO Информационная система
      * @param bool $syncWithIS Синхронизировать роли с подключением к ИС (API, SOAP интерфейс и т.д)
      * @param string $controllerNameSync Имя контроллера для вызова методов синхронизации
      */
