@@ -50,11 +50,12 @@ class SFRBIUDController extends Controller
                     'im' => $biudOperator->im,
                     'ot' => $biudOperator->ot,
                     'login' => $biudOperator->login,
+                    'blocked' => $biudOperator->blocked,
                 ];
                 $activeUsers->push($activeUser);
             }
-            $activeUsers->dump();
         }
+        $activeUsers->dump();
     }
 
 }
