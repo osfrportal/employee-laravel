@@ -25,6 +25,8 @@ class SFRBIUDController extends Controller
     protected $soapHeader;
     protected $usersToNotify;
 
+    protected $activeUsersNotFoundWithoutRoles;
+
     public function __construct()
     {
         parent::__construct();
@@ -72,10 +74,15 @@ class SFRBIUDController extends Controller
             }
         }
         //$activeUsersNotFound->dump();
+        $this->activeUsersNotFoundWithoutRoles = collect();
         $activeUsersNotFound->each(function (array $item, int $key) {
             $operatorRoles = $this->soapWrapper->call('BiudAPISoapBinding.getOperatorRolesByLogin', [['login' => $item['login']]]);
-            dump($item, $operatorRoles->getOperatorRolesByLoginReturn);
+            if (count($operatorRoles->getOperatorRolesByLoginReturn) == 0) {
+                $this->activeUsersNotFoundWithoutRoles->push($item);
+            }
+            //dump($item, $operatorRoles->getOperatorRolesByLoginReturn);
         });
+        $this->activeUsersNotFoundWithoutRoles->dump();
     }
 
     public function getRolesBySystem(string $systemName)
