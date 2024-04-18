@@ -26,7 +26,7 @@ class SFRBIUDController extends Controller
                 ->wsdl($this->buidSoapURL)
                 ->trace(true)
                 ->cache(WSDL_CACHE_NONE)
-                ->options([
+                ->customHeader([
                     'Username' => 'adminwf',
                     'Password' => 'rulez058',
                 ]);
