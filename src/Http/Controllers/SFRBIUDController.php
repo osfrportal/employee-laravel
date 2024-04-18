@@ -3,7 +3,10 @@
 namespace Osfrportal\OsfrportalLaravel\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
+
 use Artisaninweb\SoapWrapper\SoapWrapper;
+// https://github.com/WsdlToPhp/WsSecurity
 use WsdlToPhp\WsSecurity\WsSecurity;
 
 
@@ -39,9 +42,18 @@ class SFRBIUDController extends Controller
     {
         $operators = $this->soapWrapper->call('BiudAPISoapBinding.getAllOperators', []);
         //dump($operators);
+        $activeUsers = collect();
         foreach ($operators->getAllOperatorsReturn as $biudOperator) {
-            $s = sprintf('%s - %s %s %s - %s', $biudOperator->blocked, $biudOperator->fa, $biudOperator->im, $biudOperator->ot, $biudOperator->login);
-            dump($s);
+            if ($biudOperator->blocked == 'Активен') {
+                $activeUser = [
+                    'fa' => $biudOperator->fa,
+                    'im' => $biudOperator->im,
+                    'ot' => $biudOperator->ot,
+                    'login' => $biudOperator->login,
+                ];
+                $activeUsers->push($activeUser);
+            }
+            $activeUsers->dump();
         }
     }
 
