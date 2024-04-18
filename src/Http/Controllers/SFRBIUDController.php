@@ -103,8 +103,9 @@ class SFRBIUDController extends Controller
         foreach ($systemsArray as $system) {
             foreach ($this->getRolesBySystem(trim($system)) as $role) {
                 $array = (array) $role;
-                $r = SFRInfosystemRoleData::from(['roleName' => $role->remplusname, 'roleData' => $array]);
-                $rolesCollection->push($r);
+                $roleData = SFRInfosystemRoleData::from(['roleName' => $role->remplusname, 'roleData' => $array]);
+                dump($roleData->toJson());
+                $rolesCollection->push($roleData);
             }
         }
         $rolesCollection->dump();
