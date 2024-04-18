@@ -67,7 +67,7 @@ class SFRBIUDController extends Controller
 
     public function getRolesBySystem(string $systemName)
     {
-        $systemRolesResponse = $this->soapWrapper->call('BiudAPISoapBinding.getRolesByPTK', ['ptk' => $systemName,]);
+        $systemRolesResponse = $this->soapWrapper->call('BiudAPISoapBinding.getRolesByPTK', [['ptk' => $systemName]]);
         dump($systemName, $systemRolesResponse);
     }
 
