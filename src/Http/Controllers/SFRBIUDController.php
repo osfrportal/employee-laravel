@@ -58,6 +58,7 @@ class SFRBIUDController extends Controller
                 'ot' => $biudOperator->ot,
                 'login' => $biudOperator->login,
                 'blocked' => $biudOperator->blocked,
+                'prim' => $biudOperator->prim,
             ];
             if ($biudOperator->blocked == 'Активен') {
                 $activeUsers->push($user);
