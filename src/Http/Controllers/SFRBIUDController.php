@@ -63,8 +63,8 @@ class SFRBIUDController extends Controller
                     ['psurname', '=', $biudOperator->fa],
                     ['pname', '=', $biudOperator->im],
                     ['pmiddlename', '=', $biudOperator->ot],
-                ])->get();
-                if (empty($sfrperson)) {
+                ])->first();
+                if (empty($sfrperson->getPid())) {
                     $activeUsersNotFound->push($user);
                 }
             } else {
