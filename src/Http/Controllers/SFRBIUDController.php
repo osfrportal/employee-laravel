@@ -60,9 +60,9 @@ class SFRBIUDController extends Controller
             if ($biudOperator->blocked == 'Активен') {
                 $activeUsers->push($user);
                 $sfrperson = SfrPerson::where([
-                    'psurname' => $biudOperator->fa,
-                    'pname' => $biudOperator->im,
-                    'pmiddlename' => $biudOperator->ot,
+                    ['psurname', '=', $biudOperator->fa],
+                    ['pname', '=', $biudOperator->im],
+                    ['pmiddlename', '=', $biudOperator->ot],
                 ])->get();
                 if (empty($sfrperson)) {
                     $activeUsersNotFound->push($user);
