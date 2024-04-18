@@ -74,7 +74,7 @@ class SFRBIUDController extends Controller
         //$activeUsersNotFound->dump();
         $activeUsersNotFound->each(function (array $item, int $key) {
             $operatorRoles = $this->soapWrapper->call('BiudAPISoapBinding.getOperatorRolesByLogin', [['login' => $item['login']]]);
-            dump($item, $operatorRoles->getOperatorRolesByLoginReturn)
+            dump($item, $operatorRoles->getOperatorRolesByLoginReturn);
         });
     }
 
