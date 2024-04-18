@@ -29,6 +29,7 @@ class SFRBIUDController extends Controller
                 ->options([
                     'login' => 'adminwf',
                     'password' => 'rulez058',
+                    'verify' => false,
                     'ssl' => [
                         'verify_peer' => false,
                         'verify_peer_name' => false,
