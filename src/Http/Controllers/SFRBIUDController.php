@@ -4,6 +4,8 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+
 
 use Artisaninweb\SoapWrapper\SoapWrapper;
 // https://github.com/WsdlToPhp/WsSecurity
@@ -21,6 +23,7 @@ class SFRBIUDController extends Controller
     protected $buidSoapURL;
     protected $soapHeader;
     protected $usersToNotify;
+
     public function __construct()
     {
         parent::__construct();
@@ -43,19 +46,39 @@ class SFRBIUDController extends Controller
         $operators = $this->soapWrapper->call('BiudAPISoapBinding.getAllOperators', []);
         //dump($operators);
         $activeUsers = collect();
+        $blockedUsers = collect();
         foreach ($operators->getAllOperatorsReturn as $biudOperator) {
+            $user = [
+                'fa' => $biudOperator->fa,
+                'im' => $biudOperator->im,
+                'ot' => $biudOperator->ot,
+                'login' => $biudOperator->login,
+                'blocked' => $biudOperator->blocked,
+            ];
             if ($biudOperator->blocked == 'Активен') {
-                $activeUser = [
-                    'fa' => $biudOperator->fa,
-                    'im' => $biudOperator->im,
-                    'ot' => $biudOperator->ot,
-                    'login' => $biudOperator->login,
-                    'blocked' => $biudOperator->blocked,
-                ];
-                $activeUsers->push($activeUser);
+                $activeUsers->push($user);
+            } else {
+                $blockedUsers->push($user);
             }
         }
         $activeUsers->dump();
+        $blockedUsers->dump();
+    }
+
+    public function getRolesBySystem(string $systemName)
+    {
+        $systemRolesResponse = $this->soapWrapper->call('BiudAPISoapBinding.getRolesByPTK', ['ptk' => $systemName]);
+        dump($systemRolesResponse);
+    }
+
+    public function getAllSystemsRoles()
+    {
+        $systems = 'БИУД, ГЕРОИ, КС, УПД, НВП, ЭЛРД, СПЛП, ФБД ГЕРОИ, РС ПСБ, МРУ, Проезд, РБД Проезд';
+
+        $systemsArray = Str::of($systems)->explode(',');
+        foreach ($systemsArray as $system) {
+            $this->getRolesBySystem($system);
+        }
     }
 
 }
