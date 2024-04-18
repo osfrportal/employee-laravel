@@ -4,6 +4,8 @@ namespace Osfrportal\OsfrportalLaravel\Http\Controllers;
 
 use Carbon\Carbon;
 use Artisaninweb\SoapWrapper\SoapWrapper;
+use WsdlToPhp\WsSecurity\WsSecurity;
+
 
 use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
@@ -14,22 +16,21 @@ class SFRBIUDController extends Controller
 {
     protected $soapWrapper;
     protected $buidSoapURL;
-
+    protected $soapHeader;
     protected $usersToNotify;
     public function __construct()
     {
         parent::__construct();
         $this->soapWrapper = new SoapWrapper;
         $this->buidSoapURL = 'http://10.58.0.29:9080/ControlEJB_HTTPRouter/services/BiudAPI/wsdl/BiudAPI.wsdl';
+        $this->soapHeader = WsSecurity::createWsSecuritySoapHeader('adminwf', 'rulez058', true);
+
         $this->soapWrapper->add('BiudAPISoapBinding', function ($service) {
             $service
                 ->wsdl($this->buidSoapURL)
                 ->trace(true)
                 ->cache(WSDL_CACHE_NONE)
-                ->customHeader([
-                    'Username' => 'adminwf',
-                    'Password' => 'rulez058',
-                ]);
+                ->customHeader($this->soapHeader);
         });
         $this->usersToNotify = SfrUser::permission('system-notifications')->get();
     }
