@@ -89,17 +89,19 @@ class SFRBIUDController extends Controller
     public function getRolesBySystem(string $systemName)
     {
         $systemRolesResponse = $this->soapWrapper->call('BiudAPISoapBinding.getRolesByPTK', [['ptk' => $systemName]]);
-        dump($systemName, $systemRolesResponse);
+        return $systemRolesResponse->getRolesByPTKReturn;
     }
 
     public function getAllSystemsRoles()
     {
         $systems = 'БИУД, ГЕРОИ, КС, УПД, НВП, ЭЛРД, СПЛП, ФБД ГЕРОИ, РС ПСБ, МРУ, Проезд, РБД Проезд';
+        $rolesCollection = collect();
 
         $systemsArray = Str::of($systems)->explode(',');
         foreach ($systemsArray as $system) {
-            $this->getRolesBySystem(trim($system));
+            $rolesCollection->push($this->getRolesBySystem(trim($system)));
         }
+        $rolesCollection->dump();
     }
 
 }
