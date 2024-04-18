@@ -80,7 +80,7 @@ class SFRBIUDController extends Controller
             if (count($operatorRoles->getOperatorRolesByLoginReturn) == 0) {
                 $this->activeUsersNotFoundWithoutRoles->push($item);
             }
-            //dump($item, $operatorRoles->getOperatorRolesByLoginReturn);
+            dump($item);
         });
         $this->activeUsersNotFoundWithoutRoles->dump();
     }
