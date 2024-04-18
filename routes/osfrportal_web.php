@@ -38,7 +38,7 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRBIUDController;
  */
 Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(function () {
 
-    Route::controller(SFRBIUDController::class)->name('buid.')->prefix('buid')->group(function () {
+    Route::controller(SFRBIUDController::class)->name('biud.')->prefix('biud')->group(function () {
         Route::get('/', 'getAllOperators')->name('index');
     })->middleware(['auth.osfrportal']);
 

@@ -24,7 +24,7 @@ class SFRBIUDController extends Controller
         $this->soapWrapper->add('BiudAPISoapBinding', function ($service) {
             $service
                 ->wsdl($this->buidSoapURL)
-                ->trace(false)
+                ->trace(true)
                 ->cache(WSDL_CACHE_NONE)
                 ->options([
                     'login' => 'adminwf',
