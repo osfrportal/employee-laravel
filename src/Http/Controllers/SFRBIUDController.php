@@ -27,8 +27,8 @@ class SFRBIUDController extends Controller
                 ->trace(true)
                 ->cache(WSDL_CACHE_NONE)
                 ->options([
-                    'login' => 'adminwf',
-                    'password' => 'rulez058',
+                    'Username' => 'adminwf',
+                    'Password' => 'rulez058',
                 ]);
         });
         $this->usersToNotify = SfrUser::permission('system-notifications')->get();
