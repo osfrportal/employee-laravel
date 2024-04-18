@@ -16,6 +16,7 @@ use Osfrportal\OsfrportalLaravel\Enums\LogActionsEnum;
 use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
+use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 
 class SFRBIUDController extends Controller
 {
@@ -47,6 +48,7 @@ class SFRBIUDController extends Controller
         //dump($operators);
         $activeUsers = collect();
         $blockedUsers = collect();
+        $activeUsersNotFound = collect();
         foreach ($operators->getAllOperatorsReturn as $biudOperator) {
             $user = [
                 'fa' => $biudOperator->fa,
@@ -57,12 +59,19 @@ class SFRBIUDController extends Controller
             ];
             if ($biudOperator->blocked == 'Активен') {
                 $activeUsers->push($user);
+                $sfrperson = SfrPerson::where([
+                    'psurname' => $biudOperator->fa,
+                    'pname' => $biudOperator->im,
+                    'pmiddlename' => $biudOperator->ot,
+                ])->get();
+                if (empty($sfrperson)) {
+                    $activeUsersNotFound->push($user);
+                }
             } else {
                 $blockedUsers->push($user);
             }
         }
-        $activeUsers->dump();
-        $blockedUsers->dump();
+        $activeUsersNotFound->dump();
     }
 
     public function getRolesBySystem(string $systemName)
