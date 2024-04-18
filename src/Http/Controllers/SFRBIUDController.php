@@ -23,7 +23,7 @@ class SFRBIUDController extends Controller
         parent::__construct();
         $this->soapWrapper = new SoapWrapper;
         $this->buidSoapURL = 'http://10.58.0.29:9080/ControlEJB_HTTPRouter/services/BiudAPI/wsdl/BiudAPI.wsdl';
-        $this->soapHeader = WsSecurity::createWsSecuritySoapHeader('adminwf', 'rulez058', true);
+        $this->soapHeader = WsSecurity::createWsSecuritySoapHeader('adminwf', 'rulez058', false);
 
         $this->soapWrapper->add('BiudAPISoapBinding', function ($service) {
             $service
