@@ -30,10 +30,18 @@ use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRAdminDashboardControl
 use Osfrportal\OsfrportalLaravel\Http\Controllers\Admin\SFRStorageController;
 use Illuminate\Support\Facades\Storage;
 
+
+use Osfrportal\OsfrportalLaravel\Http\Controllers\SFRBIUDController;
+
 /**
  * Административные маршруты
  */
 Route::middleware(['auth.osfrportal'])->prefix('admin')->name('admin.')->group(function () {
+
+    Route::controller(SFRBIUDController::class)->name('buid.')->prefix('buid')->group(function () {
+        Route::get('/', 'getAllOperators')->name('index');
+    })->middleware(['auth.osfrportal']);
+
     Route::controller(SFRCryptoAdminController::class)->name('crypto.')->prefix('crypto')->group(function () {
         Route::get('/new', 'addCryptoForm')->name('new');
 
