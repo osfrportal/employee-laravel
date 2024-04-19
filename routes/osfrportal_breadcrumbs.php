@@ -3,6 +3,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrAppointment;
+use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystems;
 
 //https://github.com/diglactic/laravel-breadcrumbs
 
@@ -136,6 +137,13 @@ Breadcrumbs::for('osfrportal.admin.infosystems.index', function (BreadcrumbTrail
     $trail->push('Управление', route('osfrportal.admin.infosystems.index'));
 });
 
+Breadcrumbs::for('osfrportal.admin.infosystems.view.child', function (BreadcrumbTrail $trail, $isysid): void {
+    $SfrInfoSystems = SfrInfoSystems::where('isysid', $isysid)->first();
+
+    $trail->parent('osfrportal.admin.infosystems');
+    $trail->push($SfrInfoSystems->isys_name, route('osfrportal.admin.infosystems.view.child', $isysid));
+});
+
 Breadcrumbs::for('osfrportal.admin.infosystems.add', function (BreadcrumbTrail $trail): void {
     $trail->parent('osfrportal.admin.infosystems.index');
     $trail->push('Добавление ИС', route('osfrportal.admin.infosystems.add'));
@@ -145,6 +153,7 @@ Breadcrumbs::for('osfrportal.admin.infosystems.roles.add', function (BreadcrumbT
     $trail->parent('osfrportal.admin.infosystems.index');
     $trail->push('Добавление ролей для ИС', route('osfrportal.admin.infosystems.roles.add'));
 });
+
 
 /**
  * Администрирование
