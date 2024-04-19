@@ -23,7 +23,7 @@ class SfrInfoSystemsRoles extends Model
 
 
     protected $casts = [
-        'irole_data' => SFRInfosystemRoleData::class,
+        'irole_data' => SFRInfosystemRoleData::class . ':default',
     ];
 
     public function infosystem()
