@@ -14,10 +14,10 @@ class SFRInfosystemData extends Data
      * @param string|Optional $controllerNameSync Имя контроллера для вызова методов синхронизации
      */
     public function __construct(
-        public bool $syncWithIS = false,
+        public ?bool $syncWithIS = false,
         public string|Optional $controllerNameSync,
     ) {
-        $this->syncWithIS = false;
+
     }
 
     /*
