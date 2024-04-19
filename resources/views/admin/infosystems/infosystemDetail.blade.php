@@ -4,7 +4,7 @@
         <div class="card-header">Карточка информационной системы</div>
         <div class="card-body">
             <form method="POST" action="#" id="form{{ $infoSystemModel->isysid }}">
-                <input type="hidden" id="isysid" name="isysid" value="{{ $infoSystemData->isysid }}">
+                <input type="hidden" id="isysid" name="isysid" value="{{ $infoSystemModel->isysid }}">
                 <div class="row">
                     <div class="col">
                         <label for="isys_name" class="form-label">Наименование ИС</label>
