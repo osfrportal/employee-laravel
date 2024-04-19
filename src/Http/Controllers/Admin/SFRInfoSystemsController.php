@@ -65,7 +65,8 @@ class SFRInfoSystemsController extends Controller
     public function showDetailedInfoChild($isysid) {
         $isUuid = Str::isUuid($isysid);
         $infoSystemModel = SfrInfoSystems::with(['roles'])->find($isysid);
-        dump($infoSystemModel->isys_data);
+
+        return view('osfrportal::admin.infosystems.infosystemDetail', ['infoSystemModel' => $infoSystemModel]);
     }
 
     public function showDetailedInfoParent($isysid) {
