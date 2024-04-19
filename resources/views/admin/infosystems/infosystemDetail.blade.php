@@ -3,7 +3,7 @@
     <div class="card mb-4 mb-xl-0">
         <div class="card-header">Карточка информационной системы</div>
         <div class="card-body">
-            <form method="POST" action="#">
+            <form method="POST" action="#" id="form{{ $infoSystemModel->isys_id }}">
                 <div class="row">
                     <div class="col">
                         <label for="isys_name" class="form-label">Наименование ИС</label>
