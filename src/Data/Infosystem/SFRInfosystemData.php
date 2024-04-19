@@ -17,6 +17,7 @@ class SFRInfosystemData extends Data
         public bool $syncWithIS = false,
         public string|Optional $controllerNameSync,
     ) {
+        $this->syncWithIS = false;
     }
 
     /*
