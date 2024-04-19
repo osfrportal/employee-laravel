@@ -18,7 +18,7 @@
                             </div>
                             <div class="row">
                                 <div class="col">controllerNameSync</div>
-                                <div class="col">{{ $infoSystemModel->isys_data->controllerNameSync ?? '' }}</div>
+                                <div class="col">@dump($infoSystemModel->isys_data)</div>
                             </div>
                         </div>
                     </div>
