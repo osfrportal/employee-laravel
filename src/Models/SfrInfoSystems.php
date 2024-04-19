@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Osfrportal\OsfrportalLaravel\Traits\Uuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Osfrportal\OsfrportalLaravel\Data\Infosystem\SFRInfosystemData;
+
 class SfrInfoSystems extends Model
 {
     use Uuid;
@@ -22,6 +24,10 @@ class SfrInfoSystems extends Model
         'roles'
     ];
     //protected $withCount = ['children'];
+
+    protected $casts = [
+        'isys_data' => SFRInfosystemData::class,
+    ];
 
     public function children()
     {
