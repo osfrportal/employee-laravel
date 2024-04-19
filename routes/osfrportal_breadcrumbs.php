@@ -140,7 +140,7 @@ Breadcrumbs::for('osfrportal.admin.infosystems.index', function (BreadcrumbTrail
 Breadcrumbs::for('osfrportal.admin.infosystems.view.child', function (BreadcrumbTrail $trail, $isysid): void {
     $SfrInfoSystems = SfrInfoSystems::where('isysid', $isysid)->first();
 
-    $trail->parent('osfrportal.admin.infosystems');
+    $trail->parent('osfrportal.admin.infosystems.index');
     $trail->push($SfrInfoSystems->isys_name, route('osfrportal.admin.infosystems.view.child', $isysid));
 });
 
