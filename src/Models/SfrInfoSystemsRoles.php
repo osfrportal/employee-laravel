@@ -5,6 +5,7 @@ namespace Osfrportal\OsfrportalLaravel\Models;
 use Illuminate\Database\Eloquent\Model;
 use Osfrportal\OsfrportalLaravel\Traits\Uuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Osfrportal\OsfrportalLaravel\Data\Infosystem\SFRInfosystemRoleData;
 
 class SfrInfoSystemsRoles extends Model
 {
@@ -18,6 +19,11 @@ class SfrInfoSystemsRoles extends Model
         'iroleid',
         'irole_name',
         'irole_data'
+    ];
+
+
+    protected $casts = [
+        'irole_data' => SFRInfosystemRoleData::class,
     ];
 
     public function infosystem()

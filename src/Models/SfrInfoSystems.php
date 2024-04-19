@@ -36,12 +36,6 @@ class SfrInfoSystems extends Model
         return $this->belongsToMany(SfrInfoSystemsRoles::class, 'relation_sfrinfosystems_roles', 'isysid', 'iroleid')->withTimestamps();
     }
     public function persons() {
-        $cols_to_get = [
-            'psurname',
-            'pname',
-            'pmiddlename',
-        ];
-        //return $this->belongsToMany(PFRPerson::class, 'relation_sfrinfosystems_persons', 'isysid', 'pid')->select($cols_to_get)->withTimestamps();
-        return $this->belongsToMany(SfrPerson::class, 'relation_sfrinfosystems_persons', 'isysid', 'pid')->withTimestamps();
+        return $this->belongsToMany(SfrPerson::class, 'relation_sfrinfosystems_persons', 'isysid', 'pid')->withTimestamps()->withPivot('reldata');
     }
 }
