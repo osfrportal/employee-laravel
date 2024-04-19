@@ -5,8 +5,15 @@
         <div class="card-body">
             <form method="POST" action="#">
                 <div class="row">
-                    <div class="col">Наименование ИС</div>
-                    <div class="col">{{ $infoSystemModel->isys_name }}</div>
+                    <div class="col"><label for="isys_name" class="form-label">Наименование ИС</label></div>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm  @error('isys_name') is-invalid @enderror"
+                            id="isys_name" name="isys_name"
+                            value="{{ old('isys_name') ?? ($infoSystemModel->isys_name ?? '') }}" required>
+                        @error('isys_name')
+                            <div id="isys_nameFeedback" class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col mt-4">
@@ -24,7 +31,7 @@
                                             <option value="0" @selected(old('syncWithIS', (bool) $infoSystemModel->isys_data->syncWithIS) == 0)>Не требуется</option>
                                         </select>
                                         @error('syncWithIS')
-                                            <div id="syncWithIS" class="invalid-feedback">{{ $message }}</div>
+                                            <div id="syncWithISFeedback" class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
