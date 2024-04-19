@@ -5,7 +5,9 @@
         <div class="card-body">
             <form method="POST" action="#">
                 <div class="row">
-                    <div class="col"><label for="isys_name" class="form-label">Наименование ИС</label></div>
+                    <div class="col">
+                        <label for="isys_name" class="form-label">Наименование ИС</label>
+                    </div>
                     <div class="col">
                         <input type="text" class="form-control form-control-sm  @error('isys_name') is-invalid @enderror"
                             id="isys_name" name="isys_name"
@@ -21,7 +23,8 @@
                             <div class="card-header">Данные ИС</div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col"><label class="mb-1" for="syncWithIS">Синхронизация с ИС</label>
+                                    <div class="col">
+                                        <label class="mb-1" for="syncWithIS">Синхронизация с ИС</label>
                                     </div>
                                     <div class="col">
                                         <select class="form-select form-select-sm @error('syncWithIS') is-invalid @enderror"
@@ -35,10 +38,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @if ($infoSystemModel->isys_data->syncWithIS === true)
+                                @if ($infoSystemModel->isys_data->syncWithIS === false)
                                     <div class="row">
-                                        <div class="col">controllerNameSync</div>
-                                        <div class="col">@dump($infoSystemModel->isys_data)</div>
+                                        <div class="col">
+                                            <label for="controllerNameSync" class="form-label">Имя контроллера для
+                                                синхронизации</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text"
+                                                class="form-control form-control-sm  @error('controllerNameSync') is-invalid @enderror"
+                                                id="controllerNameSync" name="controllerNameSync"
+                                                value="{{ old('controllerNameSync') ?? ((string) $infoSystemModel->isys_data->controllerNameSync ?? '') }}">
+                                            @error('controllerNameSync')
+                                                <div id="controllerNameSyncFeedback" class="invalid-feedback">
+                                                    {{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 @endif
                             </div>
