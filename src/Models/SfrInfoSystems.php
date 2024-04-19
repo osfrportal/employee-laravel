@@ -26,7 +26,7 @@ class SfrInfoSystems extends Model
     //protected $withCount = ['children'];
 
     protected $casts = [
-        'isys_data' => SFRInfosystemData::class,
+        'isys_data' => SFRInfosystemData::class . ':default',
     ];
 
     public function children()
