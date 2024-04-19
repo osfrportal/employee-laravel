@@ -38,7 +38,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @if ($infoSystemModel->isys_data->syncWithIS === false)
+                                @if ((bool) $infoSystemModel->isys_data->syncWithIS === false)
                                     <div class="row">
                                         <div class="col">
                                             <label for="controllerNameSync" class="form-label">Имя контроллера для
