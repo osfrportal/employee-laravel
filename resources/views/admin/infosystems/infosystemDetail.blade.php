@@ -39,24 +39,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @if ((bool) $infoSystemModel->isys_data->syncWithIS === false)
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="controllerNameSync" class="form-label">Имя контроллера для
-                                                синхронизации</label>
-                                        </div>
-                                        <div class="col">
-                                            <input type="text"
-                                                class="form-control form-control-sm  @error('controllerNameSync') is-invalid @enderror"
-                                                id="controllerNameSync" name="controllerNameSync"
-                                                value="{{ old('controllerNameSync') ?? ((string) $infoSystemModel->isys_data->controllerNameSync ?? '') }}">
-                                            @error('controllerNameSync')
-                                                <div id="controllerNameSyncFeedback" class="invalid-feedback">
-                                                    {{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="controllerNameSync" class="form-label">Имя контроллера для
+                                            синхронизации</label>
                                     </div>
-                                @endif
+                                    <div class="col">
+                                        <input type="text"
+                                            class="form-control form-control-sm  @error('controllerNameSync') is-invalid @enderror"
+                                            id="controllerNameSync" name="controllerNameSync"
+                                            value="{{ old('controllerNameSync') ?? ((string) $infoSystemModel->isys_data->controllerNameSync ?? '') }}">
+                                        @error('controllerNameSync')
+                                            <div id="controllerNameSyncFeedback" class="invalid-feedback">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
