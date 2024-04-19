@@ -6,18 +6,21 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
 use Carbon\Carbon;
 
+/**
+ * @param string|Optional $controllerNameSync Имя контроллера для вызова методов синхронизации
+ */
 class SFRInfosystemData extends Data
 {
+    public string|Optional $controllerNameSync;
+
     /**
      * Конструктор DTO Информационная система
      * @param bool $syncWithIS Синхронизировать роли с подключением к ИС (API, SOAP интерфейс и т.д)
-     * @param string|Optional $controllerNameSync Имя контроллера для вызова методов синхронизации
      */
     public function __construct(
         public ?bool $syncWithIS = false,
-        public string|Optional $controllerNameSync,
     ) {
-
+        $this->controllerNameSync = '';
     }
 
     /*
