@@ -24,11 +24,13 @@ class SfrInfoSystemsRoles extends Model
 
     protected $casts = [
         'irole_data' => SFRInfosystemRoleData::class . ':default',
+        'created_at' => 'datetime:d-m-Y H:i:s',
+        'updated_at' => 'datetime:d-m-Y H:i:s',
     ];
 
     public function infosystem()
     {
-        return $this->hasOneThrough(SfrInfoSystems::class, SfrRelRolesInfoSystems::class, 'iroleid','isysid','iroleid','isysid');
+        return $this->hasOneThrough(SfrInfoSystems::class, SfrRelRolesInfoSystems::class, 'iroleid', 'isysid', 'iroleid', 'isysid');
     }
 
     /**
