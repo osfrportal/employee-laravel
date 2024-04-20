@@ -27,6 +27,8 @@ class SfrInfoSystems extends Model
 
     protected $casts = [
         'isys_data' => SFRInfosystemData::class . ':default',
+        'created_at' => 'datetime:d-m-Y H:i:s',
+        'updated_at' => 'datetime:d-m-Y H:i:s',
     ];
 
     public function children()
@@ -38,10 +40,12 @@ class SfrInfoSystems extends Model
     {
         return $this->belongsTo(SfrInfoSystems::class, 'parent_isysid');
     }
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany(SfrInfoSystemsRoles::class, 'relation_sfrinfosystems_roles', 'isysid', 'iroleid')->withTimestamps();
     }
-    public function persons() {
+    public function persons()
+    {
         return $this->belongsToMany(SfrPerson::class, 'relation_sfrinfosystems_persons', 'isysid', 'pid')->withTimestamps()->withPivot('reldata');
     }
 }
