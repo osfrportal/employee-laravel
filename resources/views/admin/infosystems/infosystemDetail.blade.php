@@ -71,7 +71,7 @@
                         <div class="card-header">Полномочия информационной системы</div>
                         <div class="card-body">
                             <div class="row">
-                                1
+                                @dump($infoSystemModel->roles)
                             </div>
                             <div class="row">
                                 2
