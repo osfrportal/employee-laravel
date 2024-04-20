@@ -70,12 +70,11 @@
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Полномочия информационной системы</div>
                         <div class="card-body">
-                            <div class="row">
-                                @dump($infoSystemModel->roles)
-                            </div>
-                            <div class="row">
-                                2
-                            </div>
+                            @foreach ($infoSystemModel->roles as $isRole)
+                                <div class="row">
+                                    @dump($isRole)
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
