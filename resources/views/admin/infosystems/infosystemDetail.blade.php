@@ -70,11 +70,26 @@
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Полномочия информационной системы</div>
                         <div class="card-body">
-                            @foreach ($infoSystemModel->roles as $isRole)
-                                <div class="row">
-                                    @dump($isRole)
-                                </div>
-                            @endforeach
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">iroleid</th>
+                                        <th scope="col">irole_name</th>
+                                        <th scope="col">created_at</th>
+                                        <th scope="col">updated_at</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($infoSystemModel->roles as $isRole)
+                                        <tr>
+                                            <th scope="row">{{ $isRole->iroleid }}</th>
+                                            <td>{{ $isRole->irole_name }}</td>
+                                            <td>{{ $isRole->created_at }}</td>
+                                            <td>{{ $isRole->updated_at }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
