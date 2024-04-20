@@ -86,6 +86,7 @@
                                             <th scope="row">
                                                 <a href="#{{ $isRole->iroleid }}" class="icon-link"
                                                     title="Редактирование"><i class="ti ti-edit icon-size-16"></i></a>
+                                                &nbsp;&nbsp;
                                                 <a href="#{{ $isRole->iroleid }}" class="icon-link" title="Удаление"><i
                                                         class="ti ti-x icon-size-16"></i></a>
                                             </th>
