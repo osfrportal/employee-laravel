@@ -74,16 +74,21 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">iroleid</th>
-                                        <th scope="col">irole_name</th>
-                                        <th scope="col">created_at</th>
-                                        <th scope="col">updated_at</th>
+                                        <th scope="col">Действия</th>
+                                        <th scope="col">Наименование полномочия</th>
+                                        <th scope="col">Создано</th>
+                                        <th scope="col">Обновлено</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($infoSystemModel->roles as $isRole)
                                         <tr>
-                                            <th scope="row">{{ $isRole->iroleid }}</th>
+                                            <th scope="row">
+                                                <a href="#{{ $isRole->iroleid }}" class="icon-link link-underline-opacity-0"
+                                                    title="Редактирование"><span class="ti ti-edit icon-size-16"></span></a>
+                                                <a href="#{{ $isRole->iroleid }}" class="icon-link link-underline-opacity-0"
+                                                    title="Редактирование"><span class="ti ti-x icon-size-16"></span></a>
+                                            </th>
                                             <td>{{ $isRole->irole_name }}</td>
                                             <td>{{ $isRole->created_at }}</td>
                                             <td>{{ $isRole->updated_at }}</td>
