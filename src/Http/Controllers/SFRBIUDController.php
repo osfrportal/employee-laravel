@@ -17,6 +17,7 @@ use Osfrportal\OsfrportalLaravel\Actions\LogAddAction;
 
 use Osfrportal\OsfrportalLaravel\Models\SfrUser;
 use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
+use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystems;
 
 use Osfrportal\OsfrportalLaravel\Data\Infosystem\SFRInfosystemRoleData;
 
@@ -26,6 +27,8 @@ class SFRBIUDController extends Controller
     protected $buidSoapURL;
     protected $soapHeader;
     protected $usersToNotify;
+
+    protected $isysid;
 
     protected $activeUsersNotFoundWithoutRoles;
 
@@ -39,7 +42,7 @@ class SFRBIUDController extends Controller
         $this->soapWrapper->add('BiudAPISoapBinding', function ($service) {
             $service
                 ->wsdl($this->buidSoapURL)
-                ->trace(true)
+                ->trace(false)
                 ->cache(WSDL_CACHE_NONE)
                 ->customHeader($this->soapHeader);
         });
@@ -96,6 +99,9 @@ class SFRBIUDController extends Controller
 
     public function getAllSystemsRoles()
     {
+        $this->isysid = '9122455d-82a6-4a9d-a6b5-53d8660fea82';
+        $infoSystem = SfrInfoSystems::find($this->isysid);
+
         $systems = 'БИУД, ГЕРОИ, КС, УПД, НВП, ЭЛРД, СПЛП, ФБД ГЕРОИ, РС ПСБ, МРУ, Проезд, РБД Проезд';
         $rolesCollection = collect();
 
@@ -104,11 +110,21 @@ class SFRBIUDController extends Controller
             foreach ($this->getRolesBySystem(trim($system)) as $role) {
                 $array = (array) $role;
                 $roleData = SFRInfosystemRoleData::from(['roleName' => $role->remplusname, 'roleData' => $array]);
-                dump($roleData->toJson());
+                //dump($roleData->toJson());
+                $infoSystem->roles()->updateOrCreate(['irole_name' => $role->remplusname], ['irole_data' => $roleData]);
                 $rolesCollection->push($roleData);
             }
         }
         $rolesCollection->dump();
+    }
+    /**
+     * Запуск синхронизации по расписанию
+     * @param string $isysid ID информационной системы, к которой будут привязаны полномочия
+     * @return void
+     */
+    public function syncRoles(string $isysid)
+    {
+        $this->isysid = $isysid;
     }
 
 }
