@@ -84,7 +84,7 @@
                                     @foreach ($infoSystemModel->roles as $isRole)
                                         <tr>
                                             <th scope="row">
-                                                <a href="#{{ $isRole->iroleid }}" class="icon-link link-underline-opacity-0"
+                                                <a href="#{{ $isRole->iroleid }}" class="text-decoration-none"
                                                     title="Редактирование"><i class="ti ti-edit icon-size-16"></i></a>
                                                 <a href="#{{ $isRole->iroleid }}" class="icon-link link-underline-opacity-0"
                                                     title="Удаление"><i class="ti ti-x icon-size-16"></i></a>
