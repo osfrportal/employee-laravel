@@ -125,6 +125,7 @@ class SFRBIUDController extends Controller
     public function syncRoles(string $isysid)
     {
         $this->isysid = $isysid;
+        $this->getAllSystemsRoles();
     }
 
 }
