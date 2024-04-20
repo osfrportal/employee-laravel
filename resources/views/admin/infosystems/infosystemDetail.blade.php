@@ -68,7 +68,8 @@
             <div class="row">
                 <div class="col mt-4">
                     <div class="card mb-4 mb-xl-0">
-                        <div class="card-header">Полномочия информационной системы</div>
+                        <div class="card-header">Полномочия информационной системы
+                            ({{ $infoSystemModel->roles()->count() }})</div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>
