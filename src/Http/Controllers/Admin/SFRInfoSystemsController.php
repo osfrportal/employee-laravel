@@ -17,30 +17,34 @@ class SFRInfoSystemsController extends Controller
 {
     private $permissionManage = 'infosystem-manage';
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->flasher_interface->option('timeout', false);
     }
-    public function listInfoSystemsAll() {
+    public function listInfoSystemsAll()
+    {
         $this->authorize($this->permissionManage);
 
         //$infosystems = SfrInfoSystems::with('roles')->orderBy('isys_name','ASC')->get();
-        $infosystems = SfrInfoSystems::doesntHave('parent')->with(['roles', 'children'])->orderBy('isys_name','ASC')->get();
+        $infosystems = SfrInfoSystems::doesntHave('parent')->with(['roles', 'children'])->orderBy('isys_name', 'ASC')->get();
 
         return view('osfrportal::admin.infosystems.listall', [
             'infosystems' => $infosystems,
         ]);
     }
 
-    public function showAddForm() {
-        $infoSystemsRoot = SfrInfoSystems::doesntHave('parent')->doesntHave('persons')->doesntHave('roles')->orderBy('isys_name','ASC')->get();
+    public function showAddForm()
+    {
+        $infoSystemsRoot = SfrInfoSystems::doesntHave('parent')->doesntHave('persons')->doesntHave('roles')->orderBy('isys_name', 'ASC')->get();
 
         return view('osfrportal::admin.infosystems.infosystemsEditForm', [
             'infoSystemData' => null,
             'infoSystemsRoot' => $infoSystemsRoot,
         ]);
     }
-    public function saveInfoSystem(SaveInfosystemPostRequest $saveRequest) {
+    public function saveInfoSystem(SaveInfosystemPostRequest $saveRequest)
+    {
 
         $validated = $saveRequest->validated();
         $parent_isysid = null;
@@ -62,22 +66,28 @@ class SFRInfoSystemsController extends Controller
         return redirect()->route('osfrportal.admin.infosystems.index');
     }
 
-    public function showDetailedInfoChild($isysid) {
+    public function showDetailedInfoChild($isysid)
+    {
         $isUuid = Str::isUuid($isysid);
+        $infoSystemsRoot = SfrInfoSystems::doesntHave('parent')->doesntHave('persons')->doesntHave('roles')->orderBy('isys_name', 'ASC')->get();
+
         $infoSystemModel = SfrInfoSystems::with(['roles'])->find($isysid);
 
-        return view('osfrportal::admin.infosystems.infosystemDetail', ['infoSystemModel' => $infoSystemModel]);
+        return view('osfrportal::admin.infosystems.infosystemDetail', ['infoSystemModel' => $infoSystemModel, 'infoSystemsRoot' => $infoSystemsRoot]);
     }
 
-    public function showDetailedInfoParent($isysid) {
+    public function showDetailedInfoParent($isysid)
+    {
         $isUuid = Str::isUuid($isysid);
     }
 
-    public function showRolesAddForm() {
+    public function showRolesAddForm()
+    {
         return view('osfrportal::admin.infosystems.infosystemsRolesAddForm');
     }
 
-    public function saveInfoSystemRoles(SaveInfosystemRoleRequest $saveRequest) {
+    public function saveInfoSystemRoles(SaveInfosystemRoleRequest $saveRequest)
+    {
         $validated = $saveRequest->validated();
 
         $isysid = Arr::get($validated, 'isysid');

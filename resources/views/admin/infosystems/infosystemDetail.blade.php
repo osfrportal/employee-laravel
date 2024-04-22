@@ -19,6 +19,25 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col">
+                        <label for="parent_isysid" class="form-label">Родительская ИС</label>
+                    </div>
+                    <div class="col">
+                        <select class="form-select @error('parent_isysid') is-invalid @enderror" id="parent_isysid"
+                            name="parent_isysid">
+                            <option>-</option>
+                            @foreach ($infoSystemsRoot as $rootInfosystem)
+                                <option value="{{ $rootInfosystem->isysid }}" @selected(old('parent_isysid', !is_null($infoSystemModel) ? $infoSystemModel->parent_isysid : '') == $rootInfosystem->isysid)>
+                                    {{ $rootInfosystem->isys_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('parent_isysid')
+                            <div id="parent_isysidFeedback" class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col mt-4">
                         <div class="card mb-4 mb-xl-0">
                             <div class="card-header">Данные ИС</div>

@@ -21,7 +21,7 @@
                     name="parent_isysid">
                     <option>-</option>
                     @foreach ($infoSystemsRoot as $rootInfosystem)
-                        <option value="{{ $rootInfosystem->isysid }}" @selected(old('parent_isysid') == $rootInfosystem->isysid)>
+                        <option value="{{ $rootInfosystem->isysid }}" @selected(old('parent_isysid', !is_null($infoSystemData) ? $infoSystemData->parent_isysid : '') == $rootInfosystem->isysid)>
                             {{ $rootInfosystem->isys_name }}
                         </option>
                     @endforeach
@@ -37,8 +37,8 @@
                 <select class="form-select form-select-sm @error('syncWithIS') is-invalid @enderror" id="syncWithIS"
                     name="syncWithIS">
                     <option>Выберите...</option>
-                    <option value="1" @selected(old('syncWithIS', (bool) $rootInfosystem->isys_data->syncWithIS) == 1)>Включено</option>
-                    <option value="0" @selected(old('syncWithIS', (bool) $rootInfosystem->isys_data->syncWithIS) == 0)>Не требуется</option>
+                    <option value="1" @selected(old('syncWithIS', (bool) $infoSystemData->isys_data->syncWithIS) == 1)>Включено</option>
+                    <option value="0" @selected(old('syncWithIS', (bool) $infoSystemData->isys_data->syncWithIS) == 0)>Не требуется</option>
                 </select>
                 @error('syncWithIS')
                     <div id="syncWithISFeedback" class="invalid-feedback">{{ $message }}</div>
@@ -51,7 +51,7 @@
                 <input type="text"
                     class="form-control form-control-sm  @error('controllerNameSync') is-invalid @enderror"
                     id="controllerNameSync" name="controllerNameSync"
-                    value="{{ old('controllerNameSync') ?? ((string) $rootInfosystem->isys_data->controllerNameSync ?? '') }}">
+                    value="{{ old('controllerNameSync') ?? ((string) $infoSystemData->isys_data->controllerNameSync ?? '') }}">
                 @error('controllerNameSync')
                     <div id="controllerNameSyncFeedback" class="invalid-feedback">
                         {{ $message }}</div>
