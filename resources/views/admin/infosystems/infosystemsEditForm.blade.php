@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label"for="controllerNameSync">Синхронизация с ИС</label>
+            <label class="col-sm-2 col-form-label"for="controllerNameSync">Имя контроллера для синхронизации</label>
             <div class="col-sm-10">
                 <input type="text"
                     class="form-control form-control-sm  @error('controllerNameSync') is-invalid @enderror"
@@ -55,9 +55,6 @@
                 @error('controllerNameSync')
                     <div id="controllerNameSyncFeedback" class="invalid-feedback">
                         {{ $message }}</div>
-                @enderror
-                @error('controllerNameSync')
-                    <div id="controllerNameSyncFeedback" class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
         </div>
