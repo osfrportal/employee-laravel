@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="parent_isysid" class="col-sm-2 col-form-label">Родительская ИС</label>
+            <label for="parent_isysid" class="col-sm-2 col-form-label">Родительская группа</label>
             <div class="col-sm-10">
                 <select class="form-select @error('parent_isysid') is-invalid @enderror" id="parent_isysid"
                     name="parent_isysid">

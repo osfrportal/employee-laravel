@@ -48,8 +48,18 @@ class SFRInfoSystemsController extends Controller
 
         $validated = $saveRequest->validated();
         $parent_isysid = null;
+
+        $syncWithIS = Arr::get($validated, 'syncWithIS', false);
+
+        $arrIsData = [
+            'syncWithIS' => $syncWithIS,
+        ];
+
         if (Arr::get($validated, 'parent_isysid') != '-') {
             $parent_isysid = Arr::get($validated, 'parent_isysid');
+        }
+        if ($syncWithIS == true) {
+            $arrIsData = Arr::add($arrIsData, 'controllerNameSync', Arr::get($validated, 'controllerNameSync'));
         }
         $infoSystemModel = SfrInfoSystems::updateOrCreate(
             [
@@ -58,6 +68,7 @@ class SFRInfoSystemsController extends Controller
             [
                 'isys_name' => Arr::get($validated, 'isys_name'),
                 'parent_isysid' => $parent_isysid,
+                'isys_data' => $arrIsData,
             ]
         );
 
