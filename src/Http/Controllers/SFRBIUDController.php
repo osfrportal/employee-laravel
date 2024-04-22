@@ -51,6 +51,9 @@ class SFRBIUDController extends Controller
 
     public function getAllOperators()
     {
+        $this->isysid = '9122455d-82a6-4a9d-a6b5-53d8660fea82';
+        $infoSystem = SfrInfoSystems::find($this->isysid);
+
         $operators = $this->soapWrapper->call('BiudAPISoapBinding.getAllOperators', []);
         //dump($operators);
         $activeUsers = collect();
@@ -66,7 +69,7 @@ class SFRBIUDController extends Controller
                 'prim' => $biudOperator->prim,
             ];
             if ($biudOperator->blocked == 'Активен') {
-                $activeUsers->push($user);
+
                 $sfrperson = SfrPerson::where([
                     ['psurname', '=', $biudOperator->fa],
                     ['pname', '=', $biudOperator->im],
@@ -74,6 +77,12 @@ class SFRBIUDController extends Controller
                 ])->first();
                 if (empty($sfrperson)) {
                     $activeUsersNotFound->push($user);
+                } else {
+                    //работник сопоставлен по ФИО.
+                    $activeUsers->push($user);
+                    $reldata['isLogin'] = $user['login'];
+                    //Добавляем к ресурсу привязку пользователя:
+                    $infoSystem->persons()->attach($sfrperson, ['reldata' => $reldata])
                 }
             } else {
                 $blockedUsers->push($user);
@@ -86,7 +95,8 @@ class SFRBIUDController extends Controller
             if (count($operatorRoles->getOperatorRolesByLoginReturn) == 0) {
                 $this->activeUsersNotFoundWithoutRoles->push($item);
             }
-            dump($item, $operatorRoles->getOperatorRolesByLoginReturn);
+            //dump($item, $operatorRoles->getOperatorRolesByLoginReturn);
+            dump($item);
         });
         //$this->activeUsersNotFoundWithoutRoles->dump();
     }
