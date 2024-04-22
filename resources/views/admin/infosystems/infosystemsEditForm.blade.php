@@ -37,8 +37,8 @@
                 <select class="form-select form-select-sm @error('syncWithIS') is-invalid @enderror" id="syncWithIS"
                     name="syncWithIS">
                     <option>Выберите...</option>
-                    <option value="1" @selected(old('syncWithIS', (bool) $infoSystemData->isys_data->syncWithIS) == 1)>Включено</option>
-                    <option value="0" @selected(old('syncWithIS', (bool) $infoSystemData->isys_data->syncWithIS) == 0)>Не требуется</option>
+                    <option value="1" @selected(old('syncWithIS', !is_null($infoSystemData) ? $infoSystemData->isys_data->syncWithIS : ''))==1)>Включено</option>
+                    <option value="0" @selected(old('syncWithIS', !is_null($infoSystemData) ? $infoSystemData->isys_data->syncWithIS : ''))==0)>Не требуется</option>
                 </select>
                 @error('syncWithIS')
                     <div id="syncWithISFeedback" class="invalid-feedback">{{ $message }}</div>
