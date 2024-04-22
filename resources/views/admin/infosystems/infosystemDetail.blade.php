@@ -76,6 +76,7 @@
                                     <tr>
                                         <th scope="col">Действия</th>
                                         <th scope="col">Наименование полномочия</th>
+                                        <th scope="col">Количество работников</th>
                                         <th scope="col">Создано</th>
                                         <th scope="col">Обновлено</th>
                                     </tr>
@@ -91,6 +92,7 @@
                                                         class="ti ti-x icon-size-16"></i></a>
                                             </th>
                                             <td>{{ $isRole->irole_name }}</td>
+                                            <td>{{ $isRole->persons()->count() }}</td>
                                             <td>{{ $isRole->created_at }}</td>
                                             <td>{{ $isRole->updated_at }}</td>
                                         </tr>
