@@ -37,11 +37,27 @@
                 <select class="form-select form-select-sm @error('syncWithIS') is-invalid @enderror" id="syncWithIS"
                     name="syncWithIS">
                     <option>Выберите...</option>
-                    <option value="1" @selected(old('syncWithIS', (bool) $infoSystemModel->isys_data->syncWithIS) == 1)>Включено</option>
-                    <option value="0" @selected(old('syncWithIS', (bool) $infoSystemModel->isys_data->syncWithIS) == 0)>Не требуется</option>
+                    <option value="1" @selected(old('syncWithIS', (bool) $rootInfosystem->isys_data->syncWithIS) == 1)>Включено</option>
+                    <option value="0" @selected(old('syncWithIS', (bool) $rootInfosystem->isys_data->syncWithIS) == 0)>Не требуется</option>
                 </select>
                 @error('syncWithIS')
                     <div id="syncWithISFeedback" class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label"for="controllerNameSync">Синхронизация с ИС</label>
+            <div class="col-sm-10">
+                <input type="text"
+                    class="form-control form-control-sm  @error('controllerNameSync') is-invalid @enderror"
+                    id="controllerNameSync" name="controllerNameSync"
+                    value="{{ old('controllerNameSync') ?? ((string) $rootInfosystem->isys_data->controllerNameSync ?? '') }}">
+                @error('controllerNameSync')
+                    <div id="controllerNameSyncFeedback" class="invalid-feedback">
+                        {{ $message }}</div>
+                @enderror
+                @error('controllerNameSync')
+                    <div id="controllerNameSyncFeedback" class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
         </div>
