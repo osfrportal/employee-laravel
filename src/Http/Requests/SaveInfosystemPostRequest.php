@@ -45,6 +45,7 @@ class SaveInfosystemPostRequest extends FormRequest
             '*.boolean' => 'Необходимо выбрать значение (Да или Нет)',
             '*.uuid' => 'Некорректный формат идентификатора',
             '*.string' => 'Поле должно иметь строковое значение',
+            'controllerNameSync.required_if' => 'Необходимо заполнить значение т.к включена синхронизация с ИС'
         ];
     }
 }
