@@ -84,7 +84,7 @@ class SFRBIUDController extends Controller
                     $reldata['isLogin'] = $user['login'];
                     $reldataDTO = SFRInfosystemRelData::from($reldata);
                     //Добавляем к ресурсу привязку пользователя:
-                    $infoSystem->persons()->sync($sfrperson, ['reldata' => $reldataDTO->toJson()]);
+                    $infoSystem->persons()->syncWithoutDetaching($sfrperson, ['reldata' => $reldataDTO->toJson()]);
                     //Получаем роли пользователя из ИС.
                     //Получаем связанные роли пользователя по данной ИС из базы.
 
