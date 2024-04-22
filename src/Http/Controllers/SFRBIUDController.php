@@ -82,7 +82,7 @@ class SFRBIUDController extends Controller
                     $activeUsers->push($user);
                     $reldata['isLogin'] = $user['login'];
                     //Добавляем к ресурсу привязку пользователя:
-                    $infoSystem->persons()->attach($sfrperson, ['reldata' => $reldata])
+                    $infoSystem->persons()->attach($sfrperson, ['reldata' => $reldata]);
                 }
             } else {
                 $blockedUsers->push($user);
