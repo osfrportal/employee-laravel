@@ -3,8 +3,8 @@
     <div class="card mb-4 mb-xl-0">
         <div class="card-header">Карточка информационной системы</div>
         <div class="card-body">
-            <form method="POST"
-                action="{{ route('osfrportal.admin.infosystems.save') }} id="form{{ $infoSystemModel->isysid }}">
+            <form method="POST" action="{{ route('osfrportal.admin.infosystems.save') }}"
+                id="form{{ $infoSystemModel->isysid }}">
                 <input type="hidden" id="isysid" name="isysid" value="{{ $infoSystemModel->isysid }}">
                 <div class="row">
                     <div class="col">
