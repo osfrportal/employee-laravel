@@ -14,8 +14,11 @@ class DocsNotSigned extends Component
     {
         $userAdminRoles = ['Super Admin', 'ozi-admin', 'ozi-staff'];
         $user = Auth::user();
-        $isAdminRole = $user->hasRole($userAdminRoles);
-
+        if (is_null($user)) {
+            $isAdminRole = false;
+        } else {
+            $isAdminRole = $user->hasRole($userAdminRoles);
+        }
         $this->docsNotSignedCount = CountUnsignedDocsByUserAction::run();
 
         $text_to = sprintf('Вам необходимо ознакомиться с нормативными документами. Кол-во документов: %s', $this->docsNotSignedCount);
