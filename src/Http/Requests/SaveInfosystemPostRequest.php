@@ -27,7 +27,7 @@ class SaveInfosystemPostRequest extends FormRequest
             'isys_name' => 'required',
             'parent_isysid' => 'nullable|string',
             'syncWithIS' => 'required|boolean',
-            'controllerNameSync' => 'required_if:syncWithIS,1|string'
+            'controllerNameSync' => 'nullable|required_if:syncWithIS,1|string'
         ];
     }
     /**
