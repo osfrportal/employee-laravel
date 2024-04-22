@@ -20,6 +20,7 @@ use Osfrportal\OsfrportalLaravel\Models\SfrPerson;
 use Osfrportal\OsfrportalLaravel\Models\SfrInfoSystems;
 
 use Osfrportal\OsfrportalLaravel\Data\Infosystem\SFRInfosystemRoleData;
+use Osfrportal\OsfrportalLaravel\Data\Infosystem\SFRInfosystemRelData;
 
 class SFRBIUDController extends Controller
 {
@@ -81,8 +82,9 @@ class SFRBIUDController extends Controller
                     //работник сопоставлен по ФИО.
                     $activeUsers->push($user);
                     $reldata['isLogin'] = $user['login'];
+                    $reldataDTO = SFRInfosystemRelData::from($reldata);
                     //Добавляем к ресурсу привязку пользователя:
-                    $infoSystem->persons()->attach($sfrperson, ['reldata' => $reldata]);
+                    $infoSystem->persons()->attach($sfrperson, ['reldata' => $reldataDTO->toJson()]);
                 }
             } else {
                 $blockedUsers->push($user);
